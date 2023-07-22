@@ -1,0 +1,157 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+	<div class="h-entry main" role="main">
+		<?php $this->yellow->page->set("entryClass", "entry") ?>
+		<?php if ($this->yellow->page->isExisting("tag")): ?>
+		<?php foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { $this->yellow->page->set("entryClass", $this->yellow->page->get("entryClass")." tag-".$this->yellow->lookup->normaliseArguments($tag, false)); } ?>
+		<?php endif ?>
+		<div class="<?php echo $this->yellow->page->getHtml("entryClass") ?>">
+			<div class="entry-title p-name"><h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1></div>
+			<div class="entry-meta"><span class="dt-published"><?php echo $this->yellow->page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card"><img src="https://static.lifeofpablo.com/pabs-cropped.jpg" alt="avatar" class="u-photo br-100 h1 w1 dib">&nbsp;<?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span></div>
+			<div class="entry-content e-content"><?php echo $this->yellow->page->getContent() ?></div>
+			<?php echo $this->yellow->page->getExtra("profiles") ?>
+			<?php echo $this->yellow->page->getExtra("links") ?>
+			<?php if ($this->yellow->page->isExisting("tag")): ?>
+			<div class="entry-tags">
+				<p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo " "; echo "<a class=\"p-category f6 grow no-underline br-pill ba ph3 pv2 mb2 dib navy\" href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
+			</div>
+			<div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+			</div>
+			<div>
+					                        <p>Webmention(Experimental)</p>
+<!--								<form>
+								<label class="f6 b db mb2" for="url">Have you written a response to this? Let me know the URL:</label>
+
+								<input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="url" name="url" id="url" placeholder="https://example.com" pattern="https://.*" size="30" required>
+								<input type="submit" value="Send Request" />
+</form> -->
+			</div>
+
+		
+<script type="application/javascript">
+	var target_url = "https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>";
+var target_url1 = "https://www.disquisitioner.com/posts/post-darkmode/";
+
+// jsonp=f option to disable json return
+var count_url   = "https://webmention.io/api/count.json?target=";
+var mention_url = "https://webmention.io/api/mentions.jf2?target=";
+var mfilter = "&wm-property=in-reply-to";
+
+var defaultphoto = "https://aaronparecki.com/assets/images/no-profile-photo.png"
+
+fetch(count_url+target_url)
+  .then(response => {return(response.text());})
+  .then(myJson => {showCounts(1,JSON.parse(myJson));});
+
+fetch(mention_url+target_url)
+  .then(response => {return(response.text());})
+  .then(myJson => {showMentions(JSON.parse(myJson));});
+
+function showCounts(index, data) {
+  // Add code to hide mention panel if data.count = 0
+  if(data.type.like) { document.getElementById("wm_like"+index).innerHTML = data.type.like; }
+  if(data.type.mention) { document.getElementById("wm_ment"+index).innerHTML = data.type.mention; }
+  if(data.type.reply) {
+      document.getElementById("wm_reply"+index).innerHTML =
+        pluralize(data.type.reply,"reply","replies");
+  }
+  if(data.type.repost) {
+    document.getElementById("wm_repost"+index).innerHTML =
+      pluralize(data.type.repost,"repost","reposts");
+  }
+  if(data.type.bookmark) { document.getElementById("wm_bkmk"+index).innerHTML = data.type.bookmark; }
+}
+
+function pluralize(num,singular,plural) {
+  if(num == 1) return num + " " + singular;
+  return num + " " + plural;
+}
+
+function showMentions(mentions) {
+  var panel = document.getElementById("mentionpanel");
+  for(i=0;i<mentions.children.length;i++) {
+
+    var m = mentions.children[i];
+
+    var m_div = document.createElement("DIV");
+    m_div.className = "webmention";
+    panel.appendChild(m_div);
+
+    var m_img = document.createElement("IMG");
+    if(m.author.photo) {
+      m_img.setAttribute("src",m.author.photo);
+    }
+    else {
+      m_img.setAttribute("src",defaultphoto);
+    }
+    m_img.setAttribute("width","64");
+    m_div.appendChild(m_img);
+
+    var m_info = document.createElement("DIV");
+    m_info.className = "wm_info";
+    m_div.appendChild(m_info);
+
+    // First line is author's name, liked to author's web site if present
+    if(m.author.url) {
+      var m_auth = document.createElement("A");
+      m_auth.href = m.author.url;
+      if(m.author.name) {
+        m_auth.innerHTML = m.author.name;
+      }
+      m_auth.className = "m_author";
+      m_info.appendChild(m_auth);
+
+    }
+    else {
+      if(m.author.name) {
+        var m_auth = document.createElement("SPAN");
+        m_auth.innerHTML = m.author.name;
+        m_auth.className = "m_author";
+        m_info.appendChild(m_auth);
+      }
+    }
+
+    // Second line = name of post linked to post URL, though
+    // if no name then is just URL
+    var m_art = document.createElement("A");
+    m_art.href = m.url;
+    if(m.name) {
+      m_art.innerHTML = m.name;
+    }
+    else {
+      m_art.innerHTML = m.url;
+    }
+    m_info.appendChild(m_art);
+
+    if(m.published) {
+      var d = new Date(m.published);
+      var m_pub = document.createElement("TIME");
+      m_pub.datetime = m.published;
+      m_pub.innerHTML = "Published: " + d.toString();
+      m_pub.className = "m_published";
+      m_info.appendChild(m_pub);
+    }
+  }
+}
+                </script>
+<div class="wm_summary">
+  <ul class="menicons">
+    <li class="micon"><i class="fa-solid fa-star"></i>&nbsp<span id="wm_like1"></span>&nbsp; likes</li>
+    <li class="micon"><i class="fa-regular fa-file"></i>&nbsp<span id="wm_ment1"></span>&nbsp; mentions</li>
+    
+    <li class="micon"><i class="fa-regular fa-comment"></i>&nbsp<span id="wm_reply1"> </span>&nbsp; replies</li>
+    
+    <li class="micon"><i class="fa-solid fa-repeat"></i>&nbsp<span id="wm_repost1"></span>&nbspreposts</li>
+    
+    <li class="micon"><i class="fa-regular fa-bookmark"></i>&nbsp<span id="wm_bkmk1"></span>&nbsp;bookmarks</li>
+    
+</div>
+<hr>
+<div id="mentionpanel"></div> 
+										<?php echo $this->yellow->page->getExtra("previousnext") ?>
+										<?php endif ?>
+										<?php echo $this->yellow->page->getExtra("comments") ?>
+		</div>	</div>
+	<div class="line-2"></div>
+</div>
+<?php $this->yellow->layout("footer") ?>

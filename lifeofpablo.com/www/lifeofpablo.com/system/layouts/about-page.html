@@ -1,0 +1,47 @@
+<?php $this->yellow->layout("about-header") ?>
+<div class="content h-entry">
+<div class="main e-content" role="main">
+<!-- 
+Experimental: <a href="https://auth.lifeofpablo.com/login?url=https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">Sign in to my site using your domain.</a><p> It's still buggy so you might have to refresh twice to get your domain to show up. </p>
+<?php
+                                     if($_SERVER['REMOTE_USER'])
+			    echo 'Hey , ' . $_SERVER['REMOTE_USER'] . ' !';
+			    else
+			    echo 'Not logged in';
+			    ?> -->
+<!-- <?php
+if($_SERVER['REMOTE_USER'])
+		 echo 'Hey , ' . $_SERVER['REMOTE_USER'] . ' ! <a href="/logout">Logout</a>';
+		     else
+		         echo 'Please <a href="https://auth.lifeofpablo.com/login?url=https://lifeofpablo.com">Sign in</a>';
+			 ?> -->
+<div class="about-header h-card">
+	<img class="me u-photo" src="https://static.lifeofpablo.com/pabs-cropped.jpg" alt="picture of Pablo" /> 
+    <!-- Title -->
+    <h1><a class="u-url u-uid" href="https://lifeofpablo.com"><span class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></span></a></h1> 
+
+   <a class="button button-web u-url" href="guestbook" target="_blank" rel="me noopener">
+    <i class="fa-solid fa-book"></i> Sign Guestbook</a>
+    <div class="sucess box">
+    Follow me on:
+    <br>
+   <!-- Mastodon -->
+   <a class="button button-mastodon u-url" href="https://social.lifeofpablo.com" target="_blank" rel="me noopener">
+    <i class="fa-brands fa-mastodon"></i> Mastodon</a>
+    <!-- Other Links -->
+        <a class="button button-coffee" href="/linkinbio" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> Other Links</a>
+
+  </div>
+
+   <div class="p-note" markdown="1">
+
+Hey, I'm Pablo and I'm based in Sacramento. I work in IT in an educational setting. I really enjoy working with technology and improve technology use in education.
+   </div>
+</div>
+      
+    </div>
+<?php echo $this->yellow->page->getContent() ?>
+</div>
+</div>
+<?php $this->yellow->layout("footer") ?>
