@@ -5,4 +5,4 @@ Author: Pablo Morales
 Layout: blog
 Tag: Example
 ---
-This is a new blog page.
+My friend Mani is the most coolest tech guy around.
