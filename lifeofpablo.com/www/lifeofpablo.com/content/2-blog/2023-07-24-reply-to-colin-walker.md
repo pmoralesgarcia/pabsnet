@@ -2,7 +2,7 @@
 Title: Reply to Colin Walker
 ---
 <div class="u-author h-card">
-    <img src="https://static.lifeofpablo.com/file/lifeofpablo/pabs-cropped.jpg" class="u-photo" width="40">
+    <img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="u-photo" width="40">
       <a href="https://lifeofpablo.com/" class="u-url p-name">Pablo Morales</a>
     </div>
     <p>in reply to: <a class="u-in-reply-to" href="https://colinwalker.blog/blog/?date=2023-07-23">Colin Walker</a></p>
