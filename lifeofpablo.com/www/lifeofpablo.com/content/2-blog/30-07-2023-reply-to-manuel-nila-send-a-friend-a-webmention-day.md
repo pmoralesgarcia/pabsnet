@@ -1,5 +1,6 @@
 ---
 Title: Reply to Manuel Nila - Send a Friend a Webmention Day
+Author: Pablo Morales
 Layout: blog
 Status: unlisted
 Published: 30-07-2023

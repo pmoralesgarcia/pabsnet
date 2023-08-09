@@ -1,4 +1,4 @@
 ---
 Title: Oaxaca
 ---
-Coming Soon!
+[Oaxaca 2010](oaxaca/oaxaca-2010)
