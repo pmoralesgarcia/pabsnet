@@ -8,7 +8,7 @@ Tag: audio post, blog, Mexico, Oaxaca, audio
 I'm trying audio blog posts. Enjoy!
 
  <audio controls class="haudio bg-pink">
-  <source src="https://static.lifeofpablo.com/media/audio/Avenida Centenario 2.m4a" type="audio/mp4">
+  <source src="https://static.lifeofpablo.com/media/audio/Avenida Centenario.m4a" type="audio/mp4">
   Your browser does not support the audio tag.
 </audio> 
 

@@ -80,7 +80,18 @@ I'm really digging your site. I also stumbled on your <a class="u-like-of" href=
 
 
 
+<style>
 
+.full-width {
+    left: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: 100vw;
+    position: relative;
+    right: 50%;
+    width: 100vw;
+}
+</style>
 
 
 

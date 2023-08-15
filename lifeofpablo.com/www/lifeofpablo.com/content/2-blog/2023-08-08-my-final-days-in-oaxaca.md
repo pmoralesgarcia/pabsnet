@@ -3,7 +3,7 @@ Title: My Final Days in Oaxaca
 Published: 2023-08-08 20:15:53
 Author: Pablo Morales
 Layout: blog
-Tag: Oaxaca, Mexico, final days, wrapping up, trip, vacation 2023, summer 2023
+Tag: Oaxaca, Mexico, final days, wrapping up, trip, vacation 2023, summer 2023, audio post
 ---
 <article class="cf ph3 ph5-ns pv5 bg-yellow navy b--dashed b--dark-green">
   <header class="fn fl-ns w-50-ns pr4-ns">
@@ -20,7 +20,7 @@ Pablo
     </div>
     <div class="lh-copy measure" markdown="1">
 ### Riding in the Taxi <i class="fa-solid fa-taxi light-red"></i>
-<audio controls class="green bg-green haudio">
+<audio controls class="green bg-navy haudio">
   <source src="https://static.lifeofpablo.com/media/audio/Boulevard Eduardo Mata.m4a" type="audio/mp4">
   Your browser does not support the audio tag.
 </audio> 
@@ -34,7 +34,7 @@ Pablo
 
 ### My Soon To Be Goodbye <i class="fa-solid fa-hand orange"></i>
 
-<audio controls class="green bg-green haudio">
+<audio controls class="green bg-purple haudio">
   <source src="https://static.lifeofpablo.com/media/audio/Boulevard Eduardo Mata 2.m4a" type="audio/mp4">
   Your browser does not support the audio tag.
 </audio> 
