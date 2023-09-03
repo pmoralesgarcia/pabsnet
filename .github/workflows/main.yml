@@ -29,11 +29,9 @@ jobs:
         key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
         port: 22
         script: |
-          cd ~
-          rm -rf ~/pabsnet
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          git clone git@github.com:pmoralesgarcia/pabsnet.git
           cd ~/pabsnet/lifeofpablo.com
+          git pull
           DATENSTROM_EMAIL=${{ steps.op-load-secret.outputs.DATENSTROM_EMAIL }} \
           docker compose down
           DATENSTROM_EMAIL=${{ steps.op-load-secret.outputs.DATENSTROM_EMAIL }} \
