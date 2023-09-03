@@ -83,19 +83,6 @@ I know I can't control every aspect and function, but until we have laws in plac
   </div>
 </article>
 
-<style>
-
-.full-width {
-    left: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    max-width: 100vw;
-    position: relative;
-    right: 50%;
-    width: 100vw;
-}
-
-</style>
 
 
 

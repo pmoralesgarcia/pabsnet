@@ -53,7 +53,7 @@ TitleSlug: reply
   <div class="h-entry">
     <div class="u-author h-card">
       <img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="u-photo" width="40">
-      <a href="Things I did this week. (May 6-15)" class="u-url p-name">Pablo Morales</a>
+      <a href="https://lifeofpablo.com/blog/things-i-did-this-week-may-6" class="u-url p-name">Pablo Morales</a>
     </div>
 
     <p>in reply to: <a class="u-in-reply-to" href="https://tracydurnell.com/2023/04/25/listening-to-music-without-a-streaming-subscription">@tracydurnell</a></p>

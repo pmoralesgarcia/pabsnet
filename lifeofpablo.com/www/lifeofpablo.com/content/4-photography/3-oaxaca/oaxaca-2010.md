@@ -1,6 +1,7 @@
 ---
 Title: Oaxaca 2010
 ---
+<div markdown="1">
 [image https://photos.lifeofpablo.com/mexico-trip-2010/33530_427110553395_3153841_n_427110553395.jpg]
 [image https://photos.lifeofpablo.com/mexico-trip-2010/33530_427110558395_3873046_n_427110558395.jpg]
 [image https://photos.lifeofpablo.com/mexico-trip-2010/33530_427110563395_5065708_n_427110563395.jpg]
@@ -154,3 +155,5 @@ Title: Oaxaca 2010
 [image https://photos.lifeofpablo.com/mexico-trip-2010/41281_427108873395_2667080_n_427108873395.jpg]
 [image https://photos.lifeofpablo.com/mexico-trip-2010/41349_427108008395_2894827_n_427108008395.jpg]
 [image https://photos.lifeofpablo.com/mexico-trip-2010/41349_427108013395_2782262_n_427108013395.jpg]
+
+</div>

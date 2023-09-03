@@ -1,5 +1,5 @@
 ---
-Title: Audio: Enjoying La Plaza (Weekly Farmer's Market)
+Title: Audio: Enjoying La Plaza - Weekly Farmer's Market
 Published: 2023-08-01 14:06:38
 Author: Pablo Morales
 Layout: blog
