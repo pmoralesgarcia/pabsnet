@@ -33,7 +33,7 @@ jobs:
           rm -rf ~/pabsnet
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           git clone git@github.com:pmoralesgarcia/pabsnet.git
-          cd ~/pabsnet
+          cd ~/pabsnet/lifeofpablo.com
           DATENSTROM_EMAIL=${{ steps.op-load-secret.outputs.DATENSTROM_EMAIL }} \
           docker compose down
           DATENSTROM_EMAIL=${{ steps.op-load-secret.outputs.DATENSTROM_EMAIL }} \
