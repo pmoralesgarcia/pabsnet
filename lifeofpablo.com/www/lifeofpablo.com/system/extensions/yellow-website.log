@@ -43,3 +43,8 @@
 2023-07-12 21:41:55 info Install extension 'Sitemap 0.8.13'
 2023-07-12 21:44:54 info Install extension 'Highlight 0.8.16'
 2023-07-12 21:48:26 info Install extension 'Toc 0.8.10'
+2023-08-16 19:42:42 error Can't parse file 'system/layouts/blog-start.html'!
+2023-08-16 19:42:44 error Can't parse file 'system/layouts/blog-start.html'!
+2023-08-16 19:42:47 error Can't parse file 'system/layouts/blog-start.html'!
+2023-08-19 18:23:22 info Install extension 'Feed 0.8.19'
+2023-09-02 22:12:04 info Update extension 'Core 0.8.116'

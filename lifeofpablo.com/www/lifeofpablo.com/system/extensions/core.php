@@ -2,7 +2,7 @@
 // Core extension, https://github.com/annaesvensson/yellow-core
 
 class YellowCore {
-    const VERSION = "0.8.115";
+    const VERSION = "0.8.116";
     const RELEASE = "0.8.22";
     public $content;        // content files
     public $media;          // media files
@@ -1703,13 +1703,13 @@ class YellowLookup {
                     $bytesHandled = $bytesAvailable;
                     if (!$encode) {
                         for ($pos=$bytesHandled;$pos>0;--$pos) {
-                            if($field[$fieldPos+$pos]==" ") {
+                            if ($field[$fieldPos+$pos]==" ") {
                                 $fragment = substrb($field, $fieldPos, $pos);
                                 $bytesHandled = $pos+1;
                                 break;
                             }
                         }
-                        if($pos==0) $encode = true;
+                        if ($pos==0) $encode = true;
                     }
                     if ($encode) {
                         while (true) {
@@ -2398,7 +2398,9 @@ class YellowToolbox {
                     $lengthMax = 0;
                 }
                 if ($lengthMax<=0 || !$elementFound) break;
-                if ($hiddenLevel>0 || preg_match("/aria-hidden=\"true\"/i", $elementAttributes)) {
+                if ($hiddenLevel>0 ||
+                    preg_match("/aria-hidden=\"true\"/i", $elementAttributes) ||
+                    preg_match("/role=\"doc-noteref\"/i", $elementAttributes)) {
                     if (!is_string_empty($elementName) && is_string_empty($elementEnd) && !in_array(strtolower($elementName), $elementsVoid)) {
                         if (is_string_empty($elementStart)) {
                             ++$hiddenLevel;

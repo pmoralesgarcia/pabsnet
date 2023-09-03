@@ -26,12 +26,12 @@ class YellowPreviousnext {
                 $output .= "<p>";
                 if ($pagePrevious!=null) {
                     $text = preg_replace("/@title/i", $pagePrevious->get("title"), $this->yellow->language->getText("previousnextPagePrevious"));
-                    $output .= "<a class=\"previous\" href=\"".$pagePrevious->getLocation(true)."\">".htmlspecialchars($text)."</a>";
+                    $output .= "<a class=\"previous f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3\" href=\"".$pagePrevious->getLocation(true)."\">".htmlspecialchars($text)."</a>";
                 }
                 if ($pageNext!=null) {
                     if ($pagePrevious) $output .= " ";
                     $text = preg_replace("/@title/i", $pageNext->get("title"), $this->yellow->language->getText("previousnextPageNext"));
-                    $output .= "<a class=\"next\" href=\"".$pageNext->getLocation(true)."\">".htmlspecialchars($text)."</a>";
+                    $output .= "<a class=\"next f5 navy no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3\" href=\"".$pageNext->getLocation(true)."\">".htmlspecialchars($text)."</a>";
                 }
                 $output .= "</p>\n";
                 $output .="</div>\n";
