@@ -34,8 +34,9 @@ jobs:
           chmod -R a+rw ~/pabsnet
           git pull
           DATENSTROM_EMAIL=${{ steps.op-load-secret.outputs.DATENSTROM_EMAIL }} \
-          docker compose down
+          docker rm $(docker stop $(docker ps -a -q --filter ancestor=lifeofpablo))
           DATENSTROM_EMAIL=${{ steps.op-load-secret.outputs.DATENSTROM_EMAIL }} \
-          docker compose up --detach
+          docker build . -t lifeofpablo:latest
+          docker run -d -p 8080:80 -v ./www/lifeofpablo.com:/var/www/lifeofpablo.com lifeofpablo:latest
         
   
