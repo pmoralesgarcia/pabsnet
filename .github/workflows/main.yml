@@ -30,7 +30,7 @@ jobs:
         port: 22
         script: |
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          cd ~/pabsnet/lifeofpablo.com
+          cd ~/pabsnet
           git pull
           DATENSTROM_EMAIL=${{ steps.op-load-secret.outputs.DATENSTROM_EMAIL }} \
           docker compose down
