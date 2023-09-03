@@ -31,6 +31,7 @@ jobs:
         script: |
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           cd ~/pabsnet
+          chmod -R a+rw ~/pabsnet
           git pull
           DATENSTROM_EMAIL=${{ steps.op-load-secret.outputs.DATENSTROM_EMAIL }} \
           docker compose down
