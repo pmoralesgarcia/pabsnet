@@ -5,10 +5,9 @@ Author: Pablo Morales
 Layout: blog
 Tag: activities, solo, myself, by myself, reflection
 ---
-
 When was the last time you did something alone and by yourself outside of your place of living? Do you think about how as a person, it's hard to think about times you are truly by yourself? This has been something that has been on my mind a lot. 
 
-Today, I went on a run today and drank a matcha latte at a coffee shop. It was nice just being in my thoughts and I appreciated being with myself and only myself. My mind was saying (or saying to itself?) "This is relaxing!" 
+Today, I went on a run today and [drank a matcha latte at a coffee shop](https://social.lifeofpablo.com/@pablo/111008142213124263). It was nice just being in my thoughts and I appreciated being with myself and only myself. My mind was saying (or saying to itself?) "This is relaxing!" 
 
 This initiated me to start refecting on the activites I've done this year so far. I went through my phone's photo's apps, looked at my check-ins and any other history I had available. hen I started filtering out all things I've done alone and not with people. This is what I was able to recall the things I did or initiated by myself.
 
