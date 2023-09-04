@@ -1,7 +1,7 @@
 FROM debian:bookworm
 
 RUN apt update -y && \
-	apt install -y nginx php-fpm zip wget unzip curl
+	apt install -y nginx php-fpm zip wget unzip curl sendmail
 
 RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 
