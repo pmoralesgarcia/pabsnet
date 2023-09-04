@@ -24,7 +24,7 @@ WORKDIR  /var/www/lifeofpablo.com
 
 #COPY ./www/lifeofpablo.com /var/www/lifeofpablo.com/
 
-#RUN chmod -R a+rw *
+RUN chmod -R a+rw /var/www/lifeofpablo.com
 
 COPY ./nginx/lifeofpablo.com.conf /etc/nginx/sites-enabled/default
 
