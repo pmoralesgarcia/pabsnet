@@ -584,6 +584,7 @@ footer ul{
     float: left;
     align-content: center;
     white-space: nowrap;
+    overflow-x: scroll;
   }
 }
 @media print {
