@@ -583,7 +583,6 @@ footer ul{
       .navigation {
     float: left;
     align-content: center;
-    white-space: nowrap;
     overflow-x: scroll;
   }
 }
