@@ -1,53 +1,49 @@
 <?php $this->yellow->layout("header") ?>
 <div class="content">
-	<div class="h-entry main" role="main">
-		<?php $this->yellow->page->set("entryClass", "entry") ?>
-		<?php if ($this->yellow->page->isExisting("tag")): ?>
-		<?php foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { $this->yellow->page->set("entryClass", $this->yellow->page->get("entryClass")." tag-".$this->yellow->lookup->normaliseArguments($tag, false)); } ?>
-		<?php endif ?>
-		<div class="<?php echo $this->yellow->page->getHtml("entryClass") ?>">
-			<div class="entry-title p-name"><h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1></div>
-			<div class="entry-meta"><span class="dt-published"><?php echo $this->yellow->page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card"><img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="u-photo br-100 h1 w1 dib">&nbsp;<?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span></div>
-			<div class="entry-content e-content"><?php echo $this->yellow->page->getContent() ?></div>
-			<?php echo $this->yellow->page->getExtra("profiles") ?>
-			<?php echo $this->yellow->page->getExtra("links") ?>
-			<?php if ($this->yellow->page->isExisting("tag")): ?>
-			<div class="entry-tags">
-				<p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo " "; echo "<a class=\"p-category f6 grow no-underline br-pill ba ph3 pv2 mb2 dib navy\" href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
-			</div>
-			<div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
-			</div>
-			<div>
-					                        <p>Webmention</p>
-<!--								<form>
-								<label class="f6 b db mb2" for="url">Have you written a response to this? Let me know the URL:</label>
-
-								<input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="url" name="url" id="url" placeholder="https://example.com" pattern="https://.*" size="30" required>
-								<input type="submit" value="Send Request" />
-</form> -->
-			</div>
-
-		
-<script src="https://static.lifeofpablo.com/media/js/webmention.js" type="application/javascript"></script>
-	
-<div class="wm_summary">
-  <ul class="menicons">
-    <li class="micon"><i class="fa-solid fa-star"></i>&nbsp<span id="wm_like1"></span>&nbsp; likes</li>
-    <li class="micon"><i class="fa-regular fa-file"></i>&nbsp<span id="wm_ment1"></span>&nbsp; mentions</li>
-    
-    <li class="micon"><i class="fa-regular fa-comment"></i>&nbsp<span id="wm_reply1"> </span>&nbsp; replies</li>
-    
-    <li class="micon"><i class="fa-solid fa-repeat"></i>&nbsp<span id="wm_repost1"></span>&nbspreposts</li>
-    
-    <li class="micon"><i class="fa-regular fa-bookmark"></i>&nbsp<span id="wm_bkmk1"></span>&nbsp;bookmarks</li>
-    
-</div>
-<hr>
-<div id="mentionpanel"></div> 
-										<?php echo $this->yellow->page->getExtra("previousnext") ?>
-										<?php endif ?>
-										<?php echo $this->yellow->page->getExtra("comments") ?>
-		</div>	</div>
-	<div class="line-2"></div>
+   <div class="h-entry main" role="main">
+      <?php $this->yellow->page->set("entryClass", "entry") ?>
+      <?php if ($this->yellow->page->isExisting("tag")): ?>
+      <?php foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { $this->yellow->page->set("entryClass", $this->yellow->page->get("entryClass")." tag-".$this->yellow->lookup->normaliseArguments($tag, false)); } ?>
+      <?php endif ?>
+      <div class="<?php echo $this->yellow->page->getHtml("entryClass") ?>">
+         <div class="entry-title p-name">
+            <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+         </div>
+         <div class="entry-meta"><span class="dt-published"><?php echo $this->yellow->page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card"><img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="u-photo br-100 h1 w1 dib">&nbsp;<?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span></div>
+         <div class="entry-content e-content"><?php echo $this->yellow->page->getContent() ?></div>
+         <?php echo $this->yellow->page->getExtra("profiles") ?>
+         <?php echo $this->yellow->page->getExtra("links") ?>
+         <?php if ($this->yellow->page->isExisting("tag")): ?>
+         <div class="entry-tags">
+            <p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo " "; echo "<a class=\"p-category f6 grow no-underline br-pill ba ph3 pv2 mb2 dib navy\" href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
+         </div>
+         <div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+         </div>
+         <div>
+            <p>Webmention</p>
+            <!--								<form>
+               <label class="f6 b db mb2" for="url">Have you written a response to this? Let me know the URL:</label>
+               
+               <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="url" name="url" id="url" placeholder="https://example.com" pattern="https://.*" size="30" required>
+               <input type="submit" value="Send Request" />
+               </form> -->
+         </div>
+         <script src="https://static.lifeofpablo.com/media/js/webmention.js" type="application/javascript"></script>
+         <div class="wm_summary">
+            <ul class="menicons">
+            <li class="micon"><i class="fa-solid fa-star"></i>&nbsp<span id="wm_like1"></span>&nbsp; likes</li>
+            <li class="micon"><i class="fa-regular fa-file"></i>&nbsp<span id="wm_ment1"></span>&nbsp; mentions</li>
+            <li class="micon"><i class="fa-regular fa-comment"></i>&nbsp<span id="wm_reply1"> </span>&nbsp; </li>
+            <li class="micon"><i class="fa-solid fa-repeat"></i>&nbsp<span id="wm_repost1"></span>&nbspreposts</li>
+            <li class="micon"><i class="fa-regular fa-bookmark"></i>&nbsp<span id="wm_bkmk1"></span>&nbsp;bookmarks</li>
+         </div>
+         <hr>
+         <div id="mentionpanel"></div>
+         <?php echo $this->yellow->page->getExtra("previousnext") ?>
+         <?php endif ?>
+         <?php echo $this->yellow->page->getExtra("comments") ?>
+      </div>
+   </div>
+   <div class="line-2"></div>
 </div>
 <?php $this->yellow->layout("footer") ?>
