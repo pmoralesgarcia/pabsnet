@@ -1,6 +1,6 @@
 ---
 Title: Photography
-Titlenavigation: photography
+Titlenavigation: Photos
 titleslug: trips
 TitleContent: My Trips & Photography
 ---

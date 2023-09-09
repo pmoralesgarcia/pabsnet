@@ -6,6 +6,7 @@ Layout: blog
 Tag:  thoughts, travel, #travel, family, friends, homesick, important dates, travel vibes
 ---
 [image 11873444-10205946824802758-3643267474938708687-n-1-.jpg]
+
 Intro
 
 These last 5 months have been very exciting. I am very happy that I decided to study abroad in France! During the last few months I did not really think of my life or home back in the United States. I feel that I did that intentionally so I would not get so homesick. I’ll admit, I do not call home that often. I probably worry my mom at all hours since I go at least a week or two without calling her. So far life has gone one. The feeling has been starting to lurk and now it is in full effect!
