@@ -1,4 +1,4 @@
-name: Deploy lifeofpablo.com/linkinbio
+name: Deploy lifeofpablo.com/now
 on:
     workflow_dispatch:
     push:
