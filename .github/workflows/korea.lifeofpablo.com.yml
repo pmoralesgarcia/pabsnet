@@ -1,4 +1,4 @@
-name: remote into server
+name: Deploy korea.lifeofpablo.com
 on: [push]
 jobs:
   Build:
