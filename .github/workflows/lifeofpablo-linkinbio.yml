@@ -38,7 +38,6 @@ jobs:
           git pull
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=linkibio))
           cd ~/pabsnet/lifeofpablo-linkibio
-          chmod -R a+rw ~/lifeofpablo-linkbio/www/linkibio
-          docker build . -t korea:latest
+          docker build . -t linkinbio:latest
           docker run -d -p 8084:80 -v ./www/linkinbio:/var/www/linkinbio linkinbio        
   
