@@ -1,8 +1,8 @@
 name: remote into server
-on: [push]
-push:
-    paths:
-      - 'lifeofpablo-linkinbio/**'
+on:
+    push:
+        paths:
+          - 'lifeofpablo-linkinbio/**'
 jobs:
   Build:
     name: Build
