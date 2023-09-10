@@ -1,0 +1,42 @@
+name: Deploy Selfauth login.lifeofpablo.com
+on:
+    workflow_dispatch:
+    push:
+        paths:
+          - 'login.lifeofpablo.com/**'
+jobs:
+  Build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Load secret
+      id: op-load-secret
+      uses: 1password/load-secrets-action@v1
+      with:
+       # Export loaded secrets as environment variables
+        export-env: false
+      env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          USERNAME: op://pablo/production-server/username
+          PRIVATE_SSH_KEY: op://pablo/production-server/key
+          SERVER_HOST: op://pablo/production-server/host
+          
+                    
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
+        username: ${{ steps.op-load-secret.outputs.USERNAME }}
+        key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
+        port: 22
+        script: |
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          cd ~/pabsnet
+          git pull
+          docker rm $(docker stop $(docker ps -a -q --filter ancestor=now))
+          cd ~/pabsnet/login.lifeofpablo.com
+          docker build . -t selfauth-login:latest
+          docker run -d -p 8081:80 -v ./www/login.lifeofpablo.com:/var/www/login.lifeofpablo.com selfauth-login        
+  
