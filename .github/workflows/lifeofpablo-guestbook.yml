@@ -1,4 +1,4 @@
-name: Deploy Selfauth login.lifeofpablo.com
+name: Deploy lifeofpablo-guestbook
 on:
     workflow_dispatch:
     push:
