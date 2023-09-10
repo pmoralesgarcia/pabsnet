@@ -1,5 +1,6 @@
 name: remote into server
 on:
+    workflow_dispatch:
     push:
         paths:
           - 'lifeofpablo-linkinbio/**'
