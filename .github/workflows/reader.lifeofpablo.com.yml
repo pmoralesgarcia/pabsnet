@@ -1,5 +1,9 @@
 name: Deploy FreshRSS
-on: [push, workflow_dispatch]
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'reader.lifeofpablo.com/**'
 jobs:
   Build:
     name: Build
