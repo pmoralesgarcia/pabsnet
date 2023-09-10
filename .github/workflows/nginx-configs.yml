@@ -1,0 +1,40 @@
+name: Deploy nginx-configs
+on:
+    workflow_dispatch:
+    push:
+        paths:
+          - 'nginx-configs/**'
+jobs:
+  Build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Load secret
+      id: op-load-secret
+      uses: 1password/load-secrets-action@v1
+      with:
+       # Export loaded secrets as environment variables
+        export-env: false
+      env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          USERNAME: op://pablo/production-server/username
+          PRIVATE_SSH_KEY: op://pablo/production-server/key
+          SERVER_HOST: op://pablo/production-server/host
+          
+                    
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
+        username: ${{ steps.op-load-secret.outputs.USERNAME }}
+        key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
+        port: 22
+        script: |
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          cd ~/pabsnet
+          git pull
+          cd ~/pabsnet/nginx-configs
+          cp ~/pabsnet/nginx-configs/* /etc/nginx/sites-enabled       
+          systemctl restart nginx  
