@@ -23,6 +23,9 @@ index index.php index.html yellow.php;
         fastcgi_index yellow.php;
         include fastcgi.conf;
     }
+    location /complaint-form {
+        rewrite ^/complaint-form(.*)$ https://www.youtube.com/watch?v=dQw4w9WgXcQ/$1 redirect;
+    }
 	
    }
 
