@@ -1,5 +1,9 @@
 name: Deploy korea.lifeofpablo.com
-on: [push]
+on: 
+  workflow_dispatch:
+  push:
+    paths:
+      - 'korea.lifeofpablo.com/**'
 jobs:
   Build:
     name: Build
