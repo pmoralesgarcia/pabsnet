@@ -1,4 +1,4 @@
-name: remote into server
+name: Deploy lifeofpablo.com/linkinbio
 on:
     workflow_dispatch:
     push:
