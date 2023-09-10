@@ -3,7 +3,7 @@ on:
     workflow_dispatch:
     push:
         paths:
-          - 'login.lifeofpablo.com/**'
+          - 'lifeofpablo-guestbook/**'
 jobs:
   Build:
     name: Build
