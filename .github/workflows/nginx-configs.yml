@@ -36,5 +36,5 @@ jobs:
           cd ~/pabsnet
           git pull
           cd ~/pabsnet/nginx-configs
-          cp ~/pabsnet/nginx-configs/* /etc/nginx/sites-enabled       
-          systemctl restart nginx  
+          sudo cp ~/pabsnet/nginx-configs/* /etc/nginx/sites-enabled       
+          sudo systemctl restart nginx  
