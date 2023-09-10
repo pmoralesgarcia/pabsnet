@@ -1,0 +1,28 @@
+# Datenstrom Yellow system tests
+
+name: Tests
+on: [push, pull_request]
+jobs:
+  tests:
+    name: PHP ${{ matrix.php }}
+    strategy:
+      matrix:
+        php: [8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0]
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: curl, gd, mbstring, zip
+          ini-file: development
+          coverage: none
+          tools: none
+      - name: Set up problem matcher
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+      - name: Run tests
+        run: php yellow.php build tests
+        env:
+          URL: http://website/
