@@ -10,8 +10,6 @@ RUN apt update -y && \
 
 #RUN mkdir -p /var/www/login.lifeofpablo.com  
 
-VOLUME /var/www/now
-
 WORKDIR /var/www/now
 
 
