@@ -1,4 +1,4 @@
-name: Deploy FreshRSS
+name: Deploy d
 on:
   workflow_dispatch:
   push:
