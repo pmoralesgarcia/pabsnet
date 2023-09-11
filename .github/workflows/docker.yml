@@ -1,4 +1,4 @@
-name: Deploy d
+name: Deploy docker compose
 on:
   workflow_dispatch:
   push:
