@@ -9,10 +9,6 @@ Image: https://static.lifeofpablo.com/media/images/blog-images/1000-record-cover
 ---
 <article class="athelas pa4">
   <div markdown="1" class="f4 f4-ns lh-copy measure center">
-    The form of our letters, the older handwriting and inscriptions as much as
-    the cuttings in use today, reflects a convention that has slowly solidified,
-    an agreement hardened in many battles. Even after the Renaissance several
-    European countries retained broken, blackletter national scripts in opposition to roman, the obligatory type for all Latin material; yet even today, I hope, the last word about Fraktur has not been spoken.
   
 [image https://static.lifeofpablo.com/media/images/blog-images/1000-record-covers/1000-record-covers.jpg "cover of 1000-record-covers"]
 
