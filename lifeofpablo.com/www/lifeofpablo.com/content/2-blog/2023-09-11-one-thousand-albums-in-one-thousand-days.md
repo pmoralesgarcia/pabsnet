@@ -5,7 +5,6 @@ Published: 2023-09-11 16:33:47
 Author: Pablo Morales
 Layout: blog
 Tag: books, music, 1000 albums, vinyl, challenge, new music, bookstore, used books
-Status: draft
 Image: https://static.lifeofpablo.com/media/images/blog-images/1000-record-covers/1000-record-covers.jpg
 ---
 <article class="athelas pa4">
