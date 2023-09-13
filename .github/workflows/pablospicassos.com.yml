@@ -39,5 +39,5 @@ jobs:
           cd ~/pabsnet/pablospicassos.com
           chmod -R a+rw ~/pabsnet/pablospicassos.com
           docker build . -t pablospicassos:latest
-          docker run -d -p 8088:80 -v ./www/pablospicassos.com:/var/www/pablospicassos.com pablospicassos        
+          docker run -d -p 8000:80 -v /home/pablo/pabsnet/pablospicassos.com/www:/var/www/pablospicassos.com pablospicassos        
   
