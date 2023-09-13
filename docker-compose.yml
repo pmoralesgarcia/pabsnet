@@ -8,6 +8,13 @@ services:
    #   - 443:443
    # volumes:
    #   - /home/pablo/pabsnet/nginx-configs:/etc/nginx
+  automad:
+    container_name: automad
+    image: automad/automad:1.10.9
+    ports:
+      - 8097:80
+    volumes:
+      - ./app:/app
   lifeofpablo-now:
     image: ghcr.io/pmoralesgarcia/now:latest
     ports:
