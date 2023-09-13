@@ -8,13 +8,14 @@ services:
    #   - 443:443
    # volumes:
    #   - /home/pablo/pabsnet/nginx-configs:/etc/nginx
-  automad:
-    container_name: automad
-    image: automad/automad:1.10.9
+  bludit:
+    container_name: pablospicassos
+    image: bludit/docker:3.13.1
     ports:
       - 8097:80
     volumes:
-      - ./app:/app
+      - /home/pablo/bludit:/usr/share/nginx/html/bl-content
+    restart: always
   lifeofpablo-now:
     image: ghcr.io/pmoralesgarcia/now:latest
     ports:
