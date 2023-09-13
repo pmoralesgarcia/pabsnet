@@ -12,9 +12,9 @@ services:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
     ports:
-      - 8097:80
+      - 8098:80
     volumes:
-      - /home/pablo/bludit:/usr/share/nginx/html/bl-content
+      - bludit:/home/pablo/bludit:/usr/share/nginx/html/bl-content
     restart: always
   lifeofpablo-now:
     image: ghcr.io/pmoralesgarcia/now:latest
@@ -74,6 +74,7 @@ services:
         --password ${FRESHRSS_PASSWORD}
         --user ${FRESHRSS_USER} 
 volumes:
+ bludit:
  convos:
  db_data:
  data: 
