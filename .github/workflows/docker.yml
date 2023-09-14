@@ -29,6 +29,9 @@ jobs:
           FRESHRSS_EMAIL: op://pablo/freshrss-docker/freshrss_email
           FRESHRSS_PASSWORD: op://pablo/freshrss-docker/freshrss_password
           FRESHRSS_API_PASSWORD: op://pablo/freshrss-docker/FRESHRSS_API_PASSWORD
+          SHLINK_MYSQL_PASSWORD: op://pablo/shlink/SHLINK_MYSQL_PASSWORD
+          SHLINK_MYSQL_USER: op://pablo/shlink/SHLINK_MYSQL_USER
+          SHLINK_API_KEY: op://pablo/shlink/SHLINK_API_KEY
           
                     
     - name: executing remote ssh commands using password
@@ -49,6 +52,9 @@ jobs:
           FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
           FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
           FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
+          SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
+          SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
+          SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
           docker compose down
           MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
           MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
@@ -57,6 +63,9 @@ jobs:
           FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
           FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
           FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
+          SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
+          SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
+          SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
           docker compose up --detach
         
   
