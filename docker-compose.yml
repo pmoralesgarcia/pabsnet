@@ -119,6 +119,5 @@ volumes:
  bludit:
  convos:
  db_data:
-   external: true
  data: 
  extensions:
