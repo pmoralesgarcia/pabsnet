@@ -72,7 +72,49 @@ services:
         --email ${FRESHRSS_EMAIL}
         --language en
         --password ${FRESHRSS_PASSWORD}
-        --user ${FRESHRSS_USER} 
+        --user ${FRESHRSS_USER}
+  shlink:
+    container_name: pabs-lol
+    image: shlinkio/shlink:3.6.3-openswoole
+    ports:
+      - 8110:8080
+    environment:
+      - DEFAULT_DOMAIN=pabs.lol
+      - DB_DRIVER=mysql
+      - DB_USER=${SHLINK_MYSQL_USER}
+      - DB_PASSWORD=${SHLINK_MYSQL_PASSWORD}
+      - DB_HOST=shlink-db
+      - INITIAL_API_KEY=${SHLINK_API_KEY}
+
+    restart: always
+    depends_on:
+      - freshrss-db
+  shlink-db:
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mariadb:10.6.4-focal
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - freshrss-db:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=shlink
+      - MYSQL_USER=${SHLINK_MYSQL_USER}
+      - MYSQL_PASSWORD=${SHLINK_MYSQL_PASSWORD}
+    ports:
+      - 3306
+  shlink-web-client:
+    container_name: pabs-lol-web-client
+    image: shlinkio/shlink-web-client:3.10
+    ports:
+      - 8111:80
+    environment:
+      - SHLINK_SERVER_URL=https://pabs.lol
+      - SHLINK_SERVER_API_KEY=${SHLINK_API_KEY}
+      - SHLINK_SERVER_NAME=Pabs
+    restart: always
 volumes:
  bludit:
  convos:
