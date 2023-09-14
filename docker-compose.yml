@@ -96,7 +96,7 @@ services:
     #image: mysql:8.0.27
     command: '--default-authentication-plugin=mysql_native_password'
     volumes:
-      - freshrss-db:/var/lib/mysql
+      - db_data:/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -119,5 +119,6 @@ volumes:
  bludit:
  convos:
  db_data:
+   external: true
  data: 
  extensions:
