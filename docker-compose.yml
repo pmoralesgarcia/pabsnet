@@ -88,7 +88,7 @@ services:
 
     restart: always
     depends_on:
-      - freshrss-db
+      - shlink-db
   shlink-db:
     # We use a mariadb image which supports both amd64 & arm64 architecture
     image: mariadb:10.6.4-focal
@@ -96,7 +96,7 @@ services:
     #image: mysql:8.0.27
     command: '--default-authentication-plugin=mysql_native_password'
     volumes:
-      - db_data:/var/lib/mysql
+      - shlink_data:/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
@@ -116,6 +116,7 @@ services:
       - SHLINK_SERVER_NAME=Pabs
     restart: always
 volumes:
+ shlink_data:
  bludit:
  convos:
  db_data:
