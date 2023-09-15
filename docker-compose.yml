@@ -96,7 +96,6 @@ services:
       - SHLINK_SERVER_NAME=Pabs
     restart: always
 volumes:
- shlink_data:
  bludit:
  convos:
  db_data:
