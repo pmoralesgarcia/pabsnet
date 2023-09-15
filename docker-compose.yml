@@ -80,7 +80,7 @@ services:
       - DB_DRIVER=mysql
       - DB_USER=${SHLINK_MYSQL_USER}
       - DB_PASSWORD=${SHLINK_MYSQL_PASSWORD}
-      - DB_HOST=shlink-db
+      - DB_HOST=mariadb
       - INITIAL_API_KEY=${SHLINK_API_KEY}
     restart: always
     depends_on:
