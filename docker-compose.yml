@@ -58,7 +58,7 @@ services:
       FRESHRSS_INSTALL: |-
         --api_enabled
         --db-base freshrss
-        --db-host freshrss-db
+        --db-host mariadb
         --db-password ${MYSQL_PASSWORD}
         --db-type mysql 
         --db-user freshrss 
