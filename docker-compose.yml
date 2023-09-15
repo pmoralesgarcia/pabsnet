@@ -28,7 +28,7 @@ services:
     volumes:
       - convos:/home/pablo/convos/data
     restart: always
-  freshrss-db:
+  mariadb:
     # We use a mariadb image which supports both amd64 & arm64 architecture
     image: mariadb:10.6.4-focal
     # If you really want to use MySQL, uncomment the following line
@@ -39,14 +39,11 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=freshrss
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
       - 3306
   freshrss:
     depends_on:
-      - freshrss-db
+      - mariadb
     image: freshrss/freshrss:latest
     volumes:
       - data:/var/www/FreshRSS/data
@@ -85,26 +82,9 @@ services:
       - DB_PASSWORD=${SHLINK_MYSQL_PASSWORD}
       - DB_HOST=shlink-db
       - INITIAL_API_KEY=${SHLINK_API_KEY}
-
     restart: always
     depends_on:
-      - shlink-db
-  shlink-db:
-    # We use a mariadb image which supports both amd64 & arm64 architecture
-    image: mariadb:10.6.4-focal
-    # If you really want to use MySQL, uncomment the following line
-    #image: mysql:8.0.27
-    command: '--default-authentication-plugin=mysql_native_password'
-    volumes:
-      - shlink_data:/var/lib/mysql
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=shlink
-      - MYSQL_USER=${SHLINK_MYSQL_USER}
-      - MYSQL_PASSWORD=${SHLINK_MYSQL_PASSWORD}
-    ports:
-      - 3306
+      - mariadb
   shlink-web-client:
     container_name: pabs-lol-web-client
     image: shlinkio/shlink-web-client:3.10
