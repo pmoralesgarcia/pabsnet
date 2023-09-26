@@ -7,6 +7,5 @@ Tag: senior year, senior photos
 ---
 "The senior pictures I took this year.
 
-Want one email me at <a href="mailto:pablo@lifeofpablo.com?subject="Senior Picture Request"">pablo@lifeofpablo.com</a>
-
+Want one email me at <a href="mailto:pablo@lifeofpablo.com?subject=Senior Photos">Senior Photos</a>
 
