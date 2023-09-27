@@ -1,4 +1,0 @@
----
-Title: Canada
----
-Coming Soon!
