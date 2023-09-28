@@ -52,7 +52,7 @@ services:
         --api_enabled
         --db-base freshrss
         --db-host mariadb
-        --db-password ${MYSQL_PASSWORD}
+        --db-password ${MYSQL_ROOT_PASSWORD}
         --db-type mysql 
         --db-user freshrss 
         --default_user ${FRESHRSS_USER}
