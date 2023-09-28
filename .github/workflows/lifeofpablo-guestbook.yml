@@ -38,5 +38,5 @@ jobs:
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=guestbook))
           cd ~/pabsnet/lifeofpablo-guestbook
           docker build . -t lifeofpablo-guestbook:latest
-          docker run -d -p 8083:80 -v ./www/guestbook:/var/www/guestbook guestbook        
+          docker run -d -p 8083:80 -v ./www/guestbook:/var/www/guestbook lifeofpablo-guestbook        
   
