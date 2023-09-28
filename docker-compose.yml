@@ -21,13 +21,6 @@ services:
     ports:
       - 8086:80
     restart: always
-  convos:
-    image: convos/convos:v7.15
-    ports:
-      - 8092:3000
-    volumes:
-      - convos:/home/pablo/convos/data
-    restart: always
   mariadb:
     # We use a mariadb image which supports both amd64 & arm64 architecture
     image: mariadb:10.6.4-focal
@@ -73,7 +66,6 @@ services:
 
 volumes:
  bludit:
- convos:
  db_data:
  data: 
  extensions:
