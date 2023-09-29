@@ -8,6 +8,21 @@ services:
    #   - 443:443
    # volumes:
    #   - /home/pablo/pabsnet/nginx-configs:/etc/nginx
+  vouch-proxy:
+    container_name: vp-lifeofpablo
+    image: quay.io/vouch/vouch-proxy
+    ports:
+      - 9092:9090
+    environment:
+      - VOUCH_DOMAINS=${VOUCH_DOMAIN}
+      - VOUCH_ALLOWALLUSERS=${VOUCH_ALLOWALLUSERS}
+      - VOUCH_COOKIE_SECURE=${VOUCH_COOKIE_SECURE}
+      - VOUCH_PUBLIC_ACCESS=${VOUCH_PUBLIC_ACCESS}
+      - OAUTH_PROVIDER=${VOUCH_OAUTH_PROVIDER}
+      - OAUTH_CLIENT_ID=${VOUCH_OAUTH_CLIENT_ID}
+      - OAUTH_AUTH_URL=${VOUCH_OAUTH_AUTH_URL}
+      - OAUTH_CALLBACK_URL=${VOUCH_OAUTH_CALLBACK_URL}
+      
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
