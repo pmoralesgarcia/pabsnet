@@ -3,8 +3,6 @@ FROM debian:bookworm
 RUN apt update -y && \
 	apt install -y nginx zip wget unzip curl
 
-RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x 
-
 COPY ./www/1000.lifeofpablo.com /var/www/1000.lifeofpablo.com
 
 WORKDIR /var/www/1000.lifeofpablo.com
