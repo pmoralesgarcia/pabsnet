@@ -29,6 +29,13 @@ jobs:
           SHLINK_MYSQL_PASSWORD: op://pablo/shlink/SHLINK_MYSQL_PASSWORD
           SHLINK_MYSQL_USER: op://pablo/shlink/SHLINK_MYSQL_USER
           SHLINK_API_KEY: op://pablo/shlink/SHLINK_API_KEY
+          VOUCH_ALLOWALLUSERS: op://pablo/vp-lifeofpablo/VOUCH_ALLOWALLUSERS
+          VOUCH_DOMAIN: op://pablo/vp-lifeofpablo/VOUCH_DOMAIN
+          VOUCH_COOKIE_SECURE: op://pablo/vp-lifeofpablo/VOUCH_COOKIE_SECURE
+          VOUCH_PUBLIC_ACCESS: op://pablo/vp-lifeofpablo/VOUCH_PUBLIC_ACCESS
+          VOUCH_OAUTH_CLIENT_ID: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_ID
+          VOUCH_OAUTH_AUTH_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_AUTH_URL
+          VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CALLBACK_URL
           
                     
     - name: executing remote ssh commands using password
@@ -52,6 +59,14 @@ jobs:
           SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
           SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
           SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
+          VOUCH_ALLOW_ALL_USERS=${{ steps.op-load-secret.outputs.VOUCH_ALLOW_ALL_USERS }} \
+          VOUCH_DOMAIN=${{ steps.op-load-secret.outputs.VOUCH_DOMAIN }} \
+          VOUCH_COOKIE_SECURE=${{ steps.op-load-secret.outputs.VOUCH_COOKIE_SECURE }} \
+          VOUCH_PUBLIC_ACCESS=${{ steps.op-load-secret.outputs.VOUCH_PUBLIC_ACCESS }} \
+          VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
+          VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
+          VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
+          VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
           docker compose down
           MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
           MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
@@ -63,6 +78,14 @@ jobs:
           SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
           SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
           SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
+          VOUCH_ALLOW_ALL_USERS=${{ steps.op-load-secret.outputs.VOUCH_ALLOW_ALL_USERS }} \
+          VOUCH_DOMAIN=${{ steps.op-load-secret.outputs.VOUCH_DOMAIN }} \
+          VOUCH_COOKIE_SECURE=${{ steps.op-load-secret.outputs.VOUCH_COOKIE_SECURE }} \
+          VOUCH_PUBLIC_ACCESS=${{ steps.op-load-secret.outputs.VOUCH_PUBLIC_ACCESS }} \
+          VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
+          VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
+          VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
+          VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
           docker compose up --detach
         
   

@@ -1,0 +1,14 @@
+vouch:
+  logLevel: debug
+  listen: 0.0.0.0
+  allowAllUsers: true
+  cookie:
+    domain: lifeofpablo.com
+  publicAccess: true
+oauth:
+  # IndieAuth
+  # https://indielogin.com/api
+  provider: indieauth
+  client_id: https://lifeofpablo.com
+  auth_url: https://indieauth.com/auth
+  callback_url: https://auth.lifeofpablo.com
