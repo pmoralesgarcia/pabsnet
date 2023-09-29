@@ -14,8 +14,7 @@ services:
     ports:
       - 9092:9090
     volume:
-      - vp: /home/pablo/pabsnet/vouch-proxy-config:/config
-      
+      - vp: /home/pablo/pabsnet/vouch-proxy-config:/config   
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
@@ -71,7 +70,6 @@ services:
         --language en
         --password ${FRESHRSS_PASSWORD}
         --user ${FRESHRSS_USER}
-
 volumes:
  bludit:
  db_data:
