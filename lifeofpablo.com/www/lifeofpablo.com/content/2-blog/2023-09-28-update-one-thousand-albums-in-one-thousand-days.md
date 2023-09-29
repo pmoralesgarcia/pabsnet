@@ -10,7 +10,7 @@ Image: https://static.lifeofpablo.com/media/images/blog-images/1000-record-cover
 <article class="athelas pa4">
   <div markdown="1" class="f4 f4-ns lh-copy measure center">
   
-[image https://static.lifeofpablo.com/media/images/blog-images/update-1000-records/1k.png "Preview of visual slite"]
+[image https://static.lifeofpablo.com/media/images/blog-images/update-1000-records/1k.png "Preview of visual site"]
 
 
 
