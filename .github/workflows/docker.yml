@@ -29,13 +29,13 @@ jobs:
           SHLINK_MYSQL_PASSWORD: op://pablo/shlink/SHLINK_MYSQL_PASSWORD
           SHLINK_MYSQL_USER: op://pablo/shlink/SHLINK_MYSQL_USER
           SHLINK_API_KEY: op://pablo/shlink/SHLINK_API_KEY
-          VOUCH_ALLOW_ALL_USERS: op://pablo/vp-lifeofpablo/AllowAllUsers
-          VOUCH_DOMAIN: op://pablo/vp-lifeofpablo/vouch_domain
-          VOUCH_COOKIE_SECURE: op://pablo/vp-lifeofpablo/cookie_secure
-          VOUCH_PUBLIC_ACCESS: op://pablo/vp-lifeofpablo/publicAccess
-          VOUCH_OAUTH_CLIENT_ID: op://pablo/vp-lifeofpablo/oauth_client_id
-          VOUCH_OAUTH_AUTH_URL: op://pablo/vp-lifeofpablo/oauth_auth_url
-          VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/oauth_callback_url
+          VOUCH_ALLOWALLUSERS: op://pablo/vp-lifeofpablo/VOUCH_ALLOWALLUSERS
+          VOUCH_DOMAIN: op://pablo/vp-lifeofpablo/VOUCH_DOMAIN
+          VOUCH_COOKIE_SECURE: op://pablo/vp-lifeofpablo/VOUCH_COOKIE_SECURE
+          VOUCH_PUBLIC_ACCESS: op://pablo/vp-lifeofpablo/VOUCH_PUBLIC_ACCESS
+          VOUCH_OAUTH_CLIENT_ID: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_ID
+          VOUCH_OAUTH_AUTH_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_AUTH_URL
+          VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CALLBACK_URL
           
                     
     - name: executing remote ssh commands using password
