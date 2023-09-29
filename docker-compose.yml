@@ -75,3 +75,4 @@ volumes:
  db_data:
  data: 
  extensions:
+ vp:
