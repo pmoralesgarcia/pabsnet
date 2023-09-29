@@ -1,0 +1,15 @@
+vouch:
+  logLevel: debug
+  listen: 0.0.0.0
+  allowAllUsers: ${VOUCH_ALLOWALLUSERS}
+  cookie:
+    secure: ${VOUCH_COOKIE_SECURE}
+    domain: $${VOUCH_DOMAIN}
+  publicAccess: ${VOUCH_PUBLIC_ACCESS}
+oauth:
+  # IndieAuth
+  # https://indielogin.com/api
+  provider: ${VOUCH_OAUTH_PROVIDER}
+  client_id: ${VOUCH_OAUTH_CLIENT_ID}
+  auth_url: ${VOUCH_OAUTH_AUTH_URL}
+  callback_url: OAUTH_CALLBACK_URL=${VOUCH_OAUTH_CALLBACK_URL}
