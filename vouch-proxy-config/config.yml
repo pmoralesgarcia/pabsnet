@@ -1,15 +1,14 @@
 vouch:
   logLevel: debug
   listen: 0.0.0.0
-  allowAllUsers: ${VOUCH_ALLOWALLUSERS}
+  allowAllUsers: true
   cookie:
-    secure: ${VOUCH_COOKIE_SECURE}
-    domain: $${VOUCH_DOMAIN}
-  publicAccess: ${VOUCH_PUBLIC_ACCESS}
+    domain: lifeofpablo.com
+  publicAccess: true
 oauth:
   # IndieAuth
   # https://indielogin.com/api
-  provider: ${VOUCH_OAUTH_PROVIDER}
-  client_id: ${VOUCH_OAUTH_CLIENT_ID}
-  auth_url: ${VOUCH_OAUTH_AUTH_URL}
-  callback_url: OAUTH_CALLBACK_URL=${VOUCH_OAUTH_CALLBACK_URL}
+  provider: indieauth
+  client_id: https://lifeofpablo.com
+  auth_url: https://indieauth.com/auth
+  callback_url: https://auth.lifeofpablo.com
