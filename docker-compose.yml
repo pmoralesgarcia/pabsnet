@@ -14,7 +14,7 @@ services:
     ports:
       - 9092:9090
     volumes:
-      - vp: /home/pablo/pabsnet/vouch-proxy-config:/config
+      - vp:/home/pablo/pabsnet/vouch-proxy-config:/config
     restart: always
   bludit:
     container_name: pablospicassos
@@ -48,7 +48,7 @@ services:
     image: freshrss/freshrss:latest
     volumes:
       - data:/var/www/FreshRSS/data
-      - extensions:/var/www/FreshRSS/extensions 
+      - extensions:/var/www/FreshRSS/extensions
     ports:
       - 8085:80
     restart: always
@@ -61,8 +61,8 @@ services:
         --db-base freshrss
         --db-host mariadb
         --db-password ${MYSQL_ROOT_PASSWORD}
-        --db-type mysql 
-        --db-user freshrss 
+        --db-type mysql
+        --db-user freshrss
         --default_user ${FRESHRSS_USER}
         --language en
       FRESHRSS_USER: |-
@@ -74,6 +74,6 @@ services:
 volumes:
  bludit:
  db_data:
- data: 
+ data:
  extensions:
  vp:
