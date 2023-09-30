@@ -18,11 +18,11 @@ Tag: University Of Nebraska Kearney, UNK, NU System, University of Nebraska, Bud
   <div class="fn fl-ns w-50-ns">
     <div class="f4 lh-copy measure mt0-ns" markdown="1">
 
-    To: The University of Nebraska and the community
+To: The University of Nebraska and the community
 
-    My name is Pablo Morales. I am writing my concerns regarding the immense budget cuts happening across at the University of Nebraska system and specifically at my alma mater, the University of Nebraska at Kearney.
+My name is Pablo Morales. I am writing my concerns regarding the immense budget cuts happening across at the University of Nebraska system and specifically at my alma mater, the University of Nebraska at Kearney.
 
-    I ask Julie Shaffer-Vice Chancellor for Academic Affairs (shafferj@unk.edu) and Jon Watts-Vice Chancellor for Business and Finance (wattsjc@unk.edu), and Chancellor Douglas Kristenen (kristensend@unk.edu) to please help us find a solution to stop this massive budget cut. So many peoples livelihoods are at stake which involve people's education, teaching positions, academic services, etc. 
+I ask Julie Shaffer-Vice Chancellor for Academic Affairs (shafferj@unk.edu) and Jon Watts-Vice Chancellor for Business and Finance (wattsjc@unk.edu), and Chancellor Douglas Kristenen (kristensend@unk.edu) to please help us find a solution to stop this massive budget cut. So many peoples livelihoods are at stake which involve people's education, teaching positions, academic services, etc. 
 
 
   </div>
@@ -34,9 +34,9 @@ Tag: University Of Nebraska Kearney, UNK, NU System, University of Nebraska, Bud
     My Letter to UNK and NU System
   </h1>
 
-        This week I found out that the university "needs" to perform a $3 million budget cut at the University of Nebraska at Kearney (UNK). This is angering and saddening. This is create a huge hole on the UNK campus. 
+This week I found out that the university "needs" to perform a $3 million budget cut at the University of Nebraska at Kearney (UNK). This is angering and saddening. This is create a huge hole on the UNK campus. 
         
-    I graduated from the university in 2019. I graduated in A B.A. in Modern Languages. This hurts to hear that many programs such as French program is being cut. The Modern Language Department was my home during my time at the University. It pushed me out of my comfort zone that lead me to even great worldview experiences such as study abroad. 
+I graduated from the university in 2019. I graduated in A B.A. in Modern Languages. This hurts to hear that many programs such as French program is being cut. The Modern Language Department was my home during my time at the University. It pushed me out of my comfort zone that lead me to even great worldview experiences such as study abroad. 
 The French program in Modern Languages helped prepare me to become a teacher and helped to interact with people of all backgrounds and cultures.
 
 UNK needs to have a complete modern language department to prepare students in this globalized world. Learning a language isn't about learning simply a language. Languages e your worldview. You learn culture, you learn experiences, you learn how different societies work. We can't have young people's viewpoints and perspectives stuck glued the environment they are in. They need to branch out. Going to college is a place where people learn to build deeper connections with others. This includes people they interact daily and people who are different from them culturally. The modern languages department is such a vital program. 
