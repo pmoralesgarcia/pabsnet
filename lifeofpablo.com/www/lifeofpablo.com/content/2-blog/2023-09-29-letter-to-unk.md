@@ -46,7 +46,7 @@ What hurts more is the attack on the arts and humanities. The arts and humanitie
 
 I ask the University of Nebraska not to elimiate these programs. If the entire univerisity system wants to retain more people in Nebraska, before entering, during college, and post college, we must allow these opportunities. 
 
-UNK is the only proper public university in Nebraska that geographically serves so many students. UNK offers so many programs closer to home that many in years past had to attend schools futher away from home to enter the programs needed.
+UNK is the only proper public university in Nebraska that geographically serves so many students in the western half of the state. UNK offers so many programs closer to home that many in years past had to attend schools futher away from home to enter the programs needed.
 
 I am proud to be a graduate of the University of Nebraska at Kearney. This saddens to see UNK and the entire university system go through this dark time. Please reconsider all the damage that is to come. Every single higher position university administrator and faculty must fight for the interest of students - current and present. 
 
