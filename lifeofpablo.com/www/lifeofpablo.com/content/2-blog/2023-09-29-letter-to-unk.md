@@ -32,7 +32,10 @@ Tag: University Of Nebraska Kearney, UNK, NU System, University of Nebraska, Bud
 
 
   </div>
-  <div class="measure db center f5 f4-ns lh-copy" markdown="1">
+  </article>
+  <article>
+
+  <div class="f6 f4-ns lh-copy measure center" markdown="1">
     I graduated from the university in 2019. I graduated in A B.A. in Modern Languages. This hurts to hear that many programs such as French program is being cut. The Modern Language Department was my home during my time at the University. It pushed me out of my comfort zone that lead me to even great worldview experiences such as study abroad. 
 The French program in Modern Languages helped prepare me to become a teacher and helped to interact with people of all backgrounds and cultures.
 
