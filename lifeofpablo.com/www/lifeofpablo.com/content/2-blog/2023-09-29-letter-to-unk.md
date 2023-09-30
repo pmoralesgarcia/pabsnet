@@ -5,6 +5,7 @@ Published: 2023-09-30 20:51:04
 Author: Pablo Morales
 Layout: blog
 Tag: University Of Nebraska Kearney, UNK, NU System, University of Nebraska, Budget Cuts, Letter
+Image: https://static.lifeofpablo.com/Untitled.png
 ---
 <article class="cf ph3 ph5-ns pv5">
   <header class="fn fl-ns w-50-ns pr4-ns">
