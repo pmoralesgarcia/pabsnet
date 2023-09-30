@@ -30,7 +30,7 @@ I ask Julie Shaffer-Vice Chancellor for Academic Affairs (shafferj@unk.edu) and 
   </article>
   <article>
 
-  <div class="f6 f4-ns lh-copy measure center" markdown="1">
+  <div class="f4 f4-ns lh-copy measure center" markdown="1">
   <h1 class="f3 f2-m f1-l fw2 black-90 mv3 center">
     My Letter to UNK and NU System
   </h1>
