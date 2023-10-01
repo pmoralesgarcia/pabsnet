@@ -1,0 +1,44 @@
+name: Deploy 1000.lifeofpablo.com
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '1000.lifeofpablo.com/**'
+jobs:
+  Build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Load secret
+      id: op-load-secret
+      uses: 1password/load-secrets-action@v1
+      with:
+       # Export loaded secrets as environment variables
+        export-env: false
+      env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          USERNAME: op://pablo/production-server/username
+          PRIVATE_SSH_KEY: op://pablo/production-server/key
+          SERVER_HOST: op://pablo/production-server/host
+          DATENSTROM_EMAIL: op://pablo/datenstrom/username
+          
+                    
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
+        username: ${{ steps.op-load-secret.outputs.USERNAME }}
+        key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
+        port: 22
+        script: |
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          cd ~/pabsnet
+          git pull
+          docker rm $(docker stop $(docker ps -a -q --filter ancestor=1000-lifeofpablo))
+          cd ~/pabsnet/1000.lifeofpablo.com
+          chmod -R a+rw ~/pabsnet/1000.lifeofpablo.com
+          docker build . -t 1000-lifeofpablo:latest
+          docker run -d -p 8200:80 -v ./www/1000.lifeofpablo.com:/var/www/1000.lifeofpablo.com 1000-lifeofpablo        
+  
