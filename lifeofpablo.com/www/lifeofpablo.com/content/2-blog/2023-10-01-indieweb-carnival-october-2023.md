@@ -1,11 +1,10 @@
 ---
 Title: Hosting: IndieWeb Carnival October 2023 - Self Care and Routine
 TitleSlug: Indieweb Carnival October 2023
-Published: 2023-10-01 13:15:45
+Published: 2023-10-01 13:31:45
 Author: Pablo Morales
 Layout: blog
 Tags: IndieWeb, webmention, Self-care, IndieWeb Carnival, October 2023
-Status: unlisted
 ---
 
 
@@ -14,15 +13,13 @@ Status: unlisted
     Indieweb Carnival October 2023 - Self-Care and Routine
   </h1>
   <h2 class="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
-    Taking Care of yourself is important
+    Taking Care of Yourself is Important
   </h2>
 </header>
 
 <article class="athelas pa4">
   <div class="f6 f4-ns lh-copy measure center" markdown="1">
-This month I am hosting this month's IndieWeb Carnvival on self-care and routine.
-
-Learning self-care has been something I've been working on a lot this year. It has been something I neglected for many, many years. It has helped me be more aligned and be more connected with myself.
+*This month I am hosting this month's IndieWeb Carnvival on self-care and routine.*
 
 
 ## What is self-care ?
@@ -35,25 +32,35 @@ There is no one size fits all model for everyone. People's backgrounds such as c
 
 ## Self-Care in the Digital Age
 
-We live in age where we are always connected online. This also adds complexities balancing our lives. 
+We live in age where we are always connected online. This also adds complexities balancing our lives. Setting boundaries isn't just limited to people. Being always connected to the web is also taxing on our mental health. 
 
 ## How Am I performing Self-Care ?
 
+Learning self-care has been something I've been working on a lot this year. It has been something I neglected for many, many years. It has helped me be more aligned and be more connected with myself. Finding a self-care routine isn't exactly a straight line to follow. I'm still finding ways to better improve my routine. It's been important to adjust as I go because it's a continious learning process. Some things worked a few months ago and now it isn't working as well before.
+
 * Setting boundaries with myself and people
-* Excercise
+* Actually find time for myself and appreciate alone time.
+* Actually address insecurities
+* Excercise such as running or biking.
 * Disconnect from digital devices as needed
-*  
+* Picking up new hobbies such as hacky sack.
 
 
 
-## Here are some prompts to help you get started or to build off of this post.
+## I invite you to write a post on self-care.
+
+Here are some prompts to help you get started or to build off of this post.
 
 * What type of self-care routines do partake in?
+* What are some hard realizations once you started to take care of yourself?
 * How do you incorporate self-care in difficult times?
 * What has been your journey in reaching self-care and your routines.
 * How does your self-care routine differ during the week vs the weekend/going on holiday?
 * How do you take care of yourself.
 * Do you check in with yourself too make sure your self-care routine is keeping up with your needs? 
+
+
+This post has been syndicated to <a href="https://news.indieweb.org/en" class="u-syndication">IndieWeb News</a>.
 
   </div>
 </article>
