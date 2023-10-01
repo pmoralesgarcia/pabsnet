@@ -10,7 +10,7 @@ Tag: IndieWeb, webmention, Self-care, IndieWeb Carnival, October 2023
 
 <header class="athelas tc ph4">
   <h1 class="f3 f2-m f1-l fw2 black-90 mv3">
-    Indieweb Carnival October 2023 - Self-Care and Routine
+    IndieWeb Carnival October 2023 - Self-Care and Routine
   </h1>
   <h2 class="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
     Taking Care of Yourself is Important
@@ -19,12 +19,12 @@ Tag: IndieWeb, webmention, Self-care, IndieWeb Carnival, October 2023
 
 <article class="athelas pa4">
   <div class="f4 f4-ns lh-copy measure center" markdown="1">
-*This month I am hosting this month's IndieWeb Carnvival on self-care and routine.*
+*This month I am hosting this month's [IndieWeb Carnival](https://indieweb.org/indieweb-carnival) on [self-care and routine](https://lifeofpablo.com/blog/indieweb-carnival-october-2023). Anyone and everyone is welcome to participate in the carnival.*
 
 
 ## What is self-care ?
 
-"a multidimensional, multifaceted process of purposeful engagement in strategies that promote healthy functioning and enhance well-being."
+"a multidimensional, multifaceted process of purposeful engagement in strategies that promote healthy functioning and enhance well-being." <a href="https://www.verywellmind.com/self-care-strategies-overall-stress-reduction-3144729/" class="i"><sup>[1]</sup></a>
 
 "Self-care means taking care of yourself so that you can be healthy, you can be well, you can do your job, you can help and care for others, and you can do all the things you need to and want to accomplish in a day." <a href="https://www.everydayhealth.com/self-care/" class="i"><sup>[2]</sup></a>
 
@@ -66,6 +66,7 @@ Send me your responses via:
 * Webmention
 * Email - pablo@lifeofpablo.com
 
+If you would like to host a future monthly IndieWeb Carnival, please check out the details on the [IndieWeb Wiki](https://indieweb.org/indieweb-carnival).
 
 This post has been syndicated to <a href="https://news.indieweb.org/en" class="u-syndication">IndieWeb News</a>.
 
