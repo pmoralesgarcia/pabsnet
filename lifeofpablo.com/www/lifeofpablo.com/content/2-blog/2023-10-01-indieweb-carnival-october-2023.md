@@ -1,5 +1,5 @@
 ---
-Title: Hosting: IndieWeb Carnival October 2023 - Self Care and Routine
+Title: IndieWeb Carnival October 2023 - Self Care and Routine
 TitleSlug: Indieweb Carnival October 2023
 Published: 2023-10-01 13:31:45
 Author: Pablo Morales
