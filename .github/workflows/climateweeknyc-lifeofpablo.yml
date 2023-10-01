@@ -1,9 +1,9 @@
-name: Deploy 1000.lifeofpablo.com
+name: Deploy climateweeknyc.lifeofpablo.com
 on:
   workflow_dispatch:
   push:
     paths:
-      - '1000.lifeofpablo.com/**'
+      - 'climateweeknyc.lifeofpablo.com/**'
 jobs:
   Build:
     name: Build
@@ -36,9 +36,9 @@ jobs:
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           cd ~/pabsnet
           git pull
-          docker rm $(docker stop $(docker ps -a -q --filter ancestor=1000-lifeofpablo))
-          cd ~/pabsnet/1000.lifeofpablo.com
-          chmod -R a+rw ~/pabsnet/1000.lifeofpablo.com
-          docker build . -t 1000-lifeofpablo:latest
-          docker run -d -p 8200:80 -v ./www/1000.lifeofpablo.com:/var/www/1000.lifeofpablo.com 1000-lifeofpablo        
+          docker rm $(docker stop $(docker ps -a -q --filter ancestor=climateweeknyc-lifeofpablo))
+          cd ~/pabsnet/climateweeknyc.lifeofpablo.com
+          chmod -R a+rw ~/pabsnet/climateweeknyc.lifeofpablo.com
+          docker build . -t climateweeknyc-lifeofpablo:latest
+          docker run -d -p 8203:80 -v ./www/climateweeknyc.lifeofpablo.com:/var/www/climateweeknyc.lifeofpablo.com climateweeknyc-lifeofpablo        
   
