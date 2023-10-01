@@ -22,7 +22,7 @@ Status: unlisted
   <div class="f6 f4-ns lh-copy measure center" markdown="1">
 This month I am hosting this month's IndieWeb Carnvival on self-care and routine.
 
-Learning self-care has been something I've been working on a lot this year. It has been something I neglected for many, many years. It has helped me be more aligned. 
+Learning self-care has been something I've been working on a lot this year. It has been something I neglected for many, many years. It has helped me be more aligned and be more connected with myself.
 
 
 ## What is self-care ?
@@ -31,10 +31,18 @@ Learning self-care has been something I've been working on a lot this year. It h
 
 "Self-care means taking care of yourself so that you can be healthy, you can be well, you can do your job, you can help and care for others, and you can do all the things you need to and want to accomplish in a day." <a href="https://www.everydayhealth.com/self-care/" class="i"><sup>[2]</sup></a>
 
+There is no one size fits all model for everyone. People's backgrounds such as culture, spiritual beliefs, life experiences, etc influence how self-care is practices. It could also be proactive or reactive. There is no right or wrong way of doing this.
 
 ## Self-Care in the Digital Age
 
 We live in age where we are always connected online. This also adds complexities balancing our lives. 
+
+## How Am I performing Self-Care ?
+
+* Setting boundaries with myself and people
+* Excercise
+* Disconnect from digital devices as needed
+*  
 
 
 
@@ -44,7 +52,8 @@ We live in age where we are always connected online. This also adds complexities
 * How do you incorporate self-care in difficult times?
 * What has been your journey in reaching self-care and your routines.
 * How does your self-care routine differ during the week vs the weekend/going on holiday?
-* How do you take care of yourself 
+* How do you take care of yourself.
+* Do you check in with yourself too make sure your self-care routine is keeping up with your needs? 
 
   </div>
 </article>
