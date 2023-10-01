@@ -4,7 +4,7 @@ TitleSlug: Indieweb Carnival October 2023
 Published: 2023-10-01 13:31:45
 Author: Pablo Morales
 Layout: blog
-Tags: IndieWeb, webmention, Self-care, IndieWeb Carnival, October 2023
+Tag: IndieWeb, webmention, Self-care, IndieWeb Carnival, October 2023
 ---
 
 
