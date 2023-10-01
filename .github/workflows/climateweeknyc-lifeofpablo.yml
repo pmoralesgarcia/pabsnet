@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'climateweeknyc.lifeofpablo.com/**'
+      - 'climateweeknyc-lifeofpablo.com/**'
 jobs:
   Build:
     name: Build
