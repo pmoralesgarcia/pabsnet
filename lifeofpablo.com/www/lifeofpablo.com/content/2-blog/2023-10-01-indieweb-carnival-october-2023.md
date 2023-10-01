@@ -18,7 +18,7 @@ Tag: IndieWeb, webmention, Self-care, IndieWeb Carnival, October 2023
 </header>
 
 <article class="athelas pa4">
-  <div class="f6 f4-ns lh-copy measure center" markdown="1">
+  <div class="f4 f4-ns lh-copy measure center" markdown="1">
 *This month I am hosting this month's IndieWeb Carnvival on self-care and routine.*
 
 
@@ -59,8 +59,7 @@ Here are some prompts to help you get started or to build off of this post.
 * How do you take care of yourself.
 * Do you check in with yourself too make sure your self-care routine is keeping up with your needs? 
 
-I will create a roundup post on the 1 November 2023 on all the responses I recieve. I will post on [Indieweb News](https://news.indieweb.org/en
-)
+I will create a roundup post on the 1 November 2023 on all the responses I recieve. I will post on [Indieweb News](https://news.indieweb.org/en)
 
 Send me your responses via:
 
