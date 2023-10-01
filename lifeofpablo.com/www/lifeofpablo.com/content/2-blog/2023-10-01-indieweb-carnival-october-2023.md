@@ -59,6 +59,14 @@ Here are some prompts to help you get started or to build off of this post.
 * How do you take care of yourself.
 * Do you check in with yourself too make sure your self-care routine is keeping up with your needs? 
 
+I will create a roundup post on the 1 November 2023 on all the responses I recieve. I will post on [Indieweb News](https://news.indieweb.org/en
+)
+
+Send me your responses via:
+
+* Webmention
+* Email - pablo@lifeofpablo.com
+
 
 This post has been syndicated to <a href="https://news.indieweb.org/en" class="u-syndication">IndieWeb News</a>.
 
