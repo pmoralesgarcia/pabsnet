@@ -34,7 +34,7 @@ jobs:
         port: 22
         script: |
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          git clone git@github.com:pmoralesgarcia/pabsnet.git
+          git clone https://github.com/pmoralesgarcia/pabsnet.git
           cd ~/pabsnet
           git pull
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=lifeofpablo))
