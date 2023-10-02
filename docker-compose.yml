@@ -22,18 +22,40 @@ services:
       - 8086:80
     restart: always
   mariadb:
-    # We use a mariadb image which supports both amd64 & arm64 architecture
-    image: mariadb:10.6.4-focal
-    # If you really want to use MySQL, uncomment the following line
-    #image: mysql:8.0.27
-    command: '--default-authentication-plugin=mysql_native_password'
-    volumes:
-      - db_data:/var/lib/mysql
+    image: mariadb:10.11
+    command: --max-allowed-packet=64MB
     restart: always
+    volumes:
+      - mariadb:/var/lib/mysql:Z
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MARIADB_AUTO_UPGRADE=1
+      - MARIADB_DISABLE_UPGRADE_BACKUP=1
+    env_file:
+      - ./matomo/db.env
+  matomo:
+    image: matomo:fpm-alpine
+    restart: always
+    links:
+      - mariadb
+    volumes:
+      # - ./config:/var/www/html/config:z
+      # - ./logs:/var/www/html/logs:z
+      - matomo:/var/www/html:z
+    environment:
+      - MATOMO_DATABASE_HOST=mariadb
+      - PHP_MEMORY_LIMIT=2048M
+    env_file:
+      - ./matomo/db.env
+  matomo-nginx:
+    image: nginx:alpine
+    restart: always
+    volumes:
+      - matomo:/var/www/html:z,ro
+      # see https://github.com/matomo-org/matomo-nginx
+      - ./matomo/matomo.conf:/etc/nginx/conf.d/default.conf:z,ro
     ports:
-      - 3306
+      - 8210:80
 volumes:
  bludit:
- db_data:
+ mariadb:
