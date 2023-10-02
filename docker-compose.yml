@@ -59,3 +59,4 @@ services:
 volumes:
  bludit:
  mariadb:
+ matomo:
