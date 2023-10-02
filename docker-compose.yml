@@ -36,8 +36,6 @@ services:
   matomo:
     image: matomo:fpm-alpine
     restart: always
-    links:
-      - mariadb
     volumes:
       # - ./config:/var/www/html/config:z
       # - ./logs:/var/www/html/logs:z
