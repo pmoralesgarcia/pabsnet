@@ -1,5 +1,7 @@
 ---
 Title: Reply to jamesg.blog
+Author: Pablo Morales
+Published: 2023-03-01
 ---
 <div class="h-entry">
     <div class="u-author h-card">

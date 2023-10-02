@@ -1,5 +1,7 @@
 ---
 Title: Like: nobody cares about your blog
+Author: Pablo Morales
+Published: 2023-03-03
 ---
 <div class="u-author h-card">
 <img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="u-photo" width="40">
