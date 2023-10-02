@@ -4,6 +4,7 @@ Published: 2023-09-27 17:37:59
 Author: Pablo Morales
 Layout: blog
 Tag: climate week, NYC, Omaha, environment, global warming, returning home
+Status: unlisted
 ---
 <article class="mid-gray cf ph3 ph5-ns pv5">
   <header class="mid-gray fn fl-ns w-50-ns pr4-ns">
