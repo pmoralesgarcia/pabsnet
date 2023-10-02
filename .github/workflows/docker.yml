@@ -1,20 +1,21 @@
+---
 name: Deploy docker compose
 on:
-  workflow_dispatch:
+  workflow_dispatch: null
 jobs:
   Build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Load secret
-      id: op-load-secret
-      uses: 1password/load-secrets-action@v1
-      with:
+      - uses: actions/checkout@v3
+      
+      - name: Load secret
+        id: op-load-secret
+        uses: 1password/load-secrets-action@v1
+        with:
        # Export loaded secrets as environment variables
-        export-env: false
-      env:
+          export-env: false
+        env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           USERNAME: op://pablo/production-server/username
           PRIVATE_SSH_KEY: op://pablo/production-server/key
@@ -39,62 +40,104 @@ jobs:
           MATOMO_MYSQL_USER: op://pablo/matomo/username
           MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
           MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
-          
-                    
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
-        username: ${{ steps.op-load-secret.outputs.USERNAME }}
-        key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
-        port: 22
-        script: |
-          cd ~/pabsnet
-          git pull
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
-          MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
-          MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
-          FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
-          FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
-          FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
-          FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
-          SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
-          SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
-          SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
-          VOUCH_ALLOW_ALL_USERS=${{ steps.op-load-secret.outputs.VOUCH_ALLOW_ALL_USERS }} \
-          VOUCH_DOMAIN=${{ steps.op-load-secret.outputs.VOUCH_DOMAIN }} \
-          VOUCH_COOKIE_SECURE=${{ steps.op-load-secret.outputs.VOUCH_COOKIE_SECURE }} \
-          VOUCH_PUBLIC_ACCESS=${{ steps.op-load-secret.outputs.VOUCH_PUBLIC_ACCESS }} \
-          VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
-          VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
-          VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
-          VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
-          MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
-          MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
-          MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-          docker compose down
-          MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
-          MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
-          MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
-          FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
-          FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
-          FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
-          FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
-          SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
-          SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
-          SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
-          VOUCH_ALLOW_ALL_USERS=${{ steps.op-load-secret.outputs.VOUCH_ALLOW_ALL_USERS }} \
-          VOUCH_DOMAIN=${{ steps.op-load-secret.outputs.VOUCH_DOMAIN }} \
-          VOUCH_COOKIE_SECURE=${{ steps.op-load-secret.outputs.VOUCH_COOKIE_SECURE }} \
-          VOUCH_PUBLIC_ACCESS=${{ steps.op-load-secret.outputs.VOUCH_PUBLIC_ACCESS }} \
-          VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
-          VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
-          VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
-          VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
-          MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
-          MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
-          MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-          docker compose up --detach
-        
-  
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
+          username: ${{ steps.op-load-secret.outputs.USERNAME }}
+          key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
+          port: 22
+          script: |
+            cd ~/pabsnet
+
+            git pull
+
+            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+
+            MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
+
+            MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
+
+            MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
+
+            FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
+
+            FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
+
+            FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
+
+            FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
+
+            SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
+
+            SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
+
+            SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
+
+            VOUCH_ALLOW_ALL_USERS=${{ steps.op-load-secret.outputs.VOUCH_ALLOW_ALL_USERS }} \
+
+            VOUCH_DOMAIN=${{ steps.op-load-secret.outputs.VOUCH_DOMAIN }} \
+
+            VOUCH_COOKIE_SECURE=${{ steps.op-load-secret.outputs.VOUCH_COOKIE_SECURE }} \
+
+            VOUCH_PUBLIC_ACCESS=${{ steps.op-load-secret.outputs.VOUCH_PUBLIC_ACCESS }} \
+
+            VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
+
+            VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
+
+            VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
+
+            VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
+
+            MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
+
+            MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
+
+            MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+
+            docker compose down
+
+            MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
+
+            MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
+
+            MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
+
+            FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
+
+            FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
+
+            FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
+
+            FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
+
+            SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
+
+            SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
+
+            SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
+
+            VOUCH_ALLOW_ALL_USERS=${{ steps.op-load-secret.outputs.VOUCH_ALLOW_ALL_USERS }} \
+
+            VOUCH_DOMAIN=${{ steps.op-load-secret.outputs.VOUCH_DOMAIN }} \
+
+            VOUCH_COOKIE_SECURE=${{ steps.op-load-secret.outputs.VOUCH_COOKIE_SECURE }} \
+
+            VOUCH_PUBLIC_ACCESS=${{ steps.op-load-secret.outputs.VOUCH_PUBLIC_ACCESS }} \
+
+            VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
+
+            VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
+
+            VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
+
+            VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
+
+            MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
+
+            MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
+
+            MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+            
+            docker compose up --detach
