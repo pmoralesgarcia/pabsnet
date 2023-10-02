@@ -36,6 +36,9 @@ jobs:
           VOUCH_OAUTH_CLIENT_ID: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_ID
           VOUCH_OAUTH_AUTH_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_AUTH_URL
           VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CALLBACK_URL
+          MATOMO_MYSQL_USER: op://pablo/matomo/username
+          MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
+          MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
           
                     
     - name: executing remote ssh commands using password
@@ -67,6 +70,10 @@ jobs:
           VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
           VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
           VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
+          MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
+          MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
+          MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+
           docker compose down
           MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
           MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
@@ -86,6 +93,9 @@ jobs:
           VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
           VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
           VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
+          MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
+          MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
+          MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
           docker compose up --detach
         
   
