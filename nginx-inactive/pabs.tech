@@ -1,0 +1,51 @@
+server {
+        root /var/www/pabs.tech/yellow-main;
+        index yellow.php index.php index.html index.htm;
+
+        server_name pabs.tech;
+
+    location /content {
+        rewrite ^(.*)$ /error break;
+    }
+
+    location /system {
+        rewrite ^(.*)$ /error break;
+    }
+
+    location / {
+        if (!-e $request_filename) {
+            rewrite ^/(.*)$ /yellow.php last;
+            break;
+        }
+    }
+
+  location ~ \.php$ {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+  }
+
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/pabs.tech/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/pabs.tech/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+
+
+}
+server {
+    if ($host = pabs.tech) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+	listen 80;
+
+        server_name pabs.tech;
+    return 404; # managed by Certbot
+
+
+}
