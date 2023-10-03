@@ -59,7 +59,7 @@ services:
   freshrss:
     depends_on:
       - mariadb
-    image: freshrss/freshrss:latest
+    image: freshrss/freshrss:1.21.0-alpine
     volumes:
       - freshrss_data:/var/www/FreshRSS/data
       - freshrss_extensions:/var/www/FreshRSS/extensions
@@ -74,7 +74,7 @@ services:
         --api_enabled
         --db-base freshrss
         --db-host mariadb
-        --db-password ${MYSQL_ROOT_PASSWORD}
+        --db-password ${FRESHRSS_MYSQL_PASSWORD}
         --db-type mysql
         --db-user ${FRESHRSS_MYSQL_USER}
         --default_user ${FRESHRSS_USER}
