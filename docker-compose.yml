@@ -56,7 +56,6 @@ services:
       - 8210:80
     depends_on:
       - matomo
-  
   freshrss:
     depends_on:
       - mariadb
@@ -75,7 +74,7 @@ services:
         --api_enabled
         --db-base freshrss
         --db-host mariadb
-        --db-password ${FRESHRSS_MYSQL_PASSWORD}
+        --db-password ${MYSQL_ROOT_PASSWORD}
         --db-type mysql
         --db-user ${FRESHRSS_MYSQL_USER}
         --default_user ${FRESHRSS_USER}
