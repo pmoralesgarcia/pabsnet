@@ -20,8 +20,8 @@ jobs:
           PRIVATE_SSH_KEY: op://pablo/production-server/key
           SERVER_HOST: op://pablo/production-server/host
           MYSQL_ROOT_PASSWORD: op://pablo/mariadb-docker/root_password
-          MYSQL_USER: op://pablo/freshrss-docker/mysql_user
-          MYSQL_PASSWORD: op://pablo/freshrss-docker/mysql_password
+          FRESHRSS_MYSQL_USER: op://pablo/freshrss-docker/mysql_user
+          FRESHRSS_MYSQL_PASSWORD: op://pablo/freshrss-docker/mysql_password
           FRESHRSS_USER: op://pablo/freshrss-docker/freshrss_user
           FRESHRSS_EMAIL: op://pablo/freshrss-docker/freshrss_email
           FRESHRSS_PASSWORD: op://pablo/freshrss-docker/freshrss_password
@@ -50,8 +50,8 @@ jobs:
             cd ~/pabsnet
             git pull
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-            MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
-            MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
+            FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
+            FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
             MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
             FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
             FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
@@ -72,8 +72,8 @@ jobs:
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             docker compose down
-            MYSQL_USER=${{ steps.op-load-secret.outputs.MYSQL_USER }} \
-            MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_PASSWORD }} \
+            FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
+            FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
             MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
             FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
             FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
