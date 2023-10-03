@@ -56,7 +56,39 @@ services:
       - 8210:80
     depends_on:
       - matomo
+  
+  freshrss:
+    depends_on:
+      - mariadb
+    image: freshrss/freshrss:latest
+    volumes:
+      - freshrss_data:/var/www/FreshRSS/data
+      - freshrss_extensions:/var/www/FreshRSS/extensions
+    ports:
+      - 8085:80
+    restart: always
+    logging:
+      options:
+        max-size: 10m
+    environment:
+      FRESHRSS_INSTALL: |-
+        --api_enabled
+        --db-base freshrss
+        --db-host mariadb
+        --db-password ${FRESHRSS_MYSQL_PASSWORD}
+        --db-type mysql
+        --db-user ${FRESHRSS_MYSQL_USER}
+        --default_user ${FRESHRSS_USER}
+        --language en
+      FRESHRSS_USER: |-
+        --api_password ${FRESHRSS_API_PASSWORD}
+        --email ${FRESHRSS_EMAIL}
+        --language en
+        --password ${FRESHRSS_PASSWORD}
+        --user ${FRESHRSS_USER}
 volumes:
  bludit:
  mariadb:
  matomo:
+ freshrss_data:
+ freshrss_extensions:
