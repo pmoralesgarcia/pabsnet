@@ -25,7 +25,6 @@ server {
 
 
         listen 80;
-        listen [::]:80;
 
         server_name climateweeknyc.lifeofpablo.com;
     return 404; # managed by Certbot
