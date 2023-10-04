@@ -15,7 +15,7 @@ Tag: webmention, Build A Website in an Hour, Climate Week, friends
   </h2>
 </header>
 
-<article class="athelas pa4 black-40">
+<article class="athelas pa4 black">
   <div class="f4 f4-ns lh-copy measure center" markdown="1">
 ## Background Information
 
