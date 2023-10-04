@@ -6,7 +6,7 @@ Layout: blog
 Tag: webmention
 Status: unlisted
 ---
-Reply to <a href="https://gregorlove.com/2023/09/i-joined-the-virtual/" class="u-reply-to underline">gRegor Morill</a>
+Reply to <a href="https://gregorlove.com/2023/09/i-joined-the-virtual/" class="u-in-reply-to underline">gRegor Morill</a>
 
 I really enjoyed looking at your Music Monday posts! Those are pretty tight! 
 
