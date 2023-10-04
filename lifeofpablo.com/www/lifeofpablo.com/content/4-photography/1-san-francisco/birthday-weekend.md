@@ -1,5 +1,6 @@
 ---
 Title: Birthday weekend
+Published: 2023-03-01
 ---
 
 [image https://photos.lifeofpablo.com/san-francisco/000052460003.jpg] 

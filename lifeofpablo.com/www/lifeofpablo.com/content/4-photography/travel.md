@@ -1,5 +1,6 @@
 ---
-Title: Travel 
+Title: Travel
+Published: 2023-10-03 21:23:49
 ---
 ### [Korea - Summer 2022](https://korea.lifeofpablo.com)
 After 2+ years since the pandemic started, I was part of a University Nebraska - Lincoln Fulbright-Hayes group that traveled to South Korea. I along with 11 other teachers, went to South Korea on an experience of a lifetime.

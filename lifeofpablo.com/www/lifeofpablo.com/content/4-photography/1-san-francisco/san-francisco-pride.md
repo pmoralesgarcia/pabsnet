@@ -1,5 +1,6 @@
 ---
 Title: San Francisco Pride
+Published: 2023-03-01
 ---
 ### A great event!
 

@@ -3,6 +3,7 @@ Title: Photography
 Titlenavigation: Photos
 titleslug: trips
 TitleContent: My Trips & Photography
+Published: 2023-03-01
 ---
 ## Photos
 <div class="flex flex-wrap">

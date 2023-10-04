@@ -1,5 +1,6 @@
 ---
 Title: South Korea
+Published: 2023-03-01
 ---
 **During summer of 2022, I spent an entire month in South Korea with 12 teachers, including myself, learning about the South Korean Education system. This was to exchange ideas and to learn how become better teachers.**
 
