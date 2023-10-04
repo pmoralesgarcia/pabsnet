@@ -92,15 +92,8 @@ services:
     image: quay.io/vouch/vouch-proxy
     ports:
       - 9092:9090
-    environment:
-      - VOUCH_DOMAINS=${VOUCH_DOMAIN}
-      - VOUCH_ALLOWALLUSERS=true
-      - VOUCH_COOKIE_SECURE=${VOUCH_COOKIE_SECURE}
-      - VOUCH_PUBLIC_ACCESS=true
-      - OAUTH_PROVIDER=${VOUCH_OAUTH_PROVIDER}
-      - OAUTH_CLIENT_ID=${VOUCH_OAUTH_CLIENT_ID}
-      - OAUTH_AUTH_URL=${VOUCH_OAUTH_AUTH_URL}
-      - OAUTH_CALLBACK_URL=${VOUCH_OAUTH_CALLBACK_URL}
+    volumes:
+      - ./vouch-proxy-config:/config
     restart: always
   shlink:
     container_name: pabs-lol
