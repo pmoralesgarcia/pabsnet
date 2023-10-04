@@ -85,7 +85,7 @@ services:
         --language en
         --password ${FRESHRSS_PASSWORD}
         --user ${FRESHRSS_USER}
-        shlink:
+  shlink:
     container_name: pabs-lol
     image: shlinkio/shlink:3.6.3-openswoole
     ports:
