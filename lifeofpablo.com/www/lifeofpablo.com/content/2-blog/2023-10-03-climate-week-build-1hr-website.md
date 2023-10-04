@@ -65,85 +65,24 @@ This website was made using vanilla HTML & CSS. I used [Tachyions](https://tachy
 
 </div>
 
-<div class="mw9 center ph3-ns">
+
+Other Sections Include:
+
+* Introduction
+* Attendees
+* Events Attended
+* Photos
 
 
-<p>Intro Section</p>
+## Webmentions
 
-<div class="cf ph2-ns">
-    <div class="fl w-100 w-50-ns pa2">
+This site supports webmentions! 
 
-<p><img src="https://static.lifeofpablo.com/cwnyc-intro-section.png" alt="Intro Card" title="Intro Card"></p>
 
-</div>
-    <div class="fl w-100 w-50-ns pa2">
-<dl class="lh-title pa4 mt0">
-  <dt class="f6 b">Description:</dt>
-  <dd class="ml0">A small introduction</dd>
 
-</dl>
-</div>
-    </div>
+## Closing
 
-</div>
-
-<p>Events Attended</p>
-
-<div class="cf ph2-ns">
-    <div class="fl w-100 w-50-ns pa2">
-
-<p><img src="https://static.lifeofpablo.com/climateweeknyc/cwnyc-intro-section.png" alt="Intro Card" title="Intro Card"></p>
-
-</div>
-    <div class="fl w-100 w-50-ns pa2">
-<dl class="lh-title pa4 mt0">
-  <dt class="f6 b">Description:</dt>
-  <dd class="ml0">A list of events attended</dd>
-
-</dl>
-</div>
-    </div>
-
-</div>
-
-<p>People Attended With</p>
-
-<div class="cf ph2-ns">
-    <div class="fl w-100 w-50-ns pa2">
-
-<p><img src="https://climateweek.lifeofpablo.com/climateweeknyc/attendees.png" alt="attendees" title="Attendees"></p>
-
-</div>
-    <div class="fl w-100 w-50-ns pa2">
-<dl class="lh-title pa4 mt0">
-  <dt class="f6 b">Description:</dt>
-  <dd class="ml0">People I attended Climate Week NYC with</dd>
-
-</dl>
-</div>
-    </div>
-
-</div>
-
-<p>Photos</p>
-
-<div class="cf ph2-ns">
-    <div class="fl w-100 w-50-ns pa2">
-
-<p><img src="https://climateweeknyc.lifeofpablo.com/images/IMG_7500.jpg" alt="Image Grid" title="Image Grid"></p>
-
-</div>
-    <div class="fl w-100 w-50-ns pa2">
-<dl class="lh-title pa4 mt0">
-  <dt class="f6 b">Description:</dt>
-  <dd class="ml0">Image Grid of Various Photos</dd>
-
-</dl>
-</div>
-    </div>
-
-</div>
-
+I hope you enjoy the website! Let me know if you have any comments, questions or concerns. Don't forget to say, "hello"!
 
 
   </div>
