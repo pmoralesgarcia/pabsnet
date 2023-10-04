@@ -59,7 +59,7 @@ services:
   freshrss:
     depends_on:
       - mariadb
-    image: freshrss/freshrss:1.21.0-alpine
+    image: freshrss/freshrss:1.21.0
     volumes:
       - freshrss_data:/var/www/FreshRSS/data
       - freshrss_extensions:/var/www/FreshRSS/extensions
