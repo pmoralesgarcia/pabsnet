@@ -73,7 +73,7 @@ This website was made using vanilla HTML & CSS. I used [Tachyions](https://tachy
 <div class="cf ph2-ns">
     <div class="fl w-100 w-50-ns pa2">
 
-<p><img src="https://static.lifeofpablo.com/climateweeknyc/cwnyc-intro-section.png" alt="Intro Card" title="Intro Card"></p>
+<p><img src="https://static.lifeofpablo.com/cwnyc-intro-section.png" alt="Intro Card" title="Intro Card"></p>
 
 </div>
     <div class="fl w-100 w-50-ns pa2">
@@ -144,9 +144,7 @@ This website was made using vanilla HTML & CSS. I used [Tachyions](https://tachy
 
 </div>
 
-## Webmentions
 
-The website supports webmentions! Go webmentions!
 
   </div>
   </article>
