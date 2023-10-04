@@ -64,7 +64,7 @@ services:
       - freshrss_data:/var/www/FreshRSS/data
       - freshrss_extensions:/var/www/FreshRSS/extensions
     links:
-      - vp-indieauth
+      - vouch-proxy
     ports:
       - 8085:80
     restart: always
