@@ -63,7 +63,7 @@ services:
     volumes:
       - freshrss_data:/var/www/FreshRSS/data
       - freshrss_extensions:/var/www/FreshRSS/extensions
-    networks:
+    links:
       - vp-indieauth
     ports:
       - 8085:80
@@ -101,8 +101,6 @@ services:
       - OAUTH_CLIENT_ID=${VOUCH_OAUTH_CLIENT_ID}
       - OAUTH_AUTH_URL=${VOUCH_OAUTH_AUTH_URL}
       - OAUTH_CALLBACK_URL=${VOUCH_OAUTH_CALLBACK_URL}
-    networks:
-      - vp-indieauth
     restart: always
   shlink:
     container_name: pabs-lol
