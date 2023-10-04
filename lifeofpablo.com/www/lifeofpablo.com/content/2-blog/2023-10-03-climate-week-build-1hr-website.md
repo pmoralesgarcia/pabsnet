@@ -5,7 +5,6 @@ Published: 2023-10-03 21:23:49
 Author: Pablo Morales
 Layout: blog
 Tag: webmention, Build A Website in an Hour, Climate Week, friends
-Status: unlisted
 ---
 <header class="tc ph4">
   <h1 class="f3 f2-m f1-l fw2 black-90 mv3">
@@ -39,13 +38,13 @@ Just as the name of the event states, I built (most) of the website in an hour. 
 
 This website is located at https://climateweeknyc.lifeofpablo.com .
 
-## A Breakdown of the Site
-
+## Technologies Used
 This website was made using vanilla HTML & CSS. I used [Tachyions](https://tachyons.io/) CSS Framework for the CSS.  I use it on my website, primarily on my blog, to change the appearance of my posts. I like this CSS framework because is it doesn't interfere with existing CSS frameworks or existing CSS stylesheets. The classes are easy to learn
+
+## A Breakdown of the Site
 
 <div class="mw9 center ph3-ns">
 
-<h2 id="the-sunset">The Sunset</h2>
 
 <p>Hero Banner</p>
 
@@ -68,9 +67,8 @@ This website was made using vanilla HTML & CSS. I used [Tachyions](https://tachy
 
 <div class="mw9 center ph3-ns">
 
-<h2 id="the-sunset">The Sunset</h2>
 
-<p>Hero Banner</p>
+<p>Intro Section</p>
 
 <div class="cf ph2-ns">
     <div class="fl w-100 w-50-ns pa2">
@@ -89,19 +87,66 @@ This website was made using vanilla HTML & CSS. I used [Tachyions](https://tachy
 
 </div>
 
+<p>Events Attended</p>
 
-<div class="fl w-100 w-50-l pr2-l pl2-ns mb4 mb0-l mb4 outline">
-      <div class="pa4">
-        <h1 class="f4 f2-l fw7 mt0 pv3-l bb-l bb--black">#004</h1>
-        <p class="lh-copy mt2 mt3-m mt5-l f6">
-          <span class="db-ns f6 fw7 lh-solid mb3 mb0-m mb4-l">Climate Note</span>
-          <span class="fw9 f6 f1-l db lh-title mb3 mb4-l">Appreciate the world we have now. We are slowly losing earth.</span>
-          <span class="db-l measure-wide">
-    
-        </span>
-        </p>
-      </div>
+<div class="cf ph2-ns">
+    <div class="fl w-100 w-50-ns pa2">
+
+<p><img src="https://static.lifeofpablo.com/climateweeknyc/cwnyc-intro-section.png" alt="Intro Card" title="Intro Card"></p>
+
+</div>
+    <div class="fl w-100 w-50-ns pa2">
+<dl class="lh-title pa4 mt0">
+  <dt class="f6 b">Description:</dt>
+  <dd class="ml0">A list of events attended</dd>
+
+</dl>
+</div>
     </div>
+
+</div>
+
+<p>People Attended With</p>
+
+<div class="cf ph2-ns">
+    <div class="fl w-100 w-50-ns pa2">
+
+<p><img src="https://climateweek.lifeofpablo.com/climateweeknyc/attendees.png" alt="attendees" title="Attendees"></p>
+
+</div>
+    <div class="fl w-100 w-50-ns pa2">
+<dl class="lh-title pa4 mt0">
+  <dt class="f6 b">Description:</dt>
+  <dd class="ml0">People I attended Climate Week NYC with</dd>
+
+</dl>
+</div>
+    </div>
+
+</div>
+
+<p>Photos</p>
+
+<div class="cf ph2-ns">
+    <div class="fl w-100 w-50-ns pa2">
+
+<p><img src="https://climateweeknyc.lifeofpablo.com/images/IMG_7500.jpg" alt="Image Grid" title="Image Grid"></p>
+
+</div>
+    <div class="fl w-100 w-50-ns pa2">
+<dl class="lh-title pa4 mt0">
+  <dt class="f6 b">Description:</dt>
+  <dd class="ml0">Image Grid of Various Photos</dd>
+
+</dl>
+</div>
+    </div>
+
+</div>
+
+## Webmentions
+
+The website supports webmentions! Go webmentions!
 
   </div>
   </article>
