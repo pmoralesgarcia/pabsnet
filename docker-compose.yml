@@ -63,8 +63,8 @@ services:
     volumes:
       - freshrss_data:/var/www/FreshRSS/data
       - freshrss_extensions:/var/www/FreshRSS/extensions
-    links:
-      - vouch-proxy
+    networks:
+      - vp-indieauth
     ports:
       - 8085:80
     restart: always
@@ -91,7 +91,9 @@ services:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
     ports:
-      - 9092:9090
+      - 9090:9090
+    networks:
+      - vp-indieauth
     volumes:
       - ./vouch-proxy-config:/config
     restart: always
