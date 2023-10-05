@@ -1,19 +1,15 @@
-#vouch:
-#  logLevel: debug
-#  listen: 0.0.0.0
-#  allowAllUsers: true
-#  cookie:
-#    domain: lifeofpablo.com
-#  publicAccess: true
-
-
 vouch:
+  logLevel: debug
+  listen: 0.0.0.0
+  port: 9090
   allowAllUsers: true
-
-  jwt:
-    secret: jfaoj8324ht2q
-
+  cookie:
+    secure: false
+    domain: lifeofpablo.com
+  publicAccess: true
 oauth:
+  # IndieAuth
+  # https://indielogin.com/api
   provider: indieauth
   client_id: https://lifeofpablo.com
   auth_url: https://indieauth.com/auth
