@@ -19,26 +19,10 @@
          </div>
          <div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
          </div>
+		<div id="webmentions"></div>
+
+
          <div>
-            <p>Webmention</p>
-            <!--								<form>
-               <label class="f6 b db mb2" for="url">Have you written a response to this? Let me know the URL:</label>
-               
-               <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="url" name="url" id="url" placeholder="https://example.com" pattern="https://.*" size="30" required>
-               <input type="submit" value="Send Request" />
-               </form> -->
-         </div>
-         <script src="https://f005.backblazeb2.com/file/lifeofpablo/media/js/webmention.js" type="text/javascript"></script>
-         <div class="wm_summary">
-            <ul class="menicons">
-            <li class="micon"><i class="fa-solid fa-star"></i>&nbsp<span id="wm_like1"></span>&nbsp; likes</li>
-            <li class="micon"><i class="fa-regular fa-file"></i>&nbsp<span id="wm_ment1"></span>&nbsp; mentions</li>
-            <li class="micon"><i class="fa-regular fa-comment"></i>&nbsp<span id="wm_reply1"> </span>&nbsp; </li>
-            <li class="micon"><i class="fa-solid fa-repeat"></i>&nbsp<span id="wm_repost1"></span>&nbspreposts</li>
-            <li class="micon"><i class="fa-regular fa-bookmark"></i>&nbsp<span id="wm_bkmk1"></span>&nbsp;bookmarks</li>
-         </div>
-         <hr>
-         <div id="mentionpanel"></div>
          <?php echo $this->yellow->page->getExtra("previousnext") ?>
          <?php endif ?>
          <?php echo $this->yellow->page->getExtra("comments") ?>
