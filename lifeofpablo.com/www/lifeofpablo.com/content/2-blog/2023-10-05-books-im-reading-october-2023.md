@@ -16,7 +16,7 @@ Tag: Books, Books I'm Reading, new habits
     </h2>
   </header>
   <div class="fn fl-ns w-50-ns">
-    <div class="f5 lh-copy measure mt0-ns" markdown="1">
+    <div class="f4 lh-copy measure mt0-ns" markdown="1">
       I've been relearning how to enjoy time for <a href="https://lifeofpablo.com/blog/alone-time-solo-adventures" class="u-in-reply-to">myself and with myself</a>. Something I've been doing on my free time has been reading books. I'm always looking at a screen (such as the one I'm using to write this post) due to the world we live in and in my technology job. Whenever I can, I'm trying to not look at my phone as often. I started carrying a small tote bag with me everywhere with me. There is always a book in there. It feels great to disconnect and to immerse oneself in a book. 
       
       I think we all need to retrain to connnect with physical things. We're so connected to our devices. I feel so disconnected with technology around us. 
@@ -45,8 +45,8 @@ Tag: Books, Books I'm Reading, new habits
         <img src="https://nuriakenya.com/wp-content/uploads/2021/09/Wars-guns-and-votes-nuriakenya-600x750.jpg" class="db w-100"/>
       </div>
       <div class="dtc v-top pl2">
-        <h1 class="f6 f5-ns fw6 lh-title black mv0">Wars, Guns & Votes</h1>
-        <h2 class="f6 fw4 mt2 mb0 black-60">Paul Collier</h2>
+        <h1 class="f4 f5-ns fw6 lh-title black mv0">Wars, Guns & Votes</h1>
+        <h2 class="f4 fw4 mt2 mb0 black-60">Paul Collier</h2>
         <dl class="mt2 f6">
           <dt class="clip">Type</dt>
           <dd class="ml0">Paperback</dd>
@@ -60,8 +60,8 @@ Tag: Books, Books I'm Reading, new habits
         <img src="https://www.hachettebookgroup.com/wp-content/uploads/2019/01/9781455544585.jpg" class="db w-100"/>
       </div>
       <div class="dtc v-top pl2">
-        <h1 class="f6 f5-ns fw6 lh-title black mv0">Whiplash How to Survive Our Faster Future</h1>
-        <h2 class="f6 fw4 mt2 mb0 black-60">Joi Ito & Jeff Howe</h2>
+        <h1 class="f4 f5-ns fw6 lh-title black mv0">Whiplash How to Survive Our Faster Future</h1>
+        <h2 class="f4 fw4 mt2 mb0 black-60">Joi Ito & Jeff Howe</h2>
         <dl class="mt2 f6">
           <dt class="clip">Type</dt>
           <dd class="ml0">Paperback</dd>
@@ -75,8 +75,8 @@ Tag: Books, Books I'm Reading, new habits
         <img src="https://counterpathpress.org/wp-content/uploads/2023/06/Screen-Shot-2023-06-06-at-1.45.53-PM-1-635x1024.png" class="db w-100"/>
       </div>
       <div class="dtc v-top pl2">
-        <h1 class="f6 f5-ns fw6 lh-title black mv0">Seedlings_ Walk in Time</h1>
-        <h2 class="f6 fw4 mt2 mb0 black-60">Qianxun Chen & Mariana Roa Oliva</h2>
+        <h1 class="f4 f5-ns fw6 lh-title black mv0">Seedlings_ Walk in Time</h1>
+        <h2 class="f4 fw4 mt2 mb0 black-60">Qianxun Chen & Mariana Roa Oliva</h2>
         <dl class="mt2 f6">
           <dt class="clip">Type</dt>
           <dd class="ml0">Paperback</dd>
@@ -87,11 +87,11 @@ Tag: Books, Books I'm Reading, new habits
   <article>
     <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://speedandscale.com/book/">
       <div class="dtc w3">
-        <img src="https://speedandscale.com/book/ https://m.media-amazon.com/images/I/71nZKDYL14L._AC_UF1000,1000_QL80_.jpg" class="db w-100"/>
+        <img src="https://m.media-amazon.com/images/I/71nZKDYL14L._AC_UF1000,1000_QL80_.jpg" class="db w-100"/>
       </div>
       <div class="dtc v-top pl2">
-        <h1 class="f6 f5-ns fw6 lh-title black mv0">Speed & Scale</h1>
-        <h2 class="f6 fw4 mt2 mb0 black-60">John Doerr</h2>
+        <h1 class="f4 f5-ns fw6 lh-title black mv0">Speed & Scale</h1>
+        <h2 class="f4 fw4 mt2 mb0 black-60">John Doerr</h2>
         <dl class="mt2 f6">
           <dt class="clip">Type</dt>
           <dd class="ml0">Paperback</dd>
