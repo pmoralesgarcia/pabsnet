@@ -85,9 +85,9 @@ Tag: Books, Books I'm Reading, new habits
     </a>
   </article>
   <article>
-    <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="#0">
+    <a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="https://speedandscale.com/book/">
       <div class="dtc w3">
-        <img src="https://speedandscale.com/book/" class="db w-100"/>
+        <img src="https://speedandscale.com/book/ https://m.media-amazon.com/images/I/71nZKDYL14L._AC_UF1000,1000_QL80_.jpg" class="db w-100"/>
       </div>
       <div class="dtc v-top pl2">
         <h1 class="f6 f5-ns fw6 lh-title black mv0">Speed & Scale</h1>
