@@ -28,6 +28,7 @@ Tag: Books, Books I'm Reading, new habits
       * <a href="https://tracydurnell.com/" class="u-in-reply-to">Tracy Durnell</a>
       * <a href="https://nicksimson.com/" class="u-in-reply-to">Nick Simpson</a>
       * <a href="https://www.jeremycherfas.net/" class="u-in-reply-to">Jeremy Cherfas</a>
+      * <a href="https://yousefamar.com/" class="u-in-reply-to">Yousef Amar</a>
       * <a href="https://dead.garden/" class="u-in-reply-to">Jo</a>
       * <a href="https://jamesg.blog/" class="u-in-reply-to"> James G</a>
 
