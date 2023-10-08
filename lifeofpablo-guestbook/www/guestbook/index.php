@@ -1,11 +1,12 @@
 <?php include "templates/header.php"; ?>
 <article class="athelas pa4">
   <div class="f6 f4-ns lh-copy measure center">
-    
+  <h1>Guestbook</h1>
+
 <img src="https://static.lifeofpablo.com/media/images/guestbook/book.png">
 <h3>Welcome to my guestbook!</h3>
 
-Send a webmention to https://lifeofpablo.com/guestbook/ to sign the guestbook!
+Send a webmention to <code class="code f6 dib pa2 bg-white-20 washed-green">https://lifeofpablo.com/guestbook/</code> to sign the guestbook!
 
 
 <p>Do you see a bug? How can I make it better? Email me at <a href="mailto:hello@lifeofpablo.com">hello@lifeofpablo.com.</a> Hope to hear from you soon!</p>

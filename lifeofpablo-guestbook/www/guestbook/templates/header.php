@@ -29,16 +29,20 @@
 </head>
 
 <body>
-<nav class="pa3 pa4-ns">
-  <a class="link dim black b f6 f5-ns dib mr3" href="/" title="Home">Pablo Morales</a>
-  <a class="link dim gray    f6 f5-ns dib mr3" href="/" title="Home">Home</a>
-  <a class="link dim gray    f6 f5-ns dib mr3" href="/blog" title="Blog">Blog</a>
-  <a class="link dim gray    f6 f5-ns dib mr3" href="/photography" title="Photography">Photos</a>
-  <a class="link dim gray    f6 f5-ns dib" href="/now" title="Now">Now</a>
-  <a class="link dim gray    f6 f5-ns dib" href="/feed/page:feed.xml" title="RSS Feed"><i class="fa-solid fa-rss"></i></a>
+<nav class="flex justify-between bb b--white-10">
+  <a class="link white-70 hover-white no-underline flex items-center pa3" href="">
+    Pablo Morales
+  </a>
+  <div class="flex-grow pa3 flex items-center">
+    <a class="f6 link dib white dim mr3 mr4-ns" href="/" title="Home">Home</a>
+    <a class="f6 link dib white dim mr3 mr4-ns" href="/blog" title="Blog">Blog</a>
+	<a class="f6 link dib white dim mr3 mr4-ns" href="/photography" title="Photography">Blog</a>
+    <a class="f6 link dib white dim mr3 mr4-ns" href="/feed/page:feed.xml" title="RSS Feed"> <i class="fa-solid fa-rss"></i</a>
 
+    <a class="f6 dib white bg-animate hover-bg-white hover-black no-underline pv2 ph4 br-pill ba b--white-20" href="/linkinbio">Links</a>
+  </div>
 </nav>
 
 
+
 </div>
-	<h1>Guestbook</h1>
