@@ -2,7 +2,7 @@
 // Core extension, https://github.com/annaesvensson/yellow-core
 
 class YellowCore {
-    const VERSION = "0.8.118";
+    const VERSION = "0.8.116";
     const RELEASE = "0.8.22";
     public $content;        // content files
     public $media;          // media files
@@ -716,8 +716,7 @@ class YellowSystem {
     
     // Return different value for system setting
     public function getDifferent($key) {
-        $array = array_diff($this->getAvailable($key), array($this->get($key)));
-        return reset($array);
+        return reset(array_diff($this->getAvailable($key), array($this->get($key))));
     }
 
     // Return available values for system setting
@@ -1566,8 +1565,6 @@ class YellowLookup {
                 } elseif (!preg_match("#^($pageBase|$mediaBase)#", $location)) {
                     $location = $pageBase.$location;
                 }
-            } else {
-                $location = $pageBase.$pageLocation.$location;
             }
             $location = str_replace("/./", "/", $location);
             $location = str_replace(":", $this->yellow->toolbox->getLocationArgumentsSeparator(), $location);
