@@ -29,7 +29,7 @@
 </head>
 
 <body>
-<header class="bg-black-90 fixed w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
+<header class="bg-black-90 w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
   <nav class="f6 fw6 ttu tracked">
     <a class="link dim white dib mr3" href="#" title="Home">Home</a>
     <a class="link dim white dib mr3" href="/blog" title="Blog">Blog</a>
@@ -37,7 +37,6 @@
     <a class="link dim white dib" href="/projects" title="Projects">Projects</a>
   </nav>
 </header>
-
 
 
 
