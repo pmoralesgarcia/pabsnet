@@ -35,7 +35,7 @@ jobs:
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           cd ~/pabsnet
           git pull
-          docker rm $(docker stop $(docker ps -a -q --filter ancestor=guestbook))
+          docker rm $(docker stop $(docker ps -a -q --filter ancestor=lifeofpablo-guestbook))
           cd ~/pabsnet/lifeofpablo-guestbook
           docker build . -t lifeofpablo-guestbook:latest
           docker run -d -p 8083:80 -v ./www/guestbook:/var/www/guestbook lifeofpablo-guestbook        
