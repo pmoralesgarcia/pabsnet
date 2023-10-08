@@ -2,10 +2,6 @@
 Title: Projects
 Published: 2023-10-03 21:23:49
 ---
-
-
-
-
 <div class="mw9 center ph3-ns">
   <div class="cf ph2-ns">
     <div class="fl w-100 w-third-ns pa2">
@@ -31,11 +27,9 @@ Published: 2023-10-03 21:23:49
     </div>
     <div class="fl w-100 w-third-ns pa2">
       <div markdown="1" class="bg-white pv4">
-[image question.png]
+[image https://static.lifeofpablo.com/pabsnet/pabs-tech_logo.png]
 
-My Company (Coming Soon!)
-
-* Pabs Tech
+[Pabs Tech, LLC](https://pabs.tech/)
 </div>
     </div>
   </div>
