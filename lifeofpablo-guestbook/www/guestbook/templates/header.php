@@ -29,20 +29,15 @@
 </head>
 
 <body>
-<nav class="flex justify-between bb b--white-10">
-  <a class="link white-70 hover-white no-underline flex items-center pa3" href="">
-    Pablo Morales
-  </a>
-  <div class="flex-grow pa3 flex items-center">
-    <a class="f6 link dib white dim mr3 mr4-ns" href="/" title="Home">Home</a>
-    <a class="f6 link dib white dim mr3 mr4-ns" href="/blog" title="Blog">Blog</a>
-	<a class="f6 link dib white dim mr3 mr4-ns" href="/photography" title="Photography">Blog</a>
-    <a class="f6 link dib white dim mr3 mr4-ns" href="/feed/page:feed.xml" title="RSS Feed"> <i class="fa-solid fa-rss"></i</a>
-
-    <a class="f6 dib white bg-animate hover-bg-white hover-black no-underline pv2 ph4 br-pill ba b--white-20" href="/linkinbio">Links</a>
-  </div>
-</nav>
+<header class="bg-black-90 fixed w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
+  <nav class="f6 fw6 ttu tracked">
+    <a class="link dim white dib mr3" href="#" title="Home">Home</a>
+    <a class="link dim white dib mr3" href="/blog" title="Blog">Blog</a>
+    <a class="link dim white dib mr3" href="/now" title="Now Page">Now</a>
+    <a class="link dim white dib" href="/projects" title="Projects">Projects</a>
+  </nav>
+</header>
 
 
 
-</div>
+
