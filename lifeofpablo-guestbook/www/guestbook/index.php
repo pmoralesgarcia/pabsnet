@@ -1,12 +1,14 @@
 <?php include "templates/header.php"; ?>
-
+<article class="athelas pa4">
+  <div class="f6 f4-ns lh-copy measure center">
+    
 <img src="https://static.lifeofpablo.com/media/images/guestbook/book.png">
 <h3>Welcome to my guestbook!</h3>
 
 Send a webmention to https://lifeofpablo.com/guestbook/ to sign the guestbook!
 
 
-<p>Do you see a bug? How can I make it better? Email me at <a href="mailto:hello@lifeofpablo.com">hello@lifeofpablo.com.</a></p>
+<p>Do you see a bug? How can I make it better? Email me at <a href="mailto:hello@lifeofpablo.com">hello@lifeofpablo.com.</a> Hope to hear from you soon!</p>
 
 <script>
 var target_url = "https://lifeofpablo.com/guestbook/";
@@ -132,6 +134,95 @@ function showMentions(mentions) {
 
 <br>
 
+</div>
+<style>
+  /* Webmentions */
+
+.webmention {
+  clear: both;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.webmention img {
+    float: left;
+    margin-right: 1em;
+}
+
+.wm_box {
+    font-size: 1em;
+  font-weight: 300;
+  line-height: 1.2rem;
+}
+
+.wm_info {
+  display: flex;
+  flex-direction: column;
+}
+
+.wm_info a {
+
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.m_author {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: black;
+  display: inline;
+  font-weight: bold;
+}
+.m_published {
+  font-size: 0.85rem;
+}
+
+.wm_summary {
+  font-size: 1rem;
+}
+/* Most likely use font awesome to replace this code. */
+.menicons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 0px;
+  overflow-x: scroll;
+}
+.micon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .webmention img {
+   max-width: 100%
+   width: 100%;
+   height: 100%;
+  }
+}
+
+
+
+</style>
 
 
 <?php include "templates/footer.php"; ?>
+
