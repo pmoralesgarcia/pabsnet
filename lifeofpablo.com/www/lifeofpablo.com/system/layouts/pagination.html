@@ -2,10 +2,10 @@
 <?php if ($pages->isPagination()): ?>
 <div class="pagination" role="navigation" aria-label="<?php echo $this->yellow->language->getTextHtml("corePagination") ?>">
 <?php if ($pages->getPaginationPrevious()): ?>
-<a class="previous" href="<?php echo $pages->getPaginationPrevious() ?>"><?php echo $this->yellow->language->getTextHtml("corePaginationPrevious") ?></a>
+<a class="previous f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4" href="<?php echo $pages->getPaginationPrevious() ?>"><?php echo $this->yellow->language->getTextHtml("corePaginationPrevious") ?></a>
 <?php endif ?>
 <?php if ($pages->getPaginationNext()): ?>
-<a class="next" href="<?php echo $pages->getPaginationNext() ?>"><?php echo $this->yellow->language->getTextHtml("corePaginationNext") ?></a>
+<a class="next f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box" href="<?php echo $pages->getPaginationNext() ?>"><?php echo $this->yellow->language->getTextHtml("corePaginationNext") ?></a>
 <?php endif ?>
 </div>
 <?php endif ?>

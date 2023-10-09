@@ -2,7 +2,7 @@
 // Edit extension, https://github.com/annaesvensson/yellow-edit
 
 class YellowEdit {
-    const VERSION = "0.8.76";
+    const VERSION = "0.8.75";
     public $yellow;         // access to API
     public $response;       // web response
     public $merge;          // text merge
