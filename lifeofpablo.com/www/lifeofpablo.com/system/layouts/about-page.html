@@ -1,7 +1,7 @@
 <?php $this->yellow->layout("about-header") ?>
 <div class="content h-entry">
 <div class="main e-content" role="main">
-Experimental: <a href="https://auth.lifeofpablo.com/login?url=https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">Sign in to my site using your domain.</a><p> It's still buggy so you might have to refresh twice to get your domain to show up. </p>
+<!--Experimental: <a href="https://auth.lifeofpablo.com/login?url=https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">Sign in to my site using your domain.</a><p> It's still buggy so you might have to refresh twice to get your domain to show up. </p>
 <?php
                                      if($_SERVER['REMOTE_USER'])
 			    echo 'Hey , ' . $_SERVER['REMOTE_USER'] . ' !';
@@ -13,7 +13,7 @@ if($_SERVER['REMOTE_USER'])
 		 echo 'Hey , ' . $_SERVER['REMOTE_USER'] . ' ! <a href="/logout">Logout</a>';
 		     else
 		         echo 'Please <a href="https://auth.lifeofpablo.com/login?url=https://lifeofpablo.com">Sign in</a>';
-			 ?>
+			 ?> -->
 <div class="about-header h-card">
 	<img class="me u-photo" src="https://static.lifeofpablo.com/pabs-cropped.jpg" alt="picture of Pablo" /> 
     <!-- Title -->
@@ -41,6 +41,7 @@ Hey, I'm Pablo and I'm based in Sacramento. I work in IT in an educational setti
       
     </div>
 <?php echo $this->yellow->page->getContent() ?>
+<!-- <?php $this->yellow->layout("home") ?> -->
 </div>
 </div>
 <?php $this->yellow->layout("footer") ?>
