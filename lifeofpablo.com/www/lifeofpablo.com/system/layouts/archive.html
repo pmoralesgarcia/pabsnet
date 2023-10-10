@@ -69,7 +69,7 @@ Created by Robert Pfotenhauer on 03.10.23.
             <div class="archive-month__header f3">
             <strong><?php echo date("F", strtotime("2023-" . $month . "-01")) ?> <sup class="archive-count">(<?php echo $monthCounts[$year . "-" . $month] ?>)</sup></strong>
             </div>
-            <div class="archive-posts fl w-80 pa2">
+            <div class="archive-posts">
             <?php foreach ($monthGroup as $page): ?>
                 <div class="archive-entry">
                     <a class="u-url entry-link link" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?>&nbsp;</a>
