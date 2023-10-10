@@ -65,7 +65,7 @@ Created by Robert Pfotenhauer on 03.10.23.
     
     <?php foreach ($yearGroup as $month => $monthGroup): ?>
     
-        <div class="archive-month pt2 pt2 mt3 mb3">    
+        <div class="archive-month mt3 mb3">    
             <div class="archive-month__header f3">
             <strong><?php echo date("F", strtotime("2023-" . $month . "-01")) ?> <sup class="archive-count">(<?php echo $monthCounts[$year . "-" . $month] ?>)</sup></strong>
             </div>
