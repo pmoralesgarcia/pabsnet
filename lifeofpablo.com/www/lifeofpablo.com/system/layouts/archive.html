@@ -60,7 +60,7 @@ Created by Robert Pfotenhauer on 03.10.23.
     // Loop through the grouped posts and output them
     foreach ($groupedPosts as $year => $yearGroup): ?>
     
-    <div class="archive-year flex justify-between">
+    <div class="archive-year">
     <h2><?php echo $year ?> <sup class="archive-count">(<?php echo $yearCounts[$year] ?>)</sup></h2>
     
     <?php foreach ($yearGroup as $month => $monthGroup): ?>
