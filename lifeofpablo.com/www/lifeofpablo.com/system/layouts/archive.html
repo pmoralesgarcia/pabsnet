@@ -78,6 +78,7 @@ Created by Robert Pfotenhauer on 03.10.23.
                         <?php echo " &middot; " . $page->parseContentShortcut("readingtime", "", "inline") . " min"; ?>
                     </div>
                     <a class="entry-link" aria-label="<?php echo $page->getHtml("title") ?>" title="<?php echo $page->getHtml("title") ?>" href="<?php echo $page->getLocation(true) ?>">&nbsp;</a>
+                    <a class="u-url" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a>
                 </div>
             <?php endforeach; ?>
             </div>
