@@ -65,11 +65,11 @@ Created by Robert Pfotenhauer on 03.10.23.
     
     <?php foreach ($yearGroup as $month => $monthGroup): ?>
     
-        <div class="archive-month mt3 mb3">    
-            <div class="archive-month__header f3">
+        <div class="archive-month mt3 mb3 flex flex-wrap">    
+            <div class="archive-month__header mw-100 w-two-thirds f3">
             <strong><?php echo date("F", strtotime("2023-" . $month . "-01")) ?> <sup class="archive-count">(<?php echo $monthCounts[$year . "-" . $month] ?>)</sup></strong>
             </div>
-            <div class="archive-posts">
+            <div class="archive-posts mw-100 w-third">
             <?php foreach ($monthGroup as $page): ?>
                 <div class="archive-entry">
                     <a class="u-url entry-link link" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?>&nbsp;</a>
