@@ -72,11 +72,11 @@ Created by Robert Pfotenhauer on 03.10.23.
             <div class="archive-posts">
             <?php foreach ($monthGroup as $page): ?>
                 <div class="archive-entry">
-                    <?php echo $page->getHtml("title") ?>
+                    <a class="u-url entry-link link" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?>&nbsp;</a>
                     <div class="archive-meta">
                         <?php echo $page->getDateHtml("published") ?>
                     </div>
-                    <a class="u-url entry-link" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?>&nbsp;</a>
+                    
                 </div>
             <?php endforeach; ?>
             </div>
