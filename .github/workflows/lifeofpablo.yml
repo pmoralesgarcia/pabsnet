@@ -42,8 +42,6 @@ jobs:
           cd ~/pabsnet
           git pull
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=lifeofpablo))
-          SAMMY_PASSWORD=${{ steps.op-load-secret.outputs.SAMMY_PASSWORD}} \
-          SAMMY_BIRTHDAY=${{ steps.op-load-secret.outputs.SAMMY_BIRTHDAY}} \
           cd ~/pabsnet/lifeofpablo.com
           chmod -R a+rw ~/pabsnet/lifeofpablo.com
           docker build . -t lifeofpablo:latest
