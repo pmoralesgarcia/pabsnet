@@ -36,8 +36,6 @@ jobs:
         port: 22
         script: |
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          SAMMY_PASSWORD=${{ steps.op-load-secret.outputs.SAMMY_PASSWORD}} \
-          SAMMY_BIRTHDAY=${{ steps.op-load-secret.outputs.SAMMY_BIRTHDAY}} \
           git clone https://github.com/pmoralesgarcia/pabsnet.git
           cd ~/pabsnet
           git pull
