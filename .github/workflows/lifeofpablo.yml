@@ -23,6 +23,8 @@ jobs:
           PRIVATE_SSH_KEY: op://pablo/production-server/key
           SERVER_HOST: op://pablo/production-server/host
           DATENSTROM_EMAIL: op://pablo/datenstrom/username
+          sammy_password: op://pablo/birthday-sammy/password
+          sammy_birthday: op://pablo/birthday-sammy/text
           
                     
     - name: executing remote ssh commands using password
@@ -34,10 +36,14 @@ jobs:
         port: 22
         script: |
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          sammy_password=${{ steps.op-load-secret.outputs.sammy_password}} \
+          sammy_birthday=${{ steps.op-load-secret.outputs.sammy_birthday}} \
           git clone https://github.com/pmoralesgarcia/pabsnet.git
           cd ~/pabsnet
           git pull
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=lifeofpablo))
+          sammy_password=${{ steps.op-load-secret.outputs.sammy_password}} \
+          sammy_birthday=${{ steps.op-load-secret.outputs.sammy_birthday}} \
           cd ~/pabsnet/lifeofpablo.com
           chmod -R a+rw ~/pabsnet/lifeofpablo.com
           docker build . -t lifeofpablo:latest
