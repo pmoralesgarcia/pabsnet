@@ -23,8 +23,6 @@ jobs:
           PRIVATE_SSH_KEY: op://pablo/production-server/key
           SERVER_HOST: op://pablo/production-server/host
           DATENSTROM_EMAIL: op://pablo/datenstrom/username
-          SAMMY_PASSWORD: op://pablo/birthday-sammy/password
-          SAMMY_BIRTHDAY: op://pablo/birthday-sammy/text
           
                     
     - name: executing remote ssh commands using password
