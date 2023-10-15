@@ -15,4 +15,4 @@ oauth:
   provider: indieauth
   client_id: https://lifeofpablo.com
   auth_url: https://indieauth.com/auth
-  callback_url: https://auth.lifeofpablo.com/aut
+  callback_url: https://auth.lifeofpablo.com/auth
