@@ -71,7 +71,7 @@ services:
       options:
         max-size: 10m
     environment:
-      REMOTE_USER: "X-Vouch-User"
+      TRUSTED_PROXY: "0.0.0.0/0"
       FRESHRSS_INSTALL: |-
         --api_enabled
         --db-base freshrss
