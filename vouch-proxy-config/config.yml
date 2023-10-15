@@ -1,18 +1,18 @@
 vouch:
   logLevel: debug
   listen: 0.0.0.0
-  port: 9090
+  port: 9092
   allowAllUsers: true
-  domains:
-    - lifeofpablo.com
   cookie:
     secure: false
     domain: lifeofpablo.com
-    publicAccess: false
+  publicAccess: true
+  post_logout_redirect_uris:
+    - https://lifeofpablo.com/logout
 oauth:
   # IndieAuth
   # https://indielogin.com/api
   provider: indieauth
   client_id: https://lifeofpablo.com
   auth_url: https://indieauth.com/auth
-  callback_url: https://auth.lifeofpablo.com/auth
+  callback_url: https://auth.lifeofpablo.com/aut
