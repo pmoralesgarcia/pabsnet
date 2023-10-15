@@ -2,11 +2,12 @@ vouch:
   logLevel: debug
   listen: 0.0.0.0
   port: 9090
-  allowAllUsers: false
+  allowAllUsers: true
   domains:
     - lifeofpablo.com
   cookie:
     secure: false
+    domain: lifeofpablo.com
     publicAccess: false
 oauth:
   # IndieAuth
