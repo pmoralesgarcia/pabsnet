@@ -8,8 +8,7 @@ vouch:
     - lifeofpablo.com
   cookie:
     secure: false
-    domain: lifeofpablo.com
-  publicAccess: false
+    publicAccess: false
 oauth:
   # IndieAuth
   # https://indielogin.com/api
