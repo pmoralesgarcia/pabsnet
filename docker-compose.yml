@@ -71,7 +71,7 @@ services:
       options:
         max-size: 10m
     environment:
-      TRUSTED_PROXY: "0.0.0.0/0"
+      TRUSTED_PROXY: "10.0.0.0/8"
       FRESHRSS_INSTALL: |-
         --api_enabled
         --db-base freshrss
