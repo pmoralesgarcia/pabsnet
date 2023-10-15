@@ -1,12 +1,12 @@
 vouch:
   logLevel: debug
   listen: 0.0.0.0
-  port: 9092
+  port: 9090
   allowAllUsers: true
   cookie:
     secure: false
     domain: lifeofpablo.com
-  publicAccess: true
+  publicAccess: false
   post_logout_redirect_uris:
     - https://lifeofpablo.com/logout
 oauth:
