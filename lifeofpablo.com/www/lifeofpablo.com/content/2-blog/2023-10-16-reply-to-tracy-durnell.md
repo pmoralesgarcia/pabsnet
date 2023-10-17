@@ -19,7 +19,7 @@ You wrote in your post,
 
 I'm the same way too. If it's not in my face or I don't see it laying around the apartment, I wont read it.  have attempted various efforts to read on devices in the past without much success. 
 
-I've always like being able to feel the textures of the book I'm reading at the moment. I'm going to attempt to read more effectively by reaidng in chunks and slowly increase the time. 
+I've always like being able to feel the textures of the book I'm reading at the moment. I'm going to attempt to read more effectively by reading in chunks and slowly increase the time. 
 
 Go Libraries!
 
