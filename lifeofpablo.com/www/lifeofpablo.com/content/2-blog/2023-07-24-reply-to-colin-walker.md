@@ -1,5 +1,6 @@
 ---
 Title: Reply to Colin Walker
+Published: 2023-07-24 19:55:49
 ---
 <div class="u-author h-card">
 <img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="u-photo" width="40">
