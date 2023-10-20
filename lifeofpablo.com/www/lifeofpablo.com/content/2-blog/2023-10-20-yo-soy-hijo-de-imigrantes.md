@@ -5,6 +5,7 @@ Author: Pablo Morales
 Layout: blog
 Tag: spanish, thought, writen in spanish,  
 Status: unlisted
+Language: es
 ---
 <div class="cf pa3 mw9 center">
     <header class="fl w-100 w-50-l pa3-m pa4-l mb3 mb5-l">
