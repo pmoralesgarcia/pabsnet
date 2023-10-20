@@ -6,7 +6,7 @@
 /* Colors and fonts */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
 :root {
-    --bg: #fffffe;
+    --bg: #f0f0f0;
     --code-bg: #f7f7f7;
     --notice1-bg: #fffbf0;
     --notice2-bg: #fdf0f0;
