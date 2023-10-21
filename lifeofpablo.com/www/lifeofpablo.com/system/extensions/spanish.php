@@ -10,7 +10,7 @@ class YellowSpanish {
         $this->yellow = $yellow;
         $this->yellow->language->setDefaults(array(
             "Language: es",
-            "LanguageLocale: es_ES",
+            "LanguageLocale: es_MX",
             "LanguageDescription: Español",
             "LanguageTranslator: Al Garcia, David Garcia",
             "BerlinDescription: Berlin es un tema inspirado en Dieter Rams.",
