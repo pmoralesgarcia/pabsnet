@@ -1,55 +1,30 @@
 ---
 Title: Yo Soy Hijo de Imigrantes
-Published: 2023-10-20 19:55:49
+Published: 2023-10-21 01:00:49
 Author: Pablo Morales
 Layout: blog
-Tag: spanish, thought, writen in spanish,  
-Status: unlisted
+Tag: spanish, thought, writen in spanish
 Language: es
 ---
-<div class="cf pa3 mw9 center">
-    <header class="fl w-100 w-50-l pa3-m pa4-l mb3 mb5-l">
+<div class="flex flex-wrap">
+   <div class="w-100 w-50-l pa3-m pa4-l mb3 mb5-l bg-yellow">
       <h2 class="lh-title f3 b mt0">
-        Beginners and amateurs alike overestimate the importance of the
-        so-called brain wave, the sudden brilliant idea.
+         Mis padres se sacrificaron tanto para que nosotros tengamos una buena vida. Los quiero tanto. No ha sido fácil navegar este mundo complejo. 
       </h2>
-    </header>
-    <section class="fl w-100">
-      <div class="fl w-100 w-50-m w-25-l pa3-m pa4-l">
-        <p class="f4 lh-copy measure">
-          Perfect typography depends on perfect harmony between all of its elements. 
-          Harmony is determined by relationships
-          or proportions. Proportions are hidden everywhere. words themselves. 
-        </p>
-      </div>
-      <div class="fl w-100 w-50-m w-25-l pa3-m pa4-l">
-        <p class="f4 lh-copy measure">
-          True book design, therefore, is a matter of tact (tempo, rhythm,
-          touch) alone. It flows from something rarely appreciated today:
-          good taste. The book designer strives for perfection; yet every
-          perfect thing lives somewhere in the neighborhood of dullness and
-          is frequently mistaken for it by the insensitive. In a time that
-          hungers for tangible novelties, dull perfection holds no
-          advertising value at all. 
-        </p>
-      </div>
-      <div class="fl w-100 w-50-m w-25-l pa3-m pa4-l">
-        <p class="f4 lh-copy measure">
-          In a masterpiece of typography, the artist's signature has been
-          eliminated. What some may praise as personal styles are in reality
-          small and empty peculiarities, frequently damaging, that masquerade
-          as innovations. 
-        </p>
-      </div>
-      <div class="fl w-100 w-50-m w-25-l pa3-m pa4-l">
-        <p class="f4 lh-copy measure">
-          Only through constant practice and strictest self-criticism may we
-          develop a sense for a perfect piece of work. Unfortunately, most
-          seem content with a middling performance. Careful spacing of words
-          and the correct spacing of capital letters appear to be unknown or
-          unimportant to some typesetters, yet for him who investigates, the
-          correct rules are not difficult to discover.
-        </p>
-      </div>
-    </section>
-    </div>
+   </div>
+</div>
+<div class="flex flex-wrap br3 w-100 ">
+   <div class=" yellow bg-blue    " markdown="1">
+      Toda mi vida he sentido que estoy sobre una cuerda floja manteniendo mi identidad y navegando este mundo complejo. Tengo dos caras - mi cara mexicana y mi cara estadounidense. 
+   </div>
+   <div class="  bg-purple white" markdown="1">
+      Mis padres me enseñaron lo importante de ser bilingüe. Me enseñaron la importancia de no perder la lengua que ellos hablan. Me enseñaron la importancia de no olvidar mis raíces. 
+   </div>
+   <div class="  bg-light-green " markdown="1">
+      Hay tantas cosas que les quiero explicar pero no tengo manera de explicarlas. No hay palabras. Hay cosas que no saben de mí. Todavía tengo tantas preguntas. 
+   </div>
+   <div class="bg-orange black" markdown="1">
+      Estoy orgulloso de ser hijo de inmigrantes mexicanos. Estoy feliz de aprender tantas cosas de usted.  
+   </div>
+</div>
+
