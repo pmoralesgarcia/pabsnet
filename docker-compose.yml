@@ -87,6 +87,16 @@ services:
         --language en
         --password ${FRESHRSS_PASSWORD}
         --user ${FRESHRSS_USER}
+  vp-proxy-freshrss:
+    image: nginx:latest
+    container_name: vp-proxy-freshrss
+    environment:
+      VIRTUAL_HOST: reader.lifeofpablo.com
+    #  LETSENCRYPT_HOST: reader.lifeofpablo.com
+    volumes:
+      - ./nginx-proxy/freshrss:/etc/nginx/conf.d
+    ports:
+      - 8111:80
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
