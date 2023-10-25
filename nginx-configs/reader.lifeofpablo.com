@@ -2,7 +2,7 @@ server {
 	server_name reader.lifeofpablo.com;
 
 	location / {
-		proxy_pass http://127.0.0.1:8085;
+		proxy_pass http://127.0.0.1:811;
 		# be sure to pass the original host header
 		proxy_set_header Host $http_host;
 	}
