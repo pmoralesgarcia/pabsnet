@@ -5,6 +5,7 @@ server {
 		proxy_pass http://127.0.0.1:811;
 		# be sure to pass the original host header
 		proxy_set_header Host $http_host;
+		 proxy_set_header X-Forwarded-Proto $scheme;
 	}
 
 
