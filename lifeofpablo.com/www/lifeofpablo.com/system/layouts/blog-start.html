@@ -3,6 +3,8 @@
 </div>
 <div class="content">
 <div class="main h-entry" role="main">
+	<?php $this->yellow->layout("blog-stats") ?>
+
 <?php if ($this->yellow->page->get("blogWithFilter")): ?>
 <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
 <?php endif ?>
