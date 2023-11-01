@@ -4,7 +4,7 @@ TitleSlug: Feliz Dia de Los Muertos
 Published: 2023-11-01 10:55:49
 Author: Pablo Morales
 Layout: blog
-Tag: Webmention, Los Angeles, sunset, downtown, travel
+Tag: Holiday, Mexican Holidays, Día de Los Muertos, Traditions, reflections
 ---
 <div class="baskerville pb5 bg-dark-pink br3 near-white">
   <header class="avenir tc-l ph3 ph4-ns pt4 pt5-ns">
