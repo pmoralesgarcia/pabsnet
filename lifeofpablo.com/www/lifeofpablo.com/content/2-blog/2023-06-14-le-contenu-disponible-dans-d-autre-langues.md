@@ -6,6 +6,7 @@ Layout: blog
 Tag: french, blog post in french, français, dialogue, localization, hreflang, iso, h-tag, h-tags, indieweb, webmentions, country codes, FR, ES, EN, html
 Modified: 2023-06-14 23:29:33
 Image: https://images.unsplash.com/photo-1489945052260-4f21c52268b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80
+Language: fr
 ---
 [image https://images.unsplash.com/photo-1489945052260-4f21c52268b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80]
  <a markdown="1"rel="alternate" href="/blog/content-available-in-other-languages" hreflang="en">**Read Blog Post in English**</a>
