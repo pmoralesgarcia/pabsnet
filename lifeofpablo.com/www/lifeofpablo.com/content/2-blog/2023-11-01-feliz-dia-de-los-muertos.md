@@ -9,7 +9,7 @@ Tag: Holiday, Mexican Holidays, Día de Los Muertos, Traditions, reflections
 <div class="baskerville pb5 bg-dark-pink br3 near-white">
   <header class="avenir tc-l ph3 ph4-ns pt4 pt5-ns">
     <h1 class="f3 f2-m f-subheadline-l measure lh-title fw1 mt0 near-white">Feliz Día de Los Muertos <i class="green fa-solid fa-skull"></i></h1>
-    <img class="center ba b--dotted bw3 blue w-40 mw-100 br-100 dib measure f3 src="https://static.lifeofpablo.com/media/pabs-dia-de-los-muertos.png" alt="Pablo celebrating el Dìa de De Los Muertos"/>
+    <img class="center ba b--dotted bw3 blue w-40 mw-100 br-100 dib measure f3" src="https://static.lifeofpablo.com/media/pabs-dia-de-los-muertos.png" alt="Pablo celebrating el Dìa de De Los Muertos"/>
   </header>
   <div class="ph3 ph4-m ph5-l">
     <div class="f4 mb4 center measure lh-copy" markdown="1">
