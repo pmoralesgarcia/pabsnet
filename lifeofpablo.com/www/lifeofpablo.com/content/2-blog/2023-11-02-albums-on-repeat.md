@@ -1,7 +1,7 @@
 ---
 Title: Albums on Repeat
 Author: Pablo Morales
-Published: 2023-11-02 16:37:48
+Published: 2023-11-02 19:25:48
 Layout: blog
 Tag: Music, rotation, repeat, comfort
 ---
