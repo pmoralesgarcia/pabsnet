@@ -6,7 +6,6 @@ Author: Pablo Morales
 Layout: blog
 Tag: Webmention, Indieweb Carnival, Self-care, response, roundup, thank you
 ---
-<div class="f4 roboto black" markdown="1">
 October is a wrap! 🎃 I hosted October's [IndieWeb Carnival on self-care](https://lifeofpablo.com/blog/indieweb-carnival-october-2023). Thank you to everyone who participated in this month's IndieWeb Carnival topic. I appreciate all the responses I recieved. I recieved so many perspectives on the topic. I chose this theme as this is something I am working on improving for myself. 
 
 <div class="pa3 pa5-ns " data-name="slab-stat-small">
@@ -65,4 +64,3 @@ Now, I will pass torche to Alex Sirac. Alex is writing on [community and belongi
 Interested in participating and/or hosting an IndieWeb Carnival, please [click here](https://indieweb.org/indieweb-carnival)! Remember, anyone and everyone can participate. 
 
 <p>This post has been syndicated to <a href="https://news.indieweb.org/en" class="u-syndication">IndieWeb News</a>.</p>
-</div>
