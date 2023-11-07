@@ -14,7 +14,7 @@ October is a wrap! 🎃 I hosted October's [IndieWeb Carnival on self-care](http
   <div class="cf">
     <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
       <dd class="f6 fw4 ml0">Responses</dd>
-      <dd class="f3 fw6 ml0">8</dd>
+      <dd class="f3 fw6 ml0">10</dd>
     </dl>
     <dl class="fl fn-l w-50 dib-l w-auto-l lh-title mr5-l">
       <dd class="f6 fw4 ml0">Happiness</dd>
