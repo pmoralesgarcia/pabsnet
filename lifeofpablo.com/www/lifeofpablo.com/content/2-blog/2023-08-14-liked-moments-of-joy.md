@@ -6,4 +6,5 @@ Layout: blog
 Tag: webmention, like
 Status: unlisted
 ---
+
 Liked: <a class="u-like-of" href="https://alexsirac.com/creating-moments-of-joy/">Creating moments of joy</a>
