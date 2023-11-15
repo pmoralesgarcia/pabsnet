@@ -31,7 +31,7 @@ services:
     container_name: vp-lifeofpablo-com
     image: nginx:bookworm
     ports: 
-      - 8080:80
+      - 8564:80
     volumes:
       - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
     environment:
