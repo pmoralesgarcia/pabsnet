@@ -28,7 +28,7 @@ services:
     environment:
         DEFAULT_EMAIL: technology-department@saccds.org
   vp-lifeofpablo-com:
-    container_name: vp-lifeofpablo
+    container_name: vp-lifeofpablo-com
     image: nginx:bookworm
     ports: 
       - 8080:80
