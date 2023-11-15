@@ -27,7 +27,7 @@ services:
         - /var/docker/nginx/acme:/etc/acme.sh
     environment:
         DEFAULT_EMAIL: technology-department@saccds.org
-  vp--lifeofpablo:
+  vp-lifeofpablo-com:
     container_name: vp-lifeofpablo
     image: nginx:bookworm
     ports: 
