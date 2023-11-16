@@ -1,7 +1,7 @@
 ---
 Title: Train Rides & Trader Joe's
 TitleSlug: Train Rides and Trader Joes
-Published: 2023-08-27 20:32:59
+Published: 2023-11-15 21:08:59
 Author: Pablo Morales
 Layout: blog
 Tag: Public Transportation, trains, Amtrak
@@ -12,7 +12,7 @@ Ever since I was a kid I was always facinated with public transporation. I remem
 The world has been surpassing the United States for decades. It's getting more obvious every day. 
 
 
-Since I moved the California, I've taken the Amtrak Train thirty-five (35) times since 2021.
+Since I moved the California, I've taken the Amtrak Train thirty-five (35) times since 2021. It's an easy trip to do between Sacramento and San Francisco or even to other cities in California.  
 <div id="trains">
    <table class="charts-css column show-labels show-heading mw-100 data-spacing-5 show-1-secondary-axes show-data-axes">
       <caption class="f3 purple"> Times I've Taken the Train </caption>
@@ -55,7 +55,7 @@ Reasons I Take The Train:
 I also enjoy getting groceries at Trader Joe's before I get on the train especially if I'm going to get back to Sacramento late. It's nice to be able to get groceries for the week and take them with me on the train. It's a small little habit or tradition. I also save money by buying snacks ahead of time and not having to spend extra on snacks on the train. 
 
 
-I hope my friend [Sammy](https://sammyharper.com) can come out to California for a fun train ride from Sacramento to San Francisco. I know he'd love it. 
+I hope my friend [Sammy](https://sammyharper.com) can come out to California for a fun train ride from Sacramento to San Francisco. I know he'd love it. Heck even one of these days, I'd love to catch the train that runs (Amtrak California Zephyr) through our hometowns in Nebraska and ride up to Sacramento. Hopefully soon!
 
 <style>
 #train {
