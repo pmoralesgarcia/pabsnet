@@ -30,7 +30,7 @@ services:
   lifeofpablo:
     container_name: lifeofpablo
     build:
-      context: ./lifeofpablo
+      context: ./lifeofpablo.com
       dockerfile: Dockerfile
   bludit:
     container_name: pablospicassos
