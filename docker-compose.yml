@@ -27,15 +27,6 @@ services:
         - /var/docker/nginx/acme:/etc/acme.sh
     environment:
         DEFAULT_EMAIL: technology-department@saccds.org
-  vp-lifeofpablo-com:
-    container_name: vp-lifeofpablo-com
-    image: nginx:bookworm
-    ports: 
-      - 8564:80
-    volumes:
-      - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
-    environment:
-      VIRTUAL_HOST: lifeofpablo.com
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
@@ -118,8 +109,8 @@ services:
   vp-proxy-freshrss:
     image: nginx:latest
     container_name: vp-proxy-freshrss
-    environment:
-      VIRTUAL_HOST: reader.lifeofpablo.com
+  #  environment:
+     # VIRTUAL_HOST: reader.lifeofpablo.com
     #  LETSENCRYPT_HOST: reader.lifeofpablo.com
     volumes:
       - ./nginx-proxy/freshrss:/etc/nginx/conf.d
