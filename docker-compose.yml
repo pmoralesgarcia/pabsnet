@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     ports:
         - 80:80
-        - 443:443
+          #        - 443:443
     volumes:
         - /var/run/docker.sock:/tmp/docker.sock:ro
         - /var/docker/nginx/html:/usr/share/nginx/html
@@ -27,6 +27,11 @@ services:
         - /var/docker/nginx/acme:/etc/acme.sh
     environment:
         DEFAULT_EMAIL: technology-department@saccds.org
+  lifeofpablo:
+    container_name: lifeofpablo
+    build:
+      context: ./lifeofpablo
+      dockerfile: Dockerfile
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
