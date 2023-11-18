@@ -1,4 +1,0 @@
----
-Title: Dash
-Layout: dash
----
