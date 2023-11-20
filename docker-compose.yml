@@ -162,27 +162,6 @@ services:
     image: kennethreitz/httpbin
     ports:
       - 8209:80
-  christmas-community:
-    image: wingysam/christmas-community
-    volumes:
-      - ./wishlist:/data
-    ports:
-      # If you want to go to localhost:8080 to access Christmas Community,
-      # use - 8080:80 instead of
-      - 8135:80
-    environment:
-      # Amazon Smile, set to 'false' to disable www.amazon.com links
-      # turning into smile.amazon.com
-      SMILE: 'true'
-      # Table mode, set to 'false' to revert to box mode
-      TABLE: 'true'
-      # Single list mode
-      # (for weddings, birthdays, etc. only the admin account's list is accessible)
-      # Set to 'true' to enable
-      SINGLE_LIST: 'false'
-      SITE_TITLE: 'Christmas Wishlist'
-      SHORT_TITLE: 'Wishlist'
-    restart: always
 volumes:
  bludit:
  mariadb:
