@@ -15,7 +15,7 @@
 		  </p>
 		</div>
 		<div class="pl3-ns order-1 order-2-ns mb4 mb0-ns w-100 w-40-ns">
-		  <img src="<?php echo $page->getHtml("image") ?>" class="db" alt="<?php echo $page->getHtml("imageAlt") ?>">
+			<a href="<?php echo $page->getLocation(true) ?>"><img src="<?php echo $page->getHtml("image") ?>" class="db" alt="<?php echo $page->getHtml("imageAlt") ?>"></a>
 		</div>
 	  </div>
 	  <div class="f6 lh-copy gray mv0"><p><?php echo $page->getDateHtml("published") ?> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo htmlspecialchars($author); } ?></p></div>
