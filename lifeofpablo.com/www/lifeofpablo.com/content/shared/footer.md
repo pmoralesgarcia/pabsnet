@@ -42,6 +42,10 @@ Status: shared
     <a href="https://indieweb.org/" title="IndieWeb" class="f6 dib ph2 link mid-gray dim"><img src="/media/images/indieweb-logos/indiewebcamp-button.svg" alt="indieweb button" style="image-rendering:pixelated;"></a>
     <a href="https://www.w3.org/TR/webmention/"    title="Terms" class="f6 dib ph2 link mid-gray dim"><img src="/media/images/indieweb-logos/webmention-button.svg" alt="webmention button" style="image-rendering:pixelated;"></a>
     <a href="https://microformats.org/"  title="Privacy" class="f6 dib ph2 link mid-gray dim"><img src="/media/images/indieweb-logos/microformats-button.svg" alt="microformats button" style="image-rendering:pixelated;"></a>
+<br />
+<a href="https://xn--sr8hvo.ws/previous">←</a>
+An <a href="https://xn--sr8hvo.ws">IndieWeb Webring</a> 🕸💍
+<a href="https://xn--sr8hvo.ws/next">→</a>
 
     <small class="f5 db tc">© 2023 <a href="https://pabs.tech/"><b>Pabs Tech LLC</b></a>, All Rights Reserved</small>
     
