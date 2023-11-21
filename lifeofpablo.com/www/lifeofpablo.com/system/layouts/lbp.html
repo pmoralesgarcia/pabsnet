@@ -1,0 +1,25 @@
+<?php $pages = $this->yellow->content->index()->filter("layout", "blog")->sort("published", false)->limit(3) ?>
+<?php $this->yellow->page->setLastModified($pages->getModified()) ?>
+<?php $this->yellow->page->setHeader("Cache-Control", "max-age=60") ?>
+
+
+<section class="mw7 center">
+	<h2 class="athelas ph3 ph0-l"><a class="link" href="/blog">Latest Blog Posts</a></h2>
+	<?php foreach($pages as $page): ?>
+	<article class="pv4 bt bb b--black-10 ph3 ph0-l">
+	  <div class="flex flex-column flex-row-ns">
+		<div class="w-100 w-60-ns pr3-ns order-2 order-1-ns">
+		  <h1 class="f3 athelas mt0 lh-title"><a href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a></h1>
+		  <p class="f5 f4-l lh-copy athelas">
+			<?php echo $page->getHtml("Description") ?>
+		  </p>
+		</div>
+		<div class="pl3-ns order-1 order-2-ns mb4 mb0-ns w-100 w-40-ns">
+		  <img src="<?php echo $page->getHtml("image") ?>" class="db" alt="<?php echo $page->getHtml("imageAlt") ?>">
+		</div>
+	  </div>
+	  <div class="f6 lh-copy gray mv0"><p><?php echo $page->getDateHtml("published") ?> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo htmlspecialchars($author); } ?></p></div>
+	</article>
+	<?php endforeach ?>
+
+	</section>

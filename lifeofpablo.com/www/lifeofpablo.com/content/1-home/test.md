@@ -1,4 +1,4 @@
 ---
 Title: Test
-Layout: test
+Layout: lbp
 ---

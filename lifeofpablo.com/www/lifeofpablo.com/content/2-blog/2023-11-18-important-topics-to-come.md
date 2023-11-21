@@ -4,6 +4,9 @@ Published: 2023-11-18 21:08:59
 Author: Pablo Morales
 Layout: blog
 Tag: Public Health, AIDS Epidemic, HIV, Public Transportation, Transportation, Car dependency, United States, Global Health
+Description: These are important topics for me to write about.
+Image: https://static.lifeofpablo.com/media/images/blog-images/hiv-and-public-transport/hiv-muni-bus.jpg
+ImageAlt: HIV & Public Transportation
 ---
 <div class="athelas pa4">
   <div class="f4 f4-ns lh-copy  center" markdown="1">
