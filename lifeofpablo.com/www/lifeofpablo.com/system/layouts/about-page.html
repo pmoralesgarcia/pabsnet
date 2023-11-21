@@ -16,13 +16,9 @@ if($_SERVER['REMOTE_USER'])
 			 ?> -->
 <div class="about-header h-card">
 	<img class="me u-photo" src="https://static.lifeofpablo.com/pabs-cropped.jpg" alt="picture of Pablo" /> 
-    <!-- Title -->
-    <h1><a class="u-url u-uid" href="https://lifeofpablo.com"><span class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></span></a></h1> 
-	<h3>Sacramento, CA</h3>
-	<h3>I.T. Professional</h3>
-    <!-- Other Links -->
-        <a class="button button-coffee" href="/linkinbio" target="_blank" rel="noopener">
-            <i class="fa-solid fa-up-right-from-square"> </i>Find me on the interwebs</a>
+	    <!-- Title -->
+		<h1><a class="u-url u-uid" href="https://lifeofpablo.com"><span class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></span></a></h1> 
+		<?php $this->yellow->layout("nav-home") ?>
 
   </div>
 

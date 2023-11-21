@@ -2,40 +2,33 @@
 Title: Footer
 Status: shared
 ---
-<div class="pv4 ph3 tc">
+<div class="wrap     tc">
 <a class="link near-black hover-silver dib mh3 tc" href="https://github.com/pmoralesgarcia" title="GitHub">
     <i class="f2 dib h2 w2 fa-brands fa-github black"></i>
-    <span class="f6 db">GitHub</span>
   </a>
 
   <a class="link near-black hover-silver dib mh3 tc blue" href="https://linkedin.com/in/pmoralesgarcia" title="LinkedIn">
     <i class="f2 dib h2 w2 fa-brands fa-linkedin blue"></i>
-    <span class="f6 db">LinkedIn</span>
   </a>
 
   <a class="link near-black hover-silver dib mh3 tc" href="https://social.lifeofpablo.com" title="Mastodon">
     <i class="f2 dib h2 w2 fa-brands fa-mastodon purple"></i>
-    <span class="f6 db">Mastodon</span>
   </a>
 
   <a class="link near-black hover-silver dib mh3 tc" href="https://micropub.lifeofpablo.com/" title="Microblog">
     <i class="f2 dib h2 w2 fa-brands fa-microblog orange"></i>
-    <span class="f6 db">Micro.blog</span>
   </a>
 
   <a class="link near-black hover-silver dib mh3 tc" href="/cookie-policy" title="Cookies">
     <i class="f2 dib h2 w2 fa-solid fa-cookie brown pink"></i>
-    <span class="f6 db">Cookie</span>
   </a>
 
   <a class="link near-black hover-silver dib mh3 tc" href="/complaint-form" title="Complaint Form">
     <i class="f2 dib h2 w2 fa-solid fa-file-signature gold"></i>
-    <span class="f6 db">Complaint Form</span>
   </a>
 
   <a class="link near-black hover-silver dib mh3 tc" href="/linkinbio" title="Links">
     <i class="f2 dib h2 w2 fa-solid fa-link green"></i>
-    <span class="f6 db">Links</span>
   </a>
 
   <div class="tc mt3">
