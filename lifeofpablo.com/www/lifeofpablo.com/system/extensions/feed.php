@@ -2,7 +2,7 @@
 // Feed extension, https://github.com/annaesvensson/yellow-feed
 
 class YellowFeed {
-    const VERSION = "0.8.19";
+    const VERSION = "0.8.25";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -11,12 +11,20 @@ class YellowFeed {
         $this->yellow->system->setDefault("feedLocation", "/feed/");
         $this->yellow->system->setDefault("feedFileXml", "feed.xml");
         $this->yellow->system->setDefault("feedPaginationLimit", "30");
+        $this->yellow->system->setDefault("feedRecentChanges", "auto");
     }
 
     // Handle page layout
     public function onParsePageLayout($page, $name) {
         if ($name=="feed") {
             $pages = $this->yellow->content->index(false, false);
+            if ($this->yellow->system->get("feedRecentChanges")!="auto") {
+                $layouts = preg_split("/\s*,\s*/", $this->yellow->system->get("feedRecentChanges"));
+                foreach ($pages as $pageFeed) {
+                    $pageFeed->set("feedRecentChanges", in_array($pageFeed->get("layout"), $layouts) ? "show" : "hide");
+                }
+                $pages->filter("feedRecentChanges", "show");
+            }
             $pagesFilter = array();
             if ($page->isRequest("tag")) {
                 $pages->filter("tag", $page->getRequest("tag"));
@@ -31,14 +39,14 @@ class YellowFeed {
                 array_push($pagesFilter, $pages->getFilter());
             }
             if ($page->isRequest("folder")) {
-                $pages->match("#".$page->getRequest("folder")."#i", false);
+                $pages->match("#/[\d\-\_\.]+".$page->getRequest("folder")."#i", false);
                 array_push($pagesFilter, ucfirst($page->getRequest("folder")));
             }
             foreach ($pages as $pageFeed) {
-                $feedScore = $pageFeed->get($pageFeed->isExisting("published") ? "published" : "modified");
-                $pageFeed->set("feedScore", $feedScore);
+                $feedGroup = $pageFeed->get($pageFeed->isExisting("published") ? "published" : "modified");
+                $pageFeed->set("feedGroup", $feedGroup);
             }
-            $pages->sort("feedScore", false);
+            $pages->sort("feedGroup", false);
             if ($this->isRequestXml($page)) {
                 $paginationLimit = $this->yellow->system->get("feedPaginationLimit");
                 if ($paginationLimit==0 || $paginationLimit>100) $paginationLimit = 100;
@@ -88,7 +96,7 @@ class YellowFeed {
         if ($name=="header") {
             $locationFeed = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("feedLocation");
             $locationFeed .= $this->yellow->lookup->normaliseArguments("page:".$this->yellow->system->get("feedFileXml"), false);
-            $output = "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"$locationFeed\" />\n";
+            $output = "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"$locationFeed\" title=\"".$this->yellow->page->getHtml("sitename")."\" />\n";
         }
         return $output;
     }

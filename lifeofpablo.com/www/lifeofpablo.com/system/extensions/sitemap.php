@@ -2,7 +2,7 @@
 // Sitemap extension, https://github.com/annaesvensson/yellow-sitemap
 
 class YellowSitemap {
-    const VERSION = "0.8.13";
+    const VERSION = "0.8.15";
     public $yellow;         // access to API
     
     // Handle initialisation

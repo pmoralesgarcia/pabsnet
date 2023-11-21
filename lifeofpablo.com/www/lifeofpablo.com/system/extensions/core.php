@@ -2,8 +2,8 @@
 // Core extension, https://github.com/annaesvensson/yellow-core
 
 class YellowCore {
-    const VERSION = "0.8.116";
-    const RELEASE = "0.8.22";
+    const VERSION = "0.8.125";
+    const RELEASE = "0.8.23";
     public $content;        // content files
     public $media;          // media files
     public $system;         // system settings
@@ -716,7 +716,8 @@ class YellowSystem {
     
     // Return different value for system setting
     public function getDifferent($key) {
-        return reset(array_diff($this->getAvailable($key), array($this->get($key))));
+        $array = array_diff($this->getAvailable($key), array($this->get($key)));
+        return reset($array);
     }
 
     // Return available values for system setting
@@ -818,7 +819,7 @@ class YellowLanguage {
     public function setDefault($key, $value, $language) {
         if (!isset($this->settings[$language])) $this->settings[$language] = new YellowArray();
         $this->settings[$language][$key] = $value;
-        $this->settingsDefaults[$key] = $value;
+        $this->settingsDefaults[$key] = true;
     }
     
     // Set default language settings
@@ -856,28 +857,24 @@ class YellowLanguage {
         return htmlspecialchars($this->getText($key, $language));
     }
     
-    // Return human readable date
-    public function getDateFormatted($timestamp, $format, $language = "") {
-        $dateMonthsNominative = preg_split("/\s*,\s*/", $this->getText("coreDateMonthsNominative", $language));
-        $dateMonthsGenitive = preg_split("/\s*,\s*/", $this->getText("coreDateMonthsGenitive", $language));
-        $dateWeekdays = preg_split("/\s*,\s*/", $this->getText("coreDateWeekdays", $language));
-        $monthNominative = $dateMonthsNominative[date("n", $timestamp) - 1];
-        $monthGenitive = $dateMonthsGenitive[date("n", $timestamp) - 1];
-        $weekday = $dateWeekdays[date("N", $timestamp) - 1];
-        $timeZone = $this->yellow->system->get("coreTimezone");
-        $timeZoneHelper = new DateTime("now", new DateTimeZone($timeZone));
-        $timeZoneOffset = $timeZoneHelper->getOffset();
-        $timeZoneAbbreviation = "GMT".($timeZoneOffset<0 ? "-" : "+").abs(intval($timeZoneOffset/3600));
-        $format = preg_replace("/(?<!\\\)F/", addcslashes($monthNominative, "A..Za..z"), $format);
-        $format = preg_replace("/(?<!\\\)V/", addcslashes($monthGenitive, "A..Za..z"), $format);
-        $format = preg_replace("/(?<!\\\)M/", addcslashes(substru($monthNominative, 0, 3), "A..Za..z"), $format);
-        $format = preg_replace("/(?<!\\\)D/", addcslashes(substru($weekday, 0, 3), "A..Za..z"), $format);
-        $format = preg_replace("/(?<!\\\)l/", addcslashes($weekday, "A..Za..z"), $format);
-        $format = preg_replace("/(?<!\\\)T/", addcslashes($timeZoneAbbreviation, "A..Za..z"), $format);
-        return date($format, $timestamp);
+    // Return text as language specific date, convert to one of the standard formats
+    public function getDateStandard($text, $language = "") {
+        if (preg_match("/^\d+$/", $text)) {
+            $output = $text;
+        } elseif (preg_match("/^\d+\-\d+$/", $text)) {
+            $format = $this->getText("coreDateFormatShort", $language);
+            $output = $this->getDateFormatted(strtotime($text), $format, $language);
+        } elseif (preg_match("/^\d+\-\d+\-\d+$/", $text)) {
+            $format = $this->getText("coreDateFormatMedium", $language);
+            $output = $this->getDateFormatted(strtotime($text), $format, $language);
+        } else {
+            $format = $this->getText("coreDateFormatLong", $language);
+            $output = $this->getDateFormatted(strtotime($text), $format, $language);
+        }
+        return $output;
     }
     
-    // Return human readable date, relative to today
+    // Return Unix time as date, relative to today
     public function getDateRelative($timestamp, $format, $daysLimit, $language = "") {
         $timeDifference = time() - $timestamp;
         $days = abs(intval($timeDifference/86400));
@@ -909,6 +906,27 @@ class YellowLanguage {
         return $output;
     }
     
+    // Return Unix time as date
+    public function getDateFormatted($timestamp, $format, $language = "") {
+        $dateMonthsNominative = preg_split("/\s*,\s*/", $this->getText("coreDateMonthsNominative", $language));
+        $dateMonthsGenitive = preg_split("/\s*,\s*/", $this->getText("coreDateMonthsGenitive", $language));
+        $dateWeekdays = preg_split("/\s*,\s*/", $this->getText("coreDateWeekdays", $language));
+        $monthNominative = $dateMonthsNominative[date("n", $timestamp) - 1];
+        $monthGenitive = $dateMonthsGenitive[date("n", $timestamp) - 1];
+        $weekday = $dateWeekdays[date("N", $timestamp) - 1];
+        $timeZone = $this->yellow->system->get("coreTimezone");
+        $timeZoneHelper = new DateTime("now", new DateTimeZone($timeZone));
+        $timeZoneOffset = $timeZoneHelper->getOffset();
+        $timeZoneAbbreviation = "GMT".($timeZoneOffset<0 ? "-" : "+").abs(intval($timeZoneOffset/3600));
+        $format = preg_replace("/(?<!\\\)F/", addcslashes($monthNominative, "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)V/", addcslashes($monthGenitive, "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)M/", addcslashes(substru($monthNominative, 0, 3), "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)D/", addcslashes(substru($weekday, 0, 3), "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)l/", addcslashes($weekday, "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)T/", addcslashes($timeZoneAbbreviation, "A..Za..z"), $format);
+        return date($format, $timestamp);
+    }
+    
     // Return language settings
     public function getSettings($filterStart = "", $filterEnd = "", $language = "") {
         $settings = array();
@@ -929,20 +947,6 @@ class YellowLanguage {
     // Return language settings modification date, Unix time or HTTP format
     public function getModified($httpFormat = false) {
         return $httpFormat ? $this->yellow->toolbox->getHttpDateFormatted($this->modified) : $this->modified;
-    }
-    
-    // Normalise date into known format
-    public function normaliseDate($text, $language = "") {
-        if (preg_match("/^\d+\-\d+$/", $text)) {
-            $output = $this->getDateFormatted(strtotime($text), $this->getText("coreDateFormatShort", $language), $language);
-        } elseif (preg_match("/^\d+\-\d+\-\d+$/", $text)) {
-            $output = $this->getDateFormatted(strtotime($text), $this->getText("coreDateFormatMedium", $language), $language);
-        } elseif (preg_match("/^\d+\-\d+\-\d+ \d+\:\d+$/", $text)) {
-            $output = $this->getDateFormatted(strtotime($text), $this->getText("coreDateFormatLong", $language), $language);
-        } else {
-            $output = $text;
-        }
-        return $output;
     }
     
     // Check if language setting exists
@@ -1501,24 +1505,6 @@ class YellowLookup {
         return $output;
     }
     
-    // Normalise array, make keys with same upper/lower case
-    public function normaliseArray($input) {
-        $array = array();
-        foreach ($input as $key=>$value) {
-            if (is_string_empty($key) || is_string_empty($value)) continue;
-            $keySearch = strtoloweru($key);
-            foreach ($array as $keyNew=>$valueNew) {
-                if (strtoloweru($keyNew)==$keySearch) {
-                    $key = $keyNew;
-                    break;
-                }
-            }
-            if (!isset($array[$key])) $array[$key] = 0;
-            $array[$key] += $value;
-        }
-        return $array;
-    }
-
     // Normalise relative path tokens
     public function normalisePath($text) {
         $textFiltered = "";
@@ -1565,6 +1551,8 @@ class YellowLookup {
                 } elseif (!preg_match("#^($pageBase|$mediaBase)#", $location)) {
                     $location = $pageBase.$location;
                 }
+            } else {
+                $location = $pageBase.$pageLocation.$location;
             }
             $location = str_replace("/./", "/", $location);
             $location = str_replace(":", $this->yellow->toolbox->getLocationArgumentsSeparator(), $location);
@@ -1791,15 +1779,10 @@ class YellowLookup {
         return $nested;
     }
     
-    // Check if location is available
-    public function isAvailableLocation($location, $fileName) {
-        $available = true;
-        $pathBase = $this->yellow->system->get("coreContentDirectory");
-        if (substru($fileName, 0, strlenu($pathBase))==$pathBase) {
-            $sharedLocation = $this->yellow->content->getHomeLocation($location)."shared/";
-            if (substru($location, 0, strlenu($sharedLocation))==$sharedLocation) $available = false;
-        }
-        return $available;
+    // Check if location is within shared directory
+    public function isSharedLocation($location) {
+        $sharedLocation = $this->yellow->content->getHomeLocation($location)."shared/";
+        return substru($location, 0, strlenu($sharedLocation))==$sharedLocation;
     }
     
     // Check if location is within current HTTP request
@@ -1823,7 +1806,7 @@ class YellowLookup {
     
     // Check if file is a well-known file type
     public function isSafeFile($fileName) {
-        return preg_match("/\.(css|gif|ico|js|jpg|png|svg|woff|woff2)$/", $fileName);
+        return preg_match("/\.(css|gif|ico|js|jpg|map|png|scss|svg|woff|woff2)$/", $fileName);
     }
     
     // Check if file is valid
@@ -1978,6 +1961,7 @@ class YellowToolbox {
             "jpg" => "image/jpeg",
             "md" => "text/markdown",
             "png" => "image/png",
+            "scss" => "text/x-scss",
             "svg" => "image/svg+xml",
             "txt" => "text/plain",
             "woff" => "application/font-woff",
@@ -2916,7 +2900,6 @@ class YellowToolbox {
     }
     
     // TODO: remove later, for backwards compatibility
-    public function normaliseUpperLower($input) { return $this->yellow->lookup->normaliseArray($input); }
     public function normaliseArguments($text, $appendSlash = true, $filterStrict = true) { return $this->yellow->lookup->normaliseArguments($text, $appendSlash, $filterStrict); }
     public function normalisePath($text) { return $this->yellow->lookup->normalisePath($text); }
 }
@@ -2976,7 +2959,7 @@ class YellowPage {
         $this->statusCode = $statusCode;
         $this->errorMessage = $errorMessage;
         $this->lastModified = 0;
-        $this->available = $this->yellow->lookup->isAvailableLocation($this->location, $this->fileName);
+        $this->available = true;
         $this->visible = true;
         $this->active = $this->yellow->lookup->isActiveLocation($this->location, $this->yellow->page->location);
         $this->parseMetaData();
@@ -3000,6 +2983,7 @@ class YellowPage {
             $this->set("language", $this->yellow->lookup->findContentLanguage($this->fileName, $this->yellow->system->get("language")));
             $this->set("modified", date("Y-m-d H:i:s", $this->yellow->toolbox->getFileModified($this->fileName)));
             $this->parseMetaDataRaw(array("sitename", "author", "layout", "theme", "parser", "status"));
+            $this->parseMetaDataShared();
             $titleHeader = ($this->location==$this->yellow->content->getHomeLocation($this->location)) ?
                 $this->get("sitename") : $this->get("title")." - ".$this->get("sitename");
             if (!$this->isExisting("titleContent")) $this->set("titleContent", $this->get("title"));
@@ -3007,7 +2991,6 @@ class YellowPage {
             if (!$this->isExisting("titleHeader")) $this->set("titleHeader", $titleHeader);
             if ($this->get("status")=="unlisted") $this->visible = false;
             if ($this->get("status")=="shared") $this->available = false;
-            $this->parseMetaDataShared();
         } else {
             $this->set("size", filesize($this->fileName));
             $this->set("type", $this->yellow->toolbox->getFileType($this->fileName));
@@ -3041,13 +3024,14 @@ class YellowPage {
     // Parse page meta data for shared pages
     public function parseMetaDataShared() {
         $this->sharedPages["main"] = $this;
-        if ($this->available && $this->statusCode!=0) {
+        if (!$this->yellow->lookup->isSharedLocation($this->location) && $this->statusCode!=0) {
             foreach ($this->yellow->content->getShared($this->location) as $page) {
-                if ($page->get("status")=="shared") {
-                    $this->sharedPages[basename($page->location)] = $page;
-                    $page->sharedPages["main"] = $this;
-                }
+                $this->sharedPages[basename($page->location)] = $page;
+                $page->sharedPages["main"] = $this;
             }
+        }
+        if ($this->yellow->lookup->isSharedLocation($this->location)) {
+            $this->set("status", "shared");
         }
     }
     
@@ -3562,26 +3546,8 @@ class YellowPageCollection extends ArrayObject {
         return $this;
     }
     
-    // Sort page collection by page setting
-    public function sort($key, $ascendingOrder = true): YellowPageCollection {
-        $array = $this->getArrayCopy();
-        $sortIndex = 0;
-        foreach ($array as $page) {
-            $page->set("sortIndex", ++$sortIndex);
-        }
-        $callback = function ($a, $b) use ($key, $ascendingOrder) {
-            $result = $ascendingOrder ?
-                strnatcasecmp($a->get($key), $b->get($key)) :
-                strnatcasecmp($b->get($key), $a->get($key));
-            return $result==0 ? $a->get("sortIndex") - $b->get("sortIndex") : $result;
-        };
-        usort($array, $callback);
-        $this->exchangeArray($array);
-        return $this;
-    }
-    
     // Sort page collection by settings similarity
-    public function similar($page, $ascendingOrder = false): YellowPageCollection {
+    public function similar($page): YellowPageCollection {
         $location = $page->location;
         $keywords = strtoloweru($page->get("title").",".$page->get("tag").",".$page->get("author"));
         $tokens = array_unique(array_filter(preg_split("/[,\s\(\)\+\-]/", $keywords), "strlen"));
@@ -3600,9 +3566,70 @@ class YellowPageCollection extends ArrayObject {
                 }
             }
             $this->exchangeArray($array);
-            $this->sort("modified", $ascendingOrder)->sort("sortScore", $ascendingOrder);
+            $this->sort("modified", false)->sort("sortScore", false);
         }
         return $this;
+    }
+    
+    // Sort page collection by page setting
+    public function sort($key, $ascendingOrder = true): YellowPageCollection {
+        $array = $this->getArrayCopy();
+        $sortIndex = 0;
+        foreach ($array as $page) {
+            $page->set("sortIndex", ++$sortIndex);
+        }
+        $callback = function ($a, $b) use ($key, $ascendingOrder) {
+            $result = $ascendingOrder ?
+                strnatcasecmp($a->get($key), $b->get($key)) :
+                strnatcasecmp($b->get($key), $a->get($key));
+            return $result==0 ? $a->get("sortIndex") - $b->get("sortIndex") : $result;
+        };
+        usort($array, $callback);
+        $this->exchangeArray($array);
+        return $this;
+    }
+    
+    // Group page collection by page setting, return array with multiple collections
+    public function group($key, $ascendingOrder = true, $format = ""): array {
+        $array = array();
+        $groupByInitial = $format=="initial";
+        $groupByDate = !is_string_empty($format) && $format!="count" && $format!="initial";
+        foreach ($this->getIterator() as $page) {
+            if ($page->isExisting($key)) {
+                foreach (preg_split("/\s*,\s*/", $page->get($key)) as $group) {
+                    if ($groupByInitial) {
+                        $group = strtoupperu(substru($group, 0, 1));
+                    } elseif ($groupByDate) {
+                        $group = $this->yellow->language->getDateFormatted(strtotime($group), $format);
+                    }
+                    if (!is_string_empty($group)) {
+                        if (!isset($array[$group])) {
+                            $groupSearch = strtoloweru($group);
+                            foreach (array_keys($array) as $groupFound) {
+                                if (strtoloweru($groupFound)==$groupSearch) {
+                                    $group = $groupFound;
+                                    break;
+                                }
+                            }
+                            if (!isset($array[$group])) $array[$group] = new YellowPageCollection($this->yellow);
+                        }
+                        $array[$group]->append($page);
+                    }
+                }
+            }
+        }
+        $callbackString = function ($a, $b) use ($ascendingOrder) {
+            return $ascendingOrder ? strnatcasecmp($a, $b) : strnatcasecmp($b, $a);
+        };
+        $callbackCollection = function ($a, $b) use ($ascendingOrder) {
+            return $ascendingOrder ? count($a)-count($b) : count($b)-count($a);
+        };
+        if ($format!="count") {
+            uksort($array, $callbackString);
+        } else {
+            uasort($array, $callbackCollection);
+        }
+        return $array;
     }
 
     // Calculate union, merge page collection
