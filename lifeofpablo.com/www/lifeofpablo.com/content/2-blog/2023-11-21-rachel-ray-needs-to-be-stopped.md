@@ -1,6 +1,6 @@
 ---
 Title: Rachel Ray Needs to Be Stopped
-Published: 2023-11-21 18:56:49
+Published: 2023-11-21 19:20:49
 Author: Pablo Morales
 Layout: blog
 Tag: Food, Mexican Cuisine, Rachel Ray, Nightmare, cooking, Audacity, Satire
