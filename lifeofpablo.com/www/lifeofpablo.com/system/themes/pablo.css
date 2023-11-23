@@ -1,7 +1,7 @@
 /* Stockholm extension, https://github.com/datenstrom/yellow-extensions/tree/master/source/stockholm */
 
 
-@import "https://pabs.tech/media/css/tachyons.css";
+@import "https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css";
 
 /* Colors and fonts */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
