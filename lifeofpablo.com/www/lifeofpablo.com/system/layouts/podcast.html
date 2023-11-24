@@ -1,0 +1,27 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+<div class="main" role="main helvetica pb5">
+  <header class="vh-50 bg-light-pink dt w-100">
+    <div
+      style="background:url(https://photos.lifeofpablo.com/nyc-2023/91140019.JPG) no-repeat center right;background-size: cover;"
+      class="dtc v-mid cover ph3 ph4-m ph5-l">
+      <h1 class="f2 f-subheadline-l measure lh-title fw9 white">
+	<?php echo $this->yellow->page->getHtml("titleContent") ?>
+      </h1>
+    </div>
+  </header>
+<p>A podcast on the various interests on technology, self-care, blogging, and more!</p>
+
+<p>Subscribe where ever you get your podcasts.</p>
+<ul>
+<?php $section = $sectionNew = "" ?>
+<?php foreach ($this->yellow->page->getPages("podcast")->paginate($this->yellow->system->get("podcastPaginationLimit")) as $page): ?>
+<?php $sectionNew = $page->getDateHtml($page->isExisting("published") ? "published" : "modified") ?>
+<?php if ($section!=$sectionNew) { $section = $sectionNew; echo "</ul><h2>$section</h2><ul>\n"; } ?>
+<li><a href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a><?php if ($page->isExisting("mediafile")): ?> (<a href="<?php if ($this->yellow->system->isExisting("audioUrlPrefix")) echo $this->yellow->system->get("audioUrlPrefix"); echo $page->getHtml("mediafile") ?>">Download</a>)<?php endif ?></li>
+<?php endforeach ?>
+</ul>
+<?php $this->yellow->layout("pagination", $this->yellow->page->getPages("podcast")) ?>
+</div>
+</div>
+<?php $this->yellow->layout("footer") ?>

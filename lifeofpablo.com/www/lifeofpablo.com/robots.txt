@@ -5,3 +5,5 @@ Disallow: /risking/your/own/existence
 Disallow: /edit/
 Disallow: /logged-out
 Noindex: /logged-out
+User-agent: GPTBot
+Disallow: /
