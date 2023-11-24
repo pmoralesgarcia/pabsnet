@@ -1,7 +1,7 @@
 <?php $this->yellow->layout("header") ?>
 <div class="content">
-<div class="main" role="main helvetica pb5">
-  <header class="vh-50 bg-light-pink dt w-100">
+<div class="main" role="main helvetica pb5" markdown="1">
+  <header class="vh-50 bg-light-pink dt w-100" markdown="1">
     <div
       style="background:url(https://photos.lifeofpablo.com/nyc-2023/91140019.JPG) no-repeat center right;background-size: cover;"
       class="dtc v-mid cover ph3 ph4-m ph5-l">
@@ -10,12 +10,8 @@
       </h1>
     </div>
   </header>
-  <h2>About this Podcast</h2>
-<p>This is a podcast called Pablo's Thoughts Podcast. I'm going to talk about various topics from the IndieWeb to technology, self-care, blogging and things that interest me! </p>
 
-<p>Subscribe where ever you get your podcasts.</p>
-
-<h2>About the Host</h2>
+<?php echo $this->yellow->page->getContentHtml() ?>
 
 <ul>
 <?php $section = $sectionNew = "" ?>

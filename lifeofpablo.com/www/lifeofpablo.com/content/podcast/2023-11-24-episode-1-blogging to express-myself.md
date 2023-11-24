@@ -1,5 +1,5 @@
 ---
-Title: Coming Soon: Pablo's Thoughts Podcast
+Title: Episode 1 - Blogging to Express Myself
 Published: 2023-11-24 00:34:00
 Author: Pablo Morales
 Tag: Podcast
