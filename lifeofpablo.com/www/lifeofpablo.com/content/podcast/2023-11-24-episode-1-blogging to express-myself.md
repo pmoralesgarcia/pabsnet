@@ -5,11 +5,11 @@ Author: Pablo Morales
 Tag: Podcast
 Layout: blog
 Mediafile: https://static.lifeofpablo.com/podcast/coming-soon/coming-soon.mp3
-Duration: 00:10:00
+Duration: 00:05:52
 ---
 ## Episode 1
 I talk about blogging and how I got into blogging and it is apart of my life now,
 
-[audio https://static.lifeofpablo.com/podcast/coming-soon/coming-soon.mp3]
+[audio https://static.lifeofpablo.com/podcast/episode-1/episode1/episode-1-blogging.mp3]
 
-[Download this episode](https://static.lifeofpablo.com/podcast/coming-soon/coming-soon.mp3)
+[Download this episode](https://static.lifeofpablo.com/podcast/episode-1/episode1/episode-1-blogging.mp3)

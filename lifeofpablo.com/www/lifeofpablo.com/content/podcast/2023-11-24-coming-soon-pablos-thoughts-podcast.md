@@ -1,6 +1,6 @@
 ---
 Title: Coming Soon: Pablo's Thoughts Podcast
-Published: 2023-11-24 15:30:00
+Published: 2023-11-23 15:30:00
 Author: Pablo Morales
 Tag: Podcast
 Layout: blog
