@@ -115,3 +115,5 @@
 2023-11-20 19:13:04 info Update extension 'Update 0.8.96'
 2023-11-20 19:13:25 info Apply patches for Datenstrom Yellow 0.8.22
 2023-11-20 19:13:25 info Update Datenstrom Yellow 0.8.23, PHP 8.2.12, Built-in 8.2.12, Mac
+2023-11-23 17:24:00 error Can't parse file 'system/layouts/blog-stats.html'!
+2023-11-23 17:46:48 info Install extension 'Sound 0.8.22'
