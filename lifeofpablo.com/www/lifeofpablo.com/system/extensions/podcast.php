@@ -129,7 +129,7 @@ class YellowPodcast {
         $output = null;
         if ($name=="header") {
             $locationPodcast = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("podcastLocation");
-            $locationPodcast .= $this->yellow->lookup->normaliseArguments("page-".$this->yellow->system->get("podcastFileXml"), false);
+            $locationPodcast .= $this->yellow->lookup->normaliseArguments("page:".$this->yellow->system->get("podcastFileXml"), false);
             $output = "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"$locationPodcast\" />\n";
         }
         return $output;
