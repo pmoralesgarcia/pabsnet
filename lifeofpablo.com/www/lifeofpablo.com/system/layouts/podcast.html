@@ -1,6 +1,6 @@
 <?php $this->yellow->layout("header") ?>
-<div class="content">
-<div class="main h-entry" role="main helvetica pb5" markdown="1">
+<div class="content ">
+<div class="main h-entry e-content" role="main helvetica pb5" markdown="1">
   <header class="vh-50 bg-light-pink dt w-100" markdown="1">
     <div
       style="background:url(https://photos.lifeofpablo.com/nyc-2023/91140019.JPG) no-repeat center right;background-size: cover;"
@@ -8,8 +8,10 @@
       <h1 class="p-name f2 f-subheadline-l measure lh-title fw9 white">
 	<?php echo $this->yellow->page->getHtml("titleContent") ?>
       </h1>
+      <div class="dt-published"><?php echo $this->yellow->page->getHtml("published") ?></div>
+      <div class="p-author h-card"><?php echo $this->yellow->page->getHtml("author") ?></div>
     </div>
-    <div class=""><?php echo $this->yellow->page->getHtml("published") ?></div>
+    
   </header>
 
 <?php echo $this->yellow->page->getContentHtml() ?>
@@ -24,5 +26,7 @@
 </ul>
 <?php $this->yellow->layout("pagination", $this->yellow->page->getPages("podcast")) ?>
 </div>
+</div>
+<div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
 </div>
 <?php $this->yellow->layout("footer") ?>

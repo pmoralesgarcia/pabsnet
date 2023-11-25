@@ -4,6 +4,7 @@ TitleNavigation: Podcast
 TitleSlug: Podcast
 Layout: podcast
 Author: Pablo Morales
+Published: 2023-11-24
 Tag: Podcast
 ---
 <h2>About this Podcast</h2>
