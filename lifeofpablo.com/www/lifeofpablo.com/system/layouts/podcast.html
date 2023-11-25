@@ -1,14 +1,15 @@
 <?php $this->yellow->layout("header") ?>
 <div class="content">
-<div class="main" role="main helvetica pb5" markdown="1">
+<div class="main h-entry" role="main helvetica pb5" markdown="1">
   <header class="vh-50 bg-light-pink dt w-100" markdown="1">
     <div
       style="background:url(https://photos.lifeofpablo.com/nyc-2023/91140019.JPG) no-repeat center right;background-size: cover;"
       class="dtc v-mid cover ph3 ph4-m ph5-l">
-      <h1 class="f2 f-subheadline-l measure lh-title fw9 white">
+      <h1 class="p-name f2 f-subheadline-l measure lh-title fw9 white">
 	<?php echo $this->yellow->page->getHtml("titleContent") ?>
       </h1>
     </div>
+    <div class=""><?php echo $this->yellow->page->getHtml("published") ?></div>
   </header>
 
 <?php echo $this->yellow->page->getContentHtml() ?>
