@@ -5,6 +5,8 @@ Author: Pablo Morales
 Layout: blog
 Tag: Webmention, Podcasts, self-hosted, IndieWeb, Event, Datentrom
 Description: A busy day with a new podcast
+Image: https://photos.lifeofpablo.com/nyc-2023/91140019.JPG
+ImageAlt: Picture of Pablo in NYC
 ---
 <div class="f4 lh-copy  georgia" markdown="1">
 
