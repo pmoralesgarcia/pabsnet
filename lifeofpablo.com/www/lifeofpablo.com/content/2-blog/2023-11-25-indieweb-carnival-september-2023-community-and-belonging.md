@@ -7,6 +7,7 @@ Tag: Webmention, Podcasts, self-hosted, IndieWeb, Event, Datentrom
 Description: An Indieweb Carnival Response on Community and Belonging
 Image: https://static.lifeofpablo.com/media/images/blog-images/community-and-belonging/group.jpg
 ImageAlt: Group of people conversing
+Status: draft
 ---
 <div class="f5 lh-copy  georgia" markdown="1">
 <img src="https://static.lifeofpablo.com/media/images/blog-images/community-and-belonging/group.jpg" class="center measure br4" markdown="1" />
