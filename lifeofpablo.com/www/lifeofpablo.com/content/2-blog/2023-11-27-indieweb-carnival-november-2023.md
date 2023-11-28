@@ -4,7 +4,7 @@ TitleSlug: IndieWeb Carnival November 2023
 Published: 2023-11-27 00:30:49
 Author: Pablo Morales
 Layout: blog
-Tag: Webmention, Podcasts, self-hosted, IndieWeb, Event, Datentrom
+Tag: Webmention, IndieWeb, IndieWeb Carnival, culture, community, belonging 
 Description: An Indieweb Carnival Response on Community and Belonging
 Image: https://static.lifeofpablo.com/media/images/blog-images/community-and-belonging/group.jpg
 ImageAlt: Group of people conversing
