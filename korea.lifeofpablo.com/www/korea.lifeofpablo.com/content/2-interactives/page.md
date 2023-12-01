@@ -3,20 +3,7 @@ Title: Interactives
 TitleContent: Interactives 인터랙티브
 TitleHeader: Interactives 인터랙티브
 ---
-<style>
 
-.flex-container {
-    display: flex;
-}
-
-.flex-child {
-    flex: 1;
-}  
-
-.flex-child:first-child {
-    margin-right: 20px;
-} 
-</style>
 
 
 <div class="flex-container">
@@ -67,3 +54,17 @@ TitleHeader: Interactives 인터랙티브
   </div>
   
 </div>
+<style>
+
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+} 
+</style>
