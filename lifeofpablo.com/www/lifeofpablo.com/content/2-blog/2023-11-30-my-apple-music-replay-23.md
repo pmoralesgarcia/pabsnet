@@ -19,7 +19,7 @@ In response to James G on [Spotify Wrapped](https://jamesg.blog/2023/11/29/spoti
 
   I really like [Jo's Post](https://dead.garden/blog/my-spotify-wrapped--deadgarden-advent-calendar.html) on what she listened to on Spotify. I love what you listened to this year and how you organized your post!
 
-I read [Henrique's Post](https://hacdias.com/2023/11/30/spotify-wrapped/) on what he listened to on Spotify. Het made me remember that I need to give my vinyls a little more love (or a spin) and decrease my listening minutes on my phone. 
+I read [Henrique's Post](https://hacdias.com/2023/11/30/spotify-wrapped/) on what he listened to on Spotify. He made me remember that I need to give my vinyls a little more love (or a spin) and decrease my listening minutes on my phone. 
 
 I know I have an interesting taste in Music but I like listening to alternative. 
 
