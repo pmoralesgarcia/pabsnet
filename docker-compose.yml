@@ -33,7 +33,7 @@ services:
     env_file:
       - ./matomo/db.env
   matomo:
-    image: matomo:fpm-alpine
+    image: matomo:4.16.0-fpm-alpine
     restart: always
     volumes:
       # - ./config:/var/www/html/config:z
