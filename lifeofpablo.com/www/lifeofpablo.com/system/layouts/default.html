@@ -1,8 +1,10 @@
 <?php $this->yellow->layout("header") ?>
 <div class="content">
-<div class="main" role="main">
+<div class="main h-entry" role="main">
 <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $this->yellow->page->getContentHtml() ?>
+<div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+         </div>
 </div>
 </div>
 <?php $this->yellow->layout("footer") ?>
