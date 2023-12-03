@@ -1,21 +1,22 @@
 <?php $this->yellow->layout("header") ?>
 <div class="content ">
 <div class="main h-entry e-content" role="main helvetica pb5" markdown="1">
-  <header class="vh-50 bg-light-pink dt w-100" markdown="1">
-    <div
-      style="background:url(https://photos.lifeofpablo.com/nyc-2023/91140019.JPG) no-repeat center right;background-size: cover;"
-      class="dtc v-mid cover ph3 ph4-m ph5-l">
-      <h1 class="p-name f2 f-subheadline-l measure lh-title fw9 white">
-	<?php echo $this->yellow->page->getHtml("titleContent") ?>
-      </h1>
-      <div class="dt-published"><?php echo $this->yellow->page->getHtml("published") ?></div>
-      <div class="p-author h-card"><?php echo $this->yellow->page->getHtml("author") ?></div>
+	  <div class="vh-100 dt w-100 tc bg-dark-gray white cover" style="background:url(https://photos.lifeofpablo.com/nyc-2023/91140007.JPG) no-repeat center;">
+    <div class="dtc v-mid">
+      <header class="white">
+        <h2 class="f6 fw1 ttu tracked mb2 lh-title">Podcast</h2>
+        <h3 class="f6 fw1 lh-title"><?php echo $this->yellow->page->getHtml("published") ?></h3>
+      </header>
+      <h1 class="f1 f-headline-l fw1 i white"><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+      <div class="ph0 mh0 measure f4 lh-copy center">
+        <p class="fw1">
+        This is a podcast called Pablo's Thoughts Podcast. I'm going to talk about various topics from the IndieWeb to technology, self-care, blogging and things that interest me! </p>
+        <cite class="f6 ttu tracked fs-normal"><?php echo $this->yellow->page->getHtml("author") ?></cite>
+      </div>
     </div>
-    
-  </header>
-
+  </div>
 <?php echo $this->yellow->page->getContentHtml() ?>
-
+<h2>Episodes</h2>
 <ul>
 <?php $section = $sectionNew = "" ?>
 <?php foreach ($this->yellow->page->getPages("podcast")->paginate($this->yellow->system->get("podcastPaginationLimit")) as $page): ?>

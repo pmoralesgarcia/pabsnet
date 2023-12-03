@@ -1,12 +1,13 @@
 <?php $this->yellow->layout("header") ?>
-<div class=""><!-- <div class="w-50 dib"><h1><?php echo $this->yellow->page->getHtml("titleContent") ?></div>--><div class="fr w-50i dib"></h1><a class="f6 link hover-orange ph3 pv2 mb2 dib white bg-black"href="archive">View entire blog archive</a></div>
+<div class=""><h1><?php echo $this->yellow->page->getHtml("titleContent") ?><div class="fr w-50i dib"></h1><a class="f6 link hover-orange ph3 pv2 mb2 dib white bg-black"href="archive">View entire blog archive</a></div>
 </div>
 <div class="content">
 <div class="main h-entry" role="main">
-	<?php $this->yellow->layout("blog-stats") ?>
+	<!--	<?php $this->yellow->layout("blog-stats") ?> -->
 
 <?php if ($this->yellow->page->get("blogWithFilter")): ?>
-<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<div class="entry-title p-title">
+	<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1></div>
 <?php endif ?>
 <?php $pages = $this->yellow->page->getPages("blog")->paginate($this->yellow->system->get("blogPaginationLimit")) ?>
 <?php foreach ($pages as $page): ?>

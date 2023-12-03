@@ -1,5 +1,6 @@
 ---
-Title: Episode 1 - Blogging to Express Myself
+Title: S1E1 - Blogging to Express Myself
+TitleSlug: Episode 1 - Blogging to Express Myself
 Published: 2023-11-24 00:34:00
 Author: Pablo Morales
 Tag: Podcast

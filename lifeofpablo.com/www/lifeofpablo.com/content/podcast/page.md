@@ -13,7 +13,7 @@ Tag: Podcast
 ## Podcast Feed
 <a href="https://lifeofpablo.com/podcast/page:podcast.xml"><i class="fa-solid fa-rss orange"></i> Feed</a> for your RSS reader or podcast player.
 
-`https://lifeofpablo.com/podcast/page:podcast.xml`
+https://lifeofpablo.com/podcast/page:podcast.xml
 
 <h2>About the Host</h2>
 Pablo Morales is the host of Pablo's Thoughts Podcast. He likes all things technology. He's been blogging since 2010 and has experimented with voice blogs. He decided to finally start a podcast on his site to explore the things he likes. Pablo works in educational IT and has been teaching modern languages before entering IT. Having joined the IndieWeb has helped, it has helped him return to the things he enjoyed in the past. Join him on this new podcasting adventure and join me as this podcast evolves.
