@@ -24,7 +24,7 @@ services:
       VIRTUAL_HOST: korea.lifeofpablo.com
       #  LETSENCRYPT_HOST: korea.lifeofpablo.com
   selfauth:
-    container_name: selfauth
+    container_name: selfauth-login
     ports:
       - 8081:80
     build:
