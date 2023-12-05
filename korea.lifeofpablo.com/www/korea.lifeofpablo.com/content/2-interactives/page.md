@@ -9,11 +9,11 @@ TitleHeader: Interactives 인터랙티브
 <div class="flex-container">
 
   <div class="flex-child magenta">
-    <a href="videos" markdown="1">[image videos.png]</a>
+    <a href="videos" markdown="1">[image https://f005.backblazeb2.com/file/korea-lifeofpablo/images/videos.png "videos"]</a>
   </div>
   
   <div class="flex-child green">
-    <a href="photos" markdown="1">[image untitled-3.png]</a>
+    <a href="photos" markdown="1">[image https://f005.backblazeb2.com/file/korea-lifeofpablo/images/untitled-3.png "Photos"]</a>
   </div>
   
 </div>
