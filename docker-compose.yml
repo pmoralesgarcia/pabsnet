@@ -4,8 +4,8 @@ services:
     ports:
       - 8080:80
     build:
-      context: lifeofpablo
-      dockerfile: ./dockerfiles/lifeofpablo.Dockerfile
+      context: .
+      dockerfile: ./lifeofpablo.com/Dockerfile
     environment:
       VIRTUAL_HOST: lifeofpablo.com
       #  LETSENCRYPT_HOST: reader.lifeofpablo.com
