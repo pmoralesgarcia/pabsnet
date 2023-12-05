@@ -2,8 +2,8 @@ services:
   lifeofpablo:
     container_name: lifeofpablo
     build:
-      context: ~/pabsnet/lifeofpablo.com
-      dockerfile: Dockerfile
+      context: lifeofpablo
+      dockerfile: ./dockerfiles/lifeofpablo.Dockerfile
     environment:
       VIRTUAL_HOST: lifeofpablo.com
       #  LETSENCRYPT_HOST: reader.lifeofpablo.com

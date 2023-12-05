@@ -36,8 +36,5 @@ jobs:
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           cd ~/pabsnet
           git pull
-          docker rm $(docker stop $(docker ps -a -q --filter ancestor=lifeofpablo))
           cd ~/pabsnet/lifeofpablo.com
           chmod -R a+rw ~/pabsnet/lifeofpablo.com
-          docker build . -t lifeofpablo:latest
-          docker run -d -p 8080:80 -v ./www/lifeofpablo.com:/var/www/lifeofpablo.com lifeofpablo
