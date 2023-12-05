@@ -99,7 +99,7 @@ services:
     volumes:
       - ./nginx-proxy/freshrss:/etc/nginx/conf.d
     ports:
-      - 8110:80
+      - 8112:80
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
