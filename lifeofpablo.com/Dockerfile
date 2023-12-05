@@ -10,9 +10,9 @@ RUN apt update -y && \
 
 #RUN mkdir -p /var/www/lifeofpablo.com  
 
-VOLUME /var/www/lifeofpablo.com
+#VOLUME /var/www/lifeofpablo.com
 
-WORKDIR  /var/www/lifeofpablo.com
+#WORKDIR  /var/www/lifeofpablo.com
 
 #RUN curl -L https://github.com/datenstrom/yellow/archive/main.zip -o yellow-main.zip
 
