@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./lifeofpablo.com/Dockerfile
     volumes:
-      - ./lifeofpablo.com/www/lifeofpablo.com
+      - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
     environment:
       VIRTUAL_HOST: lifeofpablo.com
       #  LETSENCRYPT_HOST: reader.lifeofpablo.com
