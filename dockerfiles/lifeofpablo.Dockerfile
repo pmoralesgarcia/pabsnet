@@ -12,7 +12,7 @@ RUN apt update -y && \
 
 #VOLUME /var/www/lifeofpablo.com
 
-#WORKDIR  /var/www/lifeofpablo.com
+WORKDIR  /var/www/lifeofpablo.com
 
 
 RUN chmod -R a+rw /var/www/lifeofpablo.com
@@ -21,7 +21,7 @@ COPY ./lifeofpablo.com/nginx/lifeofpablo.com.conf /etc/nginx/sites-enabled/defau
 
 EXPOSE 80
 
-COPY ./start.sh / 
+COPY ./lifeofpablo.com/start.sh / 
 
 CMD ["sh", "/start.sh"]
 
