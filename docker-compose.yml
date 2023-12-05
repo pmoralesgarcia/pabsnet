@@ -1,6 +1,8 @@
 services:
   lifeofpablo:
     container_name: lifeofpablo
+    ports:
+      - 8080:80
     build:
       context: lifeofpablo
       dockerfile: ./dockerfiles/lifeofpablo.Dockerfile
