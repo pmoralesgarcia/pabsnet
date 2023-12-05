@@ -9,9 +9,9 @@ RUN apt update -y && \
 	apt install -y php-fpm php-zip php-curl php-gd php-mbstring 
 
 
-VOLUME /var/www/korea.lifeofpablo.com
+#VOLUME /var/www/korea.lifeofpablo.com
 
-WORKDIR  /var/www/korea.lifeofpablo.com
+#WORKDIR  /var/www/korea.lifeofpablo.com
 
 RUN chmod -R a+rw /var/www/korea.lifeofpablo.com
 

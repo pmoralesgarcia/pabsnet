@@ -10,7 +10,31 @@ services:
       - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
     environment:
       VIRTUAL_HOST: lifeofpablo.com
-      #  LETSENCRYPT_HOST: reader.lifeofpablo.com
+      #  LETSENCRYPT_HOST: lifeofpablo.com
+  korea:
+    container_name: korea
+    ports:
+      - 8086:80
+    build:
+      context: .
+      dockerfile: ./korea.lifeofpablo.com/Dockerfile
+    volumes:
+      - ./korea.lifeofpablo.com/www/korea.lifeofpablo.com:/var/www/korea.lifeofpablo.com
+    environment:
+      VIRTUAL_HOST: korea.lifeofpablo.com
+      #  LETSENCRYPT_HOST: korea.lifeofpablo.com
+  selfauth:
+    container_name: selfauth
+    ports:
+      - 8081:80
+    build:
+      context: .
+      dockerfile: ./login.lifeofpablo.com/Dockerfile
+    volumes:
+      - ./login.lifeofpablo.com/www/login.lifeofpablo.com:/var/www/login.lifeofpablo.com
+    environment:
+      VIRTUAL_HOST: login.lifeofpablo.com
+      #  LETSENCRYPT_HOST: login.lifeofpablo.com
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
@@ -99,7 +123,7 @@ services:
     volumes:
       - ./nginx-proxy/freshrss:/etc/nginx/conf.d
     ports:
-      - 811:80
+      - 8110:80
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
