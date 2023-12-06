@@ -11,7 +11,7 @@ ImageAlt: An inspirational note for those who are feeling down
 ---
 <article class="mw5 mw6-ns center pt4">
   <div class="aspect-ratio aspect-ratio--1x1 mb4">
-    <div class="aspect-ratio--object cover" style="background:url(https://static.lifeofpablo.com/media/images/blog-images/inspiration-dec-2023/inspiration2.jpg) center;"></div>
+    <div class="aspect-ratio--object cover" markdown="1">[image https://static.lifeofpablo.com/media/images/blog-images/inspiration-dec-2023/inspiration2.jpg "inspirational sticky"]</div>
   </div>
      <div class="i" markdown="1"> A sticky note in the dorm elevator I was living in 2014.</div>
 
