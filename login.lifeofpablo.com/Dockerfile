@@ -30,7 +30,7 @@ COPY ./nginx/login.lifeofpablo.com.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 80
 
-COPY ./start.sh 
+COPY ./start.sh . 
 
 CMD ["sh", "/start.sh"]
 
