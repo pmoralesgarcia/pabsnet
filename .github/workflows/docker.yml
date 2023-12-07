@@ -1,6 +1,9 @@
 name: Deploy docker compose
 on:
-  workflow_dispatch: null
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docker-compose.yml'
 jobs:
   Build:
     name: Build
