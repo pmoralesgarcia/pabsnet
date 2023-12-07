@@ -1,38 +1,35 @@
-name: Deploy Selfauth login.lifeofpablo.com
+name: Publish login.lifeofpablo.com Docker image
+
 on:
-    workflow_dispatch:
-    push:
-        paths:
-          - 'login.lifeofpablo.com/**'
+  workflow_dispatch:
+  release:
+    types: [published]
+
 jobs:
-  Build:
-    name: Build
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Load secret
-      id: op-load-secret
-      uses: 1password/load-secrets-action@v1
-      with:
-       # Export loaded secrets as environment variables
-        export-env: false
-      env:
-          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          USERNAME: op://pablo/production-server/username
-          PRIVATE_SSH_KEY: op://pablo/production-server/key
-          SERVER_HOST: op://pablo/production-server/host
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: login.lifeofpablo.com
+        
+    steps:          
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           
-                    
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
-        username: ${{ steps.op-load-secret.outputs.USERNAME }}
-        key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
-        port: 22
-        script: |
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          cd ~/pabsnet
-          git pull
-          cd ~/pabsnet/login.lifeofpablo.com
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./login.lifeofpablo.com
+          push: true
+          tags: |
+            ghcr.io/pmoralesgarcia/login:latest
