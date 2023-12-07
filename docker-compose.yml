@@ -28,17 +28,6 @@ services:
     environment:
       VIRTUAL_HOST: lifeofpablo.com
       #  LETSENCRYPT_HOST: lifeofpablo.com
-  selfauth:
-    container_name: selfauth
-    ports:
-      - 8081:80
-    build:
-      context: .
-      dockerfile: "./login.lifeofpablo.com/Dockerfile"
-    volumes:
-      - ./login.lifeofpablo.com/www/login.lifeofpablo.com:/var/www/login.lifeofpablo.com
-    environment:
-      VIRTUAL_HOST: login.lifeofpablo.com
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
