@@ -44,7 +44,7 @@ services:
   selfauth-login:
     image: ghcr.io/pmoralesgarcia/login:latest
     ports:
-      8081:80
+      -  8081:80
   mariadb:
     image: mariadb:10.11
     command: --max-allowed-packet=64MB
