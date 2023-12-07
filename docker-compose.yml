@@ -34,9 +34,9 @@ services:
       - 8081:80
     build:
       context: .
-      dockerfile: ./login.lifeofpablo.com/Dockerfile
+      dockerfile: "./login.lifeofpablo.com/Dockerfile"
     volumes:
-      - ./login.lifeofpablo.com/www/login.ifeofpablo.com:/var/www/login.lifeofpablo.com
+      - ./login.lifeofpablo.com/www/login.lifeofpablo.com:/var/www/login.lifeofpablo.com
     environment:
       VIRTUAL_HOST: login.lifeofpablo.com
   bludit:
