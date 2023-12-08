@@ -6,7 +6,7 @@ Author: Pablo Morales
 Layout: blog
 Tag: Vouch Proxy, Docker, Docker Compose, Reverse Proxy, nginx
 Description: Protect your sites using Vouch Proxy and Docker Compose
-Status: unlisted
+Status: draft
 ---
 I've written in the past how to install Vouch Proxy using Debian. I also wrote a post a while ago where I [dockerized my site and services](/blog/dockerizing-my-website-and-services). So let's state for the record, I like Vouch Proxy. It's met my needs. 
 
