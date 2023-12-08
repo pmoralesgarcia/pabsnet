@@ -10,9 +10,9 @@ RUN apt update -y && \
 
 #RUN mkdir -p /var/www/login.lifeofpablo.com  
 
-VOLUME /var/www/login.lifeofpablo.com
+# VOLUME /var/www/login.lifeofpablo.com
 
-WORKDIR  /var/www/login.lifeofpablo.com
+# WORKDIR  /var/www/login.lifeofpablo.com
 
 #RUN curl -L https://github.com/datenstrom/yellow/archive/main.zip -o yellow-main.zip
 
@@ -30,7 +30,7 @@ COPY ./nginx/login.lifeofpablo.com.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 80
 
-COPY ./start.sh / 
+COPY ./start.sh . 
 
 CMD ["sh", "/start.sh"]
 
