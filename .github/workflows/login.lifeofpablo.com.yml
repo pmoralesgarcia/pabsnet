@@ -1,9 +1,7 @@
-name: Deploy login.lifeofpablo.com
+name: Deploy lifeofpablo.com
 on:
-  workflow_dispatch:
-  push:
-    paths:
-      - 'login.lifeofpablo.com/**'
+  workflow_dispatch: null
+  
 jobs:
   Build:
     name: Build
