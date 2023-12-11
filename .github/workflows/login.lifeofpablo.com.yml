@@ -26,6 +26,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
+<<<<<<< HEAD
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
@@ -33,3 +34,22 @@ jobs:
           push: true
           tags: |
             ghcr.io/pmoralesgarcia/login:latest
+=======
+                    
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
+        username: ${{ steps.op-load-secret.outputs.USERNAME }}
+        key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
+        port: 22
+        script: |
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          cd ~/pabsnet
+          git pull
+          docker rm $(docker stop $(docker ps -a -q --filter ancestor=now))
+          cd ~/pabsnet/login.lifeofpablo.com
+          docker build . -t selfauth-login:latest
+          docker run -d -p 8081:80 -v ./www/login.lifeofpablo.com:/var/www/login.lifeofpablo.com selfauth-login        
+  
+>>>>>>> parent of a961f70 (Update login.lifeofpablo.com.yml)
