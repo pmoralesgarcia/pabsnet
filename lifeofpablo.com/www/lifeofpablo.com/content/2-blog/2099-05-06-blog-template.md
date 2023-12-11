@@ -1,6 +1,6 @@
 ---
-Title: 
-TitleSlug: 
+Title: Blog Template
+TitleSlug: blog template
 Published: 2099-05-06 21:29:49
 Author: Pablo Morales
 Layout: blog
