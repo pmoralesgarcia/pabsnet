@@ -1,7 +1,7 @@
 ---
 Title: So Much Haunts Me
 TitleSlug: 
-Published: 2099-05-06 11:59:49
+Published: 2023-12-10 11:59:49
 Author: Pablo Morales
 Layout: blog
 Tag: Note
