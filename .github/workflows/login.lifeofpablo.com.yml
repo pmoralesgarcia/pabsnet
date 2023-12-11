@@ -1,7 +1,9 @@
-name: Deploy lifeofpablo.com
+name: Deploy Selfauth login.lifeofpablo.com
 on:
-  workflow_dispatch: null
-  
+    workflow_dispatch:
+    push:
+        paths:
+          - 'login.lifeofpablo.com/**'
 jobs:
   Build:
     name: Build
@@ -21,18 +23,6 @@ jobs:
           PRIVATE_SSH_KEY: op://pablo/production-server/key
           SERVER_HOST: op://pablo/production-server/host
           
-<<<<<<< HEAD
-<<<<<<< HEAD
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: ./login.lifeofpablo.com
-          push: true
-          tags: |
-            ghcr.io/pmoralesgarcia/login:latest
-=======
-=======
->>>>>>> parent of 64b6b88 (make selfauth into docker image)
                     
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.0
@@ -40,18 +30,12 @@ jobs:
         host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
         username: ${{ steps.op-load-secret.outputs.USERNAME }}
         key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
-        port: 22
+        port: 222
         script: |
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           cd ~/pabsnet
           git pull
-<<<<<<< HEAD
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=now))
           cd ~/pabsnet/login.lifeofpablo.com
           docker build . -t selfauth-login:latest
-          docker run -d -p 8081:80 -v ./www/login.lifeofpablo.com:/var/www/login.lifeofpablo.com selfauth-login        
-  
->>>>>>> parent of a961f70 (Update login.lifeofpablo.com.yml)
-=======
-          cd ~/pabsnet/login.lifeofpablo.com
->>>>>>> parent of 64b6b88 (make selfauth into docker image)
+          docker run -d -p 8081:80 -v ./www/login.lifeofpablo.com:/var/www/login.lifeofpablo.com selfauth-login     
