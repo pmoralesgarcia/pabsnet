@@ -4,7 +4,7 @@ Published: 2023-04-15 11:04:42
 Author: Pablo Morales
 Layout: blog
 Tag: relationships, broken heart, bad decisions, boundaries
-
+Status: draft
 ---
 <style>
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
