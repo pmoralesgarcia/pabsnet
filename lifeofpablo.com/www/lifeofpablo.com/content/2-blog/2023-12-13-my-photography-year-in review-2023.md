@@ -6,6 +6,7 @@ Layout: blog
 Tag: Photography, Year in Review 2023
 Status: unlisted
 ---
+
 <style>
 
 .full-width {
