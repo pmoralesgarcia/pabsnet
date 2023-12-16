@@ -6,19 +6,7 @@ Layout: blog
 Tag: Photography, Year in Review 2023
 ---
 
-<style>
 
-.full-width {
-	left: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
-	max-width: 100vw;
-	position: relative;
-	right: 50%;
-	width: 100vw;
-}
-
-</style>
 
 
 <div class="scrollmenu full-width">
@@ -104,3 +92,17 @@ Here are my top photographs. It was hard to pick the photos.
 </div>
 
 </div>
+
+<style>
+
+.full-width {
+	left: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	max-width: 100vw;
+	position: relative;
+	right: 50%;
+	width: 100vw;
+}
+
+</style>
