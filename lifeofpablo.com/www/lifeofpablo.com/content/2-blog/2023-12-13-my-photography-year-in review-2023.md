@@ -1,6 +1,6 @@
 ---
 Title: Photography Year in Review 2023
-Published: 2023-12-13 23:45:01
+Published: 2023-12-16 15:14:01
 Author: Pablo Morales
 Layout: blog
 Tag: Photography, Year in Review 2023
