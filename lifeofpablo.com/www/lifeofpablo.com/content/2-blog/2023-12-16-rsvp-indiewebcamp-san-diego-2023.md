@@ -1,6 +1,5 @@
 ---
-Title: Blog Template
-TitleSlug: RSVP IndieWebCamp San Diego 2023
+Title: RSVP IndieWebCamp San Diego 2023
 Published: 2023-12-16 13:00:49
 Author: Pablo Morales
 Layout: blog
