@@ -9,7 +9,7 @@ Image: https://www.climateweeknyc.org/sites/climate_week/files/styles/climate_we
 ImageAlt: NYC Climate Week
 ---
 <div class="pa3 pa5-ns">
-      <h2 class="pl0 mw6 center f2">Events Attended</h2>
+      <h2 class="pl0 mw6 center f2">Events Attending</h2>
       <ul class="list pl0 mw6 center">
         <li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">Driving Forward: The Transforming Future of Mobility</li>
         <li class="lh-copy pv3 ba bl-0 bt-0 br-0 b--dotted b--black-30">Lucid Air Test Driving</li>
