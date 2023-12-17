@@ -477,13 +477,14 @@ footer ul{
   clear: both;
   margin-bottom: 1em;
   padding: 0.5em;
-  background-color: #f7f7f7;
+  background-color: inherit;
   border-radius: 3px;
 }
 
 .webmention img {
     float: left;
     margin-right: 1em;
+    border-radius: 100%;
 }
 
 .wm_box {

@@ -1,6 +1,6 @@
 ---
 Title: Liked: Walking the Heck out of Thailand
-Published: 2099-05-06 21:29:49
+Published: 2023-12-16    21:29:49
 Author: Pablo Morales
 Layout: blog
 Tag: Webmention, like, response
