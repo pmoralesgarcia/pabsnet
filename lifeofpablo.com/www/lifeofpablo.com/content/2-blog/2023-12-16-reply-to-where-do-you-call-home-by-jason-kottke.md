@@ -14,7 +14,7 @@ ImageAlt: Picture of Pablo
 
 In Reply to <a class="u-reply-to" href="https://kottke.org/23/12/where-do-you-call-home">Where Do You Call Home? by Jason Kottke</a> 
 
-Jason Kottkeasks the following question and starts mentioning his struggle with the concept of home. He also asks his readers to answer the question
+Jason Kottke asks the following question and starts mentioning his struggle with the concept of home. He also asks his readers to answer the question
 >Where do you call home? And why?
 >
 >I’ve been struggling with the concept of home for the past several years. 
@@ -26,6 +26,8 @@ On the surface, this seems like a very simple question to answer but the answer 
  Mexico is also my home for the fact I've lived there on an off though out the years. I learned what is was like to be around non-Americans. Living in Mexico, I got meet so many family members. I learned more of the traditions of my people and how live in a community. I learned that this was a place of rich culture and rich gastronomy. I learned to not take things for granted. It's a place I call home because it allows me to be different person compared to my American self. For the record, I don't go to resorts, I stay in rural Mexico. This is a home I return to often. This home is important to my identity.
 
  The home I consider currently now is in California. This is the first place I moved away to where I didn't go back to my parents' home after an extended leave such as a trip or going to university. I work here now and I have built out new relationships. I'm still pretty new here. Living in California has allowed me to be more of myself and allow me to express myself. This is home because I get to work on myself as well. When people ask me where am I based out of or where is my home is, I always say California. 
+
+ I also ask the same question, "Where do you call home? And why?"
 
 
 </div>

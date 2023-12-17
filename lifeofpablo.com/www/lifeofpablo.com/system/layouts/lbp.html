@@ -1,4 +1,4 @@
-<?php $pages = $this->yellow->content->index()->filter("layout", "blog")->sort("published", false)->limit(3) ?>
+<?php $pages = $this->yellow->content->index()->filter("layout", "blog")->sort("published", false)->limit(4) ?>
 <?php $this->yellow->page->setLastModified($pages->getModified()) ?>
 <?php $this->yellow->page->setHeader("Cache-Control", "max-age=60") ?>
 
