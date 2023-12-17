@@ -10,7 +10,7 @@ ImageAlt: Picture of Pablo
 ---
  <div class="baskerville" markdown="1">
 
-   <div class="f5 f3-ns " markdown="1">
+   <div class="f4 f4-ns " markdown="1">
 
 In Reply to <a class="u-reply-to" href="https://kottke.org/23/12/where-do-you-call-home">Where Do You Call Home? by Jason Kottke</a> 
 
