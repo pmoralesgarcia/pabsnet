@@ -14,6 +14,7 @@ ImageAlt: IndieWebCamp San Diego 2023
     to <a href="https://events.indieweb.org/2023/12/indiewebcamp-san-diego-2023-ZEDdVaxIcQjz" class="u-in-reply-to">RSVP IndieWebCamp San Diego 2023</a>
   </p>
 
+I will attend online from Nebraska. I am sad I wasn't able to attend. I will be at the next one! Great conversation on day 1.
 
 
 </div>
