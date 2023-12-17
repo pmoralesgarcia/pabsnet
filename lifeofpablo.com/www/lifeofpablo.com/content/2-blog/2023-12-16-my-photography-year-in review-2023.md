@@ -4,6 +4,9 @@ Published: 2023-12-16 15:14:01
 Author: Pablo Morales
 Layout: blog
 Tag: Photography, Year in Review 2023
+Image: https://photos.lifeofpablo.com/san-diego/beach+surfers.png
+ImageAlt: The beach with surfers.
+Description: It was a great year for my photography.
 ---
 
 
