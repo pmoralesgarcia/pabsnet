@@ -1,5 +1,6 @@
 ---
-Title: Feed
+Title: 📡
+TitleSlug: feed
 Layout: feed
 ---
 [Entire Site RSS Feed](/feed/page:feed.xml)
