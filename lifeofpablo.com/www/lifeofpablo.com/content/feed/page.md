@@ -1,5 +1,6 @@
 ---
 Title: 📡
+TitleContent: Feeds
 TitleSlug: feed
 Layout: feed
 ---
