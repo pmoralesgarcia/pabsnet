@@ -5,7 +5,7 @@ Published: 2023-12-21 03:09:49
 Author: Pablo Morales
 Layout: blog
 Tag: blog roll, blogs, indieweb, interwebs
-Description: I created a blog roll
+Description: I created a blog roll for my site. I want to share who I'm following.
 Image: https://images.unsplash.com/photo-1517816428104-797678c7cf0c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 ImageAlt: horn
 ---
