@@ -1,9 +1,14 @@
 ---
 Title: The Friend I Made on the Bus
+TitleSlug: Friend on Bus
 Published: 2023-12-20 20:23:54
 Author: Pablo Morales
 Layout: blog
 Tag: friends, bus ride, mexico
+Description: A story about a friend I made on a bus.
+Image: https://scontent-ord5-1.xx.fbcdn.net/v/t39.30808-6/380756331_706323494858560_46085412934764969_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=783fdb&_nc_ohc=OhAsSlvG4ToAX9luFl4&_nc_ht=scontent-ord5-1.xx&oh=00_AfAqxiRl1S8aLTbFUZhbdNWpCzbn7dWbvgFmU_bt26ZeYw&oe=65881D1E
+ImageAlt: Greyhound Bus
+Status: public
 ---
 <div class="athelas pa4" markdown="1">
   <div class="f4 f4-ns lh-copy measure center" markdown="1">
