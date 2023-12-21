@@ -6,7 +6,7 @@ Layout: blog
 Tag: friends, bus ride, mexico
 ---
 <div class="athelas pa4" markdown="1">
-  <div class="f6 f4-ns lh-copy measure center" markdown="1">
+  <div class="f4 f4-ns lh-copy measure center" markdown="1">
 I was browsing the web and I happened to stumble upon this [Instagram post](https://www.instagram.com/p/CwtXlnmpkEQ). It was a screenshot of a tweet OP posted about two girls on a cruise who became best friends for the day. One of the girls was looking for her best friend that day.
 
 Here is what the post said, if you don't want to open an Instagram link. The post also has the picture of two girls on the cruise sitting next to each other.
