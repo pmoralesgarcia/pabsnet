@@ -54,7 +54,7 @@ services:
     env_file:
       - ./matomo/db.env
   matomo:
-    image: matomo:4.16.0-fpm-alpine
+    image: matomo:5.0.0
     restart: always
     volumes:
       # - ./config:/var/www/html/config:z
@@ -83,7 +83,7 @@ services:
     depends_on:
       - mariadb
       - vouch-proxy
-    image: freshrss/freshrss:1.21.0
+    image: freshrss/freshrss:1.22.1
     volumes:
       - freshrss_data:/var/www/FreshRSS/data
       - freshrss_extensions:/var/www/FreshRSS/extensions
