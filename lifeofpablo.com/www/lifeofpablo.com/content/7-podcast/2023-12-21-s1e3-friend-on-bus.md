@@ -12,6 +12,9 @@ ImageAlt: Firefox Logo
 Description: Today's episode talks about making a friend on a bus.
 ---
 ### Episode 3 
+[audio https://static.lifeofpablo.com/podcast/season1/episode-3/s1s3-friend-on-the-bus.mp3]
+
+[Download this episode](https://static.lifeofpablo.com/podcast/season1/episode-3/s1s3-friend-on-the-bus.mp3)
 
 Today's episode talks about making a friend on a bus.
 
