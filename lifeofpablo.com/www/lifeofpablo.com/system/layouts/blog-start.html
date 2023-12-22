@@ -29,7 +29,7 @@
          <div class="entry-meta">
             <p><span class="dt-published"><?php echo $page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card"><?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span></p>
          </div>
-         This post was written in <?php echo $this->yellow->language->getTextHtml("languageDescription") ?> (<?php echo $this->yellow->language->getTextHtml("languageLocale") ?>)</p>
+         This post was written in <span class="ttu b"><?php echo $page->getHtml("Language") ?></span> <!-- (<?php echo $page->yellow->language->getTextHtml("languageLocale") ?>)--></p>
          <div class="entry-content"><?php echo $this->yellow->toolbox->createTextDescription($page->getContentHtml(), 0, false, "<!--more-->", "<a href=\"".$page->getLocation(true)."\">".$this->yellow->language->getTextHtml("blogMore")."</a>") ?></div>
       </div>
       <hr class="rounded">
