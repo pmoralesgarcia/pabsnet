@@ -18,6 +18,11 @@ if($_SERVER['REMOTE_USER'])
 	<img class="me u-photo" src="https://static.lifeofpablo.com/pabs-cropped.jpg" alt="picture of Pablo" /> 
 	    <!-- Title -->
 		<h1><a class="u-url u-uid" href="https://lifeofpablo.com"><span class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></span></a></h1> 
+
+   <div class="p-note" markdown="1">
+
+Hey, I'm Pablo and I'm based in Sacramento. I work in IT in an educational setting. I really enjoy working with technology and improve technology use in education.
+   </div>
 		<?php $this->yellow->layout("nav-home") ?>
 
   </div>
@@ -33,14 +38,9 @@ Hey, I'm Pablo and I'm based in Sacramento. I work in IT in an educational setti
 
 
 <div class="mw9 center ph3-ns">
-	<div class="cf ph2-ns">
-	  <div class="fl w-100 w-50-ns pa2">
-		<div class="pv4"><?php $this->yellow->layout("lbp") ?></div>
-	  </div>
-	  <div class="fl w-100 w-50-ns pa2">
 
-	</div>
-	</div>
+		<div class="pv4"><?php $this->yellow->layout("lbp") ?></div>
+
   </div>
 
 </div>
