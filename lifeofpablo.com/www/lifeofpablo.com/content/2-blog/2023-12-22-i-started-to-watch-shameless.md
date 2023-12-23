@@ -10,7 +10,7 @@ ImageAlt: Shameless cast
 ---
 I started watching the TV series called *Shameless*. It's that time of tha year wear I start watching a new show (and not be coding) and watch until my attention span is non-existent.
 
-Oh man, what a show this is! I'm only on season 1 but I've enjoyed so far. For a show made in 2011, it definetly surpises me that certain things were allowed. I feel that the early 2010's was a turning point for things allowed for shows like this. 
+Oh man, what a show this is! I'm only on season 1 but I've enjoyed so far. For a show made in 2011, it definetly surpises me that certain things were allowed. I feel that the early 2010's was a turning point for things allowed in shows such as this one. 
 
 Season 1 is a roller coaster. I love learning all the back story of all the characters. Fiona is a boss for keeping her family together. 
 
