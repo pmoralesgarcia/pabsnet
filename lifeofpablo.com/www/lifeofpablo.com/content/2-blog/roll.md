@@ -11,6 +11,7 @@ ImageAlt: horn
 ### IndieWeb
 
 * [Alex Sirac](https://alexsirac.com/) [(RSS)](https://alexsirac.com/feed/)
+* [Angelo Gladding](https://ragt.ag/)
 * [Anthony Ciccarello](https://www.ciccarello.me/) [(RSS)](https://www.ciccarello.me/feed.xml)
 * [Autistic As Fxxk](https://www.autisticasfxxk.com/) [(RSS)](https://www.autisticasfxxk.com/index.xml)
 * [asuh](https://asuh.com/) [(RSS)](https://asuh.com/feed/)
