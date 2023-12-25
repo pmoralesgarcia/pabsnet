@@ -251,7 +251,24 @@ I made it a challenge to listen to 1000 albums. I will listen to one new album d
               <a href="https://lifeofpablo.com/privacy/"  title="Privacy" class="f6 dib ph2 link mid-gray dim">Privacy</a>
             </div>
           </footer>
-          
+          <?php
+$catalog_json = file_get_contents('books.json');
+
+$decoded_json = json_decode($catalog_json, true);
+
+$items = $decoded_json['books'];
+
+foreach($items as $item) {
+	$id = $item['book_id'];
+  $name = $item['title'];
+	$author = $item['author'];
+  $image = $item['thumbnail_url'];
+  $info_url = $item['info_url'];
+  $notes = $item['notes'];
+
+  echo $notes;
+}
+?>
           
           
     </body>

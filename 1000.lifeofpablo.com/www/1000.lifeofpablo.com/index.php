@@ -32,7 +32,8 @@
             $id = $item['id'];
             $name = $item['title'];
           
-            echo $id;
+            echo $id. ' '.$name;
+          }
 
             ?>
 

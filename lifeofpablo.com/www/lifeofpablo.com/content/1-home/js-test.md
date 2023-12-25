@@ -3,7 +3,8 @@ Title: JS test
 Published: 2023-10-16 19:55:49
 ---
 
-<script type="text/javascript">
+<script async type="text/javascript">
+  
 const select = document.querySelector("select");
 const para = document.querySelector("p");
 
