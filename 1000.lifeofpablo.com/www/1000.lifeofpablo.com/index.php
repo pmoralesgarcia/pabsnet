@@ -21,7 +21,20 @@
           </nav>
           
           
+          <?php
+          $catalog_json = file_get_contents('albums.json');
+          
+          $decoded_json = json_decode($catalog_json, true);
+          
+          $items = $decoded_json['albums'];
+          
+          foreach($items as $item) {
+            $id = $item['id'];
+            $name = $item['title'];
+          
+            echo $id;
 
+            ?>
 
         <article class="bg-white">
             <div class="vh-75 cover bg-center" style="background-image: url(https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2946&q=80);"></div>
