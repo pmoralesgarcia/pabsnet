@@ -34,7 +34,6 @@ jobs:
         port: 22
         script: |
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          git clone https://github.com/pmoralesgarcia/pabsnet.git
           cd ~/pabsnet
           git pull
           cd ~/pabsnet/lifeofpablo.com
