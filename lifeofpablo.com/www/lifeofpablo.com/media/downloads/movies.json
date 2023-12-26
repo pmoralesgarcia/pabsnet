@@ -1,0 +1,73 @@
+{
+"movies": [
+	{
+		"id" : 0,
+		"title" : "Barbie",
+		"cover" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTps15LVPBd4bN4dWOYwJ1ggcNE_4tzLnR10qZlngWbwQ4G-cgE",
+		"info_url" : "https://www.themoviedb.org/movie/346698-barbie?language=en-US"
+	
+	},
+	{
+		"id" : 1,
+		"title" : "The Hunger Games: The Ballad of Songbirds & Snakes",
+		"cover" : "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRvwP_lNaUz46LtcewMX0xdKd4bT-8hAHaAt8HjB96tLsMolVVT",
+		"info_url" : "https://www.themoviedb.org/movie/695721-the-hunger-games-the-ballad-of-songbirds-snakes?language=en-US"
+	
+	},
+	{
+		"id" : 2,
+		"title" : "Shrek 2",
+		"cover" : "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSFADKf7LWrP_r2PkPMo4zVxAdgoUK4KMtgRsfMSUTpisbpGG7N",
+		"info_url" : "https://www.themoviedb.org/movie/809-shrek-2?language=en-US"
+	
+	},
+	{
+		"id" : 3,
+		"title" : "Killers of the Flower Moon",
+		"cover" : "https://upload.wikimedia.org/wikipedia/en/8/88/Killers_of_the_Flower_Moon_film_poster.jpg",
+		"info_url" : "https://www.themoviedb.org/movie/466420-killers-of-the-flower-moon?language=en-US"
+	
+	},
+	{
+		"id" : 4,
+		"title" : "Doctor Strange in the Multiverse of Madness",
+		"cover" : "https://upload.wikimedia.org/wikipedia/en/1/17/Doctor_Strange_in_the_Multiverse_of_Madness_poster.jpg",
+		"info_url" : "https://www.themoviedb.org/movie/453395-doctor-strange-in-the-multiverse-of-madness?language=en-US"
+	
+	},
+	{
+		"id" : 5,
+		"title" : "The Unbearable Weight of Massive Talent",
+		"cover" : "https://www.themoviedb.org/t/p/w1280/8JzPuj4lNQv0wmd38u0ee1dxzhn.jpg",
+		"info_url" : "https://www.themoviedb.org/movie/648579-the-unbearable-weight-of-massive-talent?language=en-US"
+	
+	},
+	{
+		"id" : 6,
+		"title" : "Sonic the Hedgehog 2",
+		"cover" : "https://www.themoviedb.org/t/p/w1280/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg",
+		"info_url" : "https://www.themoviedb.org/movie/675353-sonic-the-hedgehog-2?language=en-US"
+	
+	},
+	{
+		"id" : 7,
+		"title" : "It's Still Your Bed",
+		"cover" : "https://www.themoviedb.org/t/p/w1280/wtHBxOisTtU10ieNoXHX62kB613.jpg",
+		"info_url" : "https://www.themoviedb.org/movie/613027-it-s-still-your-bed?language=en-US"
+	
+	},
+	{
+		"id" : 8,
+		"title" : "Dog",
+		"cover" : "https://www.themoviedb.org/t/p/w1280/rkpLvPDe0ZE62buUS32exdNr7zD.jpg",
+		"info_url" : "https://www.themoviedb.org/movie/626735-dog?language=en-US"
+	
+	},
+	{
+		"id" : 9,
+		"title" : "Uncharted",
+		"cover" : "https://www.themoviedb.org/t/p/w1280/rJHC1RUORuUhtfNb4Npclx0xnOf.jpg",
+		"info_url" : "https://www.themoviedb.org/movie/335787-uncharted?language=en-US"
+	}
+	
+]}

@@ -21,5 +21,6 @@
 	  <div class="f6 lh-copy gray mv0"><p><?php echo $page->getDateHtml("published") ?> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo htmlspecialchars($author); } ?></p></div>
 	</article>
 	<?php endforeach ?>
+	<a href="blog" class="mt4">More Posts</a>
 
 	</section>
