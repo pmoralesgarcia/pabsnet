@@ -20,13 +20,13 @@ foreach($items as $item) {
 
 
   
-    echo '<article>';
-    echo '<a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue" href="'.$info_url.'">';
+    echo '<article class="h-item">';
+    echo '<a class="link dt w-100 bb b--black-10 pb2 mt2 dim blue u-url" href="'.$info_url.'">';
     echo '<div class="dtc w4">';
-    echo '<img src=" '.$cover. '" class="db w-100" alt="movie poster of '.$name.'"/>';
+    echo '<img src=" '.$cover. '" class="db w-100 u-photo" alt="movie poster of '.$name.'"/>';
     echo '</div>';
     echo '<div class="dtc v-top pl2">';
-    echo '<h1 class="f6 f5-ns fw6 lh-title black mv0">'.$name.'</h1>';
+    echo '<h1 class="f6 f5-ns fw6 lh-title black mv0 p-name">'.$name.'</h1>';
     echo '<dl class="mt2 f6">';
     echo '<dt class="clip">ID</dt>';
     echo '<dd class="ml0">ID: '.$id.'</dd>';
