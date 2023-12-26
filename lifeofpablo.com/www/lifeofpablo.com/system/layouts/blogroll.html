@@ -1,0 +1,35 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+<div class="main h-entry" role="main">
+<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<h3 id="indieweb">IndieWeb</h3>
+<ul>
+<?php
+$catalog_json = file_get_contents('media/downloads/blogroll/indieweb.json');
+
+$decoded_json = json_decode($catalog_json, true);
+
+$persons = $decoded_json['indieweb'];
+
+foreach($persons as $person) {
+    $name = $person['Name'];
+    $website = $person['Website'];
+    $rss = $person['RSS'];
+
+
+echo '<li><a href="'.$website.'">'.$name.'</a> <a href="'.$rss.'">(RSS)</a></li>';
+  
+}
+?>
+</ul>
+<div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+
+
+
+<div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+         </div>
+</div>
+</div>
+<?php $this->yellow->layout("footer") ?>
+
+

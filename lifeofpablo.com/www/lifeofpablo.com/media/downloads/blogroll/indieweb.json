@@ -1,0 +1,294 @@
+{
+"indieweb": [
+ {
+   "Name": "Alex Sirac",
+   "Website": "https://alexsirac.com/",
+   "RSS": "https://alexsirac.com/feed/"
+ },
+ {
+  "Name": "Angelo Gladding",
+  "Website": "https://ragt.ag",
+  "RSS": "#"
+},
+ {
+   "Name": "Amar Memoranda > Log (all)",
+   "Website": "https://yousefamar.com/memo/log/",
+   "RSS": "https://granary.io/url?input=html&output=atom&url=https://yousefamar.com/memo/log/"
+ },
+ {
+   "Name": "Anthony Ciccarello",
+   "Website": "https://www.ciccarello.me/",
+   "RSS": "https://www.ciccarello.me/feed.xml"
+ },
+ {
+   "Name": "asuh.com",
+   "Website": "https://asuh.com/",
+   "RSS": "https://asuh.com/feed/"
+ },
+ {
+   "Name": "Autistic As Fxxk",
+   "Website": "https://www.autisticasfxxk.com/",
+   "RSS": "https://www.autisticasfxxk.com/index.xml"
+ },
+ {
+   "Name": "benji",
+   "Website": "https://benji.dog/",
+   "RSS": "https://www.benji.dog/feed.xml"
+ },
+ {
+  "Name": "Ben Werdmuller",
+  "Website": "https://werd.io/",
+  "RSS": "https://werd.io/?_t=rss"
+},
+ {
+   "Name": "BinaryDigit",
+   "Website": "https://binarydigit.cafe/",
+   "RSS": "https://binarydigit.cafe/index.xml"
+ },
+ {
+   "Name": "Bix Dot Blog",
+   "Website": "https://bix.blog/",
+   "RSS": "https://bix.blog/feed/"
+ },
+ {
+   "Name": "busybee: General Articles",
+   "Website": "https://beesbuzz.biz/articles/",
+   "RSS": "https://beesbuzz.biz/articles/feed"
+ },
+ {
+   "Name": "Chris Aldrich",
+   "Website": "https://boffosocko.com/",
+   "RSS": "https://boffosocko.com/feed/"
+ },
+ {
+   "Name": "cidney.org",
+   "Website": "https://cidney.org/",
+   "RSS": "https://cidney.org/feed.xml"
+ },
+ {
+   "Name": "CodingBobby",
+   "Website": "https://codingbobby.xyz/",
+   "RSS": "https://codingbobby.xyz/feed.xml"
+ },
+ {
+   "Name": "Cognition Engine",
+   "Website": "https://spentcoast.github.io/cognition-website/spentcoast.github.io/cognition-website/",
+   "RSS": "https://spentcoast.github.io/cognition-website/feed.xml"
+ },
+ {
+   "Name": "Colin Cogle's Blog",
+   "Website": "https://colincogle.name/blog/",
+   "RSS": "https://colincogle.name/blog/atom.xml"
+ },
+ {
+   "Name": "Colin Walker – Daily Feed",
+   "Website": "https://colinwalker.blog/",
+   "RSS": "https://colinwalker.blog/dailyfeed.xml"
+ },
+ {
+   "Name": "Craig Mod — Writer + Photographer",
+   "Website": "https://craigmod.com/",
+   "RSS": "https://craigmod.com/index.xml"
+ },
+ {
+   "Name": "Dan Q",
+   "Website": "https://danq.me/",
+   "RSS": "https://danq.me/feed/"
+ },
+ {
+   "Name": "David Shanske",
+   "Website": "https://david.shanske.com/",
+   "RSS": "https://david.shanske.com/feed/"
+ },
+ {
+   "Name": "Enderverse",
+   "Website": "https://www.enderverse.org/posts/index.htm",
+   "RSS": "https://granary.io/url?input=html&output=rss&url=https%3A%2F%2Fwww.enderverse.org%2Fposts%2Findex.html"
+ },
+ {
+   "Name": "Eric Stein's Blog",
+   "Website": "https://steinea.ca/blog",
+   "RSS": "https://www.steinea.ca/atom/blog.xml"
+ },
+ {
+   "Name": "Evan Boehs in the blog",
+   "Website": "https://boehs.org/",
+   "RSS": "https://boehs.org/in/blog.xml"
+ },
+ {
+   "Name": "fasterthanli.me",
+   "Website": "https://fasterthanli.me/",
+   "RSS": "https://fasterthanli.me/index.xml"
+ },
+ {
+   "Name": "foreverliketh.is",
+   "Website": "https://foreverliketh.is/blog/",
+   "RSS": "https://foreverliketh.is/blog/index.xml"
+ },
+ {
+   "Name": "french - Pablo Morales",
+   "Website": "https://lifeofpablo.com/",
+   "RSS": "https://lifeofpablo.com/feed/tag:french/page:feed.xml"
+ },
+ {
+   "Name": "George Nance",
+   "Website": "https://georgenance.com/",
+   "RSS": "https://georgenance.com/rss.xml"
+ },
+ {
+   "Name": "gRegorLove.com",
+   "Website": "https://gregorlove.com/",
+   "RSS": "https://gregorlove.com/articles.atom"
+ },
+ {
+   "Name": "If This, Then What? - Stream",
+   "Website": "https://christian.vonschack.com/",
+   "RSS": "https://christian.vonschack.com/atom/?section=stream"
+ },
+ {
+   "Name": "James G",
+   "Website": "https://jamesg.blog/",
+   "RSS": "https://granary.io/url?input=html&output=rss&url=https://jamesg.blog"
+ },
+ {
+   "Name": "Jamie Tanna | Software Engineer",
+   "Website": "https://www.jvt.me/",
+   "RSS": "https://www.jvt.me/feed.xml"
+ },
+ {
+   "Name": "Jan-Lukas Else",
+   "Website": "https://jlelse.blog/",
+   "RSS": "https://jlelse.blog/.rss"
+ },
+ {
+   "Name": "Jo's Blog",
+   "Website": "https://dead.garden/blog/index.html",
+   "RSS": "https://dead.garden/blog/feed.rss"
+ },
+ {
+   "Name": "Juan Olvera",
+   "Website": "https://jolvera.dev/",
+   "RSS": "https://jolvera.dev/feed.xml"
+ },
+ {
+   "Name": "Kevin Cunningham - @dolearning",
+   "Website": "https://kevincunningham.co.uk/",
+   "RSS": "https://www.kevincunningham.co.uk/rss.xml"
+ },
+ {
+   "Name": "kottke.org",
+   "Website": "http://kottke.org/",
+   "RSS": "http://feeds.kottke.org/main"
+ },
+ {
+   "Name": "Left handed typing since 2017",
+   "Website": "https://blog.voss.co/",
+   "RSS": "https://blog.voss.co/?_t=rss"
+ },
+ {
+   "Name": "Marco Madera",
+   "Website": "https://marcomadera.com/",
+   "RSS": "https://marcomadera.com/rss.xml"
+ },
+ {
+   "Name": "MattCool.tech",
+   "Website": "https://mattcool.tech/",
+   "RSS": "https://mattcool.tech/rss.xml"
+ },
+ {
+   "Name": "Matt Mullenweg",
+   "Website": "https://ma.tt/",
+   "RSS": "https://ma.tt/feed/"
+ },
+ {
+   "Name": "Minutes to Midnight RSS feed",
+   "Website": "https://minutestomidnight.co.uk/",
+   "RSS": "https://minutestomidnight.co.uk/feed.xml"
+ },
+ {
+   "Name": "My Blog",
+   "Website": "https://grgml.xyz/",
+   "RSS": "https://grgml.xyz/feed.xml"
+ },
+ {
+   "Name": "Nick Simson",
+   "Website": "https://nicksimson.com/",
+   "RSS": "https://nicksimson.com/feed/"
+ },
+ {
+   "Name": "Oh Hello Ana",
+   "Website": "https://ohhelloana.blog/",
+   "RSS": "https://ohhelloana.blog/feed.xml"
+ },
+ {
+   "Name": "Pablo Morales",
+   "Website": "https://lifeofpablo.com/",
+   "RSS": "https://lifeofpablo.com/feed/page:feed.xml"
+ },
+ {
+   "Name": "Paul Kinchla",
+   "Website": "https://paulkinchla.com/",
+   "RSS": "https://paulkinchla.com/feed/"
+ },
+ {
+   "Name": "Ploum.net",
+   "Website": "https://ploum.net/",
+   "RSS": "https://ploum.net/atom.xml"
+ },
+ {
+   "Name": "Ricard Torres dev",
+   "Website": "https://ricard.dev/",
+   "RSS": "https://ricard.dev/feed/"
+ },
+ {
+   "Name": "Rick Cogley's Tech Logr on Rick Cogley Logr",
+   "Website": "https://logr.cogley.info/",
+   "RSS": "https://logr.cogley.info/index.xml"
+ },
+ {
+   "Name": "Roel van der Ven",
+   "Website": "https://roelvanderven.com/",
+   "RSS": "https://roelvanderven.com/feed"
+ },
+ {
+   "Name": "sanlive.com",
+   "Website": "https://sanlive.com/",
+   "RSS": "https://sanlive.com/feed.xml"
+ },
+ {
+  "Name": "Sara Jakša",
+  "Website": "https://sarajaksa.eu/",
+  "RSS": "https://sarajaksa.eu/rss.xml"
+},
+ {
+   "Name": "Seblog.nl",
+   "Website": "https://seblog.nl/feed",
+   "RSS": "https://seblog.nl/feed.rss"
+ },
+ {
+   "Name": "shellsharks",
+   "Website": "https://shellsharks.com/",
+   "RSS": "https://shellsharks.com/feed.xml"
+ },
+ {
+   "Name": "Simon Willison's Weblog",
+   "Website": "http://simonwillison.net/",
+   "RSS": "https://simonwillison.net/atom/everything/"
+ },
+ {
+   "Name": "snarfed.org",
+   "Website": "https://snarfed.org/",
+   "RSS": "https://snarfed.org/feed"
+ },
+ {
+   "Name": "Tantek Çelik",
+   "Website": "https://tantek.com/",
+   "RSS": "https://tantek.com/updates.atom"
+ },
+ {
+   "Name": "Tracy Durnell",
+   "Website": "https://tracydurnell.com/",
+   "RSS": "https://tracydurnell.com/feed/"
+ }
+]
+}
