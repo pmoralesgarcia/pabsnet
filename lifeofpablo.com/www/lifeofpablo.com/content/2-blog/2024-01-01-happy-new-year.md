@@ -8,7 +8,7 @@ Description: Great day overall!
 Image: 
 ImageAlt: 
 ---
-<article class="cf ph3 ph5-ns pv5 bg-washed-yellow dark-gray">
+<article class="cf ph3 ph5-ns pv5 dark-gray">
   <header class="fn fl-ns w-50-ns pr4-ns">
     <h1 class="mb3 mt0 lh-title dark-gray">Happy New Year</h1>
     <time class="f6 ttu tracked dark-gray">Pablo Morales</time>
