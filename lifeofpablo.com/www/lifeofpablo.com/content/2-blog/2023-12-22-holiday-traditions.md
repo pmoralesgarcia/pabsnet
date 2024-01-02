@@ -11,7 +11,9 @@ ImageAlt: Holiday
 ---
 <div class="measure f3 center mv5 black-70">
    <img src="https://images.unsplash.com/photo-1510284876186-b1a84b94418f?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="db w-100"/>
+   
    <h1 class="fw6 f3 avenir">My December Traditions</h1>
+   <a rel="alternate" href="https://lifeofpablo.com/blog/tradiciones-de-diciembre"  hreflang="es">Lea este artículo en español.</a>
    <div class="lh-copy measure f4 f3-ns black-70 baskerville" markdown="1">
 I really love the month of December. When the holidays approach, I get excited to see snow on the ground. There are so many celebrations and traditions that exist. For myself, I celebrate Mexican traditions and American celebrations. I live between the two cultures and grew up in the United States and have lived in Mexico. At my parents home, we celebrate as if we were in Mexico.
 

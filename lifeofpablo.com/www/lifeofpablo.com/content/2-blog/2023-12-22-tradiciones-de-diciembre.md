@@ -13,6 +13,7 @@ Language: es
 <div class="measure f3 center mv5 black-70">
    <img src="https://images.unsplash.com/photo-1510284876186-b1a84b94418f?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="db w-100"/>
    <h1 class="fw6 f3 avenir">Las Tradiciones de Diciembre</h1>
+   <a rel="alternate" href="https://lifeofpablo.com/blog/holiday-traditions"  hreflang="en">Read this post in English.</a>
    <div class="lh-copy measure f4 f3-ns black-70 baskerville" markdown="1">
 Me encanta mucho el mes de Diciembre. Cuando se acerca la navidad, me gusta cuando hay nieve en el suelo. Me gustan las celebraciones y tradiciones en las que participó. Yo celebro tradiciones mexicanas y celebraciones estadounidenses. Yo vivo entre las dos culturas y crecí en los Estados Unidos y he vivido en México. En casa lo celebró como si estuviera en México.
 
