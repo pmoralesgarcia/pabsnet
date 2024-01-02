@@ -11,7 +11,7 @@ Created by Robert Pfotenhauer on 03.10.23.
 <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $this->yellow->page->getContentHtml() ?>
 
-<?php $pages = $this->yellow->content->index()->filter("layout", "notes")->sort("published", false) ?>
+<?php $pages = $this->yellow->content->index()->filter("layout", "posts")->sort("published", false) ?>
 
     <?php 
     $yearCounts  = []; // An array to record the number of posts per year

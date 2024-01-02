@@ -1,6 +1,5 @@
 ---
-Title: Posts
-TitleSlug: Blog
+Title: Blog
 Layout: blog-start
 LayoutNew: blog
 ---
