@@ -11,7 +11,7 @@
 		</div>
    <div class="main h-entry" role="main">
       <?php if ($this->yellow->page->get("blogWithFilter")): ?>
-      <div class="entry-title p-title">
+      <div class="entry-title">
          <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
       </div>
 	  
@@ -23,7 +23,7 @@
       <?php foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) { $page->set("entryClass", $page->get("entryClass")." tag-".$this->yellow->lookup->normaliseArguments($tag, false)); } ?>
       <?php endif ?>
       <div class="<?php echo $page->getHtml("entryClass") ?>">
-         <div class="entry-title">
+         <div class="entry-title p-title">
             <h1><a class="u-url" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a></h1>
          </div>
          <div class="entry-meta">
