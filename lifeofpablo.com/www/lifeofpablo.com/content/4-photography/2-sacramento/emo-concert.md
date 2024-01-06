@@ -11,7 +11,7 @@ This is a clip of an emo concert I went to in Sacramento.
 
 Recorded on [Panasocnic PV-DV910](https://duckduckgo.com/?t=ffab&q=panasonic+pv-dv910&ia=web) on [miniDV tapes](https://duckduckgo.com/?q=minidv+tapes&t=ffab&ia=web)
 
-<div class="center w-75 br2" markdown="1">
+<div class="center w-75 mw-100 br2" markdown="1">
 
 [image https://photos.lifeofpablo.com/sacramento/emo-concert/DVC00026.JPG "emo concert" ].  
 [image https://photos.lifeofpablo.com/sacramento/emo-concert/DVC00027.JPG "emo concert" ]

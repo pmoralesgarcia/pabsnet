@@ -1,0 +1,45 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+<div class="main h-entry" role="main">
+<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+
+<section class="cf w-100 pa2-ns">
+<?php
+$catalog_json = file_get_contents('media/downloads/vinyls.json');
+
+$decoded_json = json_decode($catalog_json, true);
+
+$items = $decoded_json['vinyls'];
+
+
+foreach($items as $item) {
+  $name = $item['title'];
+  $artist = $item['artist'];
+	$cover = $item['thumbnail_url'];
+  $info_url = $item['info_url'];
+
+  
+    echo '<article class="fl w-100 w-50-m  w-25-ns pa2-ns">';
+    echo '<div class="aspect-ratio aspect-ratio--1x1">';
+    echo '<img src="'.$cover.'" alt="'.$name.' album cover"';
+    echo 'class="db bg-center cover aspect-ratio--object" />';
+    echo '</div>';
+    echo '<a href="'.$info_url.'" class="ph2 ph0-ns pb3 link db">';
+    echo '<h3 class="f5 f4-ns mb0 black-90">'.$name.'</h3>';
+    echo '<h3 class="f6 f5 fw4 mt2 black-60 wrap">'.$artist.'</h3>';
+    echo '</a>';
+    echo '</article>';
+
+}
+?>
+</section>
+
+
+<div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+         </div>
+</div>
+</div>
+<?php $this->yellow->layout("footer") ?>
+
+
