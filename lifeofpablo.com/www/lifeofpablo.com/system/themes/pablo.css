@@ -319,12 +319,14 @@ border: none;
 
 /* Footer */
 
-.footer {
+/* .footer {
     margin: 10em 0;
-}
+} */
+
 .footer .siteinfo a {
     color: var(--link);
 }
+
 .footer .siteinfo a:hover {
     color: var(--link);
     text-decoration: underline;
