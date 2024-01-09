@@ -18,8 +18,8 @@ services:
             max-file: "3"
   lifeofpablo:
     container_name: lifeofpablo-com
-    ports:
-      - "8080:80"
+    expose:
+      - 80
     build:
       context: .
       dockerfile: ./lifeofpablo.com/Dockerfile
