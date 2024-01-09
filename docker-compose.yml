@@ -1,19 +1,19 @@
 services:
   nginx:
-   container_name: nginx
-   image: nginxproxy/nginx-proxy
-   restart: unless-stopped
-   ports:
-       - 80:80
-       - 443:443
-   volumes:
-       - /var/run/docker.sock:/tmp/docker.sock:ro
-       - /var/docker/nginx/html:/usr/share/nginx/html
-       - /var/docker/nginx/certs:/etc/nginx/certs
-       - /var/docker/nginx/vhost:/etc/nginx/vhost.d
-       - /var/docker/nginx/conf:/etc/nginx/conf.d
-   logging:
-       options:
+    container_name: nginx
+    image: nginxproxy/nginx-proxy
+    restart: unless-stopped
+    ports:
+        - 80:80
+        - 443:443
+    volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+        - /var/docker/nginx/html:/usr/share/nginx/html
+        - /var/docker/nginx/certs:/etc/nginx/certs
+        - /var/docker/nginx/vhost:/etc/nginx/vhost.d
+        - /var/docker/nginx/conf:/etc/nginx/conf.d
+    logging:
+        options:
             max-size: "10m"
             max-file: "3"
   lifeofpablo:
@@ -25,9 +25,18 @@ services:
       dockerfile: ./lifeofpablo.com/Dockerfile
     volumes:
       - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
+  rp-lifeofpablo:
+    container_name: rp-lifeofpablo
+    image: nginx:bookworm
+    ports: 
+      - 8123:80
+    volumes:
+      - ./nginx-proxy/lifeofpablo:/etc/nginx/default.d
     environment:
       VIRTUAL_HOST: lifeofpablo.com
-      #  LETSENCRYPT_HOST: lifeofpablo.com
+     # LETSENCRYPT_HOST: lifeofpablo.com
+    depends_on:
+      - kanboard 
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
