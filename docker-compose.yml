@@ -25,8 +25,6 @@ services:
       dockerfile: ./lifeofpablo.com/Dockerfile
     volumes:
       - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
-    depends_on:
-      - lifeofpablo 
     environment:
       - VIRTUAL_HOST=lifeofpablo.com
   bludit:
