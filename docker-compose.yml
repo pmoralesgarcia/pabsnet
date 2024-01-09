@@ -1,8 +1,8 @@
 services:
-  nginx:
-    container_name: nginx
-    image: nginxproxy/nginx-proxy
-    restart: unless-stopped
+#  nginx:
+#    container_name: nginx
+#    image: nginxproxy/nginx-proxy
+#    restart: unless-stopped
     ports:
         - 80:80
         - 443:443
@@ -18,8 +18,8 @@ services:
             max-file: "3"
   lifeofpablo:
     container_name: lifeofpablo-com
-    expose:
-      - 80
+    ports:
+      - 8081:80
     build:
     #  context: .
       dockerfile: ./lifeofpablo.com/Dockerfile
