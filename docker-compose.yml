@@ -21,12 +21,13 @@ services:
     expose:
       - 80
     build:
-      context: .
+    #  context: .
       dockerfile: ./lifeofpablo.com/Dockerfile
     volumes:
       - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
     environment:
       VIRTUAL_HOST: lifeofpablo.com
+     # LETSENCRYPT_HOST: lifeofpablo.com
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
