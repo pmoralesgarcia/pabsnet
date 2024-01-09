@@ -4,7 +4,7 @@ Published: 2024-01-08 14:29:49
 Author: Pablo Morales
 Layout: blog
 Tag: coffee shop, matcha, latte, matcha latte
-Description: I'm getting closer to be Google IT Certifified.
+Description: Matcha is good for the soul.
 Image: https://static.lifeofpablo.com/media/images/blog-images/matcha/IMG_7362.jpeg
 ImageAlt: Matcha Latte
 ---
