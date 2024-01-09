@@ -1,5 +1,5 @@
 services:
-   nginx:
+  nginx:
    container_name: nginx
    image: nginxproxy/nginx-proxy
    restart: unless-stopped
@@ -74,7 +74,7 @@ services:
       # see https://github.com/matomo-org/matomo-nginx
       - ./matomo/matomo.conf:/etc/nginx/conf.d/default.conf:z,ro
     environment:
-    #  VIRTUAL_HOST: matomo.lifeofpablo.com
+      VIRTUAL_HOST: matomo.lifeofpablo.com
     ports:
       - 8210:80
     depends_on:
