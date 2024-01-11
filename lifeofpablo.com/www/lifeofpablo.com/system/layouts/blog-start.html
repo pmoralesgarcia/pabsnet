@@ -9,9 +9,9 @@
 		<a class="f6 link hover-orange ph3 pv2 mb2 dib white bg-black dib" href="archive">Blog Archive</a>
 		<a class="f6 link hover-orange ph3 pv2 mb2 dib white bg-black dib" href="roll">Blog Roll</a>
 		</div>
-   <div class="main h-entry" role="main">
+   <div class="main h-feed" role="main">
       <?php if ($this->yellow->page->get("blogWithFilter")): ?>
-      <div class="entry-title">
+      <div class="p-name">
          <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
       </div>
 	  
@@ -23,8 +23,8 @@
       <?php foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) { $page->set("entryClass", $page->get("entryClass")." tag-".$this->yellow->lookup->normaliseArguments($tag, false)); } ?>
       <?php endif ?>
       <div class="<?php echo $page->getHtml("entryClass") ?>">
-         <div class="entry-title p-title">
-            <h1><a class="u-url" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a></h1>
+         <div class="entry-title h-entry">
+            <h1><a class="p-name u-url" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a></h1>
          </div>
          <div class="entry-meta">
             <p><span class="dt-published"><?php echo $page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card"><?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span></p>
@@ -35,6 +35,9 @@
       <hr class="rounded">
       <?php endforeach ?>
       <?php $this->yellow->layout("pagination", $pages) ?>
+      <div class="permalink">Permalink: 
+         <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+      </div>
    </div>
 </div>
 <?php $this->yellow->layout("footer") ?>
