@@ -101,7 +101,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - DATABASE_URL=postgres://miniflux:secret@postgress/miniflux?sslmode=disable
+      - DATABASE_URL=postgres://miniflux:secret@postgres/miniflux?sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${FRESHRSS_USER}
