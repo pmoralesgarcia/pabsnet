@@ -88,7 +88,7 @@ services:
       - freshrss_data:/var/www/FreshRSS/data
       - freshrss_extensions:/var/www/FreshRSS/extensions
     ports:
-      - 8085:80
+      - 8069:80
     restart: always
     logging:
       options:
@@ -110,14 +110,39 @@ services:
         --language en
         --password ${FRESHRSS_PASSWORD}
         --user ${FRESHRSS_USER}
-  vp-proxy-freshrss:
+  miniflux:
+    image: miniflux/miniflux:latest
+    ports:
+      - "8085:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgres://miniflux:secret@postgress/miniflux?sslmode=disable
+      - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
+      - ADMIN_USERNAME=${FRESHRSS_USER}
+      - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=${FRESHRSS_MYSQL_USER}
+      - POSTGRES_PASSWORD=${FRESHRSS_MYSQL_PASSWORD}
+      - POSTGRES_DB=miniflux
+    volumes:
+      - miniflux-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "miniflux"]
+      interval: 10s
+      start_period: 30s
+  vp-proxy-miniflux:
     image: nginx:latest
-    container_name: vp-proxy-freshrss
+    container_name: vp-proxy-miniflux
     environment:
       VIRTUAL_HOST: reader.lifeofpablo.com
     #  LETSENCRYPT_HOST: reader.lifeofpablo.com
     volumes:
-      - ./nginx-proxy/freshrss:/etc/nginx/conf.d
+      - ./nginx-proxy/miniflux:/etc/nginx/conf.d
     ports:
       - 8112:80
   vouch-proxy:
@@ -166,3 +191,4 @@ volumes:
  matomo:
  freshrss_data:
  freshrss_extensions:
+ miniflux-db:
