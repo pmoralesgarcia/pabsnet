@@ -109,7 +109,7 @@ services:
   postgres:
     image: postgres:15
     environment:
-      - POSTGRES_USER=${FRESHRSS_MYSQL_USER}
+      - POSTGRES_USER=miniflux
       - POSTGRES_PASSWORD=${FRESHRSS_MYSQL_PASSWORD}
       - POSTGRES_DB=miniflux
     volumes:
