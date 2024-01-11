@@ -41,8 +41,8 @@ The other purpose of coming to Bruxelles was to meet up with our friend Kellie a
 Bruxelles treated everyone well!
 
  
- <video width="350px"height="auto" controls>
-  <source src="https://f005.backblazeb2.com/file/lifeofpablo/media/videos/goodbye.mp4" type="video/mp4">
+ <video class="center" width="350px"height="auto" controls>
+  <source src="https://static.lifeofpablo.com/media/videos/goodbye.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video> 
 
