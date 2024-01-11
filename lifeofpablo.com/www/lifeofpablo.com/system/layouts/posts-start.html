@@ -74,7 +74,7 @@ Created by Robert Pfotenhauer on 03.10.23.
             <div class="archive-posts m-100 w-5">
             <?php foreach ($monthGroup as $page): ?>
                 <div class="archive-entry h-entry">
-                    <a class="u-url entry-link link" href="<?php echo $page->getLocation(true) ?>"><p class="p-name"><?php echo $page->getHtml("title") ?></p>&nbsp;</a>
+                    <a class="u-url entry-link link" href="<?php echo $page->getLocation(true) ?>"><span class="p-name"><?php echo $page->getHtml("title") ?></span>&nbsp;</a>
                     <div class="archive-meta dt-published">
                         <?php echo $page->getDateHtml("published") ?>
                     </div>
