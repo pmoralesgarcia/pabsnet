@@ -75,6 +75,8 @@ services:
       DATABASE_URL: postgresql://umami:${FRESHRSS_MYSQL_PASSWORD}@postgres-unami:5432/umami
       DATABASE_TYPE: postgresql
       APP_SECRET: ${FRESHRSS_API_PASSWORD}
+      VIRTUAL_HOST: stats.lifeofpablo.com
+      LETSENCRYPT_HOST: stats.lifeofpablo.com
     depends_on:
       postgres-unami:
         condition: service_healthy
@@ -84,9 +86,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-    environment:
-      VIRTUAL_HOST: stats.lifeofpablo.com
-      LETSENCRYPT_HOST: stats.lifeofpablo.com
   postgres-unami:
     image: postgres:15-alpine
     environment:
