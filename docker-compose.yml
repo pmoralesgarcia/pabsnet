@@ -45,7 +45,7 @@ services:
     ports:
       - 8098:80
     volumes:
-      - bludit:/home/pablo/bludit:/usr/share/nginx/html/bl-content
+      - bludit:/usr/share/nginx/html/bl-content
     restart: always
     environment:
       VIRTUAL_HOST: picassos.lifeofpablo.com
