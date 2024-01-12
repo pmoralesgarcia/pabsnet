@@ -33,35 +33,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MARIADB_AUTO_UPGRADE=1
-      - MARIADB_DISABLE_UPGRADE_BACKUP=1
-    env_file:
-      - ./matomo/db.env
-  matomo:
-    image: matomo
-    restart: always
-    volumes:
-      # - ./config:/var/www/html/config:z
-      # - ./logs:/var/www/html/logs:z
-      - matomo:/var/www/html:z
-    environment:
-      - MATOMO_DATABASE_HOST=mariadb
-      - PHP_MEMORY_LIMIT=2048M
-    env_file:
-      - ./matomo/db.env
-  matomo-nginx:
-    container_name: matomo-nginx
-    image: nginx:alpine
-    restart: always
-    volumes:
-      - matomo:/var/www/html:z,ro
-      # see https://github.com/matomo-org/matomo-nginx
-      - ./matomo/matomo.conf:/etc/nginx/conf.d/default.conf:z,ro
-    environment:
-      VIRTUAL_HOST: matomo.lifeofpablo.com
-    ports:
-      - 8210:80
-    depends_on:
-      - matomo
+      - MARIADB_DISABLE_UPGRADE_BACKUP=1  
   freshrss:
     depends_on:
       - mariadb
@@ -106,6 +78,37 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${FRESHRSS_USER}
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    ports:
+      - "8243:3000"
+    environment:
+      DATABASE_URL: postgresql://umami:${FRESHRSS_MYSQL_PASSWORD}@postgres-unami:5432/umami
+      DATABASE_TYPE: postgresql
+      APP_SECRET: ${FRESHRSS_API_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  postgres-unami:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: ${FRESHRSS_MYSQL_PASSWORD}
+    volumes:
+      - umami-db-data:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   postgres:
     image: postgres:15
     environment:
@@ -138,40 +141,8 @@ services:
     restart: always
     environment:
       VIRTUAL_HOST: auth.lifeofpablo.com
-  shlink:
-    container_name: pabs-lol
-    image: shlinkio/shlink:3.6.3-openswoole
-    ports:
-      - 8110:8080
-    environment:
-      - DEFAULT_DOMAIN=pabs.lol
-      - DB_DRIVER=mysql
-      - DB_USER=${SHLINK_MYSQL_USER}
-      - DB_PASSWORD=${SHLINK_MYSQL_PASSWORD}
-      - DB_HOST=mariadb
-      - INITIAL_API_KEY=${SHLINK_API_KEY}
-    restart: always
-    depends_on:
-      - mariadb
-  shlink-web-client:
-    container_name: pabs-lol-web-client
-    image: shlinkio/shlink-web-client:3.10
-    ports:
-      - 8111:80
-    environment:
-      - SHLINK_SERVER_URL=https://pabs.lol
-      - SHLINK_SERVER_API_KEY=${SHLINK_API_KEY}
-      - SHLINK_SERVER_NAME=Pabs
-    restart: always
-  httpbin:
-    container_name: httpbin
-    image: kennethreitz/httpbin
-    ports:
-      - 8209:80
 volumes:
  bludit:
  mariadb:
- matomo:
- freshrss_data:
- freshrss_extensions:
  miniflux-db:
+ umami-db-data:
