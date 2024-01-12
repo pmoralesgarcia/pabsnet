@@ -36,6 +36,9 @@ services:
     volumes:
       - bludit:/home/pablo/bludit:/usr/share/nginx/html/bl-content
     restart: always
+    environment:
+      VIRTUAL_HOST: picassos.lifeofpablo.com
+      LETSENCRYPT_HOST: picassos.lifeofpablo.com
   lifeofpablo-now:
     image: ghcr.io/pmoralesgarcia/now:latest
     ports:
@@ -81,6 +84,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    environment:
+      VIRTUAL_HOST: stats.lifeofpablo.com
+      LETSENCRYPT_HOST: stats.lifeofpablo.com
   postgres-unami:
     image: postgres:15-alpine
     environment:
@@ -110,13 +116,13 @@ services:
   vp-proxy-miniflux:
     image: nginx:latest
     container_name: vp-proxy-miniflux
-    environment:
-      VIRTUAL_HOST: reader.lifeofpablo.com
-    #  LETSENCRYPT_HOST: reader.lifeofpablo.com
     volumes:
       - ./nginx-proxy/miniflux:/etc/nginx/conf.d
     ports:
       - 8112:80
+    environment:
+      VIRTUAL_HOST: reader.lifeofpablo.com
+      LETSENCRYPT_HOST: reader.lifeofpablo.com
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
@@ -127,6 +133,7 @@ services:
     restart: always
     environment:
       VIRTUAL_HOST: auth.lifeofpablo.com
+      LETSENCRYPT_HOST: auth.lifeofpablo.com
 volumes:
  bludit:
  mariadb:
