@@ -1,16 +1,33 @@
 services:
-  lifeofpablo:
-    container_name: lifeofpablo-com
+  nginx:
+    container_name: nginx
+    image: nginxproxy/nginx-proxy
+    restart: unless-stopped
     ports:
-      - 8081:80
-    build:
-      context: ./lifeofpablo.com
-      dockerfile: Dockerfile
+        - 80:80
+        - 443:443
     volumes:
-      - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
-    environment:
-      VIRTUAL_HOST: lifeofpablo.com
-     # LETSENCRYPT_HOST: lifeofpablo.com
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+        - /var/docker/nginx/html:/usr/share/nginx/html
+        - /var/docker/nginx/certs:/etc/nginx/certs
+        - /var/docker/nginx/vhost:/etc/nginx/vhost.d
+        - /var/docker/nginx/conf:/etc/nginx/conf.d
+    logging:
+        options:
+            max-size: "10m"
+            max-file: "3"
+#  lifeofpablo:
+#    container_name: lifeofpablo-com
+#    ports:
+#      - 8081:80
+#    build:
+#      context: ./lifeofpablo.com
+#      dockerfile: Dockerfile
+#    volumes:
+#      - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
+#    environment:
+#      VIRTUAL_HOST: lifeofpablo.com
+#     # LETSENCRYPT_HOST: lifeofpablo.com
   bludit:
     container_name: pablospicassos
     image: bludit/docker:3.13.1
