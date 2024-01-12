@@ -19,9 +19,9 @@ jobs:
           export-env: false
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          USERNAME: op://pablo/production-server/username
-          PRIVATE_SSH_KEY: op://pablo/production-server/key
-          SERVER_HOST: op://pablo/production-server/host
+          USERNAME: op://pablo/pabsnet2/username
+          PRIVATE_SSH_KEY: op://pablo/pabsnet2/private key
+          SERVER_HOST: op://pablo/pabsnet2/host
           MYSQL_ROOT_PASSWORD: op://pablo/mariadb-docker/root_password
           FRESHRSS_MYSQL_USER: op://pablo/freshrss-docker/mysql_user
           FRESHRSS_MYSQL_PASSWORD: op://pablo/freshrss-docker/mysql_password
