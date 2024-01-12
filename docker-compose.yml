@@ -78,39 +78,6 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${FRESHRSS_USER}
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
-  umami:
-    image: ghcr.io/umami-software/umami:postgresql-latest
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: postgresql://umami:${FRESHRSS_MYSQL_PASSWORD}@postgres-unami:5432/umami
-      DATABASE_TYPE: postgresql
-      APP_SECRET: ${FRESHRSS_API_PASSWORD}
-      VIRTUAL_HOST: stats.lifeofpablo.com
-      LETSENCRYPT_HOST: stats.lifeofpablo.com
-    depends_on:
-      postgres-unami:
-        condition: service_healthy
-    restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "curl http://localhost:3000/api/heartbeat"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-  postgres-unami:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_DB: umami
-      POSTGRES_USER: umami
-      POSTGRES_PASSWORD: ${FRESHRSS_MYSQL_PASSWORD}
-    volumes:
-      - umami-db-data:/var/lib/postgresql/data
-    restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
   postgres:
     image: postgres:15
     environment:
@@ -148,4 +115,3 @@ volumes:
  bludit:
  mariadb:
  miniflux-db:
- umami-db-data:
