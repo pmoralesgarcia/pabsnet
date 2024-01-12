@@ -34,37 +34,6 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MARIADB_AUTO_UPGRADE=1
       - MARIADB_DISABLE_UPGRADE_BACKUP=1  
-  freshrss:
-    depends_on:
-      - mariadb
-      - vouch-proxy
-    image: freshrss/freshrss
-    volumes:
-      - freshrss_data:/var/www/FreshRSS/data
-      - freshrss_extensions:/var/www/FreshRSS/extensions
-    ports:
-      - 8069:80
-    restart: always
-    logging:
-      options:
-        max-size: 10m
-    environment:
-      TRUSTED_PROXY: "0.0.0.0/0"
-      FRESHRSS_INSTALL: |-
-        --api_enabled
-        --db-base freshrss
-        --db-host mariadb
-        --db-password ${FRESHRSS_MYSQL_PASSWORD}
-        --db-type mysql
-        --db-user ${FRESHRSS_MYSQL_USER}
-        --default_user ${FRESHRSS_USER}
-        --language en
-      FRESHRSS_USER: |-
-        --api_password ${FRESHRSS_API_PASSWORD}
-        --email ${FRESHRSS_EMAIL}
-        --language en
-        --password ${FRESHRSS_PASSWORD}
-        --user ${FRESHRSS_USER}
   miniflux:
     image: miniflux/miniflux:latest
     ports:
@@ -87,7 +56,7 @@ services:
       DATABASE_TYPE: postgresql
       APP_SECRET: ${FRESHRSS_API_PASSWORD}
     depends_on:
-      db:
+      postgres-unami:
         condition: service_healthy
     restart: always
     healthcheck:
