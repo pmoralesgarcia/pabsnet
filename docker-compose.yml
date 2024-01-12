@@ -4,8 +4,8 @@ services:
     ports:
       - 8081:80
     build:
-      context: .
-      dockerfile: ./lifeofpablo.com/Dockerfile
+      context: ./lifeofpablo
+      dockerfile: ./Dockerfile
     volumes:
       - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
     environment:
