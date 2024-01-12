@@ -78,6 +78,8 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${FRESHRSS_USER}
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
+      - VIRTUAL_HOST=reader.lifeofpablo.com
+      - LETSENCRYPT_HOST=reader.lifeofpablo.com
   postgres:
     image: postgres:15
     environment:
@@ -97,9 +99,6 @@ services:
       - ./nginx-proxy/miniflux:/etc/nginx/conf.d
     ports:
       - 8112:80
-    environment:
-      VIRTUAL_HOST: reader.lifeofpablo.com
-      LETSENCRYPT_HOST: reader.lifeofpablo.com
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
