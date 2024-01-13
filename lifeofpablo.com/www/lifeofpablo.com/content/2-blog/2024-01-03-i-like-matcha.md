@@ -8,7 +8,8 @@ Description: Matcha is good for the soul.
 Image: https://static.lifeofpablo.com/media/images/blog-images/matcha/IMG_7362.jpeg
 ImageAlt: Matcha Latte
 ---
-[image https://static.lifeofpablo.com/media/images/blog-images/matcha/IMG_7362.jpeg "matcha latte"]
+
+![matcha latte](https://static.lifeofpablo.com/media/images/blog-images/matcha/IMG_7362.jpeg)
 
 Like is an understatement, I love matcha! I started to consume matcha two years ago. Ever since, I've been hooked on it. I love getting matcha from different places from coffee shops or restaurants because when mixed in for a drink, each place makes it different. Most of the time, I consume matcha as a tea or as a latte. There is something so special about getting in a different city. When I was visiting New York City, I lived on matcha lattes and matcha teas to keep me going on the miles and miles of walking that I'm not used to doing. Being a city like New York, it is exhausting mentally and physically due to the stimuli and increased physical activity from the sedentary lifestyle.
 
