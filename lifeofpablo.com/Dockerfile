@@ -1,7 +1,7 @@
-FROM debian:bookworm
+FROM ubuntu:23.10
 
 RUN apt update -y && \
-	apt install -y nginx php-fpm zip wget unzip curl sendmail
+	apt install -y nginx php-fpm zip wget unzip curl
 
 RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 
@@ -10,9 +10,9 @@ RUN apt update -y && \
 
 #RUN mkdir -p /var/www/lifeofpablo.com  
 
-#VOLUME /var/www/lifeofpablo.com
+VOLUME /var/www/lifeofpablo.com
 
-#WORKDIR  /var/www/lifeofpablo.com
+WORKDIR  /var/www/lifeofpablo.com
 
 #RUN curl -L https://github.com/datenstrom/yellow/archive/main.zip -o yellow-main.zip
 
@@ -26,11 +26,11 @@ RUN apt update -y && \
 
 RUN chmod -R a+rw /var/www/lifeofpablo.com
 
-COPY ./nginx/lifeofpablo.com.conf /etc/nginx/sites-enabled/default
+COPY ./lifeofpablo.com/nginx/lifeofpablo.com.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 80
 
-COPY ./start.sh / 
+COPY ./lifeofpablo.com/start.sh / 
 
 CMD ["sh", "/start.sh"]
 
