@@ -2,7 +2,7 @@
 Title: Oaxaca 2010
 Published: 2023-03-01
 ---
-<div markdown="1">
+<div class="measure center" markdown="1">
 [image https://photos.lifeofpablo.com/mexico-trip-2010/33530_427110553395_3153841_n_427110553395.jpg]
 [image https://photos.lifeofpablo.com/mexico-trip-2010/33530_427110558395_3873046_n_427110558395.jpg]
 [image https://photos.lifeofpablo.com/mexico-trip-2010/33530_427110563395_5065708_n_427110563395.jpg]
