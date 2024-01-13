@@ -40,7 +40,7 @@ services:
 #      VIRTUAL_HOST: lifeofpablo.com
 #     # LETSENCRYPT_HOST: lifeofpablo.com
   bludit:
-    container_name: pablospicassos
+    container_name: picassos
     image: bludit/docker:3.13.1
     ports:
       - 8098:80
