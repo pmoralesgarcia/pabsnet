@@ -1,6 +1,6 @@
 FROM ubuntu:23.10
 
-RUN add-apt-repository ppa:ondrej/php
+RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 
 RUN apt update -y && \
 	apt install -y nginx php-fpm zip wget unzip curl
