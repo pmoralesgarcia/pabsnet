@@ -28,14 +28,23 @@ services:
     environment:
         DEFAULT_EMAIL: ${DEFAULT_EMAIL}
   lifeofpablo:
-    container_name: lifeofpablo-com
+    container_name: lifeofpablo
+    image: nginx:latest
     ports:
-      - 8081:80
-    build:
-      context: ./
-      dockerfile: ./lifeofpablo.com/Dockerfile
+      - '8081:80'
     volumes:
-      - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/lifeofpablo.com
+      - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/html
+      - ./nginx-proxy/lifeofpablo/default.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php-fpm
+    environment:
+      - VIRTUAL_HOST=lifeofpablo.com
+      - LETSENCRYPT_HOST=lifeofpablo.com
+  php-fpm:
+    build: 
+      dockerfile: ./php/Dockerfile
+    volumes:
+      - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/html
   mariadb:
     image: mariadb:10.11
     command: --max-allowed-packet=64MB
