@@ -2,7 +2,7 @@
 // Update extension, https://github.com/annaesvensson/yellow-update
 
 class YellowUpdate {
-    const VERSION = "0.8.97";
+    const VERSION = "0.8.92";
     const PRIORITY = "2";
     public $yellow;                 // access to API
     public $extensions;             // number of extensions
@@ -10,11 +10,11 @@ class YellowUpdate {
     // Handle initialisation
     public function onLoad($yellow) {
         $this->yellow = $yellow;
-        $this->yellow->system->setDefault("updateCurrentRelease", "none");
-        $this->yellow->system->setDefault("updateLatestUrl", "auto");
+        $this->yellow->system->setDefault("updateExtensionUrl", "https://github.com/datenstrom/yellow-extensions");
+        $this->yellow->system->setDefault("updateExtensionFile", "extension.ini");
         $this->yellow->system->setDefault("updateLatestFile", "update-latest.ini");
         $this->yellow->system->setDefault("updateCurrentFile", "update-current.ini");
-        $this->yellow->system->setDefault("updateExtensionFile", "extension.ini");
+        $this->yellow->system->setDefault("updateCurrentRelease", "none");
         $this->yellow->system->setDefault("updateEventPending", "none");
         $this->yellow->system->setDefault("updateEventDaily", "0");
         $this->yellow->system->setDefault("updateTrashTimeout", "7776660");
@@ -28,7 +28,7 @@ class YellowUpdate {
             foreach ($this->yellow->toolbox->getDirectoryEntries($path, "/^.*\.download$/", false, false) as $entry) {
                 if (!$this->yellow->toolbox->deleteFile($entry)) $statusCode = 500;
             }
-            if ($statusCode==500) $this->yellow->toolbox->log("error", "Can't delete files in directory '$path'!");
+            if ($statusCode==500) $this->yellow->log("error", "Can't delete files in directory '$path'!");
             $statusCode = 200;
             $path = $this->yellow->system->get("coreTrashDirectory");
             foreach ($this->yellow->toolbox->getDirectoryEntries($path, "/.*/", false, false) as $entry) {
@@ -39,7 +39,7 @@ class YellowUpdate {
                 $expire = $this->yellow->toolbox->getFileDeleted($entry) + $this->yellow->system->get("updateTrashTimeout");
                 if ($expire<=time() && !$this->yellow->toolbox->deleteDirectory($entry)) $statusCode = 500;
             }
-            if ($statusCode==500) $this->yellow->toolbox->log("error", "Can't delete files in directory '$path'!");
+            if ($statusCode==500) $this->yellow->log("error", "Can't delete files in directory '$path'!");
         }
     }
     
@@ -82,17 +82,13 @@ class YellowUpdate {
             if ($text=="release") $output = "Datenstrom Yellow ".YellowCore::RELEASE;
             if ($text=="log") {
                 $fileName = $this->yellow->system->get("coreExtensionDirectory").$this->yellow->system->get("coreWebsiteFile");
-                $fileHandle = @fopen($fileName, "rb");
+                $fileHandle = @fopen($fileName, "r");
                 if ($fileHandle) {
-                    clearstatcache(true, $fileName);
-                    if (flock($fileHandle, LOCK_SH)) {
-                        $dataBufferSize = 1024;
-                        fseek($fileHandle, max(0, filesize($fileName) - $dataBufferSize));
-                        $dataBuffer = fread($fileHandle, $dataBufferSize);
-                        if (strlenb($dataBuffer)==$dataBufferSize) {
-                            $dataBuffer = ($pos = strposu($dataBuffer, "\n")) ? substru($dataBuffer, $pos+1) : $dataBuffer;
-                        }
-                        flock($fileHandle, LOCK_UN);
+                    $dataBufferSize = 512;
+                    fseek($fileHandle, max(0, filesize($fileName) - $dataBufferSize));
+                    $dataBuffer = fread($fileHandle, $dataBufferSize);
+                    if (strlenb($dataBuffer)==$dataBufferSize) {
+                        $dataBuffer = ($pos = strposu($dataBuffer, "\n")) ? substru($dataBuffer, $pos+1) : $dataBuffer;
                     }
                     fclose($fileHandle);
                 }
@@ -111,7 +107,7 @@ class YellowUpdate {
             if ($statusCode==200) {
                 foreach ($settings as $key=>$value) {
                     echo ucfirst($key)." ".$value->get("version")." - ".$this->getExtensionDescription($key, $value)."\n";
-                    if ($value->isExisting("documentationUrl")) echo "Read more at ".$value->get("documentationUrl")."\n";
+                    echo $this->getExtensionDocumentation($key, $value)."\n";
                 }
             }
             if ($statusCode>=400) echo "ERROR checking extensions: ".$this->yellow->page->errorMessage."\n";
@@ -233,11 +229,11 @@ class YellowUpdate {
         foreach ($settings as $key=>$value) {
             $fileName = $path.$this->yellow->lookup->normaliseName($key, true, false, true).".zip";
             list($statusCode, $fileData) = $this->getExtensionFile($value->get("downloadUrl"));
-            if ($statusCode==200 && !$this->yellow->toolbox->createFile($fileName.".download", $fileData)) {
+            if (is_string_empty($fileData) || !$this->yellow->toolbox->createFile($fileName.".download", $fileData)) {
                 $statusCode = 500;
                 $this->yellow->page->error($statusCode, "Can't write file '$fileName'!");
+                break;
             }
-            if ($statusCode!=200) break;
         }
         if ($statusCode==200) {
             foreach ($settings as $key=>$value) {
@@ -283,7 +279,11 @@ class YellowUpdate {
                 foreach ($this->getExtensionFileNames($settings) as $fileName) {
                     list($entry, $flags) = $this->yellow->toolbox->getTextList($settings[$fileName], ",", 2);
                     if (!$this->yellow->lookup->isContentFile($fileName)) {
-                        $fileNameSource = $pathBase.$entry;
+                        if (preg_match("/^@base/i", $entry)) {
+                            $fileNameSource = preg_replace("/@base/i", rtrim($pathBase, "/"), $entry);
+                        } else {
+                            $fileNameSource = $pathBase.$entry;
+                        }
                         $fileData = $zip->getFromName($fileNameSource);
                         $lastModified = $this->yellow->toolbox->getFileModified($fileName);
                         $statusCode = max($statusCode, $this->updateExtensionFile($fileName, $fileData,
@@ -300,7 +300,7 @@ class YellowUpdate {
                     }
                 }
                 $statusCode = max($statusCode, $this->updateExtensionNotification($extension, $action));
-                $this->yellow->toolbox->log($statusCode==200 ? "info" : "error", ucfirst($action)." extension '".ucfirst($extension)." $version'");
+                $this->yellow->log($statusCode==200 ? "info" : "error", ucfirst($action)." extension '".ucfirst($extension)." $version'");
                 ++$this->extensions;
             } else {
                 $statusCode = 500;
@@ -372,7 +372,7 @@ class YellowUpdate {
             unset($this->yellow->extension->data["updatepatch"]);
             if (function_exists("opcache_reset")) opcache_reset();
             if (!$this->yellow->toolbox->deleteFile($fileName)) {
-                $this->yellow->toolbox->log("error", "Can't delete file '$fileName'!");
+                $this->yellow->log("error", "Can't delete file '$fileName'!");
             }
         }
     }
@@ -383,11 +383,11 @@ class YellowUpdate {
             if ($this->yellow->system->get("updateCurrentRelease")!=YellowCore::RELEASE) {
                 $fileName = $this->yellow->system->get("coreExtensionDirectory").$this->yellow->system->get("coreSystemFile");
                 if (!$this->yellow->system->save($fileName, array("updateCurrentRelease" => YellowCore::RELEASE))) {
-                    $this->yellow->toolbox->log("error", "Can't write file '$fileName'!");
+                    $this->yellow->log("error", "Can't write file '$fileName'!");
                 } else {
                     list($name, $version, $os) = $this->yellow->toolbox->detectServerInformation();
                     $product = "Datenstrom Yellow ".YellowCore::RELEASE;
-                    $this->yellow->toolbox->log("info", "Update $product, PHP ".PHP_VERSION.", $name $version, $os");
+                    $this->yellow->log("info", "Update $product, PHP ".PHP_VERSION.", $name $version, $os");
                 }
             }
             if ($this->yellow->system->get("updateEventPending")!="none") {
@@ -402,7 +402,7 @@ class YellowUpdate {
                 $this->updateLanguageSettings("all", $action);
                 $fileName = $this->yellow->system->get("coreExtensionDirectory").$this->yellow->system->get("coreSystemFile");
                 if (!$this->yellow->system->save($fileName, array("updateEventPending" => "none"))) {
-                    $this->yellow->toolbox->log("error", "Can't write file '$fileName'!");
+                    $this->yellow->log("error", "Can't write file '$fileName'!");
                 }
             }
             if ($this->yellow->system->get("updateEventDaily")<=time()) {
@@ -411,7 +411,7 @@ class YellowUpdate {
                 }
                 $fileName = $this->yellow->system->get("coreExtensionDirectory").$this->yellow->system->get("coreSystemFile");
                 if (!$this->yellow->system->save($fileName, array("updateEventDaily" => $this->getTimestampDaily()))) {
-                    $this->yellow->toolbox->log("error", "Can't write file '$fileName'!");
+                    $this->yellow->log("error", "Can't write file '$fileName'!");
                 }
             }
         }
@@ -425,7 +425,7 @@ class YellowUpdate {
             $statusCode = $this->updateExtensions("install");
             if ($statusCode==200) $statusCode = 303;
             if ($statusCode>=400) {
-                $this->yellow->toolbox->log("error", $this->yellow->page->errorMessage);
+                $this->yellow->log("error", $this->yellow->page->errorMessage);
                 $this->yellow->page->statusCode = 0;
                 $this->yellow->page->errorMessage = "";
                 $statusCode = 303;
@@ -533,18 +533,12 @@ class YellowUpdate {
                             $language = $matches[2];
                             $settings = new YellowArray();
                             $settings["language"] = $language;
-                            $settings["languageLocale"] = "n/a";
-                            $settings["languageDescription"] = "n/a";
-                            $settings["languageTranslator"] = "Unknown";
                             foreach ($this->yellow->language->settingsDefaults as $key=>$value) {
                                 $require = preg_match("/^([a-z]*)[A-Z]+/", $key, $tokens) ? $tokens[1] : "core";
                                 if ($require=="language") $require = "core";
-                                if ($this->yellow->extension->isExisting($require)) {
-                                    if ($this->yellow->language->isText($key, $language)) {
-                                        $settings[$key] = $this->yellow->language->getText($key, $language);
-                                    } else {
-                                        $settings[$key] = $this->yellow->language->getText($key, "en");
-                                    }
+                                if ($this->yellow->extension->isExisting($require) &&
+                                    $this->yellow->language->isText($key, $language)) {
+                                    $settings[$key] = $this->yellow->language->getText($key, $language);
                                 }
                             }
                         }
@@ -624,7 +618,7 @@ class YellowUpdate {
                 $statusCode = max($statusCode, $this->updateLanguageSettings($extension, $action));
             }
             $version = $settings->get("version");
-            $this->yellow->toolbox->log($statusCode==200 ? "info" : "error", ucfirst($action)." extension '".ucfirst($extension)." $version'");
+            $this->yellow->log($statusCode==200 ? "info" : "error", ucfirst($action)." extension '".ucfirst($extension)." $version'");
             ++$this->extensions;
         } else {
             $statusCode = 500;
@@ -787,8 +781,7 @@ class YellowUpdate {
             $fileNameLatest = $this->yellow->system->get("coreExtensionDirectory").$this->yellow->system->get("updateLatestFile");
             $expire = $this->yellow->toolbox->getFileModified($fileNameLatest) + 60*10;
             if ($expire<=time()) {
-                $url = $this->yellow->system->get("updateLatestUrl");
-                if ($url=="auto") $url = "https://raw.githubusercontent.com/datenstrom/yellow/main/system/extensions/update-latest.ini";
+                $url = $this->yellow->system->get("updateExtensionUrl")."/raw/main/".$this->yellow->system->get("updateLatestFile");
                 list($statusCode, $fileData) = $this->getExtensionFile($url);
                 if ($statusCode==200 && !$this->yellow->toolbox->createFile($fileNameLatest, $fileData)) {
                     $statusCode = 500;
@@ -889,43 +882,37 @@ class YellowUpdate {
         return "$description $responsible";
     }
     
+    // Return extension documentation
+    public function getExtensionDocumentation($key, $value) {
+        return "Read more at ".($value->isExisting("documentationUrl") ? $value->get("documentationUrl") : $this->yellow->system->get("updateExtensionUrl"));
+    }
+
     // Return extension file
     public function getExtensionFile($url) {
+        $urlRequest = $url;
+        if (preg_match("#^https://github.com/(.+)/raw/(.+)$#", $url, $matches)) $urlRequest = "https://raw.githubusercontent.com/".$matches[1]."/".$matches[2];
         $curlHandle = curl_init();
-        curl_setopt($curlHandle, CURLOPT_URL, $this->getExtensionDownloadUrl($url));
+        curl_setopt($curlHandle, CURLOPT_URL, $urlRequest);
         curl_setopt($curlHandle, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible; YellowUpdate/".YellowUpdate::VERSION."; SoftwareUpdater)");
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curlHandle, CURLOPT_CONNECTTIMEOUT, 30);
-        $fileData = curl_exec($curlHandle);
+        $rawData = curl_exec($curlHandle);
         $statusCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
-        $redirectUrl = ($statusCode>=300 && $statusCode<=399) ? curl_getinfo($curlHandle, CURLINFO_REDIRECT_URL) : "";
+        $fileData = "";
         curl_close($curlHandle);
-        if ($statusCode==0) {
+        if ($statusCode==200) {
+            $fileData = $rawData;
+        } elseif ($statusCode==0) {
             $statusCode = 450;
             $this->yellow->page->error($statusCode, "Can't connect to the update server!");
-        }
-        if ($statusCode!=450 && $statusCode!=200) {
+        } else {
             $statusCode = 500;
             $this->yellow->page->error($statusCode, "Can't download file '$url'!");
         }
-        if ($this->yellow->system->get("coreDebugMode")>=2 && !is_string_empty($redirectUrl)) {
-            echo "YellowUpdate::getExtensionFile redirected to url:$redirectUrl<br/>\n";
-        }
         if ($this->yellow->system->get("coreDebugMode")>=2) {
-            echo "YellowUpdate::getExtensionFile status:$statusCode url:$url<br/>\n";
+            echo "YellowUpdate::getExtensionFile status:$statusCode url:$urlRequest<br/>\n";
         }
         return array($statusCode, $fileData);
-    }
-    
-    // Return extension download URL, redirect to known URL if necessary
-    public function getExtensionDownloadUrl($url) {
-        if (preg_match("#^https://github.com/(.+)/archive/refs/heads/main.zip$#", $url, $matches)) {
-            $url = "https://codeload.github.com/".$matches[1]."/zip/refs/heads/main";
-        }
-        if (preg_match("#^https://github.com/(.+)/raw/main/(.+)$#", $url, $matches)) {
-            $url = "https://raw.githubusercontent.com/".$matches[1]."/main/".$matches[2];
-        }
-        return $url;
     }
     
     // Return time of next daily update

@@ -93,6 +93,32 @@ services:
     environment:
       - VIRTUAL_HOST=chat.lifeofpablo.com
       - LETSENCRYPT_HOST=chat.lifeofpablo.com
+  korea:
+    container_name: korea
+    restart: unless-stopped 
+    build:
+      dockerfile: ./korea.lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./korea.lifeofpablo.com/www/korea.lifeofpablo.com:/var/www/html
+    ports:
+      - "8082:80"
+    environment:
+      - VIRTUAL_HOST=korea.lifeofpablo.com
+      - LETSENCRYPT_HOST=korea.lifeofpablo.com
+  lifeofpablo:
+    container_name: lifeofpablo
+    restart: unless-stopped 
+    build:
+      dockerfile: ./lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/html
+    ports:
+      - "8081:80"
+    environment:
+      - VIRTUAL_HOST=lifeofpablo.com
+      - LETSENCRYPT_HOST=lifeofpablo.com
 volumes:
  mariadb:
  miniflux-db:

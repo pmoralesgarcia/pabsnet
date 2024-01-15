@@ -7,17 +7,17 @@
 <meta name="author" content="<?php echo $this->yellow->page->getHtml("author") ?>" />
 <meta name="generator" content="Datenstrom Yellow" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<?php echo $this->yellow->page->getExtra("header") ?>
+<?php echo $this->yellow->page->getExtraHtml("header") ?>
 </head>
 <body>
 <div class="<?php echo "page layout-".$this->yellow->page->getHtml("layout") ?>">
 <div class="content">
 <div class="main" role="main">
 <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
-<?php echo $this->yellow->page->getContent() ?>
+<?php echo $this->yellow->page->getContentHtml() ?>
 </div>
 </div>
 </div>
-<?php echo $this->yellow->page->getExtra("footer") ?>
+<?php echo $this->yellow->page->getExtraHtml("footer") ?>
 </body>
 </html>

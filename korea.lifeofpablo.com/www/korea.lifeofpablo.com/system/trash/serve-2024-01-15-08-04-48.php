@@ -2,7 +2,7 @@
 // Serve extension, https://github.com/annaesvensson/yellow-serve
 
 class YellowServe {
-    const VERSION = "0.8.24";
+    const VERSION = "0.8.22";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -24,7 +24,7 @@ class YellowServe {
         return "serve [url]";
     }
     
-    // Process command to start web server
+    // Process command to start built-in web server
     public function processCommandServe($command, $text) {
         list($url) = $this->yellow->toolbox->getTextArguments($text);
         if (is_string_empty($url)) $url = "http://localhost:8000/";
@@ -32,9 +32,9 @@ class YellowServe {
         if ($scheme=="http" && !is_string_empty($address) && is_string_empty($base)) {
             if (!preg_match("/\:\d+$/", $address)) $address .= ":8000";
             if ($this->checkServerSettings("$scheme://$address/")) {
-                echo "Starting web server. Open a web browser and go to $scheme://$address/\n";
+                echo "Starting built-in web server. Open a web browser and go to $scheme://$address/\n";
                 echo "Press Ctrl+C to quit...\n";
-                exec(PHP_BINARY." -S $address yellow.php 2>&1", $outputLines, $returnStatus);
+                exec("php -S $address yellow.php 2>&1", $outputLines, $returnStatus);
                 $statusCode = $returnStatus!=0 ? 500 : 200;
                 if ($statusCode!=200) {
                     $output = !is_array_empty($outputLines) ? end($outputLines) : "Please check arguments!";

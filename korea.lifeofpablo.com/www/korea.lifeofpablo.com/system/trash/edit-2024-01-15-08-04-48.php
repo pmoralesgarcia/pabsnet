@@ -2,7 +2,7 @@
 // Edit extension, https://github.com/annaesvensson/yellow-edit
 
 class YellowEdit {
-    const VERSION = "0.8.77";
+    const VERSION = "0.8.71";
     public $yellow;         // access to API
     public $response;       // web response
     public $merge;          // text merge
@@ -50,7 +50,7 @@ class YellowEdit {
             }
             $fileDataNew = rtrim($fileDataNew)."\n";
             if ($fileData!=$fileDataNew && !$this->yellow->toolbox->createFile($fileNameUser, $fileDataNew)) {
-                $this->yellow->toolbox->log("error", "Can't write file '$fileNameUser'!");
+                $this->yellow->log("error", "Can't write file '$fileNameUser'!");
             }
         }
     }
@@ -63,7 +63,7 @@ class YellowEdit {
             $scheme = $this->yellow->system->get("coreServerScheme");
             $address = $this->yellow->system->get("coreServerAddress");
             $base = rtrim($this->yellow->system->get("coreServerBase").$this->yellow->system->get("editLocation"), "/");
-            list($scheme, $address, $base, $location, $fileName) = $this->yellow->lookup->getRequestInformation($scheme, $address, $base);
+            list($scheme, $address, $base, $location, $fileName) = $this->yellow->getRequestInformation($scheme, $address, $base);
             $this->yellow->page->setRequestInformation($scheme, $address, $base, $location, $fileName, false);
             $statusCode = $this->processRequest($scheme, $address, $base, $location, $fileName);
         }
@@ -189,7 +189,7 @@ class YellowEdit {
                 "status" => "active");
             $status = $this->yellow->user->save($fileNameUser, $email, $settings) ? "ok" : "error";
             if ($status=="error") echo "ERROR updating settings: Can't write file '$fileNameUser'!\n";
-            $this->yellow->toolbox->log($status=="ok" ? "info" : "error", "Add user '".strtok($name, " ")."'");
+            $this->yellow->log($status=="ok" ? "info" : "error", "Add user '".strtok($name, " ")."'");
         }
         if ($status=="ok") {
             $algorithm = $this->yellow->system->get("editUserHashAlgorithm");
@@ -244,7 +244,7 @@ class YellowEdit {
             $fileNameUser = $this->yellow->system->get("coreExtensionDirectory").$this->yellow->system->get("coreUserFile");
             $status = $this->yellow->user->remove($fileNameUser, $email) ? "ok" : "error";
             if ($status=="error") echo "ERROR updating settings: Can't write file '$fileNameUser'!\n";
-            $this->yellow->toolbox->log($status=="ok" ? "info" : "error", "Remove user '".strtok($name, " ")."'");
+            $this->yellow->log($status=="ok" ? "info" : "error", "Remove user '".strtok($name, " ")."'");
         }
         $statusCode = $status=="ok" ? 200 : 500;
         echo "Yellow $command: User account ".($statusCode!=200 ? "not " : "")."removed\n";
@@ -421,7 +421,7 @@ class YellowEdit {
             $settings = array("failed" => "0", "modified" => date("Y-m-d H:i:s", time()), "status" => "active");
             $this->response->status = $this->yellow->user->save($fileNameUser, $email, $settings) ? "ok" : "error";
             if ($this->response->status=="error") $this->yellow->page->error(500, "Can't write file '$fileNameUser'!");
-            $this->yellow->toolbox->log($this->response->status=="ok" ? "info" : "error", "Add user '".strtok($name, " ")."'");
+            $this->yellow->log($this->response->status=="ok" ? "info" : "error", "Add user '".strtok($name, " ")."'");
         }
         if ($this->response->status=="ok") {
             $this->response->status = $this->response->sendMail($scheme, $address, $base, $email, "welcome") ? "done" : "error";
@@ -574,7 +574,7 @@ class YellowEdit {
             $settings = array("failed" => "0", "modified" => date("Y-m-d H:i:s", time()), "status" => "removed");
             $this->response->status = $this->yellow->user->save($fileNameUser, $email, $settings) ? "ok" : "error";
             if ($this->response->status=="error") $this->yellow->page->error(500, "Can't write file '$fileNameUser'!");
-            $this->yellow->toolbox->log($this->response->status=="ok" ? "info" : "error", "Remove user '".strtok($name, " ")."'");
+            $this->yellow->log($this->response->status=="ok" ? "info" : "error", "Remove user '".strtok($name, " ")."'");
         }
         if ($this->response->status=="ok") {
             $this->response->status = $this->response->sendMail($scheme, $address, $base, $email, "goodbye") ? "ok" : "error";
@@ -1165,7 +1165,7 @@ class YellowEditResponse {
         $class = "page-preview layout-".$page->get("layout");
         $output = "<div class=\"".htmlspecialchars($class)."\"><div class=\"content\"><div class=\"main\">";
         if ($this->yellow->system->get("editToolbarButtons")!="none") $output .= "<h1>".$page->getHtml("titleContent")."</h1>\n";
-        $output .= $page->getContentHtml();
+        $output .= $page->getContent();
         $output .= "</div></div></div>";
         $page->statusCode = 200;
         $page->outputData = $output;
@@ -1411,27 +1411,19 @@ class YellowEditResponse {
     public function getPageNewLocation($rawData, $pageLocation, $editNewLocation, $pageMatchLocation = false) {
         $location = is_string_empty($editNewLocation) ? "@title" : $editNewLocation;
         $location = preg_replace("/@title/i", $this->getPageNewTitle($rawData), $location);
-        $location = preg_replace("/@timestamp/i", $this->getPageNewData($rawData, "published", "U"), $location);
-        $location = preg_replace("/@date/i", $this->getPageNewData($rawData, "published", "Y-m-d"), $location);
-        $location = preg_replace("/@year/i", $this->getPageNewData($rawData, "published", "Y"), $location);
-        $location = preg_replace("/@month/i", $this->getPageNewData($rawData, "published", "m"), $location);
-        $location = preg_replace("/@day/i", $this->getPageNewData($rawData, "published", "d"), $location);
-        $location = preg_replace("/@tag/i", $this->getPageNewData($rawData, "tag"), $location);
-        $location = preg_replace("/@author/i", $this->getPageNewData($rawData, "author"), $location);
+        $location = preg_replace("/@timestamp/i", $this->getPageNewData($rawData, "published", true, "U"), $location);
+        $location = preg_replace("/@date/i", $this->getPageNewData($rawData, "published", true, "Y-m-d"), $location);
+        $location = preg_replace("/@year/i", $this->getPageNewData($rawData, "published", true, "Y"), $location);
+        $location = preg_replace("/@month/i", $this->getPageNewData($rawData, "published", true, "m"), $location);
+        $location = preg_replace("/@day/i", $this->getPageNewData($rawData, "published", true, "d"), $location);
+        $location = preg_replace("/@tag/i", $this->getPageNewData($rawData, "tag", true), $location);
+        $location = preg_replace("/@author/i", $this->getPageNewData($rawData, "author", true), $location);
         if (!preg_match("/^\//", $location)) {
             if ($this->yellow->lookup->isFileLocation($pageLocation) || !$pageMatchLocation) {
                 $location = $this->yellow->lookup->getDirectoryLocation($pageLocation).$location;
             } else {
                 $location = $this->yellow->lookup->getDirectoryLocation(rtrim($pageLocation, "/")).$location;
             }
-        }
-        if (preg_match("/\d/", $location)) {
-            $locationNew = "";
-            $tokens = explode("/", $location);
-            for ($i=1; $i<count($tokens); ++$i) {
-                $locationNew .= "/".$this->yellow->lookup->normaliseToken($tokens[$i]);
-            }
-            $location = $locationNew;
         }
         if ($pageMatchLocation) {
             $location = rtrim($location, "/").($this->yellow->lookup->isFileLocation($pageLocation) ? "" : "/");
@@ -1444,17 +1436,17 @@ class YellowEditResponse {
         $title = $this->yellow->toolbox->getMetaData($rawData, "title");
         $titleSlug = $this->yellow->toolbox->getMetaData($rawData, "titleSlug");
         $value = is_string_empty($titleSlug) ? $title : $titleSlug;
-        $value = $this->yellow->lookup->normaliseName($value, false, false, true);
+        $value = $this->yellow->lookup->normaliseName($value, true, false, true);
         return trim(preg_replace("/-+/", "-", $value), "-");
     }
     
     // Return data for new/modified page
-    public function getPageNewData($rawData, $key, $dateFormat = "") {
+    public function getPageNewData($rawData, $key, $filterFirst = false, $dateFormat = "") {
         $value = $this->yellow->toolbox->getMetaData($rawData, $key);
-        if (preg_match("/^(.*?)\,(.*)$/", $value, $matches)) $value = $matches[1];
+        if ($filterFirst && preg_match("/^(.*?)\,(.*)$/", $value, $matches)) $value = $matches[1];
         if (!is_string_empty($dateFormat)) $value = date($dateFormat, strtotime($value));
         if (is_string_empty($value)) $value = "none";
-        $value = $this->yellow->lookup->normaliseName($value, false, false, true);
+        $value = $this->yellow->lookup->normaliseName($value, true, false, true);
         return trim(preg_replace("/-+/", "-", $value), "-");
     }
     
@@ -1600,20 +1592,17 @@ class YellowEditResponse {
         $message = preg_replace("/@userlanguage/i", $userLanguage, $message);
         $sitename = $this->yellow->system->get("sitename");
         $siteEmail = $this->yellow->system->get("editSiteEmail");
-        $subject = $this->yellow->language->getText("{$prefix}Subject", $userLanguage);
         $footer = $this->yellow->language->getText("editMailFooter", $userLanguage);
         $footer = str_replace("\\n", "\r\n", $footer);
         $footer = preg_replace("/@sitename/i", $sitename, $footer);
-        $mailHeaders = array(
-            "To" => "$userName <$userEmail>",
-            "From" => "$sitename <$siteEmail>",
-            "Subject" => $subject,
-            "Date" => date(DATE_RFC2822),
-            "Mime-Version" => "1.0",
-            "Content-Type" => "text/plain; charset=utf-8",
-            "X-Request-Url" => "$scheme://$address$base");
+        $mailTo = mb_encode_mimeheader("$userName")." <$userEmail>";
+        $mailSubject = mb_encode_mimeheader($this->yellow->language->getText("{$prefix}Subject", $userLanguage));
+        $mailHeaders = mb_encode_mimeheader("From: $sitename")." <$siteEmail>\r\n";
+        $mailHeaders .= mb_encode_mimeheader("X-Request-Url: $scheme://$address$base")."\r\n";
+        $mailHeaders .= "Mime-Version: 1.0\r\n";
+        $mailHeaders .= "Content-Type: text/plain; charset=utf-8\r\n";
         $mailMessage = "$message\r\n\r\n$url\r\n-- \r\n$footer";
-        return $this->yellow->toolbox->mail($action, $mailHeaders, $mailMessage);
+        return mail($mailTo, $mailSubject, $mailMessage, $mailHeaders);
     }
     
     // Create browser cookies
