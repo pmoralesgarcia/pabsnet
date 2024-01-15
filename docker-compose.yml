@@ -88,7 +88,7 @@ services:
     container_name: convos
     image: ghcr.io/convos-chat/convos:stable
     ports:
-      - 8093:3000
+      - 8080:3000
     volumes:
       - ./convos/data:/data
     environment:
