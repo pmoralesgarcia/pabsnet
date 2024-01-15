@@ -113,6 +113,9 @@ services:
       - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
     ports:
       - 8110:80
+    environment:
+      - VIRTUAL_HOST=lifeofpablo.com
+      - LETSENCRYPT_HOST=lifeofpablo.com
   lifeofpablo:
     container_name: lifeofpablo
     restart: unless-stopped 
@@ -123,9 +126,6 @@ services:
       - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/html
     ports:
       - "8080:80"
-    environment:
-      - VIRTUAL_HOST=lifeofpablo.com
-      - LETSENCRYPT_HOST=lifeofpablo.com
   lifeofpablo-guestbook:
     container_name: lifeofpablo-guestbook
     restart: unless-stopped 
