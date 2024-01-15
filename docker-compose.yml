@@ -84,6 +84,16 @@ services:
     environment:
       VIRTUAL_HOST: auth.lifeofpablo.com
       LETSENCRYPT_HOST: auth.lifeofpablo.com
+  convos:
+    container_name: convos
+    image: ghcr.io/convos-chat/convos:stable
+    ports:
+      - 8093:3000
+    volumes:
+      - ./convos/data:/data
+    environment:
+      - VIRTUAL_HOST=chat.lifeofpablo.com
+      - LETSENCRYPT_HOST=chat.lifeofpablo.com
 volumes:
  mariadb:
  miniflux-db:
