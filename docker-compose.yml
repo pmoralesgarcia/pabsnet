@@ -92,6 +92,8 @@ services:
     volumes:
       - ./convos/data:/data
     environment:
+      - MOJO_REVERSE_PROXY=1
+      - CONVOS_REVERSE_PROXY=1
       - VIRTUAL_HOST=chat.lifeofpablo.com
       - LETSENCRYPT_HOST=chat.lifeofpablo.com
 volumes:
