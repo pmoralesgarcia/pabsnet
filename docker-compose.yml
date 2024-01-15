@@ -52,8 +52,6 @@ services:
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
       - VIRTUAL_HOST=reader.lifeofpablo.com
       - LETSENCRYPT_HOST=reader.lifeofpablo.com
-      - BASE_PATH=https://reader.lifeofpablo.com
-      - ROOT_URL=https://reader.lifeofpablo.com
   postgres:
     image: postgres:15
     environment:
@@ -84,16 +82,15 @@ services:
     environment:
       VIRTUAL_HOST: auth.lifeofpablo.com
       LETSENCRYPT_HOST: auth.lifeofpablo.com
-  convos:
-    container_name: convos
-    image: ghcr.io/convos-chat/convos:stable
+  thelounge:
+    image: ghcr.io/thelounge/thelounge:latest
+    container_name: thelounge
     ports:
-      - 8080:3000
+      - "9524:9000"
+    restart: always
     volumes:
-      - ./convos/data:/data
+      - ./thelounge:/var/opt/thelounge # bind lounge config from the host's file syste
     environment:
-      - MOJO_REVERSE_PROXY=1
-      - CONVOS_REVERSE_PROXY=1
       - VIRTUAL_HOST=chat.lifeofpablo.com
       - LETSENCRYPT_HOST=chat.lifeofpablo.com
 volumes:
