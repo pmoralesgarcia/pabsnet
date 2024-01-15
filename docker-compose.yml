@@ -108,7 +108,7 @@ services:
       - LETSENCRYPT_HOST=korea.lifeofpablo.com
   lifeofpablo-proxy:
     image: nginx:latest
-    container_name: vp-proxy-miniflux
+    container_name: lifeofpablo-proxy
     volumes:
       - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
     ports:
