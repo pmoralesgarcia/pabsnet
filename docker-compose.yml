@@ -140,10 +140,10 @@ services:
     container_name: lifeofpablo-linkinbio
     restart: unless-stopped 
     build:
-      dockerfile: ./lifeofpablo-guestbook/Dockerfile  
+      dockerfile: ./lifeofpablo-linkinbio/Dockerfile  
     volumes:
       #Project root
-      - ./lifeofpablo-guestbook/www/guestbook:/var/www/html
+      - ./lifeofpablo-linkinbio/www/linkinbio:/var/www/html
     ports:
       - "8082:80"
   lifeofpablo-now:
