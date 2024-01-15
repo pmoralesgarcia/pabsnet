@@ -102,10 +102,17 @@ services:
       #Project root
       - ./korea.lifeofpablo.com/www/korea.lifeofpablo.com:/var/www/html
     ports:
-      - "8082:80"
+      - "8090:80"
     environment:
       - VIRTUAL_HOST=korea.lifeofpablo.com
       - LETSENCRYPT_HOST=korea.lifeofpablo.com
+  lifeofpablo-proxy:
+    image: nginx:latest
+    container_name: vp-proxy-miniflux
+    volumes:
+      - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
+    ports:
+      - 8110:80
   lifeofpablo:
     container_name: lifeofpablo
     restart: unless-stopped 
@@ -115,10 +122,36 @@ services:
       #Project root
       - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/html
     ports:
-      - "8081:80"
+      - "8080:80"
     environment:
       - VIRTUAL_HOST=lifeofpablo.com
       - LETSENCRYPT_HOST=lifeofpablo.com
+  lifeofpablo-guestbook:
+    container_name: lifeofpablo-guestbook
+    restart: unless-stopped 
+    build:
+      dockerfile: ./lifeofpablo-guestbook/Dockerfile  
+    volumes:
+      #Project root
+      - ./lifeofpablo-guestbook/www/guestbook:/var/www/html
+    ports:
+      - "8081:80"
+  lifeofpablo-linkinbio:
+    container_name: lifeofpablo-linkinbio
+    restart: unless-stopped 
+    build:
+      dockerfile: ./lifeofpablo-guestbook/Dockerfile  
+    volumes:
+      #Project root
+      - ./lifeofpablo-guestbook/www/guestbook:/var/www/html
+    ports:
+      - "8082:80"
+  lifeofpablo-now:
+    container_name: lifeofpablo-now
+    image: ghcr.io/pmoralesgarcia/now:latest
+    restart: unless-stopped
+    ports:
+      - "8083:80"
 volumes:
  mariadb:
  miniflux-db:
