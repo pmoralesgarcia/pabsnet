@@ -52,6 +52,8 @@ services:
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
       - VIRTUAL_HOST=reader.lifeofpablo.com
       - LETSENCRYPT_HOST=reader.lifeofpablo.com
+      - BASE_PATH=https://reader.lifeofpablo.com
+      - ROOT_URL=https://reader.lifeofpablo.com
   postgres:
     image: postgres:15
     environment:
