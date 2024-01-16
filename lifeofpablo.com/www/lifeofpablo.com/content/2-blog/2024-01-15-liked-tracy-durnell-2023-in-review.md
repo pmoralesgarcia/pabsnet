@@ -9,7 +9,7 @@ Image: https://static.lifeofpablo.com/
 ImageAlt: 
 Status: unlisted
 ---
-LIked: <a href="https://tracydurnell.com/2023/12/31/2023-in-review/" class="u-like-of" markdown="1">Tracy Durnell - 2023 in Review</a> <img src="https://secure.gravatar.com/avatar/b1231bba531dc25e30cd37258109de9c?s=250&d=default&r=pg" width="3%" />
+LIked: <a href="https://tracydurnell.com/2023/12/31/2023-in-review/" class="u-like-of" markdown="1">Tracy Durnell - 2023 in Review</a> <img src="https://secure.gravatar.com/avatar/b1231bba531dc25e30cd37258109de9c?s=250&d=default&r=pg" width="3%" class="br-100" />
 
 > Met and hung out with some rad new people online! Special shoutouts to Pablo and Annie 👋
 
