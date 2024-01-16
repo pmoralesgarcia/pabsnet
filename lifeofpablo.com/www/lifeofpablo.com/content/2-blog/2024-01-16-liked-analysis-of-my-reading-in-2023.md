@@ -8,7 +8,7 @@ Tag: 2024
 Description: 
 Image: https://static.lifeofpablo.com/
 ImageAlt: https://webmention.io/img/noise.jpg
-Status: image
+Status: unlisted
 ---
 Liked: <a href="https://sarajaksa.eu/2024/01/analysis-of-my-reading-in-2023/" class="u-like-of" markdown="1">Sara Jakša - Analysis of My Reading in 2023</a> <img src="https://webmention.io/img/noise.jpg" width="3%" class="br-100" />
 
