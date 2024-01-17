@@ -105,7 +105,7 @@ services:
       #Project root
       - ./korea.lifeofpablo.com/www/korea.lifeofpablo.com:/var/www/html
     ports:
-      - "8090:80"
+      - "8092:80"
     environment:
       - VIRTUAL_HOST=korea.lifeofpablo.com
       - LETSENCRYPT_HOST=korea.lifeofpablo.com
@@ -155,25 +155,40 @@ services:
     restart: unless-stopped
     ports:
       - "8083:80"
-  ghost-pabsnet:
-    image: ghost:5-alpine
-    container_name: ghost-pabsnet
-    restart: always
-    ports:
-      - 8100:2368
-    environment:
-      # see https://ghost.org/docs/config/#configuration-options
-      database__client: mysql
-      database__connection__host: mariadb
-      database__connection__user: ghost
-      database__connection__password: ${GHOST_MYSQL_PASSWORD}
-      database__connection__database: ghost
-      VIRTUAL_HOST: pabs.tech
-      LETSENCRYPT_HOST: pabs.tech
-      url: http://ghost-pabsnet:8100
-      NODE_ENV: production
+  lifeofpablo-climateweek:
+    container_name: lifeofpablo-climateweek
+    restart: unless-stopped 
+    build:
+      dockerfile: ./climateweeknyc.lifeofpablo.com/Dockerfile  
     volumes:
-      - ghost:/var/lib/ghost/content
+      - ./climateweeknyc.lifeofpablo.com/www/climateweeknyc.lifeofpablo.com:/var/www/html
+    ports:
+      - "8084:80"
+    environment:
+      - VIRTUAL_HOST=climateweeknyclifeofpablo.com
+      - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
+  lifeofpablo-static:
+    container_name: lifeofpablo-static
+    restart: unless-stopped 
+    image: nginx:1.25.3-bookworm 
+    volumes:
+      - ./s3/static.lifeofpablo.com.conf:/var/www/html
+    ports:
+      - "8090:80"
+    environment:
+      - VIRTUAL_HOST=static.lifeofpablo.com
+      - LETSENCRYPT_HOST=static.lifeofpablo.com
+  lifeofpablo-photos:
+    container_name: lifeofpablo-photos
+    restart: unless-stopped 
+    image: nginx:1.25.3-bookworm 
+    volumes:
+      - ./s3/photos.lifeofpablo.com.conf:/var/www/html
+    ports:
+      - "8091:80"
+    environment:
+      - VIRTUAL_HOST=photos.lifeofpablo.com
+      - LETSENCRYPT_HOST=photos.lifeofpablo.com
 volumes:
  ghost:
  mariadb:
