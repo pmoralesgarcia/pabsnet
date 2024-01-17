@@ -170,7 +170,8 @@ services:
       database__connection__database: ghost
       VIRTUAL_HOST: pabs.tech
       LETSENCRYPT_HOST: pabs.tech
-      url: http://pabs.tech
+      url: http://ghost-pabsnet:8100
+      NODE_ENV: production
     volumes:
       - ghost:/var/lib/ghost/content
 volumes:
