@@ -172,7 +172,7 @@ services:
     restart: unless-stopped 
     image: nginx:1.25.3-bookworm 
     volumes:
-      - ./s3/static.lifeofpablo.com.conf:/var/www/html
+      - ./nginx-proxy/s3/static.lifeofpablo.com.conf:/var/www/html
     ports:
       - "8090:80"
     environment:
@@ -183,13 +183,12 @@ services:
     restart: unless-stopped 
     image: nginx:1.25.3-bookworm 
     volumes:
-      - ./s3/photos.lifeofpablo.com.conf:/var/www/html
+      - ./nginx-proxy/s3/photos.lifeofpablo.com.conf:/var/www/html
     ports:
       - "8091:80"
     environment:
       - VIRTUAL_HOST=photos.lifeofpablo.com
       - LETSENCRYPT_HOST=photos.lifeofpablo.com
 volumes:
- ghost:
  mariadb:
  miniflux-db:
