@@ -29,6 +29,7 @@ services:
         DEFAULT_EMAIL: ${DEFAULT_EMAIL}
   mariadb:
     image: mariadb:10.11
+    container_name: mariadb
     command: --max-allowed-packet=64MB
     restart: always
     volumes:
@@ -39,6 +40,7 @@ services:
       - MARIADB_DISABLE_UPGRADE_BACKUP=1  
   miniflux:
     image: miniflux/miniflux:latest
+    container_name: miniflux
     ports:
       - "8085:8080"
     depends_on:
@@ -54,6 +56,7 @@ services:
       - LETSENCRYPT_HOST=reader.lifeofpablo.com
   postgres:
     image: postgres:15
+    container_name: postgres
     environment:
       - POSTGRES_USER=miniflux
       - POSTGRES_PASSWORD=${FRESHRSS_MYSQL_PASSWORD}
@@ -84,6 +87,7 @@ services:
       LETSENCRYPT_HOST: auth.lifeofpablo.com
   thelounge:
     image: ghcr.io/thelounge/thelounge:latest
+    container_name: thelounge
     container_name: thelounge
     ports:
       - "9524:9000"
@@ -152,6 +156,24 @@ services:
     restart: unless-stopped
     ports:
       - "8083:80"
+  ghost:
+    image: ghost:5-alpine
+    restart: always
+    ports:
+      - 8080:2368
+    environment:
+      # see https://ghost.org/docs/config/#configuration-options
+      database__client: mysql
+      database__connection__host: mariadb
+      database__connection__user: root
+      database__connection__password: example
+      database__connection__database: ghost
+      # this url value is just an example, and is likely wrong for your environment!
+      url: https://pabs.net
+      # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
+      #NODE_ENV: development
+    volumes:
+      - ghost:/var/lib/ghost/content
 volumes:
  mariadb:
  miniflux-db:
