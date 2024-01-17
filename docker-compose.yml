@@ -155,28 +155,6 @@ services:
     restart: unless-stopped
     ports:
       - "8083:80"
-  lifeofpablo-static:
-    container_name: lifeofpablo-static
-    restart: unless-stopped 
-    image: nginx:1.25.3-bookworm 
-    volumes:
-      - ./nginx-proxy/s3/static.lifeofpablo.com.conf:/etc/nginx/conf.d
-    ports:
-      - "8090:80"
-    environment:
-      - VIRTUAL_HOST=static.lifeofpablo.com
-      - LETSENCRYPT_HOST=static.lifeofpablo.com
-  lifeofpablo-photos:
-    container_name: lifeofpablo-photos
-    restart: unless-stopped 
-    image: nginx:1.25.3-bookworm 
-    volumes:
-      - ./nginx-proxy/s3/photos.lifeofpablo.com.conf:/etc/nginx/conf.d
-    ports:
-      - "8091:80"
-    environment:
-      - VIRTUAL_HOST=photos.lifeofpablo.com
-      - LETSENCRYPT_HOST=photos.lifeofpablo.com
 volumes:
  mariadb:
  miniflux-db:
