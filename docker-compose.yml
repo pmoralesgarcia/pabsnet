@@ -155,8 +155,9 @@ services:
     restart: unless-stopped
     ports:
       - "8083:80"
-  ghost:
+  ghost-pabsnet:
     image: ghost:5-alpine
+    container_name: ghost-pabsnet
     restart: always
     ports:
       - 8100:2368
@@ -169,7 +170,7 @@ services:
       database__connection__database: ghost
       VIRTUAL_HOST: pabs.tech
       LETSENCRYPT_HOST: pabs.tech
-      url: https://pabs.tech
+      url: http://pabs.tech
     volumes:
       - ghost:/var/lib/ghost/content
 volumes:
