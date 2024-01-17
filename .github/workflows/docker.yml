@@ -43,6 +43,7 @@ jobs:
           MATOMO_MYSQL_USER: op://pablo/matomo/username
           MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
           MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
+          GHOST_MYSQL_PASSWORD: op://pablo/ghost-pabsnet/password
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -76,6 +77,7 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_DATABASE }} \
             docker compose down --remove-orphans
             FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
             FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
@@ -99,4 +101,5 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_DATABASE }} \
             docker compose up --detach

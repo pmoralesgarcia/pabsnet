@@ -88,7 +88,6 @@ services:
   thelounge:
     image: ghcr.io/thelounge/thelounge:latest
     container_name: thelounge
-    container_name: thelounge
     ports:
       - "9524:9000"
     restart: always
@@ -156,6 +155,24 @@ services:
     restart: unless-stopped
     ports:
       - "8083:80"
+  ghost:
+    image: ghost:5-alpine
+    restart: always
+    ports:
+      - 8100:2368
+    environment:
+      # see https://ghost.org/docs/config/#configuration-options
+      database__client: mysql
+      database__connection__host: mariadb
+      database__connection__user: ghost
+      database__connection__password: ${GHOST_MYSQL_PASSWORD}
+      database__connection__database: ghost
+      VIRTUAL_HOST: pabs.tech
+      LETSENCRYPT_HOST: pabs.tech
+      url: https://pabs.tech
+    volumes:
+      - ghost:/var/lib/ghost/content
 volumes:
+ ghost:
  mariadb:
  miniflux-db:
