@@ -155,18 +155,6 @@ services:
     restart: unless-stopped
     ports:
       - "8083:80"
-  lifeofpablo-climateweeknyc:
-    container_name: lifeofpablo-climateweeknyc
-    restart: unless-stopped 
-    image: nginx:1.25.3-bookworm 
-    volumes:
-    #  - ./climateweeknyc.lifeofpablo.com/nginx/default.conf:/etc/nginx/conf.d
-      - ./climateweeknyc.lifeofpablo.com/www/climateweeknyc.lifeofpablo.com:/var/www/html
-    ports:
-      - "8084:80"
-    environment:
-      - VIRTUAL_HOST=climateweeknyclifeofpablo.com
-      - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
   lifeofpablo-static:
     container_name: lifeofpablo-static
     restart: unless-stopped 
