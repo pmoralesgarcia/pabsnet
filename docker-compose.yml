@@ -160,7 +160,7 @@ services:
     restart: unless-stopped 
     image: nginx:1.25.3-bookworm 
     volumes:
-      - ./climateweeknyc.lifeofpablo.com/nginx/default.conf:/etc/nginx/conf.d
+    #  - ./climateweeknyc.lifeofpablo.com/nginx/default.conf:/etc/nginx/conf.d
       - ./climateweeknyc.lifeofpablo.com/www/climateweeknyc.lifeofpablo.com:/var/www/html
     ports:
       - "8084:80"
