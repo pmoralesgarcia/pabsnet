@@ -22,10 +22,9 @@
       <?php if ($page->isExisting("tag")): ?>
       <?php foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) { $page->set("entryClass", $page->get("entryClass")." tag-".$this->yellow->lookup->normaliseArguments($tag, false)); } ?>
       <?php endif ?>
-      <div class="<?php echo $page->getHtml("entryClass") ?>">
-         <div class="entry-title h-entry">
+      <div class="<?php echo $page->getHtml("entryClass") ?> h-entry">
             <h1><a class="p-name u-url" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a></h1>
-         </div>
+
          <div class="entry-meta">
             <p><span class="dt-published"><?php echo $page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card"><?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span></p>
          </div>

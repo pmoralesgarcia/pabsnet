@@ -15,7 +15,13 @@ I would like to share how I create a Dockerfile to create an image/container tha
 
 I use [Ondřej Surý's](https://deb.sury.org/) PHP repositories. 
 
-Folder Structure
+### Folder Structure
+I find it important to setup your folder structure before you get too far ahead. 
+
+For example the root folder, I'm going to call it `pablos-infra`.
+
+Go ahead and create a folder structure similar to this. Notice how I have some folders optional. These are if you want to have other projects to use in your `docker-compose.yml`
+
 ```
 pablos-infra/
 ├── php-app/
@@ -29,7 +35,10 @@ pablos-infra/
 ├── other-services (optional)
 └── docker-compose.yml
 ```
-Dockerfile
+### Dockerfile
+We'll create a Dockerfile under the directory `php-app/`. We need a `Dockerfile` because we need to have certain php extensions that the default php-fpm image doesn't provide right out of the box. 
+
+We'll use a Debian as our base image. Then we will run `apt-update` to install `nginx`, `zip`, `wget`, `unzip`, `curl`
 ``` dockerfile {.with-line-number}
 
 FROM debian:bookworm
