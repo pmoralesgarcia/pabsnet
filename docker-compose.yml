@@ -198,6 +198,26 @@ services:
     restart: unless-stopped
     ports:
       - "8083:80"
+  lifeofpablo-static:
+    image: nginx:latest
+    container_name: lifeofpablo-static
+    ports:
+      - 8120:80
+    volumes:
+      - ./nginx-proxy/s3/static.lifeofpablo.com.conf:/etc/nginx/nginx.conf
+    environment:
+      - VIRTUAL_HOST=static.lifeofpablo.com
+      - LETSENCRYPT_HOST=static.lifeofpablo.com
+  lifeofpablo-photos:
+    image: nginx:latest
+    container_name: lifeofpablo-photos
+    ports:
+      - 8121:80
+    volumes:
+      - ./nginx-proxy/s3/photos.lifeofpablo.com.conf:/etc/nginx/nginx.conf
+    environment:
+      - VIRTUAL_HOST=photos.lifeofpablo.com
+      - LETSENCRYPT_HOST=photos.lifeofpablo.com
 volumes:
  freshrss_data:
  freshrss_extensions:
