@@ -42,7 +42,7 @@ services:
     image: miniflux/miniflux:latest
     container_name: miniflux
     ports:
-      - "8086:8080"
+      - "8084:8080"
     depends_on:
       postgres:
         condition: service_healthy
@@ -105,8 +105,18 @@ services:
         --language en
         --password ${FRESHRSS_PASSWORD}
         --user ${FRESHRSS_USER}
-      VIRTUAL_HOST: reader2.lifeofpablo.com
-      LETSENCRYPT_HOST: reader2.lifeofpablo.com
+      VIRTUAL_HOST: reader.lifeofpablo.com
+      LETSENCRYPT_HOST: reader.lifeofpablo.com
+ # vp-proxy-freshrss:
+ #   image: nginx:latest
+ #   container_name: vp-proxy-freshrss
+ #   environment:
+    # VIRTUAL_HOST: reader.lifeofpablo.com
+    #  LETSENCRYPT_HOST: reader.lifeofpablo.com
+ #   volumes:
+ #     - ./nginx-proxy/freshrss:/etc/nginx/conf.d
+ #   ports:
+ #     - 8110:80    
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
