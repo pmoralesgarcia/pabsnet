@@ -73,7 +73,40 @@ services:
     volumes:
       - ./nginx-proxy/miniflux:/etc/nginx/conf.d
     ports:
-      - 8112:80
+      - 8113:80
+  freshrss:
+    depends_on:
+      - mariadb
+      - vouch-proxy
+    image: freshrss/freshrss:1.21.0
+    volumes:
+      - freshrss_data:/var/www/FreshRSS/data
+      - freshrss_extensions:/var/www/FreshRSS/extensions
+    ports:
+      - 8085:80
+    restart: always
+    logging:
+      options:
+        max-size: 10m
+    environment:
+      TRUSTED_PROXY: "0.0.0.0/0"
+      FRESHRSS_INSTALL: |-
+        --api_enabled
+        --db-base freshrss
+        --db-host mariadb
+        --db-password ${FRESHRSS_MYSQL_PASSWORD}
+        --db-type mysql
+        --db-user ${FRESHRSS_MYSQL_USER}
+        --default_user ${FRESHRSS_USER}
+        --language en
+      FRESHRSS_USER: |-
+        --api_password ${FRESHRSS_API_PASSWORD}
+        --email ${FRESHRSS_EMAIL}
+        --language en
+        --password ${FRESHRSS_PASSWORD}
+        --user ${FRESHRSS_USER}
+      VIRTUAL_HOST: reader2.lifeofpablo.com
+      LETSENCRYPT_HOST: reader2.lifeofpablo.com
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
@@ -156,5 +189,7 @@ services:
     ports:
       - "8083:80"
 volumes:
+ freshrss_data:
+ freshrss_extensions:
  mariadb:
  miniflux-db:
