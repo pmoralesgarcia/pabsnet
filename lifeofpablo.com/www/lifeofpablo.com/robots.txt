@@ -69,3 +69,351 @@ Disallow: /
 
 User-agent: GPTBot
 Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+User-agent: YandexImages
+Disallow: /
+
+User-agent: MegaIndex.ru
+Disallow: /
+
+User-agent: BLEXbot
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+User-agent: YaK
+Disallow: /
+
+User-agent: VelenPublicWebCrawler
+Disallow: /
+
+User-agent: SentiBot
+Disallow: /
+
+User-agent: Vagabondo
+Disallow: /
+
+User-agent: SEOkicks
+Disallow: /
+
+User-agent: SEOkicks-Robot
+Disallow: /
+
+User-agent: mtbot/1.1.0i
+Disallow: /
+
+User-agent: SeznamBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: Cliqzbot
+Disallow: /
+
+User-agent: coccocbot
+Disallow: /
+
+User-agent: python
+Disallow: /
+
+User-agent: Scrap
+Disallow: /
+
+User-agent: SiteCheck-sitecrawl
+Disallow: /
+
+User-agent: MauiBot
+Disallow: /
+
+User-agent: Java
+Disallow: /
+
+User-agent: GumGum
+Disallow: /
+
+User-agent: Clickagy
+Disallow: /
+
+User-agent: AspiegelBot
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: TkBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Qwantify
+Disallow: /
+
+User-agent: MBCrawler
+Disallow: /
+
+User-agent: serpstatbot
+Disallow: /
+
+User-agent: AwarioSmartBot
+Disallow: /
+
+User-agent: Semantici
+Disallow: /
+
+User-agent: ScholarBot
+Disallow: /
+
+User-agent: proximic
+Disallow: /
+
+User-agent: MojeekBot
+Disallow: /
+
+User-agent: GrapeshotCrawler
+Disallow: /
+
+User-agent: IAScrawler
+Disallow: /
+
+User-agent: linkdexbot
+Disallow: /
+
+User-agent: contxbot
+Disallow: /
+
+User-agent: PlurkBot
+Disallow: /
+
+User-agent: PaperLiBot
+Disallow: /
+
+User-agent: BomboraBot
+Disallow: /
+
+User-agent: Leikibot
+Disallow: /
+
+User-agent: weborama-fetcher
+Disallow: /
+
+User-agent: NTENTbot
+Disallow: /
+
+User-agent: Screaming Frog SEO Spider
+Disallow: /
+
+User-agent: admantx-usaspb
+Disallow: /
+
+User-agent: Eyeotabot
+Disallow: /
+
+User-agent: VoluumDSP-content-bot
+Disallow: /
+
+User-agent: SirdataBot
+Disallow: /
+
+User-agent: adbeat_bot
+Disallow: /
+
+User-agent: TTD-Content
+Disallow: /
+
+User-agent: admantx
+Disallow: /
+
+User-agent: Nimbostratus-Bot
+Disallow: /
+
+User-agent: Mail.RU_Bot
+Disallow: /
+
+User-agent: Quantcastboti
+Disallow: /
+
+User-agent: Onespot-ScraperBot
+Disallow: /
+
+User-agent: Taboolabot
+Disallow: /
+
+User-agent: Baidu
+Disallow: /
+
+User-agent: Jobboerse
+Disallow: /
+
+User-agent: VoilaBot
+Disallow: /
+
+User-agent: Sogou
+Disallow: /
+
+User-agent: Jyxobot
+Disallow: /
+
+User-agent: Exabot
+Disallow: /
+
+User-agent: ZGrab
+Disallow: /
+
+User-agent: Proximi
+Disallow: /
+
+User-agent: Sosospider
+Disallow: /
+
+User-agent: Accoona
+Disallow: /
+
+User-agent: aiHitBot
+Disallow: /
+
+User-agent: Genieo
+Disallow: /
+
+User-agent: BecomeBot
+Disallow: /
+
+User-agent: ConveraCrawler
+Disallow: /
+
+User-agent: NerdyBot
+Disallow: /
+
+User-agent: OutclicksBot
+Disallow: /
+
+User-agent: findlinks
+Disallow: /
+
+User-agent: JikeSpider
+Disallow: /
+
+User-agent: Gigabot
+Disallow: /
+
+User-agent: CatchBot
+Disallow: /
+
+User-agent: Huaweisymantecspider
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: SiteSnagger
+Disallow: /
+
+User-agent: TeleportPro
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: WebReaper
+Disallow: /
+
+User-agent: WebStripper
+Disallow: /
+
+User-agent: WebZIP
+Disallow: /
+
+User-agent: Xaldon_WebSpider
+Disallow: /
+
+User-agent: BackDoorBot
+Disallow: /
+
+User-agent: AITCSRoboti
+Disallow: /
+
+User-agent: Arachnophilia
+Disallow: /
+
+User-agent: BackRub
+Disallow: /
+
+User-agent: BlowFishi
+Disallow: /
+
+User-agent: perl
+Disallow: /
+
+User-agent: CherryPicker
+Disallow: /
+
+User-agent: CyberSpyder
+Disallow: /
+
+User-agent: EmailCollector
+Disallow: /
+
+User-agent: Foobot
+Disallow: /
+
+User-agent: GetURL
+Disallow: /
+
+User-agent: httplib
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: LinkScan
+Disallow: /
+
+User-agent: Openbot
+Disallow: /
+
+User-agent: Snooper
+Disallow: /
+
+User-agent: SuperBot
+Disallow: /
+
+User-agent: URLSpiderPro
+Disallow: /
+
+User-agent: MAZBot
+Disallow: /
+
+User-agent: EchoboxBot
+Disallow: /
+
+User-agent: SerendeputyBot
+Disallow: /
+
+User-agent: LivelapBot
+Disallow: /
+
+User-agent: linkfluence.com
+Disallow: /
+
+User-agent: TweetmemeBot
+Disallow: /
+
+User-agent: LinkisBot
+Disallow: /
+
+User-agent: CrowdTanglebot
+Disallow: /
