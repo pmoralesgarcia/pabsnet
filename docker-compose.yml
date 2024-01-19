@@ -218,6 +218,16 @@ services:
     environment:
       - VIRTUAL_HOST=photos.lifeofpablo.com
       - LETSENCRYPT_HOST=photos.lifeofpablo.com
+  lifeofpablo-nyc-climateweek:
+    image: nginx:latest
+    container_name: lifeofpablo-nyc-climateweek
+    ports:
+      - 8122:80
+    volumes:
+      - ./climateweeknyc.lifeofpablo.com/nginx/default.conf:/etc/nginx/nginx.conf
+    environment:
+      - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
+      - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
 volumes:
  freshrss_data:
  freshrss_extensions:
