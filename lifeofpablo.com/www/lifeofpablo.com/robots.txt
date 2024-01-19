@@ -2,6 +2,10 @@
 User-agent: Google-Extended
 Disallow: /
 
+# Byte Dance
+User-agent: Bytespider
+Disallow: /
+
 # Google Images
 User-agent: Googlebot-Image
 Disallow: /
