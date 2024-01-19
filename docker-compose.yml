@@ -225,7 +225,7 @@ services:
       - 8122:80
     volumes:
       - ./climateweeknyc.lifeofpablo.com/nginx/default.conf:/etc/nginx/nginx.conf
-      - ./climateweeknyc.lifeofpablo.com/www/climateweeknyc.lifeofpablo.com:/usr/share/nginx/html
+      - ./climateweeknyc.lifeofpablo.com/www/climateweeknyc.lifeofpablo.com:/var/www/html
     environment:
       - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
       - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
@@ -233,10 +233,10 @@ services:
     image: nginx:latest
     container_name: lifeofpablo-1k
     ports:
-      - 8122:80
+      - 8123:80
     volumes:
       - ./1k.lifeofpablo.com/nginx/default.conf:/etc/nginx/nginx.conf
-      - ./1k.lifeofpablo.com/www/1k.lifeofpablo.com:/usr/share/nginx/html
+      - ./1k.lifeofpablo.com/www/1k.lifeofpablo.com:/var/www/html
     environment:
       - VIRTUAL_HOST=1k.lifeofpablo.com
       - LETSENCRYPT_HOST=1k.lifeofpablo.com
