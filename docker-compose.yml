@@ -240,6 +240,14 @@ services:
     environment:
       - VIRTUAL_HOST=1k.lifeofpablo.com
       - LETSENCRYPT_HOST=1k.lifeofpablo.com
+  httpbin:
+    image: kennethreitz/httpbin
+    container_name: httpbin
+    ports:
+      - '8200:80'
+    environment:
+      - VIRTUAL_HOST=httpbin.lifeofpablo.com
+      - LETSENCRYPT_HOST=httpbin.lifeofpablo.com
 volumes:
  freshrss_data:
  freshrss_extensions:
