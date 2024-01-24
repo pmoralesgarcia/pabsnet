@@ -248,23 +248,8 @@ services:
     environment:
       - VIRTUAL_HOST=httpbin.lifeofpablo.com
       - LETSENCRYPT_HOST=httpbin.lifeofpablo.com
-  grav:
-    build: ./grav/Dockerfile
-    ports:
-      - 8024:80
-    volumes:
-      - grav-data:/var/www/html
-    environment:
-      - VIRTUAL_HOST=pabs.tech
-      - LETSENCRYPT_HOST=pabs.tech
 volumes:
  freshrss_data:
  freshrss_extensions:
  mariadb:
  miniflux-db:
- grav-data:
-    driver: local
-    driver_opts:
-      type: none
-      device: $PWD/grav
-      o: bind
