@@ -1,6 +1,6 @@
 ---
 Title: Setting up NGINX and PHP-FPM Dockerfile
-Published: 2024-01-15 22:08:07
+Published: 2024-01-15 22:58:07
 Author: Pablo Morales
 Layout: blog
 Tag: 2024
