@@ -1,5 +1,5 @@
 ---
-Title: Movies
+Title: Movies Watched
 Layout: movies
 ---
 <div class="mw6 center b" markdown="1">
