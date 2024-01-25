@@ -12,4 +12,6 @@ ImageAlt: Bluesky Logo
 
 Sharing is caring. I've been on Bluesky for a while and I forgot that I have 6 Bluesky invites I'd like to share with those following my blog. If you'd like one, send me a webmention or email me at pablo@lifeofpablo.com.
 
+In 24 hours, I'll post any remaining ones.
+
 
