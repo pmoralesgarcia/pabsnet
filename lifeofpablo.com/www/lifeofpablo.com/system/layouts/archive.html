@@ -7,8 +7,8 @@ Created by Robert Pfotenhauer on 03.10.23.
 
 
 <?php $this->yellow->layout("header") ?>
-
-<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<div class="h-feed">
+<h1 class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $this->yellow->page->getContentHtml() ?>
 
 <?php $pages = $this->yellow->content->index()->filter("layout", "blog")->sort("published", false) ?>
@@ -71,8 +71,8 @@ Created by Robert Pfotenhauer on 03.10.23.
             </div>
             <div class="archive-posts m-100 w-5">
             <?php foreach ($monthGroup as $page): ?>
-                <div class="archive-entry">
-                    <a class="u-url entry-link link" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?>&nbsp;</a>
+                <div class="archive-entry h-entry">
+                    <a class="u-url entry-link link p-name" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?>&nbsp;</a>
                     <div class="archive-meta dt-published">
                         <?php echo $page->getDateHtml("published") ?>
                     </div>
@@ -85,5 +85,6 @@ Created by Robert Pfotenhauer on 03.10.23.
     
     <?php endforeach; ?>
     <?php endforeach; ?>
+</div>
 
 <?php $this->yellow->layout("footer") ?>
