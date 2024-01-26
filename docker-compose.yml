@@ -29,6 +29,8 @@ services:
         DEFAULT_EMAIL: ${DEFAULT_EMAIL}
   mariadb:
     image: mariadb:10.11
+    ports:
+      - 3306:3306
     container_name: mariadb
     command: --max-allowed-packet=64MB
     restart: always
