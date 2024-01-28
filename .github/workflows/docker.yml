@@ -30,16 +30,10 @@ jobs:
           FRESHRSS_PASSWORD: op://pablo/freshrss-docker/freshrss_password
           FRESHRSS_API_PASSWORD: op://pablo/freshrss-docker/FRESHRSS_API_PASSWORD
           DEFAULT_EMAIL: op://pablo/default_email/email
-          SHLINK_MYSQL_PASSWORD: op://pablo/shlink/SHLINK_MYSQL_PASSWORD
-          SHLINK_MYSQL_USER: op://pablo/shlink/SHLINK_MYSQL_USER
-          SHLINK_API_KEY: op://pablo/shlink/SHLINK_API_KEY
-          VOUCH_ALLOWALLUSERS: op://pablo/vp-lifeofpablo/VOUCH_ALLOWALLUSERS
-          VOUCH_DOMAIN: op://pablo/vp-lifeofpablo/VOUCH_DOMAIN
-          VOUCH_COOKIE_SECURE: op://pablo/vp-lifeofpablo/VOUCH_COOKIE_SECURE
-          VOUCH_PUBLIC_ACCESS: op://pablo/vp-lifeofpablo/VOUCH_PUBLIC_ACCESS
-          VOUCH_OAUTH_CLIENT_ID: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_ID
-          VOUCH_OAUTH_AUTH_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_AUTH_URL
-          VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CALLBACK_URL
+          YOURLS_DB_USER: op://pablo/YOURLS/YOURLS_DB_USER
+          YOURLS_DB_PASS: op://pablo/YOURLS/YOURLS_DB_PASS
+          YOURLS_USER: op://pablo/YOURLS/username
+          YOURLS_PASS: op://pablo/YOURLS/password
           MATOMO_MYSQL_USER: op://pablo/matomo/username
           MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
           MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
@@ -63,17 +57,10 @@ jobs:
             FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
             FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
             DEFAULT_EMAIL=${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }} \
-            SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
-            SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
-            SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
-            VOUCH_ALLOW_ALL_USERS=${{ steps.op-load-secret.outputs.VOUCH_ALLOW_ALL_USERS }} \
-            VOUCH_DOMAIN=${{ steps.op-load-secret.outputs.VOUCH_DOMAIN }} \
-            VOUCH_COOKIE_SECURE=${{ steps.op-load-secret.outputs.VOUCH_COOKIE_SECURE }} \
-            VOUCH_PUBLIC_ACCESS=${{ steps.op-load-secret.outputs.VOUCH_PUBLIC_ACCESS }} \
-            VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
-            VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
-            VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
-            VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
+            YOURLS_DB_USER=${{ steps.op-load-secret.outputs.YOURLS_DB_USER }} \
+            YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
+            YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
+            YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
@@ -87,17 +74,10 @@ jobs:
             FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
             FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
             DEFAULT_EMAIL=${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }} \
-            SHLINK_MYSQL_USER=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_USER }} \
-            SHLINK_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.SHLINK_MYSQL_PASSWORD }} \
-            SHLINK_API_KEY=${{ steps.op-load-secret.outputs.SHLINK_API_KEY }} \
-            VOUCH_ALLOW_ALL_USERS=${{ steps.op-load-secret.outputs.VOUCH_ALLOW_ALL_USERS }} \
-            VOUCH_DOMAIN=${{ steps.op-load-secret.outputs.VOUCH_DOMAIN }} \
-            VOUCH_COOKIE_SECURE=${{ steps.op-load-secret.outputs.VOUCH_COOKIE_SECURE }} \
-            VOUCH_PUBLIC_ACCESS=${{ steps.op-load-secret.outputs.VOUCH_PUBLIC_ACCESS }} \
-            VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
-            VOUCH_OAUTH_AUTH_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_AUTH_URL }} \
-            VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
-            VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
+            YOURLS_DB_USER=${{ steps.op-load-secret.outputs.YOURLS_DB_USER }} \
+            YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
+            YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
+            YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \

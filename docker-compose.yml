@@ -250,6 +250,19 @@ services:
     environment:
       - VIRTUAL_HOST=httpbin.lifeofpablo.com
       - LETSENCRYPT_HOST=httpbin.lifeofpablo.com
+  yourls:
+    image: yourls
+    restart: always
+    ports:
+      - 8201:80
+    environment:
+      YOURLS_DB_HOST: mariadb
+      YOURLS_DB_PASS: ${YOURLS_DB_PASS}
+      YOURLS_SITE: https://pabs.lol
+      YOURLS_USER: ${YOURLS_USER}
+      YOURLS_PASS: ${YOURLS_PASS}
+      VIRTUAL_HOST: pabs.lol
+      LETSENCRYPT_HOST: pabs.lol
 volumes:
  freshrss_data:
  freshrss_extensions:
