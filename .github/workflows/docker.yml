@@ -29,10 +29,6 @@ jobs:
           FRESHRSS_PASSWORD: op://pablo/freshrss-docker/freshrss_password
           FRESHRSS_API_PASSWORD: op://pablo/freshrss-docker/FRESHRSS_API_PASSWORD
           DEFAULT_EMAIL: op://pablo/default_email/email
-          YOURLS_DB_USER: op://pablo/yourls/YOURLS_DB_USER
-          YOURLS_DB_PASS: op://pablo/yourls/YOURLS_DB_PASS
-          YOURLS_USER: op://pablo/yourls/username
-          YOURLS_PASS: op://pablo/yourls/password
           MATOMO_MYSQL_USER: op://pablo/matomo/username
           MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
           MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
@@ -56,10 +52,6 @@ jobs:
             FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
             FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
             DEFAULT_EMAIL=${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }} \
-            YOURLS_DB_USER=${{ steps.op-load-secret.outputs.YOURLS_DB_USER }} \
-            YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
-            YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
-            YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
@@ -73,10 +65,6 @@ jobs:
             FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
             FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
             DEFAULT_EMAIL=${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }} \
-            YOURLS_DB_USER=${{ steps.op-load-secret.outputs.YOURLS_DB_USER }} \
-            YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
-            YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
-            YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
