@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
       - name: Load secret
         id: op-load-secret
         uses: 1password/load-secrets-action@v1
@@ -30,10 +29,10 @@ jobs:
           FRESHRSS_PASSWORD: op://pablo/freshrss-docker/freshrss_password
           FRESHRSS_API_PASSWORD: op://pablo/freshrss-docker/FRESHRSS_API_PASSWORD
           DEFAULT_EMAIL: op://pablo/default_email/email
-          YOURLS_DB_USER: op://pablo/YOURLS/YOURLS_DB_USER
-          YOURLS_DB_PASS: op://pablo/YOURLS/YOURLS_DB_PASS
-          YOURLS_USER: op://pablo/YOURLS/username
-          YOURLS_PASS: op://pablo/YOURLS/password
+          YOURLS_DB_USER: op://pablo/yourls/YOURLS_DB_USER
+          YOURLS_DB_PASS: op://pablo/yourls/YOURLS_DB_PASS
+          YOURLS_USER: op://pablo/yourls/username
+          YOURLS_PASS: op://pablo/yourls/password
           MATOMO_MYSQL_USER: op://pablo/matomo/username
           MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
           MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
