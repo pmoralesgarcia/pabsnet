@@ -7,6 +7,7 @@ Tag: todo, list
 Description: Things I need done on my website
 Image: 
 ImageAlt: 
+Status: draft
 ---
 
 ### Things I want to do on my website
