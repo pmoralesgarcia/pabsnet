@@ -144,6 +144,14 @@ I'm happy I wasn't dead last.
 </div>
 <div class=" w-75 mw-100-ns center br2" markdown="1">
 ![go karting in action](https://static.lifeofpablo.com/media/images/blog-images/go-kart/IMG_6768.png)
+
+<video controls width="100%">
+  <source src="https://static.lifeofpablo.com/media/images/blog-images/go-kart/IMG_6762_1.mp4" type="video/mp4" />
+
+  Download the
+  <a href="https://static.lifeofpablo.com/media/images/blog-images/go-kart/IMG_6762_1.mp4">MP4</a>
+  video.
+</video>
 </div>
 </div>
 
