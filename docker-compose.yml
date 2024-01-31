@@ -242,6 +242,17 @@ services:
     environment:
       - VIRTUAL_HOST=1k.lifeofpablo.com
       - LETSENCRYPT_HOST=1k.lifeofpablo.com
+  lifeofpablo-interactives:
+    image: nginx:latest
+    container_name: lifeofpablo-interactives
+    ports:
+      - 8124:80
+    volumes:
+      - ./lifeofpablo-interactives/nginx/default.conf:/etc/nginx/nginx.conf
+      - ./lifeofpablo-interactives/www:/var/www/html
+    environment:
+      - VIRTUAL_HOST=1k.lifeofpablo.com
+      - LETSENCRYPT_HOST=1k.lifeofpablo.com
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
