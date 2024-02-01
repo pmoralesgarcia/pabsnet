@@ -1,69 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Interactive Posts</title>
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="webmention" href="https://webmention.io/lifeofpablo.com/webmention" />
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-  </head>
-  <body>
-    <nav class="dt w-100 border-box pa3 ph5-ns">
-        <a class="dtc v-mid mid-gray link dim w-25" href="/" title="Home">
-          <img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="dib w2 h2 br-100" alt="Pablo Morales">
-        </a>
-        <div class="dtc v-mid w-75 tr">
-          <a class="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/blog" title="Blog">Blog</a>
-          <a class="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/photography" title="Photography">Photography</a>
-          <a class="link dim dark-gray f6 f5-ns dib" href="/now" title="Now">Now</a>
-        </div>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Interactive Posts</title>
+      <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+      <link rel="icon" href="./favicon.ico" type="image/x-icon">
+      <link rel="webmention" href="https://webmention.io/lifeofpablo.com/webmention" />
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+         AOS.init();
+      </script>
+   </head>
+   <body>
+      <nav class="dt w-100 border-box pa3 ph5-ns">
+         <a class="dtc v-mid mid-gray link dim w-25" href="/" title="Home">
+         <img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="dib w2 h2 br-100" alt="Pablo Morales">
+         </a>
+         <div class="dtc v-mid w-75 tr">
+            <a class="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/blog" title="Blog">Blog</a>
+            <a class="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/photography" title="Photography">Photography</a>
+            <a class="link dim dark-gray f6 f5-ns dib" href="/now" title="Now">Now</a>
+         </div>
       </nav>
-
+      <script>
+         AOS.init();
+         
+         // You can also pass an optional settings object
+         // below listed default settings
+         AOS.init({
+           // Global settings:
+           disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+           startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+           initClassName: 'aos-init', // class applied after initialization
+           animatedClassName: 'aos-animate', // class applied on animation
+           useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+           disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+           debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+           throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+           
+         
+           // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+           offset: 120, // offset (in px) from the original trigger point
+           delay: 0, // values from 0 to 3000, with step 50ms
+           duration: 400, // values from 0 to 3000, with step 50ms
+           easing: 'ease', // default easing for AOS animations
+           once: false, // whether animation should happen only once - while scrolling down
+           mirror: false, // whether elements should animate out while scrolling past them
+           anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+         
+         });
+               
+      </script>
       <header class="tc ph4">
-        <h1 class="f3 f2-m f1-l fw2 black-90 mv3">
-          I went Go Karting
-        </h1>
-        <h2 class="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
-          This is the subtitle where additional information can go if you really need it.
-        </h2>
-      </header>
-      
-      <article class="cf ph3 ph5-ns pv5">
-        <header class="fn fl-ns w-50-ns pr4-ns">
-          <h1 class="mb3 mt0 lh-title">Clay in a Potter's Hand</h1>
-          <time class="f6 ttu tracked gray">Jan Tschichold</time>
-        </header>
-        <div class="fn fl-ns w-50-ns">
-          <p class="lh-copy measure mt4 mt0-ns">
-            PERFECT typography is more a science than an art. Mastery of the trade is
-            indispensable, but it isn't everything. Unerring taste, the hallmark of
-            perfection, rests also upon a clear understanding of the laws of harmonious
-            design. As a rule, impeccable taste springs partly from inborn sensitivity:
-            from feeling. But feelings remain rather unproductive unless they can inspire a
-            secure judgment. Feelings have to mature into knowledge about the consequences
-            of formal decisions. For this reason, there are no born masters of typography,
-            but self- education may lead in time to mastery.
-          </p>
-          <p class="lh-copy measure">
-            It is wrong to say that there is no arguing about taste when it is good taste
-            that is in question. We are not born with good taste, nor do we come into this
-            world equipped with a real understanding of art. Merely to recognize who or
-            what is represented in a picture has little to do with a real under- standing
-            of art. Neither has an uninformed opinion about the proportions of Roman
-            letters. In any case, arguing is senseless. He who wants to convince has to
-            do a better job than others.
-          </p>
-        </div>
-      </article>
-
-
-        
-
-  </body>
+        <article class="helvetica pb5">
+          <header class="vh-100 bg-light-pink dt w-100">
+            <div 
+              style="background:url(http://mrmrs.github.io/photos/display.jpg) no-repeat center right;background-size: cover;" 
+              class="dtc v-mid cover ph3 ph4-m ph5-l">
+              <h1 class="f2 f-subheadline-l measure lh-title fw9">A Night Taking Photos at San Francisco’s Spooky Ruins of the Sutro Baths</h1>
+              <h2 class="f6 fw6 black">A story by Nancy Drew</h2>
+            </div>
+          </header>
+          <div class="serif ph3 ph4-m ph5-l">
+            <p class="lh-copy f5 f3-m f1-l measure center pv4">
+              On <time>March 14, 1896</time>, the Sutro Baths were opened to the public as the world's largest indoor swimming pool establishment. </p>
+            <div class="f5 f3-m lh-copy">
+              <div class="cf dt-l w-100 bt b--black-10 pv4">
+                <div class="dtc-l v-mid mw6 pr3-l" data-aos="flip-right">
+                  <img class="w-100" src="http://mrmrs.github.io/photos/009.jpg" alt=""/>
+                </div>
+                <div class="dtc-l v-mid f6 f5-m f4-l measure-l">
+                  <p class="measure pv4-l center">
+                    <span class="fw9 fw4-ns">
+                      Before it burned to the ground, the structure</span> filled a small beach
+                    inlet below the Cliff House, also owned by Adolph Sutro at the time.
+                    Shortly after closing, a fire in 1966 destroyed the building
+                    while it was in the process of being demolished. All that remains
+                    of the site are concrete walls, blocked off stairs and
+                    passageways, and a tunnel with a deep crevice in the middle. The
+                    cause of the fire was arson. Shortly afterwards, the developer
+                    left San Francisco and claimed insurance money.
+                  </p>
+                </div>
+              </div>
+              <div class="cf dn">
+                <div class="fl w-100 w-50-l">
+                  <p class="f5 pv4">
+                    During high tides, water would flow directly into the pools from the
+                    nearby ocean, recycling the <span class="db f4 f3-m f1-l fw6 measure lh-title">two million US gallons of water in about an hour. </span>
+                  </p>
+                </div>
+                <div class="fl w-100 w-50-l">
+                  <p class="f5">
+                    During low tides, a powerful turbine water pump,
+                    built inside a cave at sea level, could be switched on from a control
+                    room and could fill the tanks at a rate of 6,000 US gallons a minute,
+                    recycling all the water in five hours.
+                  </p>
+                </div>
+              </div>
+              <div class="cf">
+                <div class="fl w-100 w-50-l pr2-l pb3" data-aos="fade-right">
+                  <img class="db w-100" src="http://mrmrs.github.io/photos/010.jpg" alt="Photo of a dusk skyline above a grassy rockface covered in trees.">
+                </div>
+                <div class="fl w-50 w-50-l pr1 pr0-l pl2-l pb3" data-aos="fade-left">
+                  <img class="db w-100" src="http://mrmrs.github.io/photos/011.jpg" alt="Photo of the sea and sky on the horizon with the foundations of a demolished house.">
+                </div>
+                <div class="fl w-50 w-50-l pl2 pl0-l pr2-l pb3">
+                  <img class="db w-100" src="http://mrmrs.github.io/photos/012.jpg" alt="Photo of the sea with mist covering the rocky formations near the shore.">
+                </div>
+                <div class="fl w-100 w-50-l pl2-l">
+                  <img class="db w-100" src="http://mrmrs.github.io/photos/013.jpg" alt="Photo of the foundations of a building on a cliff overlooking a lighthouse.">
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+   </body>
 </html>
