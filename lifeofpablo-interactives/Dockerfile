@@ -10,11 +10,11 @@ RUN apt update -y && \
 
 COPY ./lifeofpablo-interactives/nginx/default.conf /etc/nginx/sites-enabled/default
 
-VOLUME /var/www
+VOLUME /var/www/html
 
-WORKDIR  /var/www
+WORKDIR  /var/www/html
 
-RUN chmod -R a+rw /var/www/
+RUN chmod -R a+rw /var/www/html
 
 EXPOSE 80
 

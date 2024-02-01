@@ -221,7 +221,8 @@ services:
       - VIRTUAL_HOST=photos.lifeofpablo.com
       - LETSENCRYPT_HOST=photos.lifeofpablo.com
   lifeofpablo-nyc-climateweek:
-    image: nginx:latest
+    build:
+      dockerfile: ./climateweeknyc.lifeofpablo.com/Dockerfile  
     container_name: lifeofpablo-nyc-climateweek
     ports:
       - 8122:80
@@ -243,16 +244,13 @@ services:
       - VIRTUAL_HOST=1k.lifeofpablo.com
       - LETSENCRYPT_HOST=1k.lifeofpablo.com
   lifeofpablo-interactives:
-    image: nginx:latest
+    uild:
+      dockerfile: ./lifeofpablo-interactives/Dockerfile  
     container_name: lifeofpablo-interactives
     ports:
       - 8124:80
     volumes:
-      - ./lifeofpablo-interactives/nginx/default.conf:/etc/nginx/nginx.conf
       - ./lifeofpablo-interactives/www:/var/www/html
-    environment:
-      - VIRTUAL_HOST=1k.lifeofpablo.com
-      - LETSENCRYPT_HOST=1k.lifeofpablo.com
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
