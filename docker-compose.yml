@@ -227,7 +227,6 @@ services:
     ports:
       - 8122:80
     volumes:
-      - ./climateweeknyc.lifeofpablo.com/nginx/default.conf:/etc/nginx/nginx.conf
       - ./climateweeknyc.lifeofpablo.com/www/climateweeknyc.lifeofpablo.com:/var/www/html
     environment:
       - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
