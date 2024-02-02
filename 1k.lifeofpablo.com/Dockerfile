@@ -8,16 +8,15 @@ RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 RUN apt update -y && \
 	apt install -y php-fpm php-zip php-curl php-gd php-mbstring 
 
-COPY ./www/1000.lifeofpablo.com /var/www/1000.lifeofpablo.com
+COPY ./www /var/www
 
-WORKDIR /var/www/1000.lifeofpablo.com
+WORKDIR /var/www
 
-
-COPY ./nginx/1000.lifeofpablo.com.conf /etc/nginx/sites-enabled/default
+COPY ./nginx/default.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 80
 
-COPY ./start.sh / 
+COPY ./1k.lifeofpablo.com/start.sh / 
 
 CMD ["sh", "/start.sh"]
 
