@@ -1,7 +1,7 @@
 services:
   nginx:
     container_name: nginx
-    image: nginxproxy/nginx-proxy
+    image: nginxproxy/nginx-proxy:1.4
     restart: unless-stopped
     ports:
         - 80:80
@@ -41,7 +41,7 @@ services:
       - MARIADB_AUTO_UPGRADE=1
       - MARIADB_DISABLE_UPGRADE_BACKUP=1  
   miniflux:
-    image: miniflux/miniflux:latest
+    image: miniflux/miniflux:2.0.51
     container_name: miniflux
     ports:
       - "8084:8080"
@@ -259,7 +259,7 @@ services:
       - VIRTUAL_HOST=httpbin.lifeofpablo.com
       - LETSENCRYPT_HOST=httpbin.lifeofpablo.com
   ghost:
-    image: ghost
+    image: ghost:5.78.0
     cap_add:
       - CAP_SYS_NICE
     restart: always
