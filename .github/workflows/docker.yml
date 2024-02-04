@@ -55,7 +55,7 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_DATABASE }} \
+            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
             docker compose down --remove-orphans
             FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
             FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
@@ -72,5 +72,5 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_DATABASE }} \
+            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
             docker compose up --detach
