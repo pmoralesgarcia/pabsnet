@@ -274,6 +274,7 @@ services:
       database__connection__user: ghost
       database__connection__password: ${GHOST_MYSQL_PASSWORD}
       database__connection__database: ghost
+      mail__service: Mailgun
       mail__transport: SMTP
       mail__options__host: ${GHOST_SMTP_RELAY}
       mail__options__port: ${GHOST_SMTP_PORT}
