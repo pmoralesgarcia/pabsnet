@@ -33,6 +33,7 @@ jobs:
           YOURLS_DB_PASS: op://pablo/YOURLS/YOURLS_DB_PASS
           YOURLS_USER: op://pablo/YOURLS/username
           YOURLS_PASS: op://pablo/YOURLS/password
+          YOURLS_API: op://pablo/YOURLS/YOURLS_API
           MATOMO_MYSQL_USER: op://pablo/matomo/username
           MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
           MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
@@ -64,6 +65,7 @@ jobs:
             YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
             YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
             YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
+            YOURLS_API=${{ steps.op-load-secret.outputs.YOURLS_API }} \
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
@@ -85,6 +87,7 @@ jobs:
             YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
             YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
             YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
+            YOURLS_API=${{ steps.op-load-secret.outputs.YOURLS_API }} \
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \

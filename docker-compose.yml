@@ -287,7 +287,7 @@ services:
     volumes:
       - ./ghost/content:/var/lib/ghost/content
   yourls:
-    image: yourls
+    image: yourls:1.9.2
     restart: always
     ports:
       - 8125:80
@@ -297,6 +297,8 @@ services:
       YOURLS_SITE: https://pabs.lol
       YOURLS_USER: ${YOURLS_USER}
       YOURLS_PASS: ${YOURLS_PASS}
+      VIRTUAL_HOST: pabs.lol
+      LETSENCRYPT_HOST: pabs.lol
 volumes:
  freshrss_data:
  freshrss_extensions:
