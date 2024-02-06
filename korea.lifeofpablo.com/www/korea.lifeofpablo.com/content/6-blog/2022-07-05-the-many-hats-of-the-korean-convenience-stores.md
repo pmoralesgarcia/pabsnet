@@ -8,13 +8,15 @@ Tag: South Korea, Convenience Stores, Nice to CU, 7-11, food, GS25, experiences
 
 ### My Experience
 `This is part of a three or four part blog series. These posts will be interactive on my website (https://lifeofpablo.com) . I am in the process of rebuilding my website so stay tuned.`
-[image convenience-stores.png]
+
+[image https://photos.lifeofpablo.com/korea/media/images/convenience-stores.png]
+
 Here I am in South Korea getting a snack at a convenience store. Everytime I go to one, I reflect  on convenience stores back in the United States. Convenience stores in the United States are usually gas stations at the same time. Living in California you see convenience stores as standalone locations more often. Convenience stores back home get a bad wrap because they sell not so healthy food or are simply over priced. It's not so much in Korea. Yes, there are things that are overpriced but not as bad as you would see in the United States. Korean Convenience Stores are a whole different experience.. 
 
 ### ♥️KOREA IS LIVING IN THE FUTURE♥️
 
 Common convenience stores are GS25, Nice to CU and 7/11. They are all over the place. It's hard not to walk from one corner of a block to another corner of the same block without passing a convenience store. This is pretty consistent in most of Korea. The cities of Seoul and Chuncheon are good examples. Two or three years since the pandemic, many did stay open pretty late or open 24 hours.  They are just there whenever you need something. You can buy a snack, a beer (or many), toiletries and more! I've even found socks after my shoes got soaked in the rain. Prices are not overly expensive taking in consideration that the exchange rate between USD and WON are in the favor of the American consumer such as myself. 
-[gallery friends.png name zoom 25%]
+[image https://photos.lifeofpablo.com/korea/media/images/friends.png name zoom 25%]
 
 The experience at every convenience store is different. You never know what you'll find. I'm not sure how it is decided on what is carried in each store. I do love the element of surprise.
 
@@ -22,7 +24,7 @@ Korean Convenience Stores will fill the void in many aspects of life. They are c
 
 
 What really shocked me was the  Seoul WorldCup Stadium when I went to a soccer match. There I found a GS25 with prices similar to one you find on a random street. (Click to zoom in!)
-[gallery convenience-stores/beer/ name zoom 150]
+[image https://photos.lifeofpablo.com/korea/media/images/convenience-stores/beer/beer1.png name zoom 150]
 
 Overall, I'm happy with convenience stores here! I sure will miss them!
 
@@ -42,13 +44,13 @@ I will share this information in a lesson in the near future with others.
 
 ### Ramen
 
-What is nice about convenience stores is being able to cook instant ramen in-store seconds right after you buy it. (Click to zoom in!)
-[gallery convenience-stores/ramen/ name zoom 150]
+What is nice about convenience stores is being able to cook instant ramen in-store seconds right after you buy it. 
+[image https://photos.lifeofpablo.com/korea/media/images/convenience-stores/ramen/ramen1.png name zoom 150]
 
 ### Snacks
 
 There are so many options. Here are a few!  (Click to zoom in!)
-[gallery convenience-stores/snacks/ name zoom 150]
+[image https://photos.lifeofpablo.com/korea/media/images/convenience-stores/snacks/snack1.png name zoom 150]
 
 
 

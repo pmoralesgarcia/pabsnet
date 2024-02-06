@@ -21,10 +21,10 @@ Commuting in Seoul, Korea is not about trying to catch your bus or train,  you a
 Commuting is hard on the body when traveling far. It's hot and humid out, or you're just simply tired. Those little jingles give you a glimmer of hope that you are getting closer to your final destination. You stay motivated instead of only hearing the usual "This train is departing." or  departing. It brightens the mood. My two favorite jingles or sounds are:
 
 The Trumpet 
-[audio /media/audio/metro/trumpet.mp3]
+[audio https://photos.lifeofpablo.com/korea/media/audio/metro/trumpet.mp3]
 
 A steelpan Link
-[audio /media/audio/metro/arrival.mp3]
+[audio https://photos.lifeofpablo.com/korea/media/audio/metro/arrival.mp3]
 
 Do you see what I mean?
 It definitely made me smile. Everyone seems so happy. I knew traveling within Seoul was going to be fun but who knew these little jingles are what make the experience of the metro in Seoul. 

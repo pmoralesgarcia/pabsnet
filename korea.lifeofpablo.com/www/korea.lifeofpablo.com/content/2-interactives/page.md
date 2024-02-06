@@ -3,17 +3,30 @@ Title: Interactives
 TitleContent: Interactives 인터랙티브
 TitleHeader: Interactives 인터랙티브
 ---
+<style>
 
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+} 
+</style>
 
 
 <div class="flex-container">
 
   <div class="flex-child magenta">
-    <a href="videos" markdown="1">[image https://f005.backblazeb2.com/file/korea-lifeofpablo/images/videos.png "videos"]</a>
+    <a href="videos" markdown="1">![videos.png](https://photos.lifeofpablo.com/korea/media/images/videos.png)</a>
   </div>
   
   <div class="flex-child green">
-    <a href="photos" markdown="1">[image https://f005.backblazeb2.com/file/korea-lifeofpablo/images/untitled-3.png "Photos"]</a>
+    <a href="photos" markdown="1">![untitled-3.png](https://photos.lifeofpablo.com/korea/media/images/untitled-3.png)</a>
   </div>
   
 </div>
@@ -54,17 +67,3 @@ TitleHeader: Interactives 인터랙티브
   </div>
   
 </div>
-<style>
-
-.flex-container {
-    display: flex;
-}
-
-.flex-child {
-    flex: 1;
-}  
-
-.flex-child:first-child {
-    margin-right: 20px;
-} 
-</style>
