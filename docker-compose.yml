@@ -290,7 +290,7 @@ services:
     image: yourls
     restart: always
     ports:
-      - 8080:80
+      - 8125:80
     environment:
       YOURLS_DB_HOST: ${YOURLS_DB_HOST}
       YOURLS_DB_PASS: ${YOURLS_DB_PASS}
