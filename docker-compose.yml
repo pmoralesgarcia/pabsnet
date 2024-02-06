@@ -70,7 +70,7 @@ services:
       interval: 10s
       start_period: 30s
   vp-proxy-miniflux:
-    image: nginx:latest
+    image: nginx:1.25.3-bookworm-perl
     container_name: vp-proxy-miniflux
     volumes:
       - ./nginx-proxy/miniflux:/etc/nginx/conf.d
@@ -110,7 +110,7 @@ services:
       VIRTUAL_HOST: reader2.lifeofpablo.com
       LETSENCRYPT_HOST: reader2.lifeofpablo.com
  # vp-proxy-freshrss:
- #   image: nginx:latest
+ #   image: nginx:1.25.3-bookworm-perl
  #   container_name: vp-proxy-freshrss
  #   environment:
     # VIRTUAL_HOST: reader.lifeofpablo.com
@@ -131,7 +131,7 @@ services:
       VIRTUAL_HOST: auth.lifeofpablo.com
       LETSENCRYPT_HOST: auth.lifeofpablo.com
   thelounge:
-    image: ghcr.io/thelounge/thelounge:latest
+    image: ghcr.io/thelounge/thelounge:4
     container_name: thelounge
     ports:
       - "9524:9000"
@@ -155,7 +155,7 @@ services:
       - VIRTUAL_HOST=korea.lifeofpablo.com
       - LETSENCRYPT_HOST=korea.lifeofpablo.com
   lifeofpablo-proxy:
-    image: nginx:latest
+    image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-proxy
     volumes:
       - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
@@ -201,7 +201,7 @@ services:
     ports:
       - "8083:80"
   lifeofpablo-static:
-    image: nginx:latest
+    image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-static
     ports:
       - 8120:80
@@ -211,7 +211,7 @@ services:
       - VIRTUAL_HOST=static.lifeofpablo.com
       - LETSENCRYPT_HOST=static.lifeofpablo.com
   lifeofpablo-photos:
-    image: nginx:latest
+    image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-photos
     ports:
       - 8121:80
@@ -232,7 +232,7 @@ services:
       - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
       - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
   lifeofpablo-1k:
-    image: nginx:latest
+    image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-1k
     ports:
       - 8123:80
@@ -294,6 +294,7 @@ services:
       - 8125:80
     environment:
       YOURLS_DB_HOST: mariadb
+      YOURLS_DB_USER: ${YOURLS_DB_USER}
       YOURLS_DB_PASS: ${YOURLS_DB_PASS}
       YOURLS_SITE: https://pabs.lol
       YOURLS_USER: ${YOURLS_USER}
