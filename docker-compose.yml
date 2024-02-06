@@ -280,11 +280,23 @@ services:
       mail__options__port: ${GHOST_SMTP_PORT}
       mail__options__auth__user: ${GHOST_SMTP_USER}
       mail__options__auth__pass: ${GHOST_SMTP_PASSWORD}
+      APP_TRUSTED_PROXIES: REMOTE_ADDR
       mail__from: "Person I've Become Podcast"
       VIRTUAL_HOST: personivebecome.com
       LETSENCRYPT_HOST: personivebecome.com
     volumes:
       - ./ghost/content:/var/lib/ghost/content
+  yourls:
+    image: yourls
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      YOURLS_DB_HOST: ${YOURLS_DB_HOST}
+      YOURLS_DB_PASS: ${YOURLS_DB_PASS}
+      YOURLS_SITE: https://pabs.lol
+      YOURLS_USER: ${YOURLS_USER}
+      YOURLS_PASS: ${YOURLS_PASS}
 volumes:
  freshrss_data:
  freshrss_extensions:
