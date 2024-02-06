@@ -288,11 +288,12 @@ services:
       - ./ghost/content:/var/lib/ghost/content
   yourls:
     image: yourls:1.9.2
+    container_name: yourls
     restart: always
     ports:
       - 8125:80
     environment:
-      YOURLS_DB_HOST: ${YOURLS_DB_HOST}
+      YOURLS_DB_HOST: mariadb
       YOURLS_DB_PASS: ${YOURLS_DB_PASS}
       YOURLS_SITE: https://pabs.lol
       YOURLS_USER: ${YOURLS_USER}
