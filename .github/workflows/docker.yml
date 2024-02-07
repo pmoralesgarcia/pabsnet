@@ -50,6 +50,7 @@ jobs:
           key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
           port: 22
           script: |
+            git clone https://github.com/pmoralesgarcia/pabsnet.git
             cd ~/pabsnet
             git pull
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
