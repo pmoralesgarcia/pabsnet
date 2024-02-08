@@ -13,7 +13,7 @@ Recorded on [Panasocnic PV-DV910](https://duckduckgo.com/?t=ffab&q=panasonic+pv-
 
 <div class="center w-75 mw-100 br2" markdown="1">
 
-[image https://photos.lifeofpablo.com/sacramento/emo-concert/DVC00026.JPG "emo concert" ].  
+[image photos/sacramento/emo-concert/DVC00026.JPG "emo concert" ].  
 [image https://photos.lifeofpablo.com/sacramento/emo-concert/DVC00027.JPG "emo concert" ]
 [image https://photos.lifeofpablo.com/sacramento/emo-concert/DVC00028.JPG "emo concert" ]
 [image https://photos.lifeofpablo.com/sacramento/emo-concert/DVC00029.JPG "emo concert" ]
