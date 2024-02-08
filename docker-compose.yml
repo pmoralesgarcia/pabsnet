@@ -237,7 +237,6 @@ services:
     ports:
       - 8123:80
     volumes:
-      - ./1k.lifeofpablo.com/nginx/default.conf:/etc/nginx/nginx.conf
       - ./1k.lifeofpablo.com/www/1k.lifeofpablo.com:/var/www/html
     environment:
       - VIRTUAL_HOST=1k.lifeofpablo.com
