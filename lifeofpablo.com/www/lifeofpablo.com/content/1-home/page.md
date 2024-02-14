@@ -13,7 +13,7 @@ I really like vinyls and film photography. There is something so fascinating abo
 
 Currently working on a few tech projects: ECO, AI/ML, Node, and rust
 
-I like DCD's Jackpot Juicer.
+I like [DCD's Jackpot Juicer](lists/vinyls#22).
 
 Living in CA, I have grown so much and made amazing friends
 

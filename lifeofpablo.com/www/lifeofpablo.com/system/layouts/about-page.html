@@ -17,7 +17,6 @@
       <div class="about-header h-card">
          <img class="me u-photo" src="https://static.lifeofpablo.com/pabs-cropped.jpg" alt="picture of Pablo" /> 
          <!-- Title -->
-         <h1><a class="u-url u-uid" href="https://lifeofpablo.com"><span class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></span></a></h1>
          <?php $this->yellow->layout("nav-home") ?>
          <div class="p-note" markdown="1">
             Hey, I'm Pablo and I'm based in Sacramento. I work in IT in an educational setting. I really enjoy working with technology and improve technology use in education.
@@ -26,6 +25,9 @@
    </div>
 </div>
 <?php echo $this->yellow->page->getContentHtml() ?>
+<?php $this->yellow->layout("homepage-vinyls") ?>
+
+
 <div class="mw9 center ph3-ns">
    <div class="pv4"><?php $this->yellow->layout("lbp") ?></div>
 </div>

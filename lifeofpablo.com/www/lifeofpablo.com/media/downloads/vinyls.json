@@ -1,6 +1,21 @@
 {
 	"vinyls": [
 	 {
+	   "id": 1,
+	   "title": "1984",
+	   "artist": "Neon Christ",
+	   "copyright_year": 2021,
+	   "label": "DVL Records",
+	   "isbn": "8.0872E+11",
+	   "barcode": "8.0872E+11",
+	   "catalog_number": "DVL 010",
+	   "info_url": "https://www.discogs.com/master/2273077-Neon-Christ-1984",
+	   "thumbnail_url": "https://i.discogs.com/8p2l6Eoc8keqwUneKdZDugtxbr93K1Hwnwr3213XmH4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5MTE3/MzY2LTE2MjM1MjI0/NTMtNDY0NS5qcGVn.jpeg",
+	   "location_purchased": "",
+	   "notes": ""
+	 },
+	 {
+	   "id": 2,
 	   "title": "A Hard Day's Night",
 	   "artist": "The Beatles",
 	   "copyright_year": 1979,
@@ -14,6 +29,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 3,
 	   "title": "A Moment Apart",
 	   "artist": "Odesza",
 	   "copyright_year": 2017,
@@ -27,6 +43,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 4,
 	   "title": "AllenTown",
 	   "artist": "Billy Joel",
 	   "copyright_year": 1982,
@@ -40,19 +57,21 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 5,
 	   "title": "Alter The Ending Limited LP",
 	   "artist": "Dashboard Confessional",
 	   "copyright_year": 2018,
 	   "label": "Interscope Records",
-	   "isbn": "602527242040",
-	   "barcode": "602527242040",
+	   "isbn": "6.02527E+11",
+	   "barcode": "6.02527E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.discogs.com/release/2077396-Dashboard-Confessional-Alter-The-Ending",
 	   "thumbnail_url": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61+G3QH3I4L._UF1000,1000_QL80_.jpg",
 	   "location_purchased": "",
-	   "notes": "Product Sku: 47339635 ; Color Code: 060\n\nThe sixth studio album from Dashboard Confessional, Alter The Ending is available exclusively at UO in 1000 limited units of red vinyl. It’s a must for every emo fan’s record collection with expansive production that lends their sound extra resonance. Featuring the single “Belle of the “Boulevard”. 2018, Interscope."
+	   "notes": "Product Sku: 47339635 ; Color Code: 060\n\nThe sixth studio album from Dashboard Confessional, Alter The Ending is available exclusively at UO in 1000 limited units of red vinyl. It‚Äôs a must for every emo fan‚Äôs record collection with expansive production that lends their sound extra resonance. Featuring the single ‚ÄúBelle of the ‚ÄúBoulevard‚Äù. 2018, Interscope."
 	 },
 	 {
+	   "id": 6,
 	   "title": "American Nights",
 	   "artist": "Plain White T's",
 	   "copyright_year": 2015,
@@ -66,6 +85,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 7,
 	   "title": "Based on a True Story.",
 	   "artist": "Jake Miller",
 	   "copyright_year": 2019,
@@ -79,6 +99,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 8,
 	   "title": "Best of Common Culture",
 	   "artist": "Various Artists",
 	   "copyright_year": 2018,
@@ -92,12 +113,13 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 9,
 	   "title": "Born to Die",
 	   "artist": "Lana Del Rey",
 	   "copyright_year": 2012,
 	   "label": "Interscope Records",
 	   "isbn": "B006ZWLXZ8",
-	   "barcode": "602527950891",
+	   "barcode": "6.02528E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.amazon.com/Born-Die-Lana-Del-Rey/dp/B006ZWLXZ8",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/719SroNweJL._SX522_.jpg",
@@ -105,6 +127,7 @@
 	   "notes": "Vinyl LP pressing. Highly anticipated 2012 debut album from the New York-based singer, songwriter and performer. She has described herself as a \"gangsta Nancy Sinatra\" and cites Britney Spears, Thomas Newman and Bruce Springsteen as her musical influences. Lana Del Rey's direct influences were visual as well as musical; David Lynch, soundtracks for `50s black and white movies, the whirring sound of the Ferris at Coney Island, fame itself. She lived in a New Jersey trailer park and decked her homestead in flags, streamers and seasonally inappropriate Christmas lights. Like these things she loves, the album sparkles with color and vitality. Includes the hit singles 'Video Games' and 'Blue Jeans'."
 	 },
 	 {
+	   "id": 10,
 	   "title": "Break Out",
 	   "artist": "Pointer Sisters",
 	   "copyright_year": 1983,
@@ -118,19 +141,21 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 11,
 	   "title": "Cartel",
 	   "artist": "Cartel",
 	   "copyright_year": 2007,
 	   "label": "Epic Records",
 	   "isbn": "",
-	   "barcode": "888750891211",
-	   "catalog_number": "888750891211",
+	   "barcode": "8.88751E+11",
+	   "catalog_number": "8.88751E+11",
 	   "info_url": "https://www.discogs.com/master/415290-Cartel-Cartel",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/81ZxXAzln1L._SX425_.jpg",
 	   "location_purchased": "Buffalo Records (Kearney, NE)",
 	   "notes": ""
 	 },
 	 {
+	   "id": 12,
 	   "title": "Civilized Evil",
 	   "artist": "Jean-Luc Ponty",
 	   "copyright_year": 1980,
@@ -144,12 +169,13 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 13,
 	   "title": "Cool It Down",
 	   "artist": "Yeah Yeah Yeahs",
 	   "copyright_year": 2022,
 	   "label": "Secretly Canadian",
 	   "isbn": "",
-	   "barcode": "656605047034",
+	   "barcode": "6.56605E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.discogs.com/master/2797622-Yeah-Yeah-Yeahs-Cool-It-Down",
 	   "thumbnail_url": "https://i.discogs.com/CAdbAlUnwGG-atnyKuduaT4menOJDokmsWGEYmd3cWo/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0NTU5/NTIwLTE2NjM4ODUw/MjAtMjAwNS5qcGVn.jpeg",
@@ -157,12 +183,27 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 14,
+	   "title": "Daize",
+	   "artist": "Girl",
+	   "copyright_year": 1986,
+	   "label": "Upstairs Records",
+	   "isbn": "",
+	   "barcode": "",
+	   "catalog_number": "UR 0100",
+	   "info_url": "https://www.discogs.com/release/769512-Daize-Girl",
+	   "thumbnail_url": "https://i.discogs.com/Vi0sOpdKK9Y15Km3j9nZxVBCR5VliGduvRqMt3WgkTw/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc2OTUx/Mi0xNDMxNzA0Mzc4/LTQyOTcuanBlZw.jpeg",
+	   "location_purchased": "Sacramento",
+	   "notes": ""
+	 },
+	 {
+	   "id": 15,
 	   "title": "Don't Panic: It's Longer Now!",
 	   "artist": "All Time Low",
 	   "copyright_year": 2013,
 	   "label": "Hopeless Records",
-	   "isbn": "790692076314",
-	   "barcode": "790692076314",
+	   "isbn": "7.90692E+11",
+	   "barcode": "7.90692E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.discogs.com/release/8260526-All-Time-Low-Dont-Panic-Its-Longer-Now",
 	   "thumbnail_url": "https://dx72k0ec4onep.cloudfront.net/product/1616/29298259/RD9VNM-1478305755-1280x1280-790692076314.jpg",
@@ -170,6 +211,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 16,
 	   "title": "Early Treasures",
 	   "artist": "Donovan",
 	   "copyright_year": 1973,
@@ -183,6 +225,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 17,
 	   "title": "Everything All the Time",
 	   "artist": "Band of Horses",
 	   "copyright_year": 2006,
@@ -196,6 +239,7 @@
 	   "notes": "---Side 1---\n1.\t\"The First Song\"\tBand of Horses\t3:43\n2.\t\"Wicked Gil\"\tBand of Horses\t2:57\n3.\t\"Our Swords\"\tBand of Horses\t2:26\n4.\t\"The Funeral\"\tBand of Horses\t5:21\n5.\t\"Part One\"\tBand of Horses\t2:36\n\n---Side 2---\n6.\t\"The Great Salt Lake\"\tBand of Horses\t4:45\n7.\t\"Weed Party\"\tBand of Horses\t3:09\n8.\t\"I Go to the Barn Because I Like The\"\tBand of Horses\t3:06\n9.\t\"Monsters\"\tBand of Horses\t5:21\n10.\t\"St. Augustine\""
 	 },
 	 {
+	   "id": 18,
 	   "title": "Extreme",
 	   "artist": "Extreme",
 	   "copyright_year": 1989,
@@ -209,6 +253,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 19,
 	   "title": "Four Sonatas",
 	   "artist": "J.S. Bach",
 	   "copyright_year": null,
@@ -222,6 +267,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 20,
 	   "title": "Herb Alpert / Hugh Masekela",
 	   "artist": "Herb Alpert, Hugh Masekela",
 	   "copyright_year": 1978,
@@ -235,6 +281,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 21,
 	   "title": "Heron Oblivion",
 	   "artist": "Heron Oblivion",
 	   "copyright_year": 2016,
@@ -248,6 +295,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 22,
 	   "title": "Honestly - Acoustic",
 	   "artist": "Cartel",
 	   "copyright_year": 2005,
@@ -261,6 +309,7 @@
 	   "notes": "Limited Edition. Only 500 made. #398 Gold Plated."
 	 },
 	 {
+	   "id": 23,
 	   "title": "Introducing Herman's Hermits",
 	   "artist": "Herman's Hermit",
 	   "copyright_year": 1965,
@@ -274,12 +323,13 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 24,
 	   "title": "Jackpot Juicer",
 	   "artist": "Dance Gavin Dance",
 	   "copyright_year": 2021,
 	   "label": "Rise Records",
-	   "isbn": "4050538767766",
-	   "barcode": "4050538767766",
+	   "isbn": "4.05054E+12",
+	   "barcode": "4.05054E+12",
 	   "catalog_number": "",
 	   "info_url": "https://www.discogs.com/master/2724563-Dance-Gavin-Dance-Jackpot-Juicer",
 	   "thumbnail_url": "https://i.discogs.com/NE-rftfKCcjtj4WJubvRETykCaRWCLucRtku5-op4Pc/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0MDEx/MzkzLTE2NTg5MDky/OTAtODg5OC5qcGVn.jpeg",
@@ -287,12 +337,13 @@
 	   "notes": "Bought at Amoeba Records"
 	 },
 	 {
+	   "id": 25,
 	   "title": "Kamikaze",
 	   "artist": "Eminem",
 	   "copyright_year": 2018,
 	   "label": "Aftermath Records",
-	   "isbn": "602577094927",
-	   "barcode": "602577094927",
+	   "isbn": "6.02577E+11",
+	   "barcode": "6.02577E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.discogs.com/master/1416558-Eminem-Kamikaze",
 	   "thumbnail_url": "https://i.discogs.com/OIzU7n06PiklfC7KV9mCVyla4RoYdPfGPa_1vs4ERyQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDkx/MTc2LTE1MzY0MDUw/MDEtNzE4My5qcGVn.jpeg",
@@ -300,6 +351,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 26,
 	   "title": "Let's Have Fun",
 	   "artist": "The Invertebrates",
 	   "copyright_year": 1983,
@@ -313,6 +365,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 27,
 	   "title": "Lombardoland",
 	   "artist": "Guy Lombardo",
 	   "copyright_year": 1955,
@@ -326,6 +379,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 28,
 	   "title": "Nashville Showtime",
 	   "artist": "Jimmy Dean, Marvin Rainwater",
 	   "copyright_year": 1966,
@@ -339,19 +393,7 @@
 	   "notes": ""
 	 },
 	 {
-	   "title": "1984",
-	   "artist": "Neon Christ",
-	   "copyright_year": 2021,
-	   "label": "DVL Records",
-	   "isbn": "808720028416",
-	   "barcode": "808720028416",
-	   "catalog_number": "DVL 010",
-	   "info_url": "https://www.discogs.com/master/2273077-Neon-Christ-1984",
-	   "thumbnail_url": "https://i.discogs.com/8p2l6Eoc8keqwUneKdZDugtxbr93K1Hwnwr3213XmH4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5MTE3/MzY2LTE2MjM1MjI0/NTMtNDY0NS5qcGVn.jpeg",
-	   "location_purchased": "",
-	   "notes": ""
-	 },
-	 {
+	   "id": 29,
 	   "title": "Nöel",
 	   "artist": "Josh Groban",
 	   "copyright_year": 2007,
@@ -365,25 +407,27 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 30,
 	   "title": "OK Computer",
 	   "artist": "Radiohead",
 	   "copyright_year": 1997,
 	   "label": "EMI Records Ltd.",
-	   "isbn": "724385522918",
-	   "barcode": "724385522918",
+	   "isbn": "7.24386E+11",
+	   "barcode": "7.24386E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.rollingstone.com/music/music-features/radioheads-ok-computer-an-oral-history-196156/",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/81ni71zIxIL._SX522_.jpg",
 	   "location_purchased": "",
-	   "notes": "Radiohead's third album got compared to Pink Floyd a lot when it came out, and its slow drama and conceptual sweep certainly put it in that category. OK Computer, though, is a complicated and difficult record: an album about the way machines dehumanize people that's almost entirely un-electronic; an album by a British \"new wave of new wave\" band that rejects speed and hooks in favor of languorous texture and morose details; a sad and humanist record whose central moment is Thom Yorke crooning \"We hope that you choke.\" Sluggish, understated, and hard to get a grip on, OK Computer takes a few listens to appreciate, but its entirety means more than any one song. --Douglas Wolk\n\n\nThe June 15th Rolling Stone cover story took an in-depth look at Radiohead‘s OK Computer in honor of the album’s 20th anniversary. The band let us hang backstage over the course of two days at the Berkeley Greek Theater as they shared memories from that tumultuous and wildly innovative time in their lives, and a week later Thom Yorke sat down with RS at an Italian restaurant in Los Angeles to chat some more. All in all, the members of Radiohead spoke on the record for more than seven hours in anticipation of the upcoming OKNOTOK reissue, which contains a remastered version of the LP along with a bonus disc of B sides and outtakes."
+	   "notes": "Radiohead's third album got compared to Pink Floyd a lot when it came out, and its slow drama and conceptual sweep certainly put it in that category. OK Computer, though, is a complicated and difficult record: an album about the way machines dehumanize people that's almost entirely un-electronic; an album by a British \"new wave of new wave\" band that rejects speed and hooks in favor of languorous texture and morose details; a sad and humanist record whose central moment is Thom Yorke crooning \"We hope that you choke.\" Sluggish, understated, and hard to get a grip on, OK Computer takes a few listens to appreciate, but its entirety means more than any one song. --Douglas Wolk\n\n\nThe June 15th Rolling Stone cover story took an in-depth look at Radiohead‚Äòs OK Computer in honor of the album‚Äôs 20th anniversary. The band let us hang backstage over the course of two days at the Berkeley Greek Theater as they shared memories from that tumultuous and wildly innovative time in their lives, and a week later Thom Yorke sat down with RS at an Italian restaurant in Los Angeles to chat some more. All in all, the members of Radiohead spoke on the record for more than seven hours in anticipation of the upcoming OKNOTOK reissue, which contains a remastered version of the LP along with a bonus disc of B sides and outtakes."
 	 },
 	 {
+	   "id": 31,
 	   "title": "Private World",
 	   "artist": "Astrological",
 	   "copyright_year": 2019,
 	   "label": "Bastard Jazz Recordings",
-	   "isbn": "708630007818",
-	   "barcode": "708630007818",
+	   "isbn": "7.0863E+11",
+	   "barcode": "7.0863E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.discogs.com/release/13792782-AstroLogical-Private-World-",
 	   "thumbnail_url": "https://i.discogs.com/J3yBJBIdZyju8m5OM8LH5cKvnDxn2hJddBuuXl7SvVg/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNzky/NzgyLTE1NjIwMjQ1/NzUtNTY2MS5qcGVn.jpeg",
@@ -391,6 +435,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 32,
 	   "title": "Roberta Flack",
 	   "artist": "Roberta Flack",
 	   "copyright_year": 1979,
@@ -404,6 +449,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 33,
 	   "title": "Rumours",
 	   "artist": "Fleetwood Mac",
 	   "copyright_year": 2009,
@@ -417,6 +463,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 34,
 	   "title": "Salt Shaker",
 	   "artist": "Ying Yang Twins",
 	   "copyright_year": 2003,
@@ -430,6 +477,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 35,
 	   "title": "Sgt. Pepper's LHC Band",
 	   "artist": "The Beatles",
 	   "copyright_year": 1967,
@@ -443,6 +491,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 36,
 	   "title": "Slowhand",
 	   "artist": "Eric Clapton",
 	   "copyright_year": 1977,
@@ -456,12 +505,13 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 37,
 	   "title": "Songs That Saved My Life",
 	   "artist": "Various Artists",
 	   "copyright_year": 2018,
 	   "label": "Hopeless Records",
 	   "isbn": "49597750",
-	   "barcode": "790692256419",
+	   "barcode": "7.90692E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.urbanoutfitters.com/shop/various-artists-songs-that-saved-my-life-limited-2xlp",
 	   "thumbnail_url": "https://i.discogs.com/sKVzZgsNlkcCUs-wxQ3bNyIuqvQvB9Edki5SRdABPAE/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzky/OTE2LTE1OTA5MzM1/MzgtMTc4My5qcGVn.jpeg",
@@ -469,6 +519,35 @@
 	   "notes": "Product Sku: 49597750 ; Color Code: 066\n\nSongs That Saved My Life is a project dedicated to raising money for mental health awareness + suicide prevention, in tribute to the artists and songs that have helped many get through tough times, covered by current artists. The album is available exclusively at UO on 1000 limited units of magenta vinyl. With Dance Gavin Dance, Taking Back Sunday, Movements, Against Me! and more. They partner with and benefit Crisis Text Line, Hope For The Day, The Trevor Project and To Write Love On Her Arms. 2018, Hopeless Records.\n\nTracklisting\n1. Torn - Neck Deep\n2. Losing My Religion - Movements\n3. Your Graduation - Stand Atlantic\n4. Semi-Charmed Life - Dance Gavin Dance\n5. People Who Died - Against Me!\n6. Bullet With Butterfly Wings - Taking Back Sunday\n7. Crawling - Dream State\n8. Such Great Heights - As It Is\n9. Shape Of My Heart - Oceans Ate Alaska\n10. Let It Be - Too Close To Touch\n11. Broom People - Dan Campbell and Ace Enders\n12. Transatlanticism - The Maine"
 	 },
 	 {
+	   "id": 38,
+	   "title": "Staircase",
+	   "artist": "Keith Jarrett",
+	   "copyright_year": 1977,
+	   "label": "ECM Records",
+	   "isbn": "",
+	   "barcode": "",
+	   "catalog_number": "ECM-2-1090",
+	   "info_url": "https://www.discogs.com/release/1299608-Keith-Jarrett-Staircase",
+	   "thumbnail_url": "https://i.discogs.com/wDpj1-ttcRMJJH3HX3v94p9dUVaewy3vjkRK1kYmU_o/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyOTk2/MDgtMTU3ODEwMDUx/Mi03MTU0LmpwZWc.jpeg",
+	   "location_purchased": "Goodwill",
+	   "notes": ""
+	 },
+	 {
+	   "id": 39,
+	   "title": "Strange Love",
+	   "artist": "Simple Creatures",
+	   "copyright_year": 2019,
+	   "label": "Sandbag",
+	   "isbn": "4.05054E+12",
+	   "barcode": "4.05054E+12",
+	   "catalog_number": "",
+	   "info_url": "https://store.simplecreaturesmusic.com/products/strange-love-lp",
+	   "thumbnail_url": "https://cdn.shopify.com/s/files/1/0083/6550/6640/products/Simple_Creatures_-_Srange_Love_LP_Black_AND_White_eCOM_grande.png?v=1550760446",
+	   "location_purchased": "",
+	   "notes": "STRANGE LOVE is the debut EP release from Simple Creatures. Vinyl EP release features a limited edition, exclusive 140gm half black, half white vinyl EP in a single jacket with raised spot UV gloss cover art. Only1,000 made.\n\nRelease date:  March 29, 2019\n\n** Ship date:  May 3, 2019 **\n\nTracklisting:\n\nSide A:\n\nDrug\nStrange Love\nHow To Live\nSide B:\n\nAdrenaline\nEther\nLucy\n\nThis is a pre-order and will be dispatched commencing May 3, 2019. Orders are not part shipped so if you wish to order other items with a different release date we recommend placing a separate order. Vinyl EP purchases will include a digital download of the album to be delivered on release date (March 29) due to delayed dispatch of the vinyl."
+	 },
+	 {
+	   "id": 40,
 	   "title": "The Empire Strikes Back",
 	   "artist": "John Williams",
 	   "copyright_year": 1980,
@@ -482,19 +561,7 @@
 	   "notes": "Missing vinyl 1 of 2."
 	 },
 	 {
-	   "title": "Strange Love",
-	   "artist": "Simple Creatures",
-	   "copyright_year": 2019,
-	   "label": "Sandbag",
-	   "isbn": "4050538480221",
-	   "barcode": "4050538480221",
-	   "catalog_number": "",
-	   "info_url": "https://store.simplecreaturesmusic.com/products/strange-love-lp",
-	   "thumbnail_url": "https://cdn.shopify.com/s/files/1/0083/6550/6640/products/Simple_Creatures_-_Srange_Love_LP_Black_AND_White_eCOM_grande.png?v=1550760446",
-	   "location_purchased": "",
-	   "notes": "STRANGE LOVE is the debut EP release from Simple Creatures. Vinyl EP release features a limited edition, exclusive 140gm half black, half white vinyl EP in a single jacket with raised spot UV gloss cover art. Only1,000 made.\n\nRelease date:  March 29, 2019\n\n** Ship date:  May 3, 2019 **\n\nTracklisting:\n\nSide A:\n\nDrug\nStrange Love\nHow To Live\nSide B:\n\nAdrenaline\nEther\nLucy\n\nThis is a pre-order and will be dispatched commencing May 3, 2019. Orders are not part shipped so if you wish to order other items with a different release date we recommend placing a separate order. Vinyl EP purchases will include a digital download of the album to be delivered on release date (March 29) due to delayed dispatch of the vinyl."
-	 },
-	 {
+	   "id": 41,
 	   "title": "The Last Goodbye",
 	   "artist": "Odesza",
 	   "copyright_year": 2022,
@@ -508,12 +575,13 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 42,
 	   "title": "The Mountain",
 	   "artist": "Heartless Bastards",
 	   "copyright_year": 2009,
 	   "label": "Fat Possum Records, LLC",
 	   "isbn": "",
-	   "barcode": "767981112510",
+	   "barcode": "7.67981E+11",
 	   "catalog_number": "",
 	   "info_url": "https://www.discogs.com/master/292591-Heartless-Bastards-The-Mountain",
 	   "thumbnail_url": "https://images.genius.com/5b8dd2d6be5f5fa45c4b32265a465625.1000x1000x1.jpg",
@@ -521,6 +589,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 43,
 	   "title": "The Synthesizer",
 	   "artist": "Dick Hyman",
 	   "copyright_year": 1973,
@@ -534,6 +603,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 44,
 	   "title": "The Woman in Red",
 	   "artist": "Stevie Wonder",
 	   "copyright_year": 1984,
@@ -547,12 +617,13 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 45,
 	   "title": "Things Are Great",
 	   "artist": "Band of Horses",
 	   "copyright_year": 2021,
 	   "label": "Huger Lewis and The Dudes, Inc.",
-	   "isbn": "4050538706314",
-	   "barcode": "4050538706314",
+	   "isbn": "4.05054E+12",
+	   "barcode": "4.05054E+12",
 	   "catalog_number": "",
 	   "info_url": "https://www.discogs.com/master/2534005-Band-Of-Horses-Things-Are-Great",
 	   "thumbnail_url": "https://i.discogs.com/YivNjySTgY0yHcs0TK00f77SspUHw_eP4xqSFfTGLL4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMzY2/MjE2LTE2NDY3NjU3/MDYtMTA0OC5qcGVn.jpeg",
@@ -560,6 +631,21 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 46,
+	   "title": "Tops in Pop Artists",
+	   "artist": "Various Artists",
+	   "copyright_year": null,
+	   "label": "Evon Records",
+	   "isbn": "",
+	   "barcode": "",
+	   "catalog_number": "EVON 319",
+	   "info_url": "https://www.discogs.com/master/3171600-Various-Tops-In-Pop-Artists",
+	   "thumbnail_url": "https://i.discogs.com/f5uDtazKucrbqsxZjidwDBT966iHE8w6GfW9gyJPt9E/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNjE2/NTU1LTE2NDgwNTQ5/MjQtNzU4NS5qcGVn.jpeg",
+	   "location_purchased": "Goodwill",
+	   "notes": ""
+	 },
+	 {
+	   "id": 46,
 	   "title": "We Are What We Are",
 	   "artist": "The Other Ones",
 	   "copyright_year": 1987,
@@ -573,6 +659,7 @@
 	   "notes": ""
 	 },
 	 {
+	   "id": 47,
 	   "title": "Winter Wonderland",
 	   "artist": "The Mexicali Brass",
 	   "copyright_year": 2006,

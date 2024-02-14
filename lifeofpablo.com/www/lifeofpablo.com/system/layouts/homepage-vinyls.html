@@ -1,0 +1,46 @@
+<?php $pages = $this->yellow->content->index()->filter("layout", "blog")->sort("published", false)->limit(4) ?>
+<?php $this->yellow->page->setLastModified($pages->getModified()) ?>
+<?php $this->yellow->page->setHeader("Cache-Control", "max-age=60") ?>
+
+
+<?php
+$catalog_json = file_get_contents('media/downloads/vinyls.json');
+
+$decoded_json = json_decode($catalog_json, true);
+
+$items = $decoded_json['vinyls'];
+$vinyl = "
+	<div class=\"w-50 mw-100\">
+    <label for=\"vinyls\" class=\"f4 bold center mw6\">Vinyl: </label>
+    <select id=\"vinyls\" name=\"vinyls\" class=\"navy list pl0 ml0 center mw6 ba b--light-silver br2\">
+    <option value=\"\" class=\"ph3 pv3 bb b--light-silver\" selected disabled hidden\>Select a Vinyl</option>";
+
+foreach($items as $item){
+   $id = $item['id'];
+   $name = $item['title'];
+   $artist = $item['artist'];
+    $cover = $item['thumbnail_url'];
+   $info_url = $item['info_url'];
+   $year = $item['copyright_year'];
+   $label = $item['label'];
+    $vinyl .= '<option value="'.$id.'" class=\"ph3 pv3 bb b--light-silver\">'.$name.' - '.$artist.'</option>';
+}
+
+$vinyl .= "
+    </select>
+	</div>";
+echo $vinyl;
+?>
+<script>
+   /* Approach 1 */
+const select1 = document.getElementById('vinyls')
+
+const handleChange1 = (event) => {
+ const { value } = event.target
+ const redirectTo = `lists/vinyls#${value}`
+ window.location.href = redirectTo
+ // console.warn(`Suppressed redirection for example sake (${redirectTo}). Uncomment in your code`)
+}
+
+select1.addEventListener('change', handleChange1)
+</script>

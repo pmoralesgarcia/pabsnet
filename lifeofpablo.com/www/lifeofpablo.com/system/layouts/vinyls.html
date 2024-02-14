@@ -14,6 +14,7 @@ $items = $decoded_json['vinyls'];
 
 
 foreach($items as $item) {
+  $id = $item['id'];
   $name = $item['title'];
   $artist = $item['artist'];
 	$cover = $item['thumbnail_url'];
@@ -22,7 +23,7 @@ foreach($items as $item) {
   $label = $item['label'];
 
   
-    echo '<article class="fl w-100 w-50-m h-item w-25-ns pa2-ns">';
+    echo '<article class="fl w-100 w-50-m h-item w-25-ns pa2-ns" id="'.$id.'">';
     echo '<div class="aspect-ratio aspect-ratio--1x1">';
     echo '<img src="'.$cover.'" alt="'.$name.' album cover" class="u-photo db bg-center cover aspect-ratio--object" />';
     echo '</div>';
