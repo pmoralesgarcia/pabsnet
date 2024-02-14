@@ -11,8 +11,8 @@ $decoded_json = json_decode($catalog_json, true);
 $items = $decoded_json['vinyls'];
 $vinyl = "
 	<div class=\"w-50 mw-100\">
-    <label for=\"vinyls\" class=\"f4 bold center mw6\">Vinyl: </label>
-    <select id=\"vinyls\" name=\"vinyls\" class=\"navy list pl0 ml0 center mw6 ba b--light-silver br2\">
+    <label for=\"vinyls\" class=\"f4 bold center mw6\">Vinyl: </label> <br />
+    <select id=\"vinyls\" name=\"vinyls\" class=\"navy  pa3 list pl0 ml0 center mw6 ba b--light-silver br2\">
     <option value=\"\" class=\"ph3 pv3 bb b--light-silver\" selected disabled hidden\>Select a Vinyl</option>";
 
 foreach($items as $item){
@@ -23,7 +23,7 @@ foreach($items as $item){
    $info_url = $item['info_url'];
    $year = $item['copyright_year'];
    $label = $item['label'];
-    $vinyl .= '<option value="'.$id.'" class=\"ph3 pv3 bb b--light-silver\">'.$name.' - '.$artist.'</option>';
+    $vinyl .= '<option value="'.$id.'" class=\"ph3 pv3 bb b--light-silver\">'.$name.'</option>';
 }
 
 $vinyl .= "
