@@ -241,14 +241,21 @@ services:
     environment:
       - VIRTUAL_HOST=1k.lifeofpablo.com
       - LETSENCRYPT_HOST=1k.lifeofpablo.com
+  #lifeofpablo-interactives:
+  #  build:
+  #    dockerfile: ./lifeofpablo-interactives/Dockerfile  
+  #  container_name: lifeofpablo-interactives
+  #  ports:
+  #    - 8124:80
+  #  volumes:
+  #    - ./lifeofpablo-interactives/www:/var/www/html
   lifeofpablo-interactives:
-    build:
-      dockerfile: ./lifeofpablo-interactives/Dockerfile  
     container_name: lifeofpablo-interactives
+    image: automad/automad:1.10.9
     ports:
       - 8124:80
     volumes:
-      - ./lifeofpablo-interactives/www:/var/www/html
+      - ./automad-interactives:/app
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
