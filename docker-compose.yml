@@ -256,6 +256,8 @@ services:
       - 8124:80
     volumes:
       - ./automad-interactives:/app
+    environment:
+      - APP_FORCE_TLS=true
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
