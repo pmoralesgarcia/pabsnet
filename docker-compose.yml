@@ -258,6 +258,7 @@ services:
       - ./automad-interactives:/app
     environment:
       - APP_FORCE_TLS=true
+      - APP_URL=https://lifeofpablo.com/interactives
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
