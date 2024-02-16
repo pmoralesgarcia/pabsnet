@@ -25,6 +25,8 @@
     --font: 'Rajdhani', sans-serif; 
     --monospace-font: Consolas, Menlo, Courier, monospace;
 }
+
+
 @font-face {
     font-family: "Open Sans";
     font-style: normal;
@@ -551,11 +553,11 @@ footer ul{
 
 @media only screen and (max-width: 600px) {
   .webmention img {
-   max-width: 100%
+   max-width: 100%;
    width: 100%;
    height: 100%;
   }
-}
+} 
 
 /* Responsive and print */
 
