@@ -6,5 +6,5 @@ ImageAlt: A Moment Apart By Odesza
 Description: Here are some vinyls I own. This is a work in progress.
 ---
 <div class="mw6 center b" markdown="1">
-Here are some vinyls I own. This is a work in progress.
+These are most of the vinyls I own. 
 </div>
