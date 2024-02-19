@@ -135,7 +135,7 @@ The traditional dances are beautiful.
 Korea has a special place in my heart.
   <div class="cf ph2-ns">
     <div class="fl w-100 w-50-ns pa2" markdown="1">
-[image https://korea.lifeofpablo.com/media/images/filmphotos/62070003.JPG "Group photo"]
+[image https://photos.lifeofpablo.com/korea/media/images/film-photos/62070003.JPG "group photo"]
 </div>
     <div class="fl w-100 w-50-ns pa2">
 <dl class="lh-title pa4 mt0">
