@@ -3,7 +3,7 @@ Title: How I Spent Valentine's Day 2024
 Published: 2024-02-15 23:21:18
 Author: Pablo Morales
 Layout: blog
-Tag: 2024
+Tag: 2024, Valentine's Day
 Description: Being alone on Valentine's Day isn't so bad.
 Image: https://static.lifeofpablo.com/media/images/blog-images/valentines-day-2024/IMG_8399.jpeg
 ImageAlt: A colorful Valentine's Day Card
@@ -11,7 +11,7 @@ ImageAlt: A colorful Valentine's Day Card
 <div class="bg-washed-red pa3 dark-pink ba b--dotted bw4 baskerville">
    <h1 class="f6 f2-m f-subheadline-l fw6 tc dark-pink">Happy Valentine's Day!</h1>
    <div class="f6 f4-ns lh-copy" markdown="1">
-      This year I actually enjoyed Valentine's Day. Most years are simply quiet and simply wishing the day is over it. Just like every other year, I spent it without a partner. It was a very eventful day ranging to eating sweets all day and going out on a Valentine's [Artist Date](https://lifeofpablo.com/blog/reply-to-tracy-durnell-artist-dates). I went out to a local gay bar for some cheap drinks and to socialize with people who were probably there for the same thing. You know simply hanging out. I had some great conversation with some patrons. There was also trivia night as well. I didn't stay for it since I was hungry and I wanted to continue on the artist date. So I went to Kiki's Chicken Place for some chicken tender's and fries! I got a free pop (midwestern speak for soda) as well. I don't usually drink pop but I was like, "Live a little!" I also attended [Homebrew Website Club](https://events.indieweb.org/2024/02/homebrew-website-club-pacific-8XN2AGgxMoXH) off and on throughout the night. The remaining people stayed close to midnight. 
+      This year I actually enjoyed Valentine's Day. Most years are simply quiet and simply wishing the day is over it. Just like every other year, I spent it without a partner. It was a very eventful day ranging to eating sweets all day and going out on a Valentine's [Artist Date](reply-to-tracy-durnell-artist-dates). I went out to a local gay bar for some cheap drinks and to socialize with people who were probably there for the same thing. You know simply hanging out. I had some great conversation with some patrons. There was also trivia night as well. I didn't stay for it since I was hungry and I wanted to continue on the artist date. So I went to Kiki's Chicken Place for some chicken tender's and fries! I got a free pop (midwestern speak for soda) as well. I don't usually drink pop but I was like, "Live a little!" I also attended [Homebrew Website Club](https://events.indieweb.org/2024/02/homebrew-website-club-pacific-8XN2AGgxMoXH) off and on throughout the night. The remaining people stayed close to midnight. 
    </div>
    <article class="cf pa3 mw9 center">
       <header class="fl w-100 w-50-l pa3-m pa4-l mb3 mb5-l">

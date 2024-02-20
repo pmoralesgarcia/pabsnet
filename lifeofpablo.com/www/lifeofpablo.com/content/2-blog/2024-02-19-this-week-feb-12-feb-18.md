@@ -1,13 +1,12 @@
 ---
-Title: This Week Feb 12 - Feb 18
-Published: 2024-02-19 12:01:27
+Title: This Week Feb 12 - Feb 18, 2024
+Published: 2024-02-19 17:55:27
 Author: Pablo Morales
 Layout: blog
-Tag: 2024
-Description: 
+Tag: 2024, weeknotes
+Description: Things I did this week Feb 12 - Feb 18, 2024
 Image: https://f005.backblazeb2.com/file/mastadon-lifeofpablo/media_attachments/files/111/957/422/679/087/050/original/0733490cf5cc7ab3.jpg
-ImageAlt: 
-Status: draft
+ImageAlt: Felt Cute Might Delete Later
 ---
 <div class="measure center br2" markdown="1">
 ![A stage with audio and video](https://f005.backblazeb2.com/file/mastadon-lifeofpablo/media_attachments/files/111/957/422/679/087/050/original/0733490cf5cc7ab3.jpg)  
