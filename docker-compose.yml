@@ -310,6 +310,8 @@ services:
       YOURLS_PASS: ${YOURLS_PASS}
       VIRTUAL_HOST: pabs.lol
       LETSENCRYPT_HOST: pabs.lol
+    volumes:
+      - ./yourls/plugins:/var/www/html/user/plugins
 volumes:
  freshrss_data:
  freshrss_extensions:
