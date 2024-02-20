@@ -1,11 +1,57 @@
 <?php $this->yellow->layout("header") ?>
 <div class="content">
 <div class="main h-entry" role="main">
-<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+  <header class="tc ph4">
+    <h1 class="f3 f2-m f1-l fw2 mv3">
+      <?php echo $this->yellow->page->getHtml("titleContent") ?>
+    </h1>
+    <h2 class="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
+      <?php echo $this->yellow->page->getHtml("Description") ?>
+    </h2>
+  </header>
+  
+  
 <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
 
+
+<?php $catalog_json = file_get_contents('media/downloads/vinyls.json');
+
+  $decoded_json = json_decode($catalog_json, true);
+  
+  $items = $decoded_json['vinyls'];
+  
+
+   $one_item = $items[rand(0, count($decoded_json['vinyls']) - 1)];
+    $id = $one_item['id'];
+    $name = $one_item['title'];
+    $artist = $one_item['artist'];
+	  $cover = $one_item['thumbnail_url'];
+    $info_url = $one_item['info_url'];
+    $year = $one_item['copyright_year'];
+    $label = $one_item['label'];
+
+
+   echo '<a class="db center mw5 tc black link dim" title="'.$name.'"';
+   echo 'href="'.$info_url.'">';
+   echo '';
+   echo '<img class="db ba b--black-10"/';
+   echo 'alt="'.$name.' Album Cover"';
+   echo 'src="'.$cover.'"';
+   echo '>';
+   echo '';
+   echo '<dl class="mt2 f6 lh-copy">';
+   echo '<dt class="clip">Title</dt>';
+   echo '<dd class="ml0">'.$name.'</dd>';
+   echo '<dt class="clip">Artist</dt>';
+   echo '<dd class="ml0 gray">'.$artist.'</dd>';
+   echo '</dl>';
+   echo '</a>';
+   echo '';
+   echo '';
+
+  ?>
 <section class="cf w-100 pa2-ns">
-<?php
+  <?php
 $catalog_json = file_get_contents('media/downloads/vinyls.json');
 
 $decoded_json = json_decode($catalog_json, true);
