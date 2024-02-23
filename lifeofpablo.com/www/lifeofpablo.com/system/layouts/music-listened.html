@@ -84,17 +84,41 @@ try {
     <tbody>
     <?php foreach ($result as $row) : ?>
         <tr>
-            <td><?php echo escape($row["id"]); ?></td>
-            <td><?php echo escape($row["date"]); ?></td>
-            <td><?php echo escape($row["title"]); ?></td>
-            <td><?php echo escape($row["artist"]); ?></td>
-            <td><?php echo escape($row["location"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["id"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["date"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["title"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["artist"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["location"]); ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>
 </table>
 
-
+<div class="pa4">
+    <div class="overflow-auto">
+      <table class="f6 w-100 mw8 center" cellspacing="0">
+        <thead>
+          <tr>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Name</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Username</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Email</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">ID</th>
+          </tr>
+        </thead>
+        <tbody class="lh-copy">
+            <?php foreach ($result as $row) : ?>
+            <tr>
+                <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["id"]); ?></td>
+                <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["date"]); ?></td>
+                <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["title"]); ?></td>
+                <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["artist"]); ?></td>
+                <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["location"]); ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+</div>
+</div>  
 
 
 <?php $this->yellow->layout("footer") ?>
