@@ -268,6 +268,8 @@ services:
     volumes:
       #Project root
       - ./lists-lifeofpablo:/var/www/html
+    ports:
+      - 8129:80
   lists-lifeofpablo-proxy:
     image: nginx:1.25.3-bookworm-perl
     container_name: lists-lifeofpablo-proxy
