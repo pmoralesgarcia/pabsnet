@@ -21,7 +21,7 @@
 
 $host       = "mariadb";
 $username   = "library_pabs";
-$password   = getenv("LISTS_MUSIC_LISTENED");
+$password   = getenv("PASSWORD");
 $dbname     = "lists";
 $dsn        = "mysql:host=$host;dbname=$dbname";
 $options    = array(
@@ -89,7 +89,7 @@ try {
             <tr>
                 <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["id"]); ?></td>
                 <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["date"]); ?></td>
-                <td class="pv3 pr3 bb b--black-20"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?><</a>/td>
+                <td class="pv3 pr3 bb b--black-20"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?></a></td>
                 <td class="pv3 pr3 bb b--black-20"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["artist"]); ?>"><?php echo escape($row["artist"]); ?></a></td>
                 <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["location"]); ?></td>
             </tr>
