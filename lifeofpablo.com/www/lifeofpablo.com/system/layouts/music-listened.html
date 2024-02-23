@@ -1,0 +1,102 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+<div class="main h-entry" role="main">
+  <header class="tc ph4">
+    <h1 class="f3 f2-m f1-l fw2 mv3">
+      <?php echo $this->yellow->page->getHtml("titleContent") ?>
+    </h1>
+    <h2 class="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
+      <?php echo $this->yellow->page->getHtml("Description") ?>
+    </h2>
+  </header>
+
+  
+<div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+
+<?php
+/**
+ * Configuration for database connection
+ *
+ */
+
+$host       = "mariadb";
+$username   = "library_pabs";
+$password   = getenv("PASSWORD");
+$dbname     = "lists";
+$dsn        = "mysql:host=$host;dbname=$dbname";
+$options    = array(
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+              );
+
+              session_start();
+
+              if (empty($_SESSION['csrf'])) {
+                if (function_exists('random_bytes')) {
+                  $_SESSION['csrf'] = bin2hex(random_bytes(32));
+                } else if (function_exists('mcrypt_create_iv')) {
+                  $_SESSION['csrf'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+                } else {
+                  $_SESSION['csrf'] = bin2hex(openssl_random_pseudo_bytes(32));
+                }
+              }
+              
+              /**
+               * Escapes HTML for output
+               *
+               */
+              
+              function escape($html) {
+                  return htmlspecialchars($html, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+              }
+              
+    
+/**
+ * List all users with a link to edit
+ */
+
+
+try {
+  $connection = new PDO($dsn, $username, $password, $options);
+
+  $sql = "SELECT * FROM music_listened";
+
+  $statement = $connection->prepare($sql);
+  $statement->execute();
+
+  $result = $statement->fetchAll();
+} catch(PDOException $error) {
+  echo $sql . "<br>" . $error->getMessage();
+}
+?>
+        
+<h2>Update users</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($result as $row) : ?>
+        <tr>
+            <td><?php echo escape($row["id"]); ?></td>
+            <td><?php echo escape($row["date"]); ?></td>
+            <td><?php echo escape($row["title"]); ?></td>
+            <td><?php echo escape($row["artist"]); ?></td>
+            <td><?php echo escape($row["location"]); ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+
+
+
+<?php $this->yellow->layout("footer") ?>
+
+
