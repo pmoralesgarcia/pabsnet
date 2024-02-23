@@ -260,6 +260,24 @@ services:
     environment:
       - APP_FORCE_TLS=true
       - APP_URL=https://lifeofpablo.com/interactives
+  lists-lifeofpablo:
+    container_name: lists-lifeofpablo
+    restart: unless-stopped 
+    build:
+      dockerfile: ./lifeofpablo-guestbook/Dockerfile  
+    volumes:
+      #Project root
+      - ./lists-lifeofpablo:/var/www/html
+  lists-lifeofpablo-proxy:
+    image: nginx:1.25.3-bookworm-perl
+    container_name: lists-lifeofpablo-proxy
+    ports:
+      - 8130:80
+    volumes:
+      - ./nginx-proxy/lists-lifeofpablo:/etc/nginx/nginx.conf
+    environment:
+      - VIRTUAL_HOST=lists.lifeofpablo.com
+      - LETSENCRYPT_HOST=lists.lifeofpablo.com
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
