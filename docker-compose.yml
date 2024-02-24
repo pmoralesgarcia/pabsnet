@@ -70,13 +70,6 @@ services:
       test: ["CMD", "pg_isready", "-U", "miniflux"]
       interval: 10s
       start_period: 30s
-  vp-proxy-miniflux:
-    image: nginx:1.25.3-bookworm-perl
-    container_name: vp-proxy-miniflux
-    volumes:
-      - ./nginx-proxy/miniflux:/etc/nginx/conf.d
-    ports:
-      - 8113:80
   freshrss:
     depends_on:
       - mariadb
@@ -109,17 +102,7 @@ services:
         --password ${FRESHRSS_PASSWORD}
         --user ${FRESHRSS_USER}
       VIRTUAL_HOST: reader2.lifeofpablo.com
-      LETSENCRYPT_HOST: reader2.lifeofpablo.com
- # vp-proxy-freshrss:
- #   image: nginx:1.25.3-bookworm-perl
- #   container_name: vp-proxy-freshrss
- #   environment:
-    # VIRTUAL_HOST: reader.lifeofpablo.com
-    #  LETSENCRYPT_HOST: reader.lifeofpablo.com
- #   volumes:
- #     - ./nginx-proxy/freshrss:/etc/nginx/conf.d
- #   ports:
- #     - 8110:80    
+      LETSENCRYPT_HOST: reader2.lifeofpablo.com 
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy
@@ -258,9 +241,6 @@ services:
     volumes:
       #Project root
       - ./lists-lifeofpablo/www:/var/www/html
-    environment:
-      - VIRTUAL_HOST=lists.lifeofpablo.com
-      - LETSENCRYPT_HOST=lists.lifeofpablo.com
     ports:
       - 8129:80
   httpbin:

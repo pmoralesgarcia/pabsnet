@@ -99,4 +99,5 @@ jobs:
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
             LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LISTS_MUSIC_LISTENED }} \
+            docker compose build --no-cache
             docker compose up --detach
