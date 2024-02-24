@@ -276,7 +276,7 @@ services:
     ports:
       - 8130:80
     volumes:
-      - ./nginx-proxy/lists-lifeofpablo:/etc/nginx/nginx.conf
+      - ./nginx-proxy/lists-lifeofpablo/default.conf:/etc/nginx/nginx.conf
     environment:
       - VIRTUAL_HOST=lists.lifeofpablo.com
       - LETSENCRYPT_HOST=lists.lifeofpablo.com
