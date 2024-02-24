@@ -270,16 +270,6 @@ services:
       - ./lists-lifeofpablo/www:/var/www/html
     ports:
       - 8129:80
-  lists-lifeofpablo-proxy:
-    image: nginx:1.25.3-bookworm-perl
-    container_name: lists-lifeofpablo-proxy
-    ports:
-      - 8130:80
-    volumes:
-      - ./nginx-proxy/lists-lifeofpablo/default.conf:/etc/nginx/nginx.conf
-    environment:
-      - VIRTUAL_HOST=lists.lifeofpablo.com
-      - LETSENCRYPT_HOST=lists.lifeofpablo.com
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
