@@ -242,24 +242,14 @@ services:
     environment:
       - VIRTUAL_HOST=1k.lifeofpablo.com
       - LETSENCRYPT_HOST=1k.lifeofpablo.com
-  #lifeofpablo-interactives:
-  #  build:
-  #    dockerfile: ./lifeofpablo-interactives/Dockerfile  
-  #  container_name: lifeofpablo-interactives
-  #  ports:
-  #    - 8124:80
-  #  volumes:
-  #    - ./lifeofpablo-interactives/www:/var/www/html
   lifeofpablo-interactives:
+    build:
+      dockerfile: ./lifeofpablo-interactives/Dockerfile  
     container_name: lifeofpablo-interactives
-    image: automad/automad:1.10.9
     ports:
       - 8124:80
     volumes:
-      - ./automad-interactives:/app
-    environment:
-      - APP_FORCE_TLS=true
-      - APP_URL=https://lifeofpablo.com/interactives
+      - ./lifeofpablo-interactives/www:/var/www/html
   lists-lifeofpablo:
     container_name: lists-lifeofpablo
     restart: always 
@@ -268,6 +258,9 @@ services:
     volumes:
       #Project root
       - ./lists-lifeofpablo/www:/var/www/html
+    environment:
+      - VIRTUAL_HOST=lists.lifeofpablo.com
+      - LETSENCRYPT_HOST=lists.lifeofpablo.com
     ports:
       - 8129:80
   httpbin:
