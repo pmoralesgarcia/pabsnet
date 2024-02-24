@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM debian:stable
 
 RUN apt update -y && \
 	apt install -y nginx zip wget unzip curl
