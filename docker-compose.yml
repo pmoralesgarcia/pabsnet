@@ -239,15 +239,15 @@ services:
     build:
       dockerfile: ./lists-lifeofpablo.com/Dockerfile  
     volumes:
-      #Project root
+      #Project root 
       - ./lists-lifeofpablo/www:/var/www/html
-  llists-lifeofpablo-proxy:
+  lists-lifeofpablo-proxy:
     image: nginx:1.25.3-bookworm-perl
     container_name: lists-lifeofpablo-proxy
     volumes:
       - ./nginx-proxy/lists-lifeofpablo:/etc/nginx/conf.d
     environment:
-      - VIRTUAL_HOST=listslifeofpablo.com
+      - VIRTUAL_HOST=lists.lifeofpablo.com
       - LETSENCRYPT_HOST=lists.lifeofpablo.com
     ports:
       - 8129:80
