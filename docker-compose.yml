@@ -237,7 +237,7 @@ services:
     container_name: lists-lifeofpablo
     restart: always 
     build:
-      dockerfile: ./lists-lifeofpablo.com/Dockerfile  
+      dockerfile: ./lists-lifeofpablo/Dockerfile  
     volumes:
       #Project root 
       - ./lists-lifeofpablo/www:/var/www/html
