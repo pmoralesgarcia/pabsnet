@@ -234,6 +234,8 @@ services:
     volumes:
       - ./lifeofpablo-interactives/www:/var/www/html
   lists-lifeofpablo:
+    ports:
+      - 8234:80
     container_name: lists-lifeofpablo
     restart: always 
     build:
