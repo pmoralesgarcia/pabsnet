@@ -241,6 +241,14 @@ services:
     volumes:
       #Project root
       - ./lists-lifeofpablo/www:/var/www/html
+  llists-lifeofpablo-proxy:
+    image: nginx:1.25.3-bookworm-perl
+    container_name: lists-lifeofpablo-proxy
+    volumes:
+      - ./nginx-proxy/lists-lifeofpablo:/etc/nginx/conf.d
+    environment:
+      - VIRTUAL_HOST=listslifeofpablo.com
+      - LETSENCRYPT_HOST=lists.lifeofpablo.com
     ports:
       - 8129:80
   httpbin:
