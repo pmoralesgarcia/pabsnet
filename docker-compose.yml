@@ -262,12 +262,12 @@ services:
       - APP_URL=https://lifeofpablo.com/interactives
   lists-lifeofpablo:
     container_name: lists-lifeofpablo
-    restart: unless-stopped 
+    restart: always 
     build:
-      dockerfile: ./lifeofpablo-guestbook/Dockerfile  
+      dockerfile: ./lists-lifeofpablo.com/Dockerfile  
     volumes:
       #Project root
-      - ./lists-lifeofpablo:/var/www/html
+      - ./lists-lifeofpablo/www:/var/www/html
     ports:
       - 8129:80
   lists-lifeofpablo-proxy:
@@ -276,7 +276,7 @@ services:
     ports:
       - 8130:80
     volumes:
-      - ./nginx-proxy/lists-lifeofpablo/default.conf:/etc/nginx/nginx.conf
+      - ./nginx-proxy/lists-lifeofpablo:/etc/nginx/nginx.conf
     environment:
       - VIRTUAL_HOST=lists.lifeofpablo.com
       - LETSENCRYPT_HOST=lists.lifeofpablo.com
