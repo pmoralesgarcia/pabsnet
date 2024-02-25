@@ -18,7 +18,7 @@
  * Configuration for database connection
  *
  */
-$ip = $getenv('LOP_LISTS_MUSIC_LISTENED', true) ?: getenv('LOP_LISTS_MUSIC_LISTENED');
+$ip = getenv('LOP_LISTS_MUSIC_LISTENED', true) ?: getenv('LOP_LISTS_MUSIC_LISTENED');
 
 $host       = "mariadb";
 $username   = "library_pabs";
