@@ -43,6 +43,7 @@ jobs:
           GHOST_SMTP_USER: op://pablo/ghost-pabsnet/email
           GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
           LISTS_MUSIC_LISTENED: op://pablo/lists-pabsnet2/password
+          LOP_LISTS_MUSIC_LISTENED: op://pablo/lists-pabsnet2/password
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -76,6 +77,7 @@ jobs:
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
             LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LISTS_MUSIC_LISTENED }} \
+            LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
             docker compose down --remove-orphans
             FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
             FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
@@ -99,4 +101,5 @@ jobs:
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
             LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LISTS_MUSIC_LISTENED }} \
+            LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
             docker compose up --detach
