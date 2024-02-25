@@ -8,7 +8,7 @@
 
 $host       = "mariadb";
 $username   = "library_pabs";
-$password   = $_ENV["LISTS_MUSIC_LISTENED"];
+$password   = '$_ENV["LISTS_MUSIC_LISTENED"]';
 $dbname     = "lists";
 $dsn        = "mysql:host=$host;dbname=$dbname";
 $options    = array(
