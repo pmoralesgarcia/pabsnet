@@ -156,6 +156,8 @@ services:
     volumes:
       #Project root
       - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/html
+    environment:
+      - LOP_LISTS_MUSIC_LISTENED=${LISTS_MUSIC_LISTENED}
     ports:
       - "8080:80"
   lifeofpablo-guestbook:
@@ -243,6 +245,8 @@ services:
     volumes:
       #Project root 
       - ./lists-lifeofpablo/www:/var/www/html
+    environment:
+      - LISTS_MUSIC_LISTENED=${LISTS_MUSIC_LISTENED}
   lists-lifeofpablo-proxy:
     image: nginx:1.25.3-bookworm-perl
     container_name: lists-lifeofpablo-proxy

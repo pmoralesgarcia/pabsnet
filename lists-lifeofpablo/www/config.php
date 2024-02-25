@@ -4,10 +4,10 @@
  * Configuration for database connection
  *
  */
-
-$host       = "mariadb1";
+$ip         = getenv(LISTS_MUSIC_LISTENED, $local_only=true);
+$host       = "mariadb";
 $username   = "library_pabs";
-$password   = "";
+$password   = "$ip";
 $dbname     = "items";
 $dsn        = "mysql:host=$host;dbname=$dbname";
 $options    = array(
