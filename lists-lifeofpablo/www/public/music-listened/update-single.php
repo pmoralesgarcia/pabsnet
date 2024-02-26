@@ -16,15 +16,13 @@ if (isset($_POST['submit'])) {
     $connection = new PDO($dsn, $username, $password, $options);
 
     $user =[
-      "id"        => $_POST['id'],
       "title" => $_POST['title'],
       "artist"  => $_POST['artist'],
       "location"     => $_POST['location']
     ];
 
     $sql = "UPDATE music_listened 
-            SET id = :id, 
-              title = :title, 
+            SET title = :title, 
               artist = :artist, 
               location = :location
             WHERE id = :id";
