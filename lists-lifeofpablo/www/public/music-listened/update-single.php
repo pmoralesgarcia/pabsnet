@@ -41,7 +41,7 @@ if (isset($_GET['id'])) {
     $connection = new PDO($dsn, $username, $password, $options);
     $id = $_GET['id'];
 
-    $sql = "SELECT * FROM vinyls WHERE id = :id";
+    $sql = "SELECT * FROM music_listened WHERE id = :id";
     $statement = $connection->prepare($sql);
     $statement->bindValue(':id', $id);
     $statement->execute();
@@ -71,7 +71,6 @@ if (isset($_GET['id'])) {
       <label class="f6 b db mb2" for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
 	    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="<?php echo $key; ?>" id="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'id' ? 'readonly' : null); ?>>
     <?php endforeach; ?> 
-    <input type="submit" name="submit" value="Submit">
     <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" name="submit" value="Submit">
 </form>
 
