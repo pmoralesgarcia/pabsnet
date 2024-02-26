@@ -6,7 +6,7 @@
  *
  */
 
- require "../../config.php";
+ require "../../config-lists.php";
  require "../../common.php";
 
 if (isset($_POST['submit'])) {
@@ -19,20 +19,14 @@ if (isset($_POST['submit'])) {
       "id"        => $_POST['id'],
       "title" => $_POST['title'],
       "artist"  => $_POST['artist'],
-      "genre"     => $_POST['genre'],
-      "copyright_year"       => $_POST['copyright_year'],
-      "label"  => $_POST['label'],
-      "isbn"      => $_POST['isbn']
+      "location"     => $_POST['location']
     ];
 
-    $sql = "UPDATE vinyls 
+    $sql = "UPDATE music_listened 
             SET id = :id, 
               title = :title, 
               artist = :artist, 
-              genre = :genre, 
-              copyright_year = :copyright_year, 
-              label = :label, 
-              isbn = :isbn 
+              location = :location
             WHERE id = :id";
   
   $statement = $connection->prepare($sql);

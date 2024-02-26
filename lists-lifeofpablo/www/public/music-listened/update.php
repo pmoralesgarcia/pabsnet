@@ -22,8 +22,8 @@ try {
 ?>
 <?php require "../templates/header.php"; ?>
         
-<h2>Update users</h2>
-<div class="pa4">
+<h2>View Songs Listened</h2>
+<div class="pa1">
   <div class="overflow-auto">
 <table class="table">
     <thead>

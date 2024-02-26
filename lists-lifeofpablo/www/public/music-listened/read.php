@@ -6,7 +6,7 @@
  *
  */
 
- require "../../config.php";
+ require "../../config-lists.php";
  require "../../common.php";
 
 if (isset($_POST['submit'])) {
@@ -16,8 +16,8 @@ if (isset($_POST['submit'])) {
     $connection = new PDO($dsn, $username, $password, $options);
 
     $sql = "SELECT * 
-            FROM users
-            WHERE location = :location";
+            FROM music_listened
+            WHERE id = :id";
 
     $location = $_POST['location'];
     $statement = $connection->prepare($sql);
@@ -40,25 +40,19 @@ if (isset($_POST['submit'])) {
     <table>
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email Address</th>
-          <th>Age</th>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Artist</th>
           <th>Location</th>
-          <th>Date</th>
         </tr>
       </thead>
       <tbody>
       <?php foreach ($result as $row) : ?>
         <tr>
           <td><?php echo escape($row["id"]); ?></td>
-          <td><?php echo escape($row["firstname"]); ?></td>
-          <td><?php echo escape($row["lastname"]); ?></td>
-          <td><?php echo escape($row["email"]); ?></td>
-          <td><?php echo escape($row["age"]); ?></td>
+          <td><?php echo escape($row["title"]); ?></td>
+          <td><?php echo escape($row["artist"]); ?></td>
           <td><?php echo escape($row["location"]); ?></td>
-          <td><?php echo escape($row["date"]); ?> </td>
         </tr>
       <?php endforeach; ?>
       </tbody>
