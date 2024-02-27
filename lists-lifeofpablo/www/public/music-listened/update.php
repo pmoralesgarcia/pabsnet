@@ -28,25 +28,25 @@ try {
 <table class="table">
     <thead>
         <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Location</th>
-            <th>Date</th>
-            <th>Edit</th>
-            <th>On Website
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">#</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Title</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Artist</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Location</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Date</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Edit</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">On Website
         </tr>
     </thead>
     <tbody>
     <?php foreach ($result as $row) : ?>
         <tr>
-            <td><?php echo escape($row["id"]); ?></td>
-            <td><?php echo escape($row["title"]); ?></td>
-            <td><?php echo escape($row["artist"]); ?></td>
-            <td><?php echo escape($row["location"]); ?></td>
-            <td><?php echo escape($row["date"]); ?></td>
-            <td class=""><a href="update-single.php?id=<?php echo escape($row["id"]); ?>">Edit</a></td>
-            <td><a href="https://lifeofpablo.com/lists/music-listened#<?php echo escape($row["id"]); ?>"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["id"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["title"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["artist"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["location"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["date"]); ?></td>
+            <td class="pv3 pr3 bb b--black-20"><a href="update-single.php?id=<?php echo escape($row["id"]); ?>">Edit</a></td>
+            <td class="pv3 pr3 bb b--black-20"><a href="https://lifeofpablo.com/lists/music-listened#<?php echo escape($row["id"]); ?>"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </tr>
     <?php endforeach; ?>
     </tbody>
