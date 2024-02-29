@@ -1,26 +1,7 @@
 <?php include "./templates/header.php"; ?>
 Books
 <ul>
-	<?php
-	     if($_SERVER['X-Vouch-User'])
-echo '<li><a href="create"><strong>Create Guestbook Entry</strong></a> - Come say hello!</li>';
-else
-echo 'Please sign in using your domain to post on guestbook.';
-			?>
 
-<br>
-			<?php
-				     if($_SERVER['X-Vouch-User'] == 'https://lifeofpablo.com/')
-					     echo '
-<h3>Admin</h3>
-<ul>
-	<li><a href="update.php"><strong>Update</strong></a> - edit a user</li>
-	<li><a href="delete.php"><strong>Delete</strong></a> - delete a manual guestbook entry</li>
-</ul>
-';
-else
-echo '<a href="panel">Panel</a>';
-			?> 
 
 	<li><a href="update"><strong>Read Guestbook Entries</strong></a> -See other visitors posts!</li>
 </ul>
