@@ -16,7 +16,7 @@ ImageAlt:
           Virtual Intimacy and Emotional Bonds
         </span>
       </h3>
-      <h4 class="f3 fw1 georgia i">This is a response to IndieWeb Carnival on <a href="https://manuelmoreale.com/indieweb-carnival-digital-relationships" class="u">Manuel Moreale</a> hosted by <a href="https://manuelmoreale.com/" class="u">Digital Relationships</a>.</h4>
+      <h4 class="f3 fw1 georgia i">This is a response to IndieWeb Carnival on <a href="https://manuelmoreale.com/indieweb-carnival-digital-relationships" class="u">Digital Relationships </a> hosted by <a href="https://manuelmoreale.com/" class="u">Manuel Moreale</a>.</h4>
       <h5 class="f6 ttu tracked black-80">By Pablo Morales</h5>
     </div>
   </header>
