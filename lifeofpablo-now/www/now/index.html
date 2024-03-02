@@ -18,175 +18,37 @@
       <script src="https://kit.fontawesome.com/2ad0b8bc3e.js" crossorigin="anonymous" type="59af9ddac99f86c35438fd7f-text/javascript"></script>
    </head>
    <body>
-      <header class="bg-black-90 w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
-  <nav class="f6 fw6 ttu tracked">
-    <a class="link dim white dib mr3" href="/" title="Home">Home</a>
-    <a class="link dim white dib mr3" href="/blog/" title="Blog">Blog</a>
-    <a class="link dim white dib mr3" href="/notes/" title="Notes">Notes</a>
-    <a class="link dim white dib mr3" href="/podcast/" title="Podcasts">Podcast</a>
-    <a class="link dim white dib mr3" href="/now/" title="Now Page">Now</a>
-    <a class="link dim white dib" href="/projects/" title="Projects">Projects</a>
-  </nav>
-</header>
-      <section class="center">
-      <header class="tc ph4">
-         <div class="pa4 tc">
-            <img
-               src="/static/pabs-cropped.jpg"
-               class="br-100 ba h3 w3 dib" alt="avatar">
-         </div>
-         <h1 class="f3 f2-m f1-l fw2 black-90 mv3">
-            What is Pablo doing these days?
-         </h1>
-         <h2 class="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
-            This is what I have planned for the remainder of 2023.
-         </h2>
+      <header class="tc pt4 pt5-ns">
+         <img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="br-100 pa1 ba b--black-10 h4 w4" alt="avatar">
+         <h1 class="f5 f4-ns fw6 mid-gray">/now <br />Pablo Morales</h1>
+         <h2 class="f6 gray fw2 ttu tracked">Sacramento, CA</h2>
       </header>
-      <div class="pa4 ph7-l mw9-l center">
-         <div class="f5 f4-ns lh-copy measure">
-            <h1 class="">Adventures with Friends</h1>
-            <p class="f6 f4-ns lh-copy measure center">
-               I love making memories with friends. Now that we are older, it has become harder to see each other. Anytime we get the chance to meet up, I wanto to be there! 
-            </p>
-         </div>
-         <div class="f5 f4-ns lh-copy measure">
-            <h1>Blogging</h1>
-            <p class="f6 f4-ns lh-copy measure center">
-               I want to become a better blogger by becoming a better writer. I started my blog again after a few years of not posting. I want to be able to express myself. 
-            </p>
-         </div>
-         <div class="f5 f4-ns lh-copy measure">
-            <h1>Goals</h1>
-            I want to be able to love myself more as a person. I want to keep finding the person I always envisioned. I want to treat my body better. I want to find more purpose. 
-         </div>
-         <div class="f5 f4-ns lh-copy measure">
-            <h1>Person I've Become Podcast</h1>
-            I'm starting a pocast on the person one is becoming. It will describe what a person's journey is, their goals and what the future holds. 
-            <a href="https://personivebecome.com/">Link</a>
-         </div>
+
+      <h2 class="tc f3 pv3 pv3-ns mid-gray">
+         What is Pablo doing now?
+       </h2>
+      <div class="f4 f4-ns lh-copy measure center mid-gray">
+   <ul class="list ml0 center mw6">
+      <li class="ph3 pv2"><span class="b">Day Job: </span>During the day, I'm an IT Support Specialist.</li>
+      <li class="ph3 pv2"><span class="b">Certifications: </span>Currently working on a few Google and Cisco certifications.</li>
+      <li class="ph3 pv2"><span class="b">Where I Live: </span>I'm living in California after having lived in Nebraska my whole life.</li>
+      <li class="ph3 pv2"><span class="b">Startups: </span>I'm helping my friend with his startup, <a class="navy link hover-hot-pink" href="https://terrabyte.eco/">Terrabyte.</a></li>
+      <li class="ph3 pv2"><span class="b">Travels: </span>I'll be in Berlin for <a class="navy link hover-purple" href="https://greentechfestival.com/">Greentech Festival.</a></li>
+      <li class="ph3 pv2"><span class="b">Blog: </span>I wrote <a class="navy link hover-green" href="https://lifeofpablo.com/blog/year-in-review-23">100 blog posts</a> in 2023. I want to double this number with better writing.</a></li>
+      <li class="ph3 pv2"><span class="b">Lists: </span>I enjoy making <a class="navy link hover-gold" href="https://lifeofpablo.com/lists/">lists</a> of things I own or people I follow. 
+
+   </ul>
       </div>
-      <script>
-         var target_url = "https://lifeofpablo.com/now/";
-         var target_url1 = "https://www.disquisitioner.com/posts/post-darkmode/";
-         
-         // jsonp=f option to disable json return
-         var count_url   = "https://webmention.io/api/count.json?target=";
-         var mention_url = "https://webmention.io/api/mentions.jf2?target=";
-         var mfilter = "&wm-property=in-reply-to";
-         
-         var defaultphoto = "https://aaronparecki.com/assets/images/no-profile-photo.png"
-         
-         fetch(count_url+target_url)
-         .then(response => {return(response.text());})
-         .then(myJson => {showCounts(1,JSON.parse(myJson));});
-         
-         fetch(mention_url+target_url)
-         .then(response => {return(response.text());})
-         .then(myJson => {showMentions(JSON.parse(myJson));});
-         
-         function showCounts(index, data) {
-         // Add code to hide mention panel if data.count = 0
-         if(data.type.like) { document.getElementById("wm_like"+index).innerHTML = data.type.like; }
-         if(data.type.mention) { document.getElementById("wm_ment"+index).innerHTML = data.type.mention; }
-         if(data.type.reply) { 
-           document.getElementById("wm_reply"+index).innerHTML = 
-             pluralize(data.type.reply,"reply","replies");
-         }
-         if(data.type.repost) { 
-         document.getElementById("wm_repost"+index).innerHTML = 
-           pluralize(data.type.repost,"repost","reposts"); 
-         }
-         if(data.type.bookmark) { document.getElementById("wm_bkmk"+index).innerHTML = data.type.bookmark; }
-         }
-         
-         function pluralize(num,singular,plural) {
-         if(num == 1) return num + " " + singular;
-         return num + " " + plural;
-         }
-         
-         function showMentions(mentions) {
-         var panel = document.getElementById("mentionpanel");
-         for(i=0;i<mentions.children.length;i++) {
-         
-         var m = mentions.children[i];
-         
-         var m_div = document.createElement("DIV");
-         m_div.className = "webmention";
-         panel.appendChild(m_div);
-         
-         var m_img = document.createElement("IMG");
-         if(m.author.photo) {
-           m_img.setAttribute("src",m.author.photo);
-         }
-         else {
-           m_img.setAttribute("src",defaultphoto);
-         }
-         m_img.setAttribute("width","64");
-         m_div.appendChild(m_img);
-         
-         var m_info = document.createElement("DIV");
-         m_info.className = "wm_info";
-         m_div.appendChild(m_info);
-         
-         // First line is author's name, liked to author's web site if present
-         if(m.author.url) {
-           var m_auth = document.createElement("A");
-           m_auth.href = m.author.url;
-           if(m.author.name) {
-             m_auth.innerHTML = m.author.name;
-           }
-           m_auth.className = "m_author";
-           m_info.appendChild(m_auth);
-         
-         }
-         else {
-           if(m.author.name) {
-             var m_auth = document.createElement("SPAN");
-             m_auth.innerHTML = m.author.name;
-             m_auth.className = "m_author";
-             m_info.appendChild(m_auth);
-           }
-         }
-         
-         // Second line = name of post linked to post URL, though
-         // if no name then is just URL
-         var m_art = document.createElement("A");
-         m_art.href = m.url;
-         if(m.name) {
-           m_art.innerHTML = m.name;
-         }
-         else {
-           m_art.innerHTML = m.url;
-         }
-         m_info.appendChild(m_art);
-         
-         if(m.published) {
-           var d = new Date(m.published);
-           var m_pub = document.createElement("TIME");
-           m_pub.datetime = m.published;
-           m_pub.innerHTML = "Published: " + d.toString();
-           m_pub.className = "m_published";
-           m_info.appendChild(m_pub);     
-         }
-         }
-         }
-      </script>
-      <div class="wm_summary">
-         <ul class="menicons center">
-         <li class="micon center"><i class="material-icons">star_border</i><span id="wm_like1"></span>&nbsp;likes</li>
-         <li class="micon center"><i class="material-icons-outlined">description</i><span id="wm_ment1"></span>&nbsp;mentions</li>
-         <li class="micon center"><i class="material-icons">chat_bubble_outline</i><span id="wm_reply1"></span></li>
-         <li class="micon center"><i class="material-icons">repeat</i><span id="wm_repost1"></span></li>
-         <li class="micon center"><i class="material-icons">bookmark_border</i><span id="wm_bkmk1"></span>&nbsp;bookmarks</li>
-      </div>
-      <hr>
-      <div id="mentionpanel"></div>
-      <br>
+       
+       
+   
       <footer class="pv4 ph3 ph5-m ph6-l mid-gray">
          <small class="f6 db tc">© 2023 <b class="ttu"><a href="https://pabs.tech">Pabs Tech, LLC</a></b>., All Rights Reserved</small>
          <div class="tc mt3">
             <a href="/" title="Home" class="f6 dib ph2 link mid-gray dim">Home</a>
-            <a href="/cookie-policy"    title="Cookies" class="f6 dib ph2 link mid-gray dim">Cookies</a>
+            <a href="/blog" title="Blog" class="f6 dib ph2 link mid-gray dim">Blog</a>
+            <a href="/notes" title="Notes" class="f6 dib ph2 link mid-gray dim">Notes</a>
+            <a href="/photos" title="Cookies" class="f6 dib ph2 link mid-gray dim">Cookies</a>
             <a href="/privacy"  title="Privacy" class="f6 dib ph2 link mid-gray dim">Privacy</a>
             <div id="wcb" class="carbonbadge"></div>
             <script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer type="59af9ddac99f86c35438fd7f-text/javascript"></script>
