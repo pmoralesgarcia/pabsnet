@@ -26,7 +26,9 @@ Status: shared
   <a class="link near-black hover-silver dib mh3 tc" href="/complaint-form" title="Complaint Form">
     <i class="f2 dib h2 w2 fa-solid fa-file-signature gold"></i>
   </a>
-
+<a class="link near-black hover-silver dib mh3 tc" href="mailto:pablo@lifeofpablo.com" title="Email">
+    <i class="f2 dib h2 w2 fa-solid fa-envelope hot-pink"></i>
+  </a>
   <a class="link near-black hover-silver dib mh3 tc" href="/linkinbio" title="Links">
     <i class="f2 dib h2 w2 fa-solid fa-link green"></i>
   </a>
