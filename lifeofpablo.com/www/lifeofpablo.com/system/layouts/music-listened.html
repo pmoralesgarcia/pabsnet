@@ -70,36 +70,14 @@ try {
 ?>
         
 
-
-<div class="pa4">
-    <div class="overflow-auto">
-      <table class="f4 w-100 mw8 center" cellspacing="0">
-        <thead>
-          <tr>
-            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">ID</th>
-            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Date</th>
-            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Title</th>
-            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Artist</th>
-            <th class="fw6 bb b--black-20 tl pb3 pr3 bg-white">Location</th>
-            
-          </tr>
-        </thead>
-        <tbody class="lh-copy">
-            <?php foreach ($result as $row) : ?>
-            <tr>
-                <td class="pv3 pr3 bb b--black-20" id="<?php echo escape($row["id"]); ?>"><?php echo escape($row["id"]); ?></td>
-                <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["date"]); ?></td>
-                <td class="pv3 pr3 bb b--black-20"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?></a></td>
-                <td class="pv3 pr3 bb b--black-20"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["artist"]); ?>"><?php echo escape($row["artist"]); ?></a></td>
-                <td class="pv3 pr3 bb b--black-20"><?php echo escape($row["location"]); ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-</div>
-</div>  
-
-
+<dl class="lh-title pa4 mt0 center">
+  <?php foreach ($result as $row) : ?>
+  <dt class="f6 b" id="<?php echo escape($row["id"]); ?></dt>><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?></a></dt>
+  <dd class="ml0"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["artist"]); ?>"><?php echo escape($row["artist"]); ?></a></dd>
+  <dd class="ml0"><?php echo escape($row["date"]); ?></dd>
+  <dd class="ml0"><?php echo escape($row["id"]); ?></dd>
+  <?php endforeach; ?>
+</dl>
 <?php $this->yellow->layout("footer") ?>
 
 
