@@ -69,9 +69,9 @@ try {
 ?>
         
 
-<dl class="lh-title pa4 mt0 center">
+<dl class="pa4 mt0 measure center">
   <?php foreach ($result as $row) : ?>
-  <dt class="f6 b" id="<?php echo escape($row["id"]); ?></dt>><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?></a></dt>
+  <dt class="f3 b" id="<?php echo escape($row["id"]); ?>"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?></a></dt>
   <dd class="ml0"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["artist"]); ?>"><?php echo escape($row["artist"]); ?></a></dd>
   <dd class="ml0"><?php echo escape($row["date"]); ?></dd>
   <dd class="ml0"><?php echo escape($row["id"]); ?></dd>
