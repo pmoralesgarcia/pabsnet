@@ -288,30 +288,6 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
-  automad:
-    image: 'automad/automad:v2'
-    container_name: automad
-    volumes:
-      - './automad:/app'
-    ports:
-      - '8045:80'
-    environment:
-      VIRTUAL_HOST: automad.lifeofpablo.com
-      LETSENCRYPT_HOST: automad.lifeofpablo.com
-  grav:
-    image: lscr.io/linuxserver/grav:latest
-    container_name: grav
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-      - VIRTUAL_HOST=grav.lifeofpablo.com
-      - LETSENCRYPT_HOST=grav.lifeofpablo.com
-    volumes:
-      - ./grav/config:/config
-    ports:
-      - 8046:80
-    restart: unless-stopped
 volumes:
  freshrss_data:
  freshrss_extensions:
