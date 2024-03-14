@@ -13,7 +13,8 @@
 	   "info_url": "https://www.goodreads.com/book/show/20403024-yeruldelgger",
 	   "thumbnail_url": "http://ecx.images-amazon.com/images/I/51PT13AwNsL._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_SX342_SY445_CR,0,0,342,445_SH20_OU08_.jpg",
 	   "notes": "Rude journée pour le commissaire Yeruldelgger Khaltar Guichyguinnkhen. A l’aube, il apprend que trois Chinois ont été découpés au cutter dans une usine près d’Oulan-Bator. Quelques heures plus tard, dans la steppe, il déterre le cadavre d’une fillette aux boucles blondes agrippée à son tricycle rose. Il y avait la Suède de Mankell, l'Islande d'Indridason, l'Ecosse de Rankin, il y a désormais la Mongolie de Manook !",
-	   "date_created": "2017-05-03"
+	   "date_created": "2017-05-03",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 2,
@@ -25,10 +26,11 @@
 	   "categories": "36 38",
 	   "isbn": 2038715513,
 	   "barcode": "9782038715514",
-	   "info_url": "",
-	   "thumbnail_url": "",
+	   "info_url": "https://fr.wikipedia.org/wiki/Zadig_(livre)",
+	   "thumbnail_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/VoltaireZadig.jpg",
 	   "notes": "Strasbourg",
-	   "date_created": "2017-05-03"
+	   "date_created": "2017-05-03",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 3,
@@ -43,7 +45,8 @@
 	   "info_url": "A%20Shining%20Season%3A%20The%20True%20Story%20of%20John%20BakerA%20Shining%20Season%3A%20The%20True%20Story%20of%20John%20BakerA%20Shining%20Season%3A%20The%20True%20Story%20of%20John%20Baker",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/51J0Y7HT7RL._SX329_BO1,204,203,200_.jpg",
 	   "notes": "",
-	   "date_created": "2017-06-12"
+	   "date_created": "2017-06-12",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 4,
@@ -58,10 +61,11 @@
 	   "info_url": "AP%3A%20ALL%20TIME%20LOW",
 	   "thumbnail_url": "https://cdn.shopify.com/s/files/1/1050/7646/products/348-BUNDLE5_a2ac0f59-785b-4522-8f98-028585db7205_480x.jpg?v=1518484967",
 	   "notes": "All Time Low on Alternative Press Magazine.\n\n\n\n",
-	   "date_created": "2017-06-12"
+	   "date_created": "2017-06-12",
+	   "FIELD14": ""
 	 },
 	 {
-	   "book_id": 10,
+	   "book_id": 5,
 	   "title": "Fresh-Water Algae",
 	   "author": "G.W. Prescott",
 	   "copyright_year": 1954,
@@ -73,10 +77,11 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
-	   "book_id": 11,
+	   "book_id": 6,
 	   "title": "Chronicles of Narnia, The",
 	   "author": "C.S. Lewis",
 	   "copyright_year": 1955,
@@ -88,7 +93,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 13,
@@ -103,7 +109,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 14,
@@ -118,7 +125,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrdpFr99A_jZS3ADRptxLbCk35MSlpzKFkz8QeNIrQp_vMZoZt",
 	   "notes": "",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 15,
@@ -133,7 +141,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 16,
@@ -148,7 +157,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 17,
@@ -163,7 +173,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 18,
@@ -178,7 +189,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "Includes CD",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 19,
@@ -193,7 +205,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/51lTCiX4btL._SX336_BO1,204,203,200_.jpg",
 	   "notes": "Title\n    Sans rancune capitaine\nAuthor\n    Harry PATTERSON\nFormat/binding\n    Paperback\nBook condition\n    Used - Good \nQuantity-available\n    1\nBinding\n    Paperback\nPublisher\n    Librairie des champs-élysées Le masque \nDate Published\n    1972",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 20,
@@ -208,7 +221,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/41RzFpnIf5L._SX352_BO1,204,203,200_.jpg",
 	   "notes": "",
-	   "date_created": "2017-06-14"
+	   "date_created": "2017-06-14",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 21,
@@ -223,7 +237,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "\n",
-	   "date_created": "2017-06-15"
+	   "date_created": "2017-06-15",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 24,
@@ -238,7 +253,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-06-30"
+	   "date_created": "2017-06-30",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 25,
@@ -253,7 +269,8 @@
 	   "info_url": "MAUSMAUSMAUSMAUSMAUSMAUS",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/51R45cOV8UL._SX348_BO1,204,203,200_.jpg",
 	   "notes": "",
-	   "date_created": "2017-07-01"
+	   "date_created": "2017-07-01",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 26,
@@ -268,7 +285,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-07-01"
+	   "date_created": "2017-07-01",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 27,
@@ -283,7 +301,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "https://images.gr-assets.com/books/1361328167l/15938729.jpg",
 	   "notes": "",
-	   "date_created": "2017-07-10"
+	   "date_created": "2017-07-10",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 28,
@@ -298,7 +317,8 @@
 	   "info_url": "HTML%20and%20CSS%3A%20Design%20and%20Build%20WebsitesHTML%20and%20CSS%3A%20Design%20and%20Build%20Websites",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/41R9Qctt%2BbL._SX258_BO1,204,203,200_.jpg",
 	   "notes": "Not sure if in apartment or parents home",
-	   "date_created": "2017-07-15"
+	   "date_created": "2017-07-15",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 29,
@@ -313,7 +333,8 @@
 	   "info_url": "https://www.amazon.com/Code-Name-Verity-Elizabeth-Wein/dp/1423152883/ref=sr_1_1?ie=UTF8&qid=1500487818&sr=8-1&keywords=9781423152880",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/51PR5E6NCDL._SX331_BO1,204,203,200_.jpg",
 	   "notes": "",
-	   "date_created": "2017-07-19"
+	   "date_created": "2017-07-19",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 30,
@@ -328,7 +349,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-07-23"
+	   "date_created": "2017-07-23",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 31,
@@ -343,7 +365,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-08-25"
+	   "date_created": "2017-08-25",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 32,
@@ -358,7 +381,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-08-28"
+	   "date_created": "2017-08-28",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 33,
@@ -373,7 +397,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-09-01"
+	   "date_created": "2017-09-01",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 34,
@@ -388,7 +413,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-09-04"
+	   "date_created": "2017-09-04",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 35,
@@ -403,7 +429,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/61x89Qa7vyL._SX388_BO1,204,203,200_.jpg",
 	   "notes": "",
-	   "date_created": "2017-09-05"
+	   "date_created": "2017-09-05",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 36,
@@ -418,7 +445,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "http://images.45cat.com/the-other-ones-we-are-what-we-are-virgin.jpg",
 	   "notes": "",
-	   "date_created": "2017-11-19"
+	   "date_created": "2017-11-19",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 37,
@@ -433,7 +461,8 @@
 	   "info_url": "https://www.amazon.com/Binge-Blackout-Mother-Struggle-Drinking/dp/0451219090",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/51ZdkEwwGHL._SX312_BO1,204,203,200_.jpg",
 	   "notes": "",
-	   "date_created": "2017-11-22"
+	   "date_created": "2017-11-22",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 38,
@@ -448,7 +477,8 @@
 	   "info_url": "https://www.amazon.com/Anne-Frank-Diary-Young-Girl/dp/B0092G7DHQ/ref=sr_1_4?s=books&ie=UTF8&qid=1511401441&sr=1-4&keywords=anne+frank+the+diary+of+a+young+girl",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/51EfRSvrm-L._SX370_BO1,204,203,200_.jpg",
 	   "notes": "",
-	   "date_created": "2017-11-22"
+	   "date_created": "2017-11-22",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 39,
@@ -463,7 +493,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "https://media.altpress.com/uploads/2018/07/352-2-696x887.jpg",
 	   "notes": "",
-	   "date_created": "2017-11-22"
+	   "date_created": "2017-11-22",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 275,
@@ -478,7 +509,8 @@
 	   "info_url": "",
 	   "thumbnail_url": "",
 	   "notes": "",
-	   "date_created": "2017-12-04"
+	   "date_created": "2017-12-04",
+	   "FIELD14": ""
 	 },
 	 {
 	   "book_id": 276,
@@ -493,7 +525,504 @@
 	   "info_url": "",
 	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/51hV5vGr4AL.jpg",
 	   "notes": "",
-	   "date_created": "2017-12-04"
+	   "date_created": "2017-12-04",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 277,
+	   "title": "Developing & Sustaining a Research-Supportive Curriculum",
+	   "author": "Kerry K. Karukstis",
+	   "copyright_year": 2007,
+	   "publisher": "Council on Undergraduate Research",
+	   "audience": "Everyone",
+	   "categories": "22",
+	   "isbn": 9780979302701,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2017-12-04",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 278,
+	   "title": "Critical Thinking",
+	   "author": "Alex Raffi",
+	   "copyright_year": 2006,
+	   "publisher": "Wadsworth, Cengage Learning",
+	   "audience": "Everyone",
+	   "categories": "11 22",
+	   "isbn": 9780534583484,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2017-12-04",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 279,
+	   "title": "Moving Over the Edge",
+	   "author": "Pamela Kay Walker",
+	   "copyright_year": 2005,
+	   "publisher": "MH Media",
+	   "audience": "Everyone",
+	   "categories": "22",
+	   "isbn": 977150526,
+	   "barcode": "9780977150526",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2017-12-04",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 280,
+	   "title": "Exam Accommodations Reference Manual",
+	   "author": "Ohio State University Faculty",
+	   "copyright_year": 2005,
+	   "publisher": "Association on Higher Education And Disability",
+	   "audience": "Everyone",
+	   "categories": "30 22",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2017-12-04",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 281,
+	   "title": "Critical Thinking: Instructor's Manual",
+	   "author": "Richard L. Epstein",
+	   "copyright_year": 1998,
+	   "publisher": "",
+	   "audience": "Everyone",
+	   "categories": "22",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2017-12-04",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 282,
+	   "title": "La Noire de...",
+	   "author": "Ousmane Sembène",
+	   "copyright_year": 1969,
+	   "publisher": "",
+	   "audience": "Everyone",
+	   "categories": "22",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-02-05",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 283,
+	   "title": "Mandarin Chinese Compact Dictionary",
+	   "author": "Berlitz",
+	   "copyright_year": 2011,
+	   "publisher": "Berlitz Publishing",
+	   "audience": "Everyone",
+	   "categories": "37 11 23",
+	   "isbn": 9789812686497,
+	   "barcode": "9789812686497",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-03-29",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 285,
+	   "title": "Five Dialogues",
+	   "author": "Plato",
+	   "copyright_year": 2002,
+	   "publisher": "Hackett Publishing Company",
+	   "audience": "Everyone",
+	   "categories": "39",
+	   "isbn": 9780872206335,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-04-10",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 286,
+	   "title": "A Man for All Seasons",
+	   "author": "Robert Bolt",
+	   "copyright_year": 1960,
+	   "publisher": "Vintage International",
+	   "audience": "Everyone",
+	   "categories": "36 39",
+	   "isbn": 9780679728221,
+	   "barcode": "9780679728221",
+	   "info_url": "https://www.amazon.com/Man-All-Seasons-Play-Acts/dp/0679728228",
+	   "thumbnail_url": "https://images-na.ssl-images-amazon.com/images/I/51GrOU3J7uL._SX322_BO1,204,203,200_.jpg",
+	   "notes": "\nAbout A Man for All Seasons\n\nThe classic dramatization of Sir Thomas More’s historic conflict with Henry VIII—a compelling portrait of a courageous man who died for his convictions.\n\nSir Thomas More—the brilliant nobleman, lawyer, humanist, author of such works as Utopia—was a long-time friend and favorite of Henry VIII, ascending to the position of Lord Chancellor in 1529. Yet he was also a staunch Catholic, and when Henry broke with the Church in 1531 after the Pope had refused to grant him a divorce from Catherine of Aragon, More resigned the Chancellorship. In 1534, Parliament passed a bill requiring all subjects to take an oath acknowledging the supremacy of England’s king over all foreign sovereigns—including the Pope. More refused, was imprisoned, and finally was executed in 1535.\n\nAn enduring modern classic, A Man for All Seasons “challenges the mind, and, in the end, touches the heart” (New York Times).\n\n",
+	   "date_created": "2018-04-10",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 287,
+	   "title": "Chinese in Plain English",
+	   "author": "Boyé Lafayette De Mente",
+	   "copyright_year": 2007,
+	   "publisher": "McGraw Hill Companies",
+	   "audience": "Everyone",
+	   "categories": "22",
+	   "isbn": 9780071482950,
+	   "barcode": "9780071482950",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-04-10",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 288,
+	   "title": "Webster's New World Thesaurus",
+	   "author": "Charlton Laird",
+	   "copyright_year": 2003,
+	   "publisher": "Wiley Publishing Inc.",
+	   "audience": "Everyone",
+	   "categories": "37 22",
+	   "isbn": 9781451646931,
+	   "barcode": "9781451646931",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-04-10",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 289,
+	   "title": "Frankenstein",
+	   "author": "Mary Shelley",
+	   "copyright_year": 2012,
+	   "publisher": "W.W. Norton",
+	   "audience": "Everyone",
+	   "categories": "39",
+	   "isbn": 9780393927931,
+	   "barcode": "9780393927931",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-04-11",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 290,
+	   "title": "Harry Potter and the Order of the Phoenix",
+	   "author": "J.K. Rowling",
+	   "copyright_year": 2007,
+	   "publisher": "Warner Bros. Pictures",
+	   "audience": "Teen",
+	   "categories": "39",
+	   "isbn": 1419802518,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "https://target.scene7.com/is/image/Target/GUEST_f3dcd77d-bef5-4037-a2bd-fb6524ddb0cf?wid=488&hei=488&fmt=pjpeg",
+	   "notes": "",
+	   "date_created": "2018-04-14",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 293,
+	   "title": "From the Beginning 1905-2005",
+	   "author": "University of Nebraska at Kearney",
+	   "copyright_year": 2005,
+	   "publisher": "University of Nebraska at Kearney",
+	   "audience": "Everyone",
+	   "categories": "6 22",
+	   "isbn": 947541087,
+	   "barcode": "9780974541082",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-07",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 294,
+	   "title": "ÎLES",
+	   "author": "",
+	   "copyright_year": 1994,
+	   "publisher": "Îles",
+	   "audience": "Everyone",
+	   "categories": "20",
+	   "isbn": null,
+	   "barcode": "3791430047006",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-07",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 295,
+	   "title": "A Standards-Based Thematic Unit: Jean de La Lune",
+	   "author": "Eileen Logan",
+	   "copyright_year": 1998,
+	   "publisher": "Iowa State University",
+	   "audience": "Everyone",
+	   "categories": "22",
+	   "isbn": 1892047047,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-07",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 296,
+	   "title": "French Revolution, The",
+	   "author": "Various Artists",
+	   "copyright_year": 1993,
+	   "publisher": "Belleronphon Books",
+	   "audience": "Everyone",
+	   "categories": "35 10 38",
+	   "isbn": 883881411,
+	   "barcode": "9780883881415",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "Cutout Dolls",
+	   "date_created": "2018-05-07",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 297,
+	   "title": "Le Memoir aux Espoirs",
+	   "author": "John Le Carré",
+	   "copyright_year": 1965,
+	   "publisher": "Brodard et Taupin",
+	   "audience": "Everyone",
+	   "categories": "39 38",
+	   "isbn": 2253029785,
+	   "barcode": "9782253029786",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-07",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 298,
+	   "title": "En Avant! Beginning French",
+	   "author": "Anderson",
+	   "copyright_year": 2012,
+	   "publisher": "McGraw Hill Companies",
+	   "audience": "Everyone",
+	   "categories": "11 22 38",
+	   "isbn": 978007328834,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-07",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 299,
+	   "title": "Mini Weapons of Mass Destruction",
+	   "author": "John Austin",
+	   "copyright_year": 2009,
+	   "publisher": "Chicago Review Press",
+	   "audience": "Everyone",
+	   "categories": "11 22 38",
+	   "isbn": 9781556529535,
+	   "barcode": "9781556529535",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-07",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 300,
+	   "title": "Vision A Mandates for Change",
+	   "author": "National Art Education Association",
+	   "copyright_year": 1970,
+	   "publisher": "National Art Education Association",
+	   "audience": "Everyone",
+	   "categories": "23 22",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 301,
+	   "title": "Art in Society",
+	   "author": "Various Professors",
+	   "copyright_year": 1975,
+	   "publisher": "University of Wisconsin-Extension",
+	   "audience": "Everyone",
+	   "categories": "23 22",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 302,
+	   "title": "Congress of Qualitive Inquiry",
+	   "author": "University of Illinois at Urbana-Champaign",
+	   "copyright_year": 2012,
+	   "publisher": "University of Illinois at Urbana-Champaign",
+	   "audience": "Everyone",
+	   "categories": "23 22",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 303,
+	   "title": "Exploring Art",
+	   "author": "Kainz & Riley",
+	   "copyright_year": 1948,
+	   "publisher": "Harcourt, Brace and Company",
+	   "audience": "Everyone",
+	   "categories": "35 11 6 23",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 304,
+	   "title": "AP: Neck Deep",
+	   "author": "Alternative Press",
+	   "copyright_year": 2017,
+	   "publisher": "Alternative Press",
+	   "audience": "Everyone",
+	   "categories": "20 1",
+	   "isbn": null,
+	   "barcode": "100905173516",
+	   "info_url": "https://shop.altpress.com/products/neck_deep_magazine_351",
+	   "thumbnail_url": "https://cdn.shopify.com/s/files/1/1050/7646/products/AP351_NECKDEEP_Hi-Res_f083798b-e935-4f87-8d5c-323ab25bd455_394x.jpg?v=1518485632",
+	   "notes": "The History You Didn't Know",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 305,
+	   "title": "Undergraduate Research Journal",
+	   "author": "Sada Hotovy",
+	   "copyright_year": 2012,
+	   "publisher": "UNK Publication & Printing Services",
+	   "audience": "Adults",
+	   "categories": "23",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 306,
+	   "title": "Qualities of a Good Elementary School",
+	   "author": "Loren Brakenhoff",
+	   "copyright_year": 1966,
+	   "publisher": "Nebraska Department of Education",
+	   "audience": "Everyone",
+	   "categories": "23",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 307,
+	   "title": "Art, Culture and Ethnicity",
+	   "author": "The National Art Education Association",
+	   "copyright_year": 1990,
+	   "publisher": "The National Art Education Association",
+	   "audience": "Everyone",
+	   "categories": "23 22",
+	   "isbn": 937652547,
+	   "barcode": "None",
+	   "info_url": "https://www.abebooks.com/first-edition/Art-Culture-Ethnicity-Young-Bernard-Edited/16853245015/bd",
+	   "thumbnail_url": "https://pictures.abebooks.com/STFINEART/md/md16853245015.jpg",
+	   "notes": "",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 308,
+	   "title": "Art Education: Senior High School",
+	   "author": "The National Art Education Association",
+	   "copyright_year": 1975,
+	   "publisher": "The National Art Education Association",
+	   "audience": "Everyone",
+	   "categories": "22",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 309,
+	   "title": "Arts in Society",
+	   "author": "Edward Kamarck",
+	   "copyright_year": 1975,
+	   "publisher": "The University of Wisconsin-Extension",
+	   "audience": "Everyone",
+	   "categories": "35 33",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "",
+	   "thumbnail_url": "",
+	   "notes": "",
+	   "date_created": "2018-11-22",
+	   "FIELD14": ""
+	 },
+	 {
+	   "book_id": 311,
+	   "title": "White Rooser",
+	   "author": "Milton Avery",
+	   "copyright_year": 1947,
+	   "publisher": "The Metropolitan Museum of Art, NY",
+	   "audience": "Everyone",
+	   "categories": "35",
+	   "isbn": null,
+	   "barcode": "None",
+	   "info_url": "https://www.metmuseum.org/art/collection/search/481441",
+	   "thumbnail_url": "https://images.metmuseum.org/CRDImages/ma/web-large/DT10458.jpg",
+	   "notes": "White Rooster\n\nArtist:\n    Milton Avery (American, Altmar, New York 1885–1965 New York)\n\nDate:\n    1947\n\nMedium:\n    Oil on canvas\n\nDimensions:\n    61 1/2 x 50 3/4 in. (156.2 x 128.9 cm)\n\n",
+	   "date_created": "2018-05-24",
+	   "FIELD14": ""
 	 }
 	]
 	}

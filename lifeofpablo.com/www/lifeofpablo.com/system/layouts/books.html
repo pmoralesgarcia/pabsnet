@@ -21,23 +21,25 @@ foreach($items as $item) {
 
 
   echo '<article class="bt bb b--black-10">';
-  echo '<a class="db pv4 ph3 ph0-l no-underline black dim" href="'.$info_url.'">';
-  echo '<div class="flex flex-column flex-row-ns">';
+
+  echo '<div class="flex flex-column flex-row-ns" id="'.$id.'">';
   echo '<div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">';
-  echo '<img src='.$image.' class="db ma4 w-50" alt="Photo of '.$name.'">';
+  echo '<img src="'.$image.'" class="db ma4 w-50" alt="Photo of '.$name.'">';
   echo '</div>';
   echo '<div class="w-100 w-60-ns pl3-ns">';
+  echo '<a class="db ph3 ph0-l no-underline black dim" href="'.$info_url.'">';
   echo '<h1 class="f3 fw1 baskerville mt0 lh-title">'.$name.'</h1>';
+  echo '</a>';
   echo '<p class="f6 f5-l lh-copy">';
   echo $notes;
   echo '</p>';
   echo '<p class="f6 lh-copy mv0">By '.$author.'</p>';
   echo '<p class="f6 f5-l lh-copy">';
-  echo 'ID: '.$id;
+  echo '<!-- ID: '.$id.' --> ';
   echo '</p>';
   echo '</div>';
   echo '</div>';
-  echo '</a>';
+  
   echo '</article>';
   
 
