@@ -288,6 +288,7 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
+<<<<<<< HEAD
   automad:
     image: 'automad/automad:v2'
     container_name: automad
@@ -312,6 +313,8 @@ services:
     ports:
       - 8046:80
     restart: unless-stopped
+=======
+>>>>>>> e7c430cb31fab2d8693423477f4eb1f7d296fe88
 volumes:
  freshrss_data:
  freshrss_extensions:
