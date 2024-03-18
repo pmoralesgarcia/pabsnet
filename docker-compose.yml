@@ -223,7 +223,7 @@ services:
     ports:
       - 8123:80
     volumes:
-      - ./1k.lifeofpablo.com/www/1k.lifeofpablo.com:/var/www/html
+      - ./1k.lifeofpablo.com/www:/var/www/html
     environment:
       - VIRTUAL_HOST=1k.lifeofpablo.com
       - LETSENCRYPT_HOST=1k.lifeofpablo.com
