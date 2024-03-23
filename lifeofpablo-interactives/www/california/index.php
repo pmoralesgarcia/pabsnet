@@ -19,16 +19,17 @@
   <div class="center measure-wide f5 pv5 lh-copy ph2">
   <div class="athelas pa4">
   <p class="f4 f4-ns lh-copy measure center">
-    The form of our letters, the older handwriting and inscriptions as much as
-    the cuttings in use today, reflects a convention that has slowly solidified,
-    an agreement hardened in many battles. Even after the Renaissance several
-    European countries retained broken, blackletter national scripts in opposition to roman, the obligatory type for all Latin material; yet even today, I hope, the last word about Fraktur has not been spoken.
+    California is the place where I call home. 
   </p>
   <p class="f4 f4-ns lh-copy measure center">
-    The form of our letters, the older handwriting and inscriptions as much as
-    the cuttings in use today, reflects a convention that has slowly solidified,
-    an agreement hardened in many battles. Even after the Renaissance several
-    European countries retained broken, blackletter national scripts in opposition to roman, the obligatory type for all Latin material; yet even today, I hope, the last word about Fraktur has not been spoken.
+  It's been three years since I left Nebraska. Nebraska was the state that saw me grow up. My new home is now living in California. 
+
+I've made new friends.
+
+I'm more comfortable with myself as a person.
+For the longest time, I was never comfortable with who I was. I lost direction.
+
+find the person I've always wanted to become. For many years, I lost control of who I was. All that ambition, all those goals were pushed back. Truly, I want to learn how I can become more expressive with myself. I want to reconnect with myself. Blogging is only one piece of putting me back together.
   </p>
   <p class="f4 f4-ns lh-copy measure center">
     Apart from that, the roman minuscule has been our way of writing for hundreds
