@@ -671,6 +671,34 @@
 	   "thumbnail_url": "https://i.discogs.com/zHckzhFgjz7v8-9TVsdHDeh5CuGz83FnKP1IWrjapHE/rs:fit/g:sm/q:90/h:600/w:588/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUwNDA2/MTAtMTYyNzc2NjY0/Ni00ODExLmpwZWc.jpeg",
 	   "location_purchased": "",
 	   "notes": ""
+	 },
+	 {
+	   "id": 48,
+	   "title": "Electronic Music",
+	   "artist": "Various Artists",
+	   "copyright_year": 1965,
+	   "label": "Turnabout Records",
+	   "isbn": "",
+	   "barcode": "",
+	   "catalog_number": "TV 3004S",
+	   "info_url": "https://www.discogs.com/master/76277-Various-Electronic-Music",
+	   "thumbnail_url": "https://i.discogs.com/iaV51hEfqfhANgZ7u5_JlxO4dodKlE1DTJBYpc-JK0Y/rs:fit/g:sm/q:90/h:477/w:471/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMTQy/OS0xMjcyODc0Mzgz/LmpwZWc.jpeg",
+	   "location_purchased": "Delta Breeze Records, Sacramento, CA",
+	   "notes": ""
+	 },
+	 {
+	   "id": 49,
+	   "title": "Sing for the Moment",
+	   "artist": "Eminem",
+	   "copyright_year": 2002,
+	   "label": "Aftermath Records",
+	   "isbn": "",
+	   "barcode": "",
+	   "catalog_number": "TV 3004S",
+	   "info_url": "https://www.discogs.com/release/612225-Eminem-Sing-For-The-Moment",
+	   "thumbnail_url": "https://i.discogs.com/hxys9uzEx5xF2MFbzZrOh3WuIy2XiTuTfiaENMOl86Q/rs:fit/g:sm/q:90/h:490/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYxMjIy/NS0xMTc2NTQwNTIz/LmpwZWc.jpeg",
+	   "location_purchased": "Delta Breeze Records, Sacramento, CA",
+	   "notes": ""
 	 }
 	]
 	}
