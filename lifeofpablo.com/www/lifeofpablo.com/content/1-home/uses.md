@@ -2,7 +2,11 @@
 Title: Uses
 Published: 2024-01-24 22:00:59
 ---
-**Status: Work in Progress**
+### Communication Clients
+* Discord
+* Slack
+* The Lounge (self-hosted)
+* Signal
 ### Software
 * Operating Systems
   * Debian
@@ -12,15 +16,15 @@ Published: 2024-01-24 22:00:59
   * Firefox
 
 ### RSS Reader
-* FreshRSS
-* Miniflux
-* NetNewsWire
+* FreshRSS (self-hosted)
+* Miniflux (self-hosted)
+* NetNewsWire (iOS)
 
 ### Text-Editors
 * Vim
 * VS Code
 
-## CLI
+### CLI
 * Warp (Terminal Emulator)
 * Tmux
 * Homebrew
@@ -33,21 +37,32 @@ Published: 2024-01-24 22:00:59
   * Framework Laptop
   * iMac G4
 * Monitors
-  * Apple Cinema Display
+  * Apple Cinema Display Original (22-Inch)
+  * Apple Cinema Display 23" Widescreen LCD Monitor
+  * Dell S2319NX (x2)
 
 ### Peripherals
-* Apple Airpods
+
+* Audio
+  * AKG K240 Studio
+  * Apple Airpods
+  * Sony WH-CH520 Wireless Headphones
+* Keyboards
+  * Apple A1048 USB Wired Keyboard
+  * GATEWAY Keyboard Model RT-3602
 
 ### Sound Equipment
-* Turntable - Sony PS-LX350H
+* Speakers
+  * Bose 161 speaker system (pair, white)
+  * Realistic Minimus 7 Bookshelf Speakers 
+  * Turntable - Sony PS-LX350H
+* School Smart SS-1302 Portable Personal Casette Player/Recorder
 * Stereos
   * TBA
   * TBA
 * Guitars
   * 
-  * 
-* Keyboards
-  *  
+  *   
 
 ### Sewing
 * Sewing Machine - TBA
