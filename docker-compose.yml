@@ -296,11 +296,25 @@ services:
       - PGID=1000
       - TZ=America/Los_Angeles
       - VIRTUAL_HOST=bio.lifeofpablo.com
-      - LETSENCRYPT_HOST= bio.lifeofpablo.com
+      - LETSENCRYPT_HOST=bio.lifeofpablo.com
     volumes:
       - ./bio/config:/config
     ports:
       - 8028:80
+    restart: unless-stopped
+  pabstech:
+    image: lscr.io/linuxserver/grav:latest
+    container_name: pabstech
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - VIRTUAL_HOST=pabs.tech
+      - LETSENCRYPT_HOST=pabs.tech
+    volumes:
+      - ./pabstech/config:/config
+    ports:
+      - 8029:80
     restart: unless-stopped
 volumes:
  freshrss_data:
