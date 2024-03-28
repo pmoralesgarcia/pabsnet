@@ -7,6 +7,7 @@ Tag: 2024
 Description: 
 Image: https://indieweb.org/images/thumb/6/67/indiewebcamp-logo-lockup-color%403x.png/1200px-indiewebcamp-logo-lockup-color%403x.png
 ImageAlt: IndieWeb Logo
+Status: draft
 ---
 <div class="measure db center f5 f4-ns lh-copy">
    <img class="db w-100 mt4 mt5-ns" src="https://indieweb.org/images/thumb/6/67/indiewebcamp-logo-lockup-color%403x.png/1200px-indiewebcamp-logo-lockup-color%403x.png" alt="IndieWeb Logo">

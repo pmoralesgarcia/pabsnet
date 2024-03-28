@@ -148,6 +148,12 @@ services:
     environment:
       - VIRTUAL_HOST=lifeofpablo.com
       - LETSENCRYPT_HOST=lifeofpablo.com
+    depends_on:
+      - lifeofpablo
+      - lifeofpablo-interactives
+      - lifeofpablo-guestbook
+      - lifeofpablo-linkinbio
+      - lifeofpablo-now
   lifeofpablo:
     container_name: lifeofpablo
     restart: unless-stopped 
@@ -316,6 +322,26 @@ services:
     ports:
       - 8029:80
     restart: unless-stopped
+  lifeofpablo-lists:
+    image: nginx:1.25.3-bookworm-perl
+    container_name: lifeofpablo-lists-proxy
+    volumes:
+      - ./lifeofpablo-lists/nginx:/etc/nginx/conf.d
+    ports:
+      - 8030:80
+  lifeofpablo-lists-proxy:
+    image: nginx:1.25.3-bookworm-perl
+    container_name: lifeofpablo-lists-proxy
+    volumes:
+      - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
+    ports:
+      - 8031:80
+    environment:
+      - VIRTUAL_HOST=lists.lifeofpablo.com
+      - LETSENCRYPT_HOST=lists.ifeofpablo.com
+      - TZ=America/Los_Angeles
+    depends_on:
+      - lifeofpablo-lists
 volumes:
  freshrss_data:
  freshrss_extensions:
