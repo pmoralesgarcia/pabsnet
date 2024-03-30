@@ -8,9 +8,9 @@ RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
 RUN apt update -y && \
 	apt install -y php-fpm php-zip php-curl php-gd php-mbstring 
 
-COPY ./www /var/www
+COPY ./www /var/www/html
 
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 COPY ./nginx/default.conf /etc/nginx/sites-enabled/default
 

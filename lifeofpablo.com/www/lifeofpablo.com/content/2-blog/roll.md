@@ -22,6 +22,7 @@ ImageAlt: horn
 * [Blog of Sara Jakša](https://sarajaksa.eu/) [(RSS)](https://sarajaksa.eu/rss.xml)
 * [busybee: General Articles](https://beesbuzz.biz/articles/) [(RSS)](https://beesbuzz.biz/articles/feed)
 * [Chris Aldrich](https://boffosocko.com/) [(RSS)](https://boffosocko.com/feed/)
+* [Chris Burnell](https://chrisburnell.com/) [(RSS)](https://chrisburnell.com/feed.xml)
 * [cidney.org](https://cidney.org/) [(RSS)](https://cidney.org/feed.xml)
 * [CodingBobby](https://codingbobby.xyz/) [(RSS)](https://codingbobby.xyz/feed.xml)
 * [Cognition Engine](https://spentcoast.github.io/cognition-website/spentcoast.github.io/cognition-website/) [(RSS)](https://spentcoast.github.io/cognition-website/feed.xml)
