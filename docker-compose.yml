@@ -324,7 +324,7 @@ services:
     restart: unless-stopped
   lifeofpablo-lists:
     image: nginx:1.25.3-bookworm-perl
-    container_name: lifeofpablo-lists-proxy
+    container_name: lifeofpablo-lists
     volumes:
       - ./lifeofpablo-lists/nginx:/etc/nginx/conf.d
     ports:
