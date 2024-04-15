@@ -1,5 +1,5 @@
 ---
-Title: Went on a great hinke
+Title: Went on a great hike
 Published: 2024-04-14 21:09:38
 Author: Pablo Morales
 Layout: posts
