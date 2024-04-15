@@ -20,7 +20,7 @@ Published: 2023-03-01
     [South Korea](https://korea.lifeofpablo.com/interactives/photos)
   </div>
   <div markdown="1" class=" w-25 pa3">
-    [France & Europe](france-europe)
+    [Europe](europe)
   </div>
 </div>
 
