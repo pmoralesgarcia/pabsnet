@@ -31,7 +31,7 @@ After 2+ years since the pandemic started, I was part of a University Nebraska -
 ### France & Europe - Spring 2017
 I studied abroad in 2017 to help complete the requirements of one of my degrees: French Education.
 
-### Seattle, Washington / Vancouver, Canada  - January 2015
+### [Seattle, Washington / Vancouver, Canada ](united-states/seattle) - January 2015
 First major trip with my friends
 
 ### Oaxaca, Mexico - My Entire Life
