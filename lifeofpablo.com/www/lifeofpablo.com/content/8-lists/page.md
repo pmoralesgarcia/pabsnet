@@ -17,6 +17,9 @@ Published: 2024-01-24 21:23:49
 
 [Music Listened](music-listened)
 
+## Things I Do
+[Hikes](hikes)
+
 ## Who I Follow
 [Blog Roll](/blog/roll)
 

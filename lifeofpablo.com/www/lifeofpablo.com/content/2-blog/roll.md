@@ -48,6 +48,7 @@ ImageAlt: horn
 * [Kevin Cunningham - @dolearning](https://kevincunningham.co.uk/) [(RSS)](https://www.kevincunningham.co.uk/rss.xml)
 * [kottke.org](http://kottke.org/) [(RSS)](http://feeds.kottke.org/main)
 * [Left handed typing since 2017](https://blog.voss.co/) [(RSS)](https://blog.voss.co/?_t=rss)
+* [Manuel Nila](https://manic.so/) [(RSS)](https://manic.so/atom.xml)
 * [Marco Madera](https://marcomadera.com/) [(RSS)](https://marcomadera.com/rss.xml)
 * [MattCool.tech](https://mattcool.tech/) [(RSS)](https://mattcool.tech/rss.xml)
 * [Matt Mullenweg](https://ma.tt/) [(RSS)](https://ma.tt/feed/)

@@ -2,7 +2,7 @@
 // French extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/french
 
 class YellowFrench {
-    const VERSION = "0.8.44";
+    const VERSION = "0.8.43";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -13,9 +13,6 @@ class YellowFrench {
             "LanguageLocale: fr_FR",
             "LanguageDescription: Français",
             "LanguageTranslator: Juh Nibreh",
-            "AnchorDescription: Show anchor links next to headings.",
-            "BacktotopDescription: Back-to-top link.",
-            "BacktotopLabel: Retour au début",
             "BerlinDescription: Berlin est un thème inspiré de Dieter Rams.",
             "BlogDescription: Blog pour votre site web.",
             "BlogBy: par",
@@ -222,6 +219,7 @@ class YellowFrench {
             "GermanDescription: German language.",
             "GooglecalendarDescription: Embed Google calendar.",
             "GooglemapDescription: Embed Google map.",
+            "HelloworldDescription: Make animated text.",
             "HelpDescription: Help for your website.",
             "HighlightDescription: Highlight source code.",
             "HungarianDescription: Hungarian language.",
@@ -265,7 +263,6 @@ class YellowFrench {
             "PrivatePageError: Veuillez entrer le mot de passe.",
             "ProfileDescription: Author profile for blog pages.",
             "PublishDescription: Make and publish extensions.",
-            "ReadingtimeDescription: Show estimated reading time for page content.",
             "RussianDescription: Russian language.",
             "SearchDescription: Full-text search.",
             "SearchResultsNone: Entrez un mot dans le champ de recherche.",

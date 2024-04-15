@@ -8,15 +8,15 @@ Tag: Vouch Proxy, Docker, Docker Compose, Reverse Proxy, nginx
 Description: Protect your sites using Vouch Proxy and Docker Compose
 Status: draft
 ---
-I've written in the past how to install Vouch Proxy using Debian. I also wrote a post a while ago where I [dockerized my site and services](/blog/dockerizing-my-website-and-services). So let's state for the record, I like Vouch Proxy. It's met my needs. 
+I've written in the past how to install Vouch Proxy using Debian. I also wrote a post a while ago where I [dockerized my site and services](/blog/dockerizing-my-website-and-services). If it isn't obvious, I really like Vouch Proxy. It's simple and it met my needs. 
 
 I'm going to share how I setup the following services using Docker Compose:
 
 * [Vouch Proxy](https://github.com/vouch/vouch-proxy) [image vp1.png]
 * NGINX Reverse Proxy
-* Creating Reverse Proxies for your apps to be protected with Vouch Proxy
-  * Provide Example Apps as use cases.
-  * [Grafana](https://grafana.com/) and [Prometheus](https://prometheus.io/)
+* Creating Reverse Proxies for your apps to be protected with Vouch Proxy. I will provide example services as use cases.
+  * [Grafana](https://grafana.com/)
+  * [Prometheus](https://prometheus.io/)
 
 This guide, is recommended for those who have experience with [Docker](https://docker.com) and [Docker Compose](https://docs.docker.com/compose/). I will keep this simple for you to follow along if you don't have experience. When using Docker Compose and docker-compose.yml files, you are launching multiple containers at one time. When using a Dockerfile, one container is launched at a time. 
 
@@ -164,6 +164,7 @@ volumes:
   mariadb:
   prom_data:
 ```
+## NGINX Reverse Proxy
 
 ## Setup Vouch Proxy Config
 
@@ -197,7 +198,7 @@ oauth:
   # endpoints are set from https://godoc.org/golang.org/x/oauth2/google
 ```
 
-## NGINX Reverse Proxy
+
 
 ## Setup MariaDB
 

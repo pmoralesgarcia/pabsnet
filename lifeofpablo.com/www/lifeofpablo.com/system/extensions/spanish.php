@@ -2,7 +2,7 @@
 // Spanish extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/spanish
 
 class YellowSpanish {
-    const VERSION = "0.8.43";
+    const VERSION = "0.8.44";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -10,9 +10,12 @@ class YellowSpanish {
         $this->yellow = $yellow;
         $this->yellow->language->setDefaults(array(
             "Language: es",
-            "LanguageLocale: es_MX",
+            "LanguageLocale: es_ES",
             "LanguageDescription: Español",
             "LanguageTranslator: Al Garcia, David Garcia",
+            "AnchorDescription: Show anchor links next to headings.",
+            "BacktotopDescription: Back-to-top link.",
+            "BacktotopLabel: Volver arriba",
             "BerlinDescription: Berlin es un tema inspirado en Dieter Rams.",
             "BlogDescription: Blog for your website.",
             "BlogBy: por",
@@ -219,7 +222,6 @@ class YellowSpanish {
             "GermanDescription: German language.",
             "GooglecalendarDescription: Embed Google calendar.",
             "GooglemapDescription: Embed Google map.",
-            "HelloworldDescription: Make animated text.",
             "HelpDescription: Help for your website.",
             "HighlightDescription: Highlight source code.",
             "HungarianDescription: Hungarian language.",
@@ -263,6 +265,7 @@ class YellowSpanish {
             "PrivatePageError: Please enter the password.",
             "ProfileDescription: Author profile for blog pages.",
             "PublishDescription: Make and publish extensions.",
+            "ReadingtimeDescription: Show estimated reading time for page content.",
             "RussianDescription: Russian language.",
             "SearchDescription: Full-text search.",
             "SearchResultsNone: Introduce un término de búsqueda.",
