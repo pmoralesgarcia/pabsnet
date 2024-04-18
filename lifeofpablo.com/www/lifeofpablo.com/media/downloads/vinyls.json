@@ -699,6 +699,34 @@
 	   "thumbnail_url": "https://i.discogs.com/hxys9uzEx5xF2MFbzZrOh3WuIy2XiTuTfiaENMOl86Q/rs:fit/g:sm/q:90/h:490/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYxMjIy/NS0xMTc2NTQwNTIz/LmpwZWc.jpeg",
 	   "location_purchased": "Delta Breeze Records, Sacramento, CA",
 	   "notes": ""
+	 },
+	 {
+	   "id": 50,
+	   "title": "The S.S. Sonic Six",
+	   "artist": "J Ward",
+	   "copyright_year": 2003,
+	   "label": "Broadway Jungle",
+	   "isbn": "",
+	   "barcode": "",
+	   "catalog_number": "L-13072M-A",
+	   "info_url": "https://www.discogs.com/release/317904-The-SS-Sonic-Six-J-Ward",
+	   "thumbnail_url": "https://i.discogs.com/83eZzSwlYtdXyrA_ufD6LrTH-eilQsasHftSooMx6zw/rs:fit/g:sm/q:90/h:600/w:591/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNzkw/NC0xNTgxOTU5Mjc2/LTI2MjcuanBlZw.jpeg",
+	   "location_purchased": "The Last Book Store, Downtown Los Angeles, CA",
+	   "notes": "Los Angeles Trip April 2024"
+	 },
+	 {
+	   "id": 51,
+	   "title": "I Just Want To Get Your Lovin'",
+	   "artist": "Melissa Rowan",
+	   "copyright_year": 1989,
+	   "label": "CBS",
+	   "isbn": "",
+	   "barcode": "7464-73119-1",
+	   "catalog_number": "XSS 73119A",
+	   "info_url": "https://www.discogs.com/release/837187-Melissa-Rowan-I-Just-Want-To-Get-Your-Lovin",
+	   "thumbnail_url": "https://i.discogs.com/Kw2E0UDPPHrFI9Y59wMY3yj75OUZj7u2s4UtwlM93k8/rs:fit/g:sm/q:90/h:507/w:499/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgzNzE4/Ny0xMjY2NzA4NTQz/LmpwZWc.jpeg",
+	   "location_purchased": "The Last Book Store, Downtown Los Angeles, CA",
+	   "notes": "Los Angeles Trip April 2024"
 	 }
 	]
 	}
