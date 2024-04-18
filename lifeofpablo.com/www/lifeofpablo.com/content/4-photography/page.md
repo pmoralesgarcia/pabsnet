@@ -37,7 +37,7 @@ First major trip with my friends
 ### Oaxaca, Mexico - My Entire Life
 I've been going here since I was a kid. 
 
-[webmention]
+
 
 
 

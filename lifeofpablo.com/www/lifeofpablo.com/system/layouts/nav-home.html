@@ -2,10 +2,10 @@
 <?php $this->yellow->page->setLastModified($pages->getModified()) ?>
 
 <div class="navigation-banner"></div>
-<div class="center mt1">
+<nav>
     <?php foreach ($pages as $page): ?>
-    <a class="f4 link bg-animate dib pa1 pb3 ph4-l" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("titleNavigation") ?></a>
+    <a href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("titleNavigation") ?></a>
     <?php endforeach ?>
-</div>
+</nav>
 
 <div class="navigation-banner"></div>

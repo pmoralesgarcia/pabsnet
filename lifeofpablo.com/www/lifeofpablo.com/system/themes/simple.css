@@ -1,0 +1,29 @@
+@import url();
+@import url(https://cdn.simplecss.org/simple.css);
+
+:root,
+::backdrop {
+  color-scheme: dark;
+  --editor-bg: #212121;
+  --editor-text: #dcdcdc;
+}
+
+header h1 {
+    text-align: center;
+    padding-top: 1em;
+}
+
+header h1 a:link{
+    text-decoration: none;
+}
+
+.entry-meta .u-photo {
+    width: 1em;
+    height: auto;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.yellow-edit-text {
+    background-color: var(--editor-bg)
+}

@@ -20,6 +20,7 @@
 <body>
 <div class="<?php echo "page layout-".$this->yellow->page->getHtml("layout") ?>">
 <div class="header" role="banner">
+<header>
 <div class="sitename">
 <h1><a href="<?php echo $this->yellow->page->getBase(true)."/" ?>"><i class="sitename-logo"></i><?php echo $this->yellow->page->getHtml("sitename") ?></a></h1>
 <?php echo $this->yellow->page->getPage("header")->getContentHtml() ?>
@@ -27,3 +28,4 @@
 <div class="sitename-banner"></div>
 <?php $this->yellow->layout("navigation") ?>
 </div>
+</header>
