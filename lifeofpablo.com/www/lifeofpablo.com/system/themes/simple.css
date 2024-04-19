@@ -27,3 +27,7 @@ header h1 a:link, header h1 a:hover {
 .yellow-edit-text {
     background-color: var(--editor-bg)
 }
+
+.pabstech {
+    background-color: #dcdcdc;
+}
