@@ -31,3 +31,15 @@ header h1 a:link, header h1 a:hover {
 .pabstech {
     background-color: #dcdcdc;
 }
+
+.link i {
+    font-size: 2em;
+    justify-content: space-between;
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+  
+  .link { 
+    text-decoration: none; 
+    padding: .5em;
+  }
