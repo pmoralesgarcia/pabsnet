@@ -28,7 +28,7 @@ Published: 2023-10-03 21:23:49
     </div>
     <div class="fl w-100 w-third-ns pa2">
       <div markdown="1" class="pv4">
-[image https://static.lifeofpablo.com/pabsnet/pabs-tech_logo.png]
+<div class="pabstech" markdown="1">[image https://static.lifeofpablo.com/pabsnet/pabs-tech_logo.png]</div>
 
 [Pabs Tech, LLC](https://pabs.tech/)
 </div>

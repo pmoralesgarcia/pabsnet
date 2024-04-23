@@ -66,3 +66,8 @@ Published: 2024-01-24 22:00:59
 
 ### Sewing
 * Sewing Machine - TBA
+
+### World Languages
+* English
+* Spanish
+* French
