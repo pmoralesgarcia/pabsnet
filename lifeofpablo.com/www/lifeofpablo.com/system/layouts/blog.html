@@ -24,8 +24,9 @@
             <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
          </div>
 
-         <?php $this->yellow->layout("webmention") ?>
+         <p>Webmention</p>
 
+         <?php echo $this->yellow->page->getExtraHtml("webmention") ?>
          <div>
          <?php echo $this->yellow->page->getExtraHtml("previousnext") ?>
          <?php endif ?>
