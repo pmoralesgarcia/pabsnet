@@ -34,7 +34,7 @@
    echo '<a class="db center mw5 tc black link dim" title="'.$name.'"';
    echo 'href="'.$info_url.'">';
    echo '';
-   echo '<img loading="lazy" class="db ba b--black-10"/';
+   echo '<img class="db ba b--black-10"/';
    echo 'alt="'.$name.' Album Cover"';
    echo 'src="'.$cover.'"';
    echo '>';
@@ -71,7 +71,7 @@ foreach($items as $item) {
   
     echo '<article class="fl w-100 w-50-m h-item w-25-ns pa2-ns" id="'.$id.'">';
     echo '<div class="aspect-ratio aspect-ratio--1x1">';
-    echo '<img src="'.$cover.'" alt="'.$name.' album cover" class="u-photo db bg-center cover aspect-ratio--object" />';
+    echo '<img src="'.$cover.'" loading="lazy" alt="'.$name.' album cover" class="u-photo db bg-center cover aspect-ratio--object" />';
     echo '</div>';
     echo '<a href="'.$info_url.'" class="u-url ph2 ph0-ns pb3 link db">';
     echo '<h3 class="f5 f4-ns mb0 black-90 p-name">'.$name.'</h3>';
