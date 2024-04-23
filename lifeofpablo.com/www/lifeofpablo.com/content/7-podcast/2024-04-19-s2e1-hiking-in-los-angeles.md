@@ -8,7 +8,8 @@ Mediafile: https://static.lifeofpablo.com/podcast/season1/episode-4/s1e4-showing
 Duration: 00:03:34
 Image: https://static.lifeofpablo.com/media/notes/IMG_0030.jpeg
 ImageAlt: Hiking on Echo Mountain
-Description: Today's episode talks about hikes and Los Angeles
+Description: Today's episode talks about hikes and Los Angeles.
+Status: draft
 ---
 <div class="measure center" markdown="1">
 ![Hiking on Echo Mountain](https://static.lifeofpablo.com/media/notes/IMG_0030.jpeg)  
