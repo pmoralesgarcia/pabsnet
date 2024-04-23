@@ -8,8 +8,9 @@ Description: Reflecting on Luke Korns' video
 ImageAlt: Picture of Luke Korns holding a disposible camera.
 Image: https://yt3.googleusercontent.com/QCvJmiJKaZRPHoTepV7lsVW5bCTr_KHvbvQg2YXgmSizXtTarcYrxDv4rN-ZwttcpZrkSESAeA=s176-c-k-c0x00ffffff-no-rj
 ----
-
-<iframe class="center w-50" width="560" height="315" src="https://www.youtube-nocookie.com/embed/-oAlAfcqzF4?si=WLCx_6U9UY_1cH-V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/-oAlAfcqzF4?si=WLCx_6U9UY_1cH-V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
 I've watched this video by [Luke Korns](https://www.youtube.com/watch?v=-oAlAfcqzF4) numerous times. Everytime, I watch it, it brings me joy thinking about my experiences traveling. Traveling is life changing and it's been life changing for me. It's taught me things, I wouldn't learn staying in one place. Learning about yourself is key for growth. Often, while learning we also learn from people. These people you learn from are strangers. I remember hanging out with strangers in Rome for an entire day. I've roamed around the city of Seoul, Korea with people I met on the bus. You get the idea. Meeting strangers is fun. 
 
