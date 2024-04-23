@@ -17,24 +17,24 @@
                </thead>
                <tbody class="lh-copy">
                   <?php
-                     $catalog_json = file_get_contents('media/downloads/cds.json');
+                     $catalog_json = file_get_contents('media/downloads/tapes.json');
                      
                      $decoded_json = json_decode($catalog_json, true);
                      
-                     $items = $decoded_json['cds'];
+                     $items = $decoded_json['tapes'];
                      
                      
                      foreach($items as $item) {
                        $name = $item['Title'];
                        $artist = $item['Artist'];
                      	 $year = $item['Year'];
-                       $date_added = $item['Books issued'];
+                       $date_added = $item['Date Added'];
                        $publisher = $item['Publisher'];
                      
                        
                      
                        echo '<tr class="h-item">';
-                       echo '<td class="pv3 pr3 bb b--black-20 p-name"><a href="https://www.discogs.com/search/?q=%22'.$name.' '.$artist.'&%22type=all&format_exact=Cassette" class="u-url">'.$name.'</td>';
+                       echo '<td class="pv3 pr3 bb b--black-20 p-name"><a href="https://www.discogs.com/search/?q=%22'.$name.' '.$artist.'%22&type=all&format_exact=CD" class="u-url">'.$name.'</td>';
                        echo '<td class="pv3 pr3 bb b--black-20">'.$artist.'</td>';
                        echo '<td class="pv3 pr3 bb b--black-20">'.$publisher.'</td>';
                        echo '<td class="pv3 pr3 bb b--black-20">'.$year.'</td>';

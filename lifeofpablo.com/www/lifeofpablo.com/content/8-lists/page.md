@@ -9,6 +9,8 @@ Published: 2024-01-24 21:23:49
 
 [DVDs](dvds)
 
+[Tapes](tapes)
+
 [Vinyls](vinyls)
 
 ## Things I've Consumed
