@@ -1,6 +1,7 @@
 @import url();
 @import url(https://cdn.simplecss.org/simple.css);
-
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
 :root,
 ::backdrop {
   color-scheme: dark;
@@ -9,7 +10,7 @@
   --bg: #16161a;
   --text: #94a1b2;
 }
-
+}
 header h1 {
     text-align: center;
     padding-top: 1em;
@@ -64,3 +65,4 @@ header h1 a:link, header h1 a:hover {
     margin: 0;
     padding: 0;
     }
+
