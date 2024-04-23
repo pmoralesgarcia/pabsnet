@@ -9,7 +9,7 @@ I really thankful for my parents that they taught me the importance of growing u
 
 Speaking of the Korean language, I was in Korea in summer 2022 [I documented my adventures](/korea)
 
-I really like vinyls and film photography. There is something so fascinating about analog formats. The physical of it? 
+I really like [vinyls](/lists/vinyls) and film photography. There is something so fascinating about analog formats. The physical of it? 
 
 Currently working on a few tech projects: ECO, AI/ML, Node, and rust
 
