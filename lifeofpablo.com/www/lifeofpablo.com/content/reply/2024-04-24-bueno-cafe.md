@@ -1,6 +1,7 @@
 ---
 Title: Review: Bueno Café Sacramento, CA
-Published: 2023-03-01
+TitleSlug: bueno-cafe
+Published: 2024-04-24
 ---
 
 

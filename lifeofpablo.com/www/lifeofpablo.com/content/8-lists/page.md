@@ -19,8 +19,17 @@ Published: 2024-01-24 21:23:49
 
 [Music Listened](music-listened)
 
+## Recommendations:
+* Cities
+  * [New York City](nyc-recs)
+  * [Sacramento](sacramento-recs)
+  * [San Francisco](sf-recs)
+ 
+
 ## Things I Do
 [Hikes](hikes)
+
+[Runs](runs)
 
 ## Who I Follow
 [Blog Roll](/blog/roll)
