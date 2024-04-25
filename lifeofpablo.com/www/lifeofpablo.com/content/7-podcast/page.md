@@ -21,3 +21,7 @@ Pablo Morales is the host of Pablo's Thoughts Podcast. He likes all things techn
 
 Another podcast he is working on is called *Person I've Become*. This podcast is coming soon!
 
+<style>
+@import url("https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css");
+
+</style>

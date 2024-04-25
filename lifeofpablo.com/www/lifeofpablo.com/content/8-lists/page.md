@@ -19,12 +19,15 @@ Published: 2024-01-24 21:23:49
 
 [Music Listened](music-listened)
 
-## Recommendations:
-* Cities
-  * [Los Angeles](la-recs)
-  * [New York City](nyc-recs)
-  * [Sacramento](sacramento-recs)
-  * [San Francisco](sf-recs)
+
+<div id="recs" markdown="1">## Recommendations:</div>
+#### United States
+[Los Angeles](la-recs)  
+[Omaha](omaha-recs)  
+[New York City](nyc-recs)  
+[Sacramento](sacramento-recs)  
+[San Francisco](sf-recs)  
+
  
 
 ## Things I Do

@@ -3,6 +3,10 @@ Title: Los Angeles Recommendations
 TitleSlug: La recs
 Published: 2024-04-24 21:54:47
 ---
+### Airports
+
+* [Burbank Airport (BUR)](https://pabs.lol/burbank) - Smaller airport to fly into and commonly used instead of LAX.
+
 ### Bookstores
 
 * [The Last Book Store](https://www.yelp.com/biz/the-last-bookstore-los-angeles)
@@ -16,7 +20,7 @@ Published: 2024-04-24 21:54:47
 * [Microcenter](https://www.microcenter.com/site/stores/tustin.aspx) -  Tustin, CA
 ### Hiking
 
-* [Muir Peak via Sam Merril Trail to Castle Canyon Trail](lists/mp-v-smt-to-cs)
+* [Muir Peak via Sam Merril Trail to Castle Canyon Trail](mp-v-smt-to-cs)
 
 ### Food
 * [Andy's Diner](https://www.yelp.com/biz/andys-coffee-shop-pasadena?osq=andy%27s+diner)

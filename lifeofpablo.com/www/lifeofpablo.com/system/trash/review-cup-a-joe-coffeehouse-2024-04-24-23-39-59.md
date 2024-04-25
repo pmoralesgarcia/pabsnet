@@ -1,6 +1,8 @@
 ---
 Title: Review: Cup A Joe Coffeehouse
 Published: 2023-03-01
+PageOriginalLocation: /reply/review-cup-a-joe-coffeehouse
+PageOriginalFileName: content/reply/review-cup-a-joe-coffeehouse.md
 ---
  <div class="h-entry">
 

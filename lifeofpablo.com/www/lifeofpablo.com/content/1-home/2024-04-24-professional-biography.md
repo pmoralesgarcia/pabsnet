@@ -40,6 +40,8 @@ Professional Goals and Educational Goals
 
 Use of Technology
 
+Pablo has various experience in using the technology in the classroom. When he was working at Omaha Public Schools, he became a "technology leader" for his school building. This role became important during the pandemic when schools went remote. He often collaborated with 
+
 
 
 Experience with Diversity
