@@ -17,7 +17,7 @@
          <?php echo $this->yellow->page->getExtraHtml("links") ?>
          <?php if ($this->yellow->page->isExisting("tag")): ?>
          <div class="entry-tags">
-            <p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo " "; echo "<a class=\"p-category f6 grow no-underline br-pill ba ph3 pv2 mb2 dib navy\" href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
+            <p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo " "; echo "<a class=\"p-category button\" href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
          </div>
          <?php echo $this->yellow->page->getExtraHtml("lastedit") ?>
          <div class="permalink">Permalink: 
