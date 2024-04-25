@@ -21,6 +21,7 @@ Published: 2024-01-24 21:23:49
 
 ## Recommendations:
 * Cities
+  * [Los Angeles](la-recs)
   * [New York City](nyc-recs)
   * [Sacramento](sacramento-recs)
   * [San Francisco](sf-recs)
