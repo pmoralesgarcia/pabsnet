@@ -4,6 +4,7 @@ TitleSlug: Mp v smt to cs
 Published: 2024-04-24 18:50:16
 Image: https://static.lifeofpablo.com/media/hikes/v1-trail-us-california-inspiration-point.png
 ImageAlt: image of hike
+Layout: blog
 ---
 <figure markdown="1">
 ![Muir Peak](https://static.lifeofpablo.com/media/hikes/muir-peak-via-sam-merril-trail-to-castle-canyon-trail.png)
