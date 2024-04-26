@@ -82,3 +82,5 @@ Pablo visited South Korea during the summer of 2022. He learned about the educat
 He has attended diversity workshops with [Liza Talusan](http://www.lizatalusan.com/), workplace Diversity, Equity, and Inclusion committees at his current employer.
 
 Currently, he works with students who are socioeconomically disadvantaged and acts as a mentor to help them be successful in school.
+
+
