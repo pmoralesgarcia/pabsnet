@@ -33,7 +33,7 @@ He also holds a B1 certificate in French from the University of Strasbourg in 20
 * ATLIS Annual Conference - Independent School technology conference
 
 ### Professional Experiences
-An experienced educator and as an IT professional, Pablo has taught French and multimedia courses ranging from web design to video production.
+An experienced educator and an IT professional, Pablo has taught French and multimedia courses ranging from web design to video production.
 
 #### Teaching
  
