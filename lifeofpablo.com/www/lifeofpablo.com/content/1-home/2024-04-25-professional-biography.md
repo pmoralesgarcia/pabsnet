@@ -77,7 +77,7 @@ List of Skills
 
 ### Experience with Diversity
 
-Pablo visited South Korea during the summer of 2022. He learned about the education system in South Korea by visiting various schools and meeting with administration, teachers and staff. He received first hand knowledge of the inner workings of the Korean education system. and learned how to become a better teacher.
+Pablo visited South Korea during the summer of 2022. He learned about the education system in South Korea by visiting various schools and meeting with administration, teachers and staff. He received first hand knowledge of the inner workings of the Korean education system and learned how to become a better teacher.
 
 He has attended diversity workshops with [Liza Talusan](http://www.lizatalusan.com/), workplace Diversity, Equity, and Inclusion committees at his current employer.
 
