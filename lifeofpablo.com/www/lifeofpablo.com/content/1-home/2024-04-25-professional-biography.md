@@ -52,8 +52,8 @@ Omaha Public Schools *Aug 2019 - June 2021*
 
 
 ### Professional Goals and Educational Goals
-Pablo would like to create a robust technology education program in the school he works in. The goal is to provide professional development and tools that will help his fellow educators be more comfortable with technology. Many teachers are intimidated by technology due to not knowing where one can get help. Pablo would like to eliminate gaps in education and technology use. He has a goal of teaching at the university. He understands the need to
-He would also like to become a director of technology for a school district or at a company.
+Pablo would like to create a robust technology education program in the school he works in. The goal is to provide professional development and tools that will help his fellow educators be more comfortable with technology. Many teachers are intimidated by technology due to not knowing where one can get help. Pablo would like to eliminate gaps in education and technology use. He has a goal of teaching at the university level and to mentor future teachers.
+He would also like to become a director of technology for a school district or at a company as he enjoys working in this environment.
 
 
 ### Use of Technology
