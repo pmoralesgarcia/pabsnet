@@ -6,23 +6,17 @@ TitleContent: My Trips & Photography
 Published: 2023-03-01
 ---
 ## Photos
-<div class="flex flex-wrap">
-  <div markdown="1" class=" w-25 pa3 mr2">
-    [Canada](canada)
-  </div>
-  <div markdown="1" class=" w-25 pa3 mr2">
-    [United States](united-states)
-  </div>
-  <div markdown="1" class=" w-25 pa3 mr2">
-    [Mexico](mexico)
-  </div>
-  <div markdown="1" class=" w-25 pa3 mr2 hot-pink">
-    [South Korea](https://korea.lifeofpablo.com/interactives/photos)
-  </div>
-  <div markdown="1" class=" w-25 pa3">
-    [Europe](europe)
-  </div>
-</div>
+
+[Canada](canada)
+
+[United States](united-states)
+
+[Mexico](mexico)
+
+[South Korea](https://korea.lifeofpablo.com/interactives/photos)
+
+[Europe](europe)
+
 
 ## Stories
 ### [Korea - Summer 2022](/korea)

@@ -2,7 +2,7 @@
 Title: United States
 Published: 2023-09-25 23:36:09
 ---
-<div class="mw9 center ph3-ns">
+[Los Angeles](united-states/los-angeles)
    <div class="cf ph2-ns">
       <div class="fl w-100 w-25-ns pa2">
          <div markdown="1" class="pv4">[Sacramento](sacramento)</div>
@@ -51,4 +51,4 @@ Published: 2023-09-25 23:36:09
          <div markdown="1" class="pv4"></div>
       </div>
    </div>
-</div>
+
