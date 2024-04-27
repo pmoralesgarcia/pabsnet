@@ -22,7 +22,9 @@ overflow-x: hidden;
 **Digital Photography**
 
 * [Ocean Beach](san-francisco/ocean-beach-digital)
-* [San Francisco Pride](san-francisco/san-francisco-pride)
+* [SF Pride](san-francisco/san-francisco-pride)
+* [Land's End Lookout](san-francisco/lands-end-lookout)
+* [Skatepark](san-francisco/skatepark)
 
 **Film/Analog**
 
