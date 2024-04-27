@@ -33,7 +33,7 @@ He also holds a B1 certificate in French from the University of Strasbourg in 20
 * ATLIS Annual Conference - Independent School technology conference
 
 ### Professional Experiences
-An experienced educator and as an IT professional, Pablo has taught French and multimedia courses ranging from web design to video production.
+An experienced educator and an IT professional, Pablo has taught French and multimedia courses ranging from web design to video production.
 
 #### Teaching
  
@@ -77,7 +77,7 @@ List of Skills
 
 ### Experience with Diversity
 
-Pablo visited South Korea during the summer of 2022. He learned about the education system in South Korea by visiting various schools and meeting with administration, teachers and staff. He received first hand knowledge of the inner workings of the Korean education system. and learned how to become a better teacher.
+Pablo visited South Korea during the summer of 2022. He learned about the education system in South Korea by visiting various schools and meeting with administration, teachers and staff. He received first hand knowledge of the inner workings of the Korean education system and learned how to become a better teacher.
 
 He has attended diversity workshops with [Liza Talusan](http://www.lizatalusan.com/), workplace Diversity, Equity, and Inclusion committees at his current employer.
 
