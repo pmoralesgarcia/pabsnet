@@ -301,26 +301,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Los_Angeles
-      - VIRTUAL_HOST=bio.lifeofpablo.com
-      - LETSENCRYPT_HOST=bio.lifeofpablo.com
+      - VIRTUAL_HOST=pabs.tech
+      - LETSENCRYPT_HOST=pabs.tech
     volumes:
       - ./bio/config:/config
     ports:
       - 8028:80
-    restart: unless-stopped
-  pabstech:
-    image: lscr.io/linuxserver/grav:latest
-    container_name: pabstech
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Los_Angeles
-      - VIRTUAL_HOST=pabs.tech
-      - LETSENCRYPT_HOST=pabs.tech
-    volumes:
-      - ./pabstech/config:/config
-    ports:
-      - 8029:80
     restart: unless-stopped
   lifeofpablo-lists:
     image: nginx:1.25.3-bookworm-perl
