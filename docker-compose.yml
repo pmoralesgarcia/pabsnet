@@ -294,9 +294,9 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
-  grav-bio:
+  pabs-tech:
     image: lscr.io/linuxserver/grav:latest
-    container_name: grav-bio
+    container_name: pabs-tech
     environment:
       - PUID=1000
       - PGID=1000
