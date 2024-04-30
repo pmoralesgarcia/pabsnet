@@ -294,20 +294,6 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
-  pabs-tech:
-    image: lscr.io/linuxserver/grav:latest
-    container_name: pabs-tech
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Los_Angeles
-      - VIRTUAL_HOST=pabs.tech
-      - LETSENCRYPT_HOST=pabs.tech
-    volumes:
-      - ./bio/config:/config
-    ports:
-      - 8028:80
-    restart: unless-stopped
   lifeofpablo-lists:
     image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-lists
