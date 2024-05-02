@@ -294,26 +294,6 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
-  lifeofpablo-lists:
-    build: ./lifeofpablo-lists
-    container_name: lifeofpablo-lists
-    volumes:
-      - ./lifeofpablo-lists/www:/var/www/html
-    ports:
-      - 8030:80
-  lifeofpablo-lists-proxy:
-    image: nginx:1.25.3-bookworm-perl
-    container_name: lifeofpablo-lists-proxy
-    volumes:
-      - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
-    ports:
-      - 8031:80
-    environment:
-      - VIRTUAL_HOST=lists.lifeofpablo.com
-      - LETSENCRYPT_HOST=lists.lifeofpablo.com
-      - TZ=America/Los_Angeles
-    depends_on:
-      - lifeofpablo-lists
 volumes:
  freshrss_data:
  freshrss_extensions:
