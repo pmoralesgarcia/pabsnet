@@ -295,7 +295,7 @@ services:
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
   lifeofpablo-lists:
-    build: ./lifeofpablo-lists/Dockerfile
+    build: ./lifeofpablo-lists
     container_name: lifeofpablo-lists
     volumes:
       - ./lifeofpablo-lists/www:/var/www/html
