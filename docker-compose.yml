@@ -295,10 +295,10 @@ services:
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
   lifeofpablo-lists:
-    image: nginx:1.25.3-bookworm-perl
+    build: ./lifeofpablo-lists/Dockerfile
     container_name: lifeofpablo-lists
     volumes:
-      - ./lifeofpablo-lists/nginx:/etc/nginx/conf.d
+      - ./lifeofpablo-lists/www:/var/www/html
     ports:
       - 8030:80
   lifeofpablo-lists-proxy:
