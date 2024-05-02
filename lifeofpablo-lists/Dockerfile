@@ -9,7 +9,7 @@ RUN apt update -y && \
 	apt install -y php8.2-fpm php8.2-gd php8.2-cli php8.2-curl php8.2-bz2 php8.2-mbstring php8.2-intl php8.2-zip php8.2-mysql
 
 
-COPY ./lifeofpablo-lists/nginx/default.conf /etc/nginx/sites-enabled/default
+COPY ./lifeofpablo-lists/nginx /etc/nginx/sites-enabled/default
 
 VOLUME /var/www/html
 
@@ -19,7 +19,7 @@ RUN chmod -R a+rw /var/www/html
 
 EXPOSE 80
 
-COPY ./lists-lifeofpablo/start.sh / 
+COPY ./lifeofpablo-lists/start.sh / 
 
 CMD ["sh", "/start.sh"]
 

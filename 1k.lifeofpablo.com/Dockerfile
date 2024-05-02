@@ -12,7 +12,7 @@ COPY ./www /var/www/html
 
 WORKDIR /var/www/html
 
-COPY ./nginx/default.conf /etc/nginx/sites-enabled/default
+COPY ./1k.lifeofpablo.com/nginx/default.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 80
 
