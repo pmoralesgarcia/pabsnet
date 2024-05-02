@@ -250,7 +250,7 @@ services:
       - VIRTUAL_HOST=httpbin.lifeofpablo.com
       - LETSENCRYPT_HOST=httpbin.lifeofpablo.com
   ghost:
-    image: ghost:5.78.0
+    build: personivebecome
     cap_add:
       - CAP_SYS_NICE
     restart: always
