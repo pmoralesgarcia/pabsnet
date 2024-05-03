@@ -12,6 +12,7 @@ services:
         - /var/docker/nginx/certs:/etc/nginx/certs
         - /var/docker/nginx/vhost:/etc/nginx/vhost.d
         - /var/docker/nginx/conf:/etc/nginx/conf.d
+        - ./nginx-proxy/custom-configs/custom.conf:/etc/nginx/conf.d/custom.conf
     logging:
         options:
             max-size: "10m"
