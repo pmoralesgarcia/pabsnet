@@ -15,7 +15,7 @@ ImageAlt: Cover of first guest of Person I've Become
 
 Announcement!!
 
-I would like to share that I have posted the first episode of my new podcast, [Person I've Become](https://personivebecome.com/). My first episode, I interview [Sammy Harper](https://www.sammyharper.com/) on how he's got to this point in his life and the person he's become. It has been exciting to start this new podcasting adventure and I will post more episodes soon! 
+I would like to share that I have posted the first episode of my new podcast, [Person I've Become](https://personivebecome.com/). [My first episode](https://personivebecome.com/episode-1-sammy/), I interview [Sammy Harper](https://www.sammyharper.com/), an environmentalist and green tech lover on how he's got to this point in his life and the person he's become. It has been exciting to start this new podcasting adventure and I will post more episodes soon! 
 
 I hope you enjoy the first episode. Send me any comments or questions via email at hello@personivebecome.com.
 
