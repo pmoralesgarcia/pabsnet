@@ -2,7 +2,7 @@
 Title: Lists
 Published: 2024-01-24 21:23:49
 ---
-## Items I Own
+## Personal Collection {#items}
 [Books](books)
 
 [CDs](cds)
