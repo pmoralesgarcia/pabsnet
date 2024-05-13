@@ -31,6 +31,9 @@ Published: 2024-01-24 21:23:49
 ### France  
 [Strasbourg](strasbourg-recs)
 
+### Denmark  
+[Copenhagen](copenhagen-recs)
+
  
 
 ## Things I Do
