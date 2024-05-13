@@ -128,7 +128,7 @@ services:
       - LETSENCRYPT_HOST=chat.lifeofpablo.com
   korea:
     container_name: korea
-    restart: unless-stopped 
+    restart: always
     build:
       dockerfile: ./korea.lifeofpablo.com/Dockerfile  
     volumes:
@@ -157,7 +157,7 @@ services:
       - lifeofpablo-now
   lifeofpablo:
     container_name: lifeofpablo
-    restart: unless-stopped 
+    restart: always
     build:
       dockerfile: ./lifeofpablo.com/Dockerfile  
     volumes:
@@ -169,7 +169,7 @@ services:
       - "8080:80"
   lifeofpablo-guestbook:
     container_name: lifeofpablo-guestbook
-    restart: unless-stopped 
+    restart: always 
     build:
       dockerfile: ./lifeofpablo-guestbook/Dockerfile  
     volumes:
@@ -179,7 +179,7 @@ services:
       - "8081:80"
   lifeofpablo-linkinbio:
     container_name: lifeofpablo-linkinbio
-    restart: unless-stopped 
+    restart: always
     build:
       dockerfile: ./lifeofpablo-linkinbio/Dockerfile  
     volumes:
@@ -190,7 +190,7 @@ services:
   lifeofpablo-now:
     container_name: lifeofpablo-now
     image: ghcr.io/pmoralesgarcia/now:latest
-    restart: unless-stopped
+    restart: always
     ports:
       - "8083:80"
   lifeofpablo-static:
@@ -203,6 +203,7 @@ services:
     environment:
       - VIRTUAL_HOST=static.lifeofpablo.com
       - LETSENCRYPT_HOST=static.lifeofpablo.com
+    restart: always
   lifeofpablo-photos:
     image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-photos
@@ -213,6 +214,7 @@ services:
     environment:
       - VIRTUAL_HOST=photos.lifeofpablo.com
       - LETSENCRYPT_HOST=photos.lifeofpablo.com
+    restart: always
   lifeofpablo-nyc-climateweek:
     build:
       dockerfile: ./climateweeknyc.lifeofpablo.com/Dockerfile  
@@ -224,6 +226,7 @@ services:
     environment:
       - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
       - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
+    restart: always
   lifeofpablo-1k:
     image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-1k
@@ -234,10 +237,12 @@ services:
     environment:
       - VIRTUAL_HOST=1k.lifeofpablo.com
       - LETSENCRYPT_HOST=1k.lifeofpablo.com
+    restart: always
   lifeofpablo-interactives:
     build:
       dockerfile: ./lifeofpablo-interactives/Dockerfile  
     container_name: lifeofpablo-interactives
+    restart: always
     ports:
       - 8124:80
     volumes:
@@ -250,6 +255,20 @@ services:
     environment:
       - VIRTUAL_HOST=httpbin.lifeofpablo.com
       - LETSENCRYPT_HOST=httpbin.lifeofpablo.com
+    restart: always
+  europe24:
+    container_name: europe24
+    restart: always 
+    build:
+      dockerfile: ./europe24/Dockerfile  
+    volumes:
+      #Project root
+      - ./europe24/www/europe24:/var/www/html
+    ports:
+      - "8125:80"
+    environment:
+      - VIRTUAL_HOST=eu24.lifeofpablo.com
+      - LETSENCRYPT_HOST=eu24.lifeofpablo.com
   ghost:
     build: personivebecome
     cap_add:
@@ -283,7 +302,7 @@ services:
     container_name: yourls
     restart: always
     ports:
-      - 8126:80
+      - 8201:80
     environment:
       YOURLS_DB_HOST: mariadb
       YOURLS_DB_USER: ${YOURLS_DB_USER}
