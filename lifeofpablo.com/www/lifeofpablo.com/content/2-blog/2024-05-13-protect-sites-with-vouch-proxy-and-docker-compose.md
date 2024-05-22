@@ -1,12 +1,11 @@
 ---
-Title: How to Protect your sites Vouch Proxy, NGINX, Reverse Proxies with Docker Compose
+Title: How to Protect your sites Vouch Proxy, NGINX, Reverse Proxies with Docker Compose (Part 1)
 TitleSlug: Protect Sites with Vouch Proxy and Docker Compose
-Published: 2023-11-28 19:30:49
+Published: 2024-05-13 18:30:49
 Author: Pablo Morales
 Layout: blog
 Tag: Vouch Proxy, Docker, Docker Compose, Reverse Proxy, nginx
 Description: Protect your sites using Vouch Proxy and Docker Compose
-Status: draft
 ---
 I've written in the past how to install Vouch Proxy using Debian. I also wrote a post a while ago where I [dockerized my site and services](/blog/dockerizing-my-website-and-services). If it isn't obvious, I really like Vouch Proxy. It's simple and it met my needs. 
 
@@ -18,12 +17,14 @@ I'm going to share how I setup the following services using Docker Compose:
   * [Grafana](https://grafana.com/)
   * [Prometheus](https://prometheus.io/)
 
-This guide, is recommended for those who have experience with [Docker](https://docker.com) and [Docker Compose](https://docs.docker.com/compose/). I will keep this simple for you to follow along if you don't have experience. When using Docker Compose and docker-compose.yml files, you are launching multiple containers at one time. When using a Dockerfile, one container is launched at a time. 
+This post will divided into three (3) parts.
+
+This guide, is recommended for those who have experience with [Docker](https://docker.com) and [Docker Compose](https://docs.docker.com/compose/). I will keep this simple for you to follow along if you don't have experience. When using Docker Compose and `docker-compose.yml` files, you are launching multiple containers at one time. When using a Dockerfile, one container is launched at a time. 
 
 We'll using a lot of environmental variables to configure our applications. It seems like a lot of work at first but you'll be happy that you did. 
 
 ## Let's Setup Docker Compose
-Here is the docker compose we are going to use. I will break it down piece by piece.
+Here is the docker compose we are going to use. I will break it down piece by piece as mentioned above.
 
 ``` yaml
 services:
@@ -164,7 +165,7 @@ volumes:
   mariadb:
   prom_data:
 ```
-## NGINX Reverse Proxy
+**We won't run the `docker compose ` command yet.** We don't have all the files and other steps needed to run it correctly
 
 ## Setup Vouch Proxy Config
 
@@ -197,11 +198,3 @@ oauth:
   preferredDomain: your-base-domain.com # be careful with this option, it may conflict with chrome on Android
   # endpoints are set from https://godoc.org/golang.org/x/oauth2/google
 ```
-
-
-
-## Setup MariaDB
-
-## Setup Grafana
-
-## Setup a separate NGINX Reverse Proxy with VP

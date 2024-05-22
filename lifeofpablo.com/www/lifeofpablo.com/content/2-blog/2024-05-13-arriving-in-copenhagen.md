@@ -11,4 +11,4 @@ ImageAlt:  Pablo on the river in copenhagen
 ![image of pablo on the river in Copenhagen](https://static.lifeofpablo.com/media/images/blog-images/copenhagen/IMG_0229.jpeg)  
 pablo on the river in Copenhagen. Photo taken by [Sammy Harper](https://www.sammyharper.com/)
 
-So I'm in Copenhagen, Denmark!! It's been a 
+So I'm in Copenhagen, Denmark!! It's been a great time here. Now we're heading to Berlin.
