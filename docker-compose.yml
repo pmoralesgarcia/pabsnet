@@ -263,7 +263,7 @@ services:
       dockerfile: ./europe24/Dockerfile  
     volumes:
       #Project root
-      - ./europe24/www/europe24:/var/www/html
+      - ./europe24/www/yellow-main:/var/www/html
     ports:
       - "8125:80"
     environment:
