@@ -269,6 +269,19 @@ services:
     environment:
       - VIRTUAL_HOST=eu24.lifeofpablo.com
       - LETSENCRYPT_HOST=eu24.lifeofpablo.com
+  lists:
+    container_name: lists
+    restart: always 
+    build:
+      dockerfile: ./lifeofpablo-lists/Dockerfile  
+    volumes:
+      #Project root
+      - ./lifeofpablo-lists/www:/var/www/html
+    ports:
+      - "8126:80"
+    environment:
+      - VIRTUAL_HOST=lists.lifeofpablo.com
+      - LETSENCRYPT_HOST=lists.lifeofpablo.com
   ghost:
     build: personivebecome
     cap_add:
