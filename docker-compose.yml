@@ -227,17 +227,6 @@ services:
       - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
       - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
     restart: always
-  lifeofpablo-1k:
-    image: nginx:1.25.3-bookworm-perl
-    container_name: lifeofpablo-1k
-    ports:
-      - 8123:80
-    volumes:
-      - ./1k.lifeofpablo.com/www:/var/www/html
-    environment:
-      - VIRTUAL_HOST=1k.lifeofpablo.com
-      - LETSENCRYPT_HOST=1k.lifeofpablo.com
-    restart: always
   lifeofpablo-interactives:
     build:
       dockerfile: ./lifeofpablo-interactives/Dockerfile  
@@ -282,6 +271,19 @@ services:
     environment:
       - VIRTUAL_HOST=lists.lifeofpablo.com
       - LETSENCRYPT_HOST=lists.lifeofpablo.com
+  1k:
+    container_name: 1k
+    restart: always
+    build:
+      dockerfile: ./1k.lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./1k.lifeofpablo.com/www:/var/www/html
+    ports:
+      - "8127:80"
+    environment:
+      - VIRTUAL_HOST=1k.lifeofpablo.com
+      - LETSENCRYPT_HOST=1k.lifeofpablo.com
   ghost:
     build: personivebecome
     cap_add:

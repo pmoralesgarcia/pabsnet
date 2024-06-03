@@ -1,3 +1,3 @@
 #!/bin/sh
-php-fpm8.2
+php-fpm8.3
 nginx -g 'daemon off;'
