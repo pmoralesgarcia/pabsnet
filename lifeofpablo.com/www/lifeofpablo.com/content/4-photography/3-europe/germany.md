@@ -2,4 +2,4 @@
 Title: Germany
 Published: 2024-04-14 22:21:40
 ---
-Coming Soon
+[Berlin 2024](germany/berlin-2024)

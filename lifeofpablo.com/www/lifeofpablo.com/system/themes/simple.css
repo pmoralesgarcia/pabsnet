@@ -35,6 +35,14 @@ header h1 a:link, header h1 a:hover {
     background-color: #dcdcdc;
 }
 
+.pics-travel img {
+
+  width: 75%;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+
 .link i {
     font-size: 2em;
     justify-content: space-between;
@@ -65,4 +73,3 @@ header h1 a:link, header h1 a:hover {
     margin: 0;
     padding: 0;
     }
-
