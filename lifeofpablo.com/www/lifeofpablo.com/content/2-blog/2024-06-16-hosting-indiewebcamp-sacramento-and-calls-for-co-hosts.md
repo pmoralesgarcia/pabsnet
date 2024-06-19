@@ -3,7 +3,7 @@ Title: Hosting IndieWebCamp Sacramento and Calls for Co-Hosts
 Published: 2024-06-16 22:44:29
 Author: Pablo Morales
 Layout: blog
-Tag: 2024
+Tag: 2024, IndieWeb, IndieWebCamp, IndieWebCamp Sacramento, Fall
 Description: 
 Image: https://indieweb.org/images/thumb/6/67/indiewebcamp-logo-lockup-color%403x.png/1200px-indiewebcamp-logo-lockup-color%403x.png
 ImageAlt: IndieWeb Logo
@@ -44,5 +44,7 @@ If you or someone else is interested in helping plan IndieWebCamp Sacramento, I'
 Let's have this last half of the year be full of fun events and one of those can be in Sacramento! If you are interested in attending, more information will be available soon!
 
 Anyone and everyone is welcome to participate in the IndieWeb. 
+
+This blog post has been posted on <a href="https://news.indieweb.org/en" class="u-syndication">IndieNews</a>
 
 
