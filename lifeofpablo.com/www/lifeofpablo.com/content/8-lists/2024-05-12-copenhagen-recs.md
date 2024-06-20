@@ -22,8 +22,10 @@ Published: 2024-05-12 23:40:53
 ### Coffee Shops
 [Tak for Kaffe](https://takforkaffe.nu/) - City Center
 
-[Format Café](https://formatcafe.dk/)  
-* Inside Museum (admission to museum not needed) - Nice and spacious with beautiful outdoor seating, available.
+[Format Café](https://formatcafe.dk/) 
+
+* Inside Museum (admission to museum not needed) 
+* Nice and spacious with beautiful outdoor seating, available.
 
 ### Shopping Mall
 [Field's](https://fields.steenstrom.dk/)
