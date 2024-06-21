@@ -6,7 +6,6 @@ Layout: blog
 Tag: IndieWeb, Homebrew Website Club
 Description: I like attending these meetings!
 Image: https://events.indieweb.org/storage/responses/468/1600x-AVy1V7qrhCr6I2aRDCcsuRJwg6PlPH.png
-Status: draft
 ---
 
 [image https://events.indieweb.org/storage/responses/468/1600x-AVy1V7qrhCr6I2aRDCcsuRJwg6PlPH.png]
