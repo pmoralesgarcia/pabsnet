@@ -61,7 +61,7 @@ Created by Robert Pfotenhauer on 03.10.23.
     foreach ($groupedPosts as $year => $yearGroup): ?>
     
     <div class="archive-year">
-    <a href="./published:<?php echo $year ?>"><h2><?php echo $year ?> <sup class="archive-count">(<?php echo $yearCounts[$year] ?>)</sup></h2>
+    <a href="./published:<?php echo $year ?>"><h2 id="<?php echo $year ?>"><?php echo $year ?> <sup class="archive-count">(<?php echo $yearCounts[$year] ?>)</sup></h2>
     
     <?php foreach ($yearGroup as $month => $monthGroup): ?>
     

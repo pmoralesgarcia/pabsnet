@@ -1,5 +1,5 @@
 ---
-Title: 2018-10-29
+Title: 2I'm Latino, But I'm Not...
 Published: 2018-10-29 19:13:03
 Author: Pablo Morales
 Layout: posts
