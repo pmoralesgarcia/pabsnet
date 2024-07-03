@@ -13,6 +13,8 @@ Published: 2024-01-24 21:23:49
 
 [Vinyls](vinyls)
 
+[Wines](wines)
+
 ## Things I've Consumed
 
 [Movies Watched](movies-watched)
