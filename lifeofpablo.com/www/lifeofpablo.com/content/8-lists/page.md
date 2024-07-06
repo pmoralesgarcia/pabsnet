@@ -21,6 +21,10 @@ Published: 2024-01-24 21:23:49
 
 [Music Listened](music-listened)
 
+## Things I've Created
+
+[Art](art)
+
 
 <div id="recs" markdown="1">## Recommendations:</div>
 #### United States

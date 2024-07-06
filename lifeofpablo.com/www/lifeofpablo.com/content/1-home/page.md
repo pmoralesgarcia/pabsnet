@@ -11,6 +11,6 @@ Things about me:
 * I speak English, Spanish and French
 * Enjoy Traveling: Going to Greentech Festival Berlin in May!
 
-Check out my adventures in [South Korea](/korea).
+Check out my[ /now](/now) page!
 
 
