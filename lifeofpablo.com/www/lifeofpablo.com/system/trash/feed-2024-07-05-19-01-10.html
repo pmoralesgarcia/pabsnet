@@ -2,6 +2,7 @@
 <div class="content">
 <div class="main" role="main">
 <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<?php echo $this->yellow->page->getContentHtml() ?>
 <?php $pages = $this->yellow->page->getPages("feed")->paginate($this->yellow->system->get("feedPaginationLimit")) ?>
 <?php foreach ($pages->group("feedGroup", false, "Y-m-d") as $group=>$collection): ?>
 <h2><?php echo htmlspecialchars($this->yellow->language->getDateStandard($group)) ?></h2>

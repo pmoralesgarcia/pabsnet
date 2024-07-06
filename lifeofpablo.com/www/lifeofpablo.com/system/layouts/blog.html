@@ -1,38 +1,23 @@
 <?php $this->yellow->layout("header") ?>
 <div class="content">
-   <div class="h-entry main" role="main">
-      <?php $this->yellow->page->set("entryClass", "entry") ?>
-      <?php if ($this->yellow->page->isExisting("tag")): ?>
-      <?php foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { $this->yellow->page->set("entryClass", $this->yellow->page->get("entryClass")." tag-".$this->yellow->lookup->normaliseArguments($tag, false)); } ?>
-      <?php endif ?>
-      <div class="<?php echo $this->yellow->page->getHtml("entryClass") ?>">
-         <div class="entry-title p-name">
-            <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
-         </div>
-
-	    <p>This post was written in <?php echo $this->yellow->language->getTextHtml("languageDescription") ?> (<?php echo $this->yellow->language->getTextHtml("languageLocale") ?>).</p>
-         <div class="entry-meta"><span class="dt-published"><?php echo $this->yellow->page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card">&nbsp;<img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="u-photo">&nbsp;<?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span><p></div>
-         <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
-         <?php echo $this->yellow->page->getExtraHtml("profiles") ?>
-         <?php echo $this->yellow->page->getExtraHtml("links") ?>
-         <?php if ($this->yellow->page->isExisting("tag")): ?>
-         <div class="entry-tags">
-            <p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo " "; echo "<a class=\"p-category button\" href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
-         </div>
-         <?php echo $this->yellow->page->getExtraHtml("lastedit") ?>
-         <div class="permalink">Permalink: 
-            <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
-         </div>
-
-         <p>Webmention</p>
-
-         <?php echo $this->yellow->page->getExtraHtml("webmention") ?>
-         <div>
-         <?php echo $this->yellow->page->getExtraHtml("previousnext") ?>
-         <?php endif ?>
-         <?php echo $this->yellow->page->getExtraHtml("comments") ?>
-      </div>
-   </div>
-   <div class="line-2"></div>
+<div class="main" role="main">
+<?php $this->yellow->page->set("entryClass", "entry") ?>
+<?php if ($this->yellow->page->isExisting("tag")): ?>
+<?php foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { $this->yellow->page->set("entryClass", $this->yellow->page->get("entryClass")." tag-".$this->yellow->lookup->normaliseClass($tag)); } ?>
+<?php endif ?>
+<div class="<?php echo $this->yellow->page->getHtml("entryClass") ?>">
+<div class="entry-title"><h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1></div>
+<div class="entry-meta"><p><?php echo $this->yellow->page->getDateHtml("published") ?> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></p></div>
+<div class="entry-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+<?php echo $this->yellow->page->getExtraHtml("profile") ?>
+<?php echo $this->yellow->page->getExtraHtml("link") ?>
+<?php if ($this->yellow->page->isExisting("tag")): ?>
+<div class="entry-tags">
+<p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
+</div>
+<?php endif ?>
+<?php echo $this->yellow->page->getExtraHtml("comment") ?>
+</div>
+</div>
 </div>
 <?php $this->yellow->layout("footer") ?>

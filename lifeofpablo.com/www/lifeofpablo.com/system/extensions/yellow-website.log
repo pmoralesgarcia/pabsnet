@@ -188,3 +188,30 @@
 2024-04-23 13:01:36 error Can't parse file 'system/layouts/tapes.html'!
 2024-04-24 19:08:09 info Install extension 'Chartjs 0.8.20'
 2024-05-01 21:44:04 info Install extension 'Youtube 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Blog 0.9.4'
+2024-07-05 19:01:10 info Update extension 'Core 0.9.10'
+2024-07-05 19:01:10 info Update extension 'Draft 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Edit 0.9.9'
+2024-07-05 19:01:10 info Update extension 'English 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Feed 0.9.3'
+2024-07-05 19:01:10 info Update extension 'French 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Gallery 0.9.2'
+2024-07-05 19:01:10 info Update extension 'Generate 0.9.6'
+2024-07-05 19:01:10 info Update extension 'German 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Highlight 0.9.2'
+2024-07-05 19:01:10 info Update extension 'Image 0.9.3'
+2024-07-05 19:01:10 info Update extension 'Markdown 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Meta 0.9.3'
+2024-07-05 19:01:10 info Update extension 'Previousnext 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Serve 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Sitemap 0.9.3'
+2024-07-05 19:01:10 info Update extension 'Spanish 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Stockholm 0.9.2'
+2024-07-05 19:01:10 info Update extension 'Swedish 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Toc 0.9.1'
+2024-07-05 19:01:10 info Update extension 'Update 0.9.4'
+2024-07-05 19:01:10 info Update extension 'Youtube 0.9.1'
+2024-07-05 19:01:44 info Apply patches for Datenstrom Yellow 0.8.22
+2024-07-05 19:01:44 info Apply patches for Datenstrom Yellow 0.9
+2024-07-05 19:01:44 info Update Datenstrom Yellow 0.9, PHP 8.3.3, Built-in 8.3.3, Mac
+2024-07-05 19:02:30 error Process file 'system/workers/webmention.php' with fatal error!
