@@ -40,10 +40,18 @@ Published: 2024-01-24 21:23:49
 ### Denmark  
 [Copenhagen](copenhagen-recs)
 
+### South Korea
+[Seoul](seoul-recs)
+
+[Busan](busan-recs)
+
+[Chuncheon](chuncheon)
  
 
 ## Things I Do
 [Hikes](hikes)
+
+[Photography](/photography ) [Places I've developed at](/photography/places-to-develop-film)
 
 [Runs](runs)
 
