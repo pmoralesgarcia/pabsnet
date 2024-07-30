@@ -1,6 +1,6 @@
 <?php $this->yellow->layout("header") ?>
 <div class="content">
-<div class="main" role="main">
+<div class="main h-entry" role="main">
 <?php $this->yellow->page->set("entryClass", "entry") ?>
 <?php if ($this->yellow->page->isExisting("tag")): ?>
 <?php foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { $this->yellow->page->set("entryClass", $this->yellow->page->get("entryClass")." tag-".$this->yellow->lookup->normaliseClass($tag)); } ?>
