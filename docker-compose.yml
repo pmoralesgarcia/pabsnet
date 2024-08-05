@@ -329,6 +329,17 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
+  docker:
+    image: 'bludit/docker:latest'
+    ports:
+      - '8202:80'
+    volumes:
+      - ./gtf:/usr/share/nginx/html/bl-content
+    container_name: bludit-gtf
+    environment:
+      VIRTUAL_HOST: gtf.lifeofpablo.com
+      LETSENCRYPT_HOST: gtf.lifeofpablo.com
+
 volumes:
  freshrss_data:
  freshrss_extensions:
