@@ -339,6 +339,20 @@ services:
     environment:
       VIRTUAL_HOST: gtf.lifeofpablo.com
       LETSENCRYPT_HOST: gtf.lifeofpablo.com
+  grocy:
+    image: lscr.io/linuxserver/grocy:latest
+    container_name: grocy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VIRTUAL_HOST=grocy.lifeofpablo.com
+      - LETSENCRYPT_HOST=grocy.lifeofpablo.com
+    volumes:
+      - ./grocy/config:/config
+    ports:
+      - 9283:80
+    restart: unless-stopped
 
 volumes:
  freshrss_data:
