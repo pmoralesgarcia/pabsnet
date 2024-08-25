@@ -1,0 +1,51 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+   <div class="main h-entry" role="main">
+      <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+      <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+      <div class="pa4">
+         <div class="overflow-auto">
+            <table class="f6-ns w-100 mw8 center" cellspacing="0">
+               <thead>
+                  <tr>
+                     <th class="fw6 bb b--black-20 tl pb3 pr3">Name</th>
+                     <th class="fw6 bb b--black-20 tl pb3 pr3">Calories</th>
+                     <th class="fw6 bb b--black-20 tl pb3 pr3 ">Date Added</th>
+                  </tr>
+               </thead>
+               <tbody class="lh-copy">
+                  <?php
+                     $catalog_json = file_get_contents('https://grocy.lifeofpablo.com/api/objects/products');
+                     
+                     $decoded_json = json_decode($catalog_json, true);
+                     
+                     $items = $decoded_json['0'];
+                     
+                     
+                     foreach($items as $item) {
+                       $name = $item['name'];
+                       $type = $item['product_group_id'];
+                     	 $calories = $item['calories'];
+                       $date_added = $item['row_created_timestamp'];
+                     
+                       
+                     
+                       echo '<tr class="h-item">';
+                       echo '<td class="pv3 pr3 bb b--black-20 p-name"><a href="https://www.discogs.com/search/?q='.$name.' '.$artist.'&type=all&format_exact=CD" class="u-url">'.$name.'</td>';
+                       echo '<td class="pv3 pr3 bb b--black-20">'.$type.'</td>';
+                       echo '<td class="pv3 pr3 bb b--black-20">'.$calories.'</td>';
+                       echo '<td class="pv3 pr3 bb b--black-20">'.$date_added.'</td>';
+                       echo '</tr>';
+                     
+                     
+                     }
+                     ?>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+      </div>
+   </div>
+</div>
+<?php $this->yellow->layout("footer") ?>

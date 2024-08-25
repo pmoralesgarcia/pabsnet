@@ -2,7 +2,7 @@
 // Markdown extension, https://github.com/annaesvensson/yellow-markdown
 
 class YellowMarkdown {
-    const VERSION = "0.9.2";
+    const VERSION = "0.9.1";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -4074,8 +4074,6 @@ class YellowMarkdownParser extends MarkdownExtraParser {
         if (!isset($this->idAttributes[$text])) {
             $this->idAttributes[$text] = $text;
             $attr = " id=\"$text\"";
-        } else {
-            $attr = " id=\"error-duplicate-heading\"";
         }
         return $attr;
     }

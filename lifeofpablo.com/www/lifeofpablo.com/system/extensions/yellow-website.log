@@ -227,3 +227,8 @@
 2024-07-05 19:10:26 error Process file 'system/workers/webmention.php' with fatal error!
 2024-07-05 19:10:29 error Process file 'system/workers/webmention.php' with fatal error!
 2024-07-05 19:10:32 error Process file 'system/workers/webmention.php' with fatal error!
+2024-07-07 22:47:24 info Install extension 'Profile 0.9.1'
+2024-07-07 22:50:53 info Uninstall extension 'Profile 0.9.1'
+2024-07-07 22:51:17 info Install extension 'Ticker 0.9.1'
+2024-07-22 22:59:29 info Update extension 'Core 0.9.11'
+2024-08-24 21:32:14 info Update extension 'Markdown 0.9.2'
