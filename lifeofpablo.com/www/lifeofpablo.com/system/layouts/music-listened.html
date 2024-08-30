@@ -69,14 +69,14 @@ try {
 ?>
         
 
-<dl class="pa4 mt0 measure center">
+<div class="pa4 mt0 measure center">
   <?php foreach ($result as $row) : ?>
-  <dt class="f3 b" id="<?php echo escape($row["id"]); ?>"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?></a></dt>
-  <dd class="ml0"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["artist"]); ?>"><?php echo escape($row["artist"]); ?></a></dd>
-  <dd class="ml0"><?php echo escape($row["date"]); ?></dd>
-  <dd class="ml0"><?php echo escape($row["id"]); ?></dd>
+  <p id="<?php echo escape($row["id"]); ?>"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?></a></p>
+  <p><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["artist"]); ?>"><?php echo escape($row["artist"]); ?></a></p>
+  <p><?php echo escape($row["date"]); ?></p>
+  <p><?php echo escape($row["id"]); ?></p>
   <?php endforeach; ?>
-</dl>
+</div>
 <?php $this->yellow->layout("footer") ?>
 
 
