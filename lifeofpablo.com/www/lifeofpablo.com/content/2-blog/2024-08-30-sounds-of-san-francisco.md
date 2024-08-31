@@ -4,7 +4,7 @@ Published: 2024-08-30 23:37:16
 Author: Pablo Morales
 Layout: blog
 Tag: 2024, bluegrass, music, events live music, San Francisco, sounds, city sounds, city life, interactive
-Description: Exploring bluegrass has been eye opening.
+Description: Listening to the sound the city producesl
 Image: https://static.lifeofpablo.com/media/blog/bluegrass/delores-park.jpeg
 ImageAlt: People enjoying themselves at Delores Park
 ---
@@ -15,7 +15,7 @@ ImageAlt: People enjoying themselves at Delores Park
 
 *This is an interactive post featuring audio*
 
-I love San Francisco. It is unique with different sounds. You never know what you're going to hear around you! It could be someone who is having a great or someone who isn't doing so well.
+I love San Francisco. It is unique with different sounds. You never know what you're going to hear around you! It could be someone who is having a great or someone who isn't doing so well. Sound provides an identity of a city. I've noticed some patterns or sounds I only tend to find here.
 
 Something I enjoy doing is recording the sounds of San Francisco. It could be as simple as recording near Powell Station or the Mission district. These sounds were recorded using an iPhone 12.
 
