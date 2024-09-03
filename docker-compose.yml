@@ -357,7 +357,7 @@ services:
     container_name: owntracks-recorder
     image: owntracks/recorder
     ports:
-      - 9283:8083
+      - 9285:8083
     environment:
       - OTR_PORT=0 # disables MQTT
       - VIRTUAL_HOST=find.lifeofpablo.com
