@@ -360,12 +360,12 @@ services:
       - 9283:8083
     environment:
       - OTR_PORT=0 # disables MQTT
+      - VIRTUAL_HOST=find.lifeofpablo.com
+      - LETSENCRYPT_HOST=find.lifeofpablo.com
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./owntracks-recorder/config:/config
       - ./owntracks-recorder/store:/store
-      - VIRTUAL_HOST=find.lifeofpablo.com
-      - LETSENCRYPT_HOST=find.lifeofpablo.com
     restart: unless-stopped
 
 volumes:
