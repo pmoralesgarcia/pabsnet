@@ -367,6 +367,18 @@ services:
       - ./owntracks-recorder/config:/config
       - ./owntracks-recorder/store:/store
     restart: unless-stopped
+  owntracks-frontend:
+    image: owntracks/frontend
+    ports:
+      - 9285:80
+    volumes:
+      - ./owntracks-frontend/config.js:/usr/share/nginx/html/config/config.js
+    environment:
+      - SERVER_HOST=owntracks-recorder
+      - SERVER_PORT=8083
+      - VIRTUAL_HOST=find.pabs.lol
+      - LETSENCRYPT_HOST=find.pabs.lol
+    restart: unless-stopped
 
 volumes:
  freshrss_data:
