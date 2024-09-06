@@ -370,7 +370,7 @@ services:
   owntracks-frontend:
     image: owntracks/frontend
     ports:
-      - 9285:80
+      - 9287:80
     volumes:
       - ./owntracks-frontend/config.js:/usr/share/nginx/html/config/config.js
     environment:
