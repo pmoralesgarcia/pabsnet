@@ -368,6 +368,7 @@ services:
       - ./owntracks-recorder/store:/store
     restart: unless-stopped
   owntracks-frontend:
+    container_name:
     image: owntracks/frontend
     ports:
       - 9287:80
