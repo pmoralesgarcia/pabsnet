@@ -368,7 +368,7 @@ services:
       - ./owntracks-recorder/store:/store
     restart: unless-stopped
   owntracks-frontend:
-    container_name:
+    container_name: owntracks-frontend
     image: owntracks/frontend
     ports:
       - 9287:80
@@ -376,7 +376,7 @@ services:
       - ./owntracks-frontend/config.js:/usr/share/nginx/html/config/config.js
     environment:
       - SERVER_HOST=owntracks-recorder
-      - SERVER_PORT=9285
+      - SERVER_PORT=8083
       - VIRTUAL_HOST=find.pabs.lol
       - LETSENCRYPT_HOST=find.pabs.lol
     restart: unless-stopped
