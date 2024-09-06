@@ -2,7 +2,7 @@
 window.owntracks = window.owntracks || {};
 window.owntracks.config = {
     api: {
-        baseUrl: "https://owntracks.pabs.lol",
+        baseUrl: "https://find.lifeofpablo.com",
         locale: "en-US"
       },
 };
