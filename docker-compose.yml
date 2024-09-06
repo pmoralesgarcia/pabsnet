@@ -375,7 +375,7 @@ services:
       - ./owntracks-frontend/config.js:/usr/share/nginx/html/config/config.js
     environment:
       - SERVER_HOST=owntracks-recorder
-      - SERVER_PORT=8083
+      - SERVER_PORT=9285
       - VIRTUAL_HOST=find.pabs.lol
       - LETSENCRYPT_HOST=find.pabs.lol
     restart: unless-stopped
