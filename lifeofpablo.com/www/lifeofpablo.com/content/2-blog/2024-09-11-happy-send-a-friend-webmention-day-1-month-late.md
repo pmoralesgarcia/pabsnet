@@ -34,6 +34,8 @@ You all rock! 🤘🏽🤘🏽
 
 [James G](https://jamesg.blog/)
 
+[Anthony Ciccarello](https://www.ciccarello.me/)
+
 [gRegorLove](https://gRegorLove.com/ )
 
 
