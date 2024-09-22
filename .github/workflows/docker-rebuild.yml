@@ -1,0 +1,105 @@
+name: Deploy docker compose
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docker-compose.yml'
+jobs:
+  Build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Load secret
+        id: op-load-secret
+        uses: 1password/load-secrets-action@v1
+        with:
+       # Export loaded secrets as environment variables
+          export-env: false
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          USERNAME: op://pablo/pabsnet2/username
+          PRIVATE_SSH_KEY: op://pablo/pabsnet2/private key
+          SERVER_HOST: op://pablo/pabsnet2/host
+          MYSQL_ROOT_PASSWORD: op://pablo/mariadb-docker/root_password
+          FRESHRSS_MYSQL_USER: op://pablo/freshrss-docker/mysql_user
+          FRESHRSS_MYSQL_PASSWORD: op://pablo/freshrss-docker/mysql_password
+          FRESHRSS_USER: op://pablo/freshrss-docker/freshrss_user
+          FRESHRSS_EMAIL: op://pablo/freshrss-docker/freshrss_email
+          FRESHRSS_PASSWORD: op://pablo/freshrss-docker/freshrss_password
+          FRESHRSS_API_PASSWORD: op://pablo/freshrss-docker/FRESHRSS_API_PASSWORD
+          DEFAULT_EMAIL: op://pablo/default_email/email
+          YOURLS_DB_USER: op://pablo/YOURLS/YOURLS_DB_USER
+          YOURLS_DB_PASS: op://pablo/YOURLS/YOURLS_DB_PASS
+          YOURLS_USER: op://pablo/YOURLS/username
+          YOURLS_PASS: op://pablo/YOURLS/password
+          YOURLS_API: op://pablo/YOURLS/YOURLS_API
+          MATOMO_MYSQL_USER: op://pablo/matomo/username
+          MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
+          MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
+          GHOST_MYSQL_PASSWORD: op://pablo/ghost-pabsnet/password
+          GHOST_SMTP_RELAY: op://pablo/ghost-pabsnet/smtp_relay
+          GHOST_SMTP_PORT: op://pablo/ghost-pabsnet/smtp_port
+          GHOST_SMTP_USER: op://pablo/ghost-pabsnet/email
+          GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
+          LISTS_MUSIC_LISTENED: op://pablo/lists-pabsnet2/password
+          LOP_LISTS_MUSIC_LISTENED: op://pablo/lists-pabsnet2/password
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ steps.op-load-secret.outputs.SERVER_HOST }}
+          username: ${{ steps.op-load-secret.outputs.USERNAME }}
+          key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
+          port: 22
+          script: |
+            cd ~/pabsnet
+            git pull
+            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+            FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
+            FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
+            MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
+            FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
+            FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
+            FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
+            FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
+            DEFAULT_EMAIL=${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }} \
+            YOURLS_DB_USER=${{ steps.op-load-secret.outputs.YOURLS_DB_USER }} \
+            YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
+            YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
+            YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
+            YOURLS_API=${{ steps.op-load-secret.outputs.YOURLS_API }} \
+            MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
+            MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
+            MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
+            GHOST_SMTP_RELAY=${{ steps.op-load-secret.outputs.GHOST_SMTP_RELAY }} \
+            GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
+            GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
+            GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
+            export LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LISTS_MUSIC_LISTENED }} \
+            export LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
+            docker compose down --remove-orphans
+            FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
+            FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
+            MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
+            FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
+            FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
+            FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
+            FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
+            DEFAULT_EMAIL=${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }} \
+            YOURLS_DB_USER=${{ steps.op-load-secret.outputs.YOURLS_DB_USER }} \
+            YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
+            YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
+            YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
+            YOURLS_API=${{ steps.op-load-secret.outputs.YOURLS_API }} \
+            MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
+            MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+            MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
+            GHOST_SMTP_RELAY=${{ steps.op-load-secret.outputs.GHOST_SMTP_RELAY }} \
+            GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
+            GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
+            GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
+            LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LISTS_MUSIC_LISTENED }} \
+            LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
+            docker compose build --no-cache
