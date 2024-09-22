@@ -1,0 +1,82 @@
+<?php $this->yellow->layout("header") ?>
+<div class="h-feed">
+<h1 class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<?php echo $this->yellow->page->getContentHtml() ?>
+
+<?php $pages = $this->yellow->content->index()->filter("layout", "note")->sort("published", false) ?>
+
+    <?php 
+    $yearCounts  = []; // An array to record the number of posts per year
+    $monthCounts = []; // An array to record the number of posts per month
+    
+    foreach ($pages as $page): 
+        $publishedDate = strtotime($page->get("published"));
+        $year = date("Y", $publishedDate); // Das Jahr des Beitrags
+        $month = date("m", $publishedDate); // Der Monat des Beitrags
+    
+        // Count the posts per year
+        if (isset($yearCounts[$year])) {
+            $yearCounts[$year]++;
+        } else {
+            $yearCounts[$year] = 1;
+        }
+    
+        // Count the posts per month
+        $monthKey = $year . "-" . $month;
+        if (isset($monthCounts[$monthKey])) {
+            $monthCounts[$monthKey]++;
+        } else {
+            $monthCounts[$monthKey] = 1;
+        }
+    endforeach; 
+    
+    // Group posts by year and month
+    $groupedPosts = [];
+    foreach ($pages as $page):
+        $publishedDate = strtotime($page->get("published"));
+        $year = date("Y", $publishedDate);
+        $month = date("m", $publishedDate);
+        $groupKey = $year . "-" . $month;
+    
+        if (!isset($groupedPosts[$year])) {
+            $groupedPosts[$year] = [];
+        }
+    
+        if (!isset($groupedPosts[$year][$month])) {
+            $groupedPosts[$year][$month] = [];
+        }
+    
+        $groupedPosts[$year][$month][] = $page;
+    endforeach;
+    
+    // Loop through the grouped posts and output them
+    foreach ($groupedPosts as $year => $yearGroup): ?>
+    
+    <div class="archive-year">
+    <a href="./published:<?php echo $year ?>"><h2 id="<?php echo $year ?>"><?php echo $year ?> <sup class="archive-count">(<?php echo $yearCounts[$year] ?>)</sup></h2>
+    
+    <?php foreach ($yearGroup as $month => $monthGroup): ?>
+    
+        <div class="archive-month mt3 mb3 flex flex-wrap">    
+		 <div class="archive-month__header mw-100 w-50 f3 mb2">
+		 <a href="./published:<?php echo $year . "-" . $month ?>"> <strong><?php echo date("F", strtotime("2023-" . $month . "-01")) ?> <sup class="archive-count">(<?php echo $monthCounts[$year . "-" . $month] ?>)</sup></strong></a>
+            </div>
+            <div class="archive-posts m-100 w-5">
+            <?php foreach ($monthGroup as $page): ?>
+                <div class="archive-entry h-entry">
+                    <a class="u-url entry-link link p-name" href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?>&nbsp;</a>
+                    <div class="archive-meta dt-published">
+                        <?php echo $page->getDateHtml("published") ?>
+                    </div>
+                    
+                </div>
+            <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    
+    <?php endforeach; ?>
+    <?php endforeach; ?>
+</div>
+
+<?php $this->yellow->layout("footer") ?>
