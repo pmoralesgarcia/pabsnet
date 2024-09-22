@@ -1,9 +1,9 @@
-name: Deploy docker compose
+name: docker compose build
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'docker-compose.yml'
+      - 'docker-rebuild.yml'
 jobs:
   Build:
     name: Build
