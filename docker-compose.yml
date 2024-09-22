@@ -152,9 +152,7 @@ services:
     depends_on:
       - lifeofpablo
       - lifeofpablo-interactives
-      - lifeofpablo-guestbook
       - lifeofpablo-linkinbio
-      - lifeofpablo-now
   lifeofpablo:
     container_name: lifeofpablo
     restart: always
