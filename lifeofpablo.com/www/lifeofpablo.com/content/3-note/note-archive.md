@@ -1,6 +1,6 @@
 ---
 Title: Note Archive
-Title-slug: archive
+TitleSlug: archive
 Author: Pablo Morales
 Layout: note-archive
 Tag: archive
