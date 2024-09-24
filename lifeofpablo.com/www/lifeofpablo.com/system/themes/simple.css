@@ -1,12 +1,5 @@
 @import url(https://cdn.simplecss.org/simple.css);
-:root {
-  /*  (light) theme */
-  --bg: #fef6e4;
-  --accent: #f582ae;
-  --link: #001858;
-  --text: #172c66;
-  --accent-hover: #8bd3dd;
-}
+
 
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
