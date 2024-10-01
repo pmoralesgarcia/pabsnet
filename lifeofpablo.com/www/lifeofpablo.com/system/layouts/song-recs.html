@@ -18,21 +18,22 @@ if (isset($_POST['submit'])) {
   try  {
     $connection = new PDO($dsn, $username, $password, $options);
     
-    $new_user = array(
+    $new_song = array(
       "title" => $_POST['title'],
       "artist"  => $_POST['artist'],
-      "location"     => $_POST['location']
-    );
+      "contact"     => $_POST['contact'],
+      "note"     => $_POST['note']
+      );
 
     $sql = sprintf(
       "INSERT INTO %s (%s) values (%s)",
-      "music_listened",
-      implode(", ", array_keys($new_user)),
-      ":" . implode(", :", array_keys($new_user))
+      "music_recs",
+      implode(", ", array_keys($new_song)),
+      ":" . implode(", :", array_keys($new_song))
     );
     
     $statement = $connection->prepare($sql);
-    $statement->execute($new_user);
+    $statement->execute($new_song);
   } catch(PDOException $error) {
       echo $sql . "<br>" . $error->getMessage();
   }
@@ -40,20 +41,29 @@ if (isset($_POST['submit'])) {
 ?>
 
   <?php if (isset($_POST['submit']) && $statement) : ?>
-    <blockquote><?php echo escape($_POST['title']); ?> successfully added.</blockquote>
+    <blockquote>The song, <em><?php echo escape($_POST['title']); ?></em> successfully added. Thanks for the recommendation!</blockquote>
   <?php endif; ?>
 
+  <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
 
   <form class="pa4 black-80" method="post">
     <div class="measure">
     <input class="input-reset ba b--black-20 pa2 mb2 db w-100" name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
-    <label class="f6 b db mb2" for="title">Title</label>
-    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="title" id="title">
-    <label class="f6 b db mb2" for="artist">artist</label>
-    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="artist" id="artist">
-    <label class="f6 b db mb2" for="email">Location</label>
-    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="location" id="location">
+    <label class="f6 b db mb2" for="title">Song Title</label>
+    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="title" id="title" required>
+    <label class="f6 b db mb2" for="artist">Artist</label>
+    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="artist" id="artist" required>
+    <p>Optional:</p>
+        <label class="f6 b db mb2" for="contact">You got a blog? A website? Email?</label>
+
+    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="location" id="location" required>
+    <label for="note" >Tell me your story behind this song or why you're recommending it!:</label>
+    <textarea style="text-transform: lowercase;" id="note" name="note" rows="5" cols="33" >
+      
+    </textarea><br />
+
     <input class="button" type="submit" name="submit" value="Submit">
+
   </div>
   </form>
 
