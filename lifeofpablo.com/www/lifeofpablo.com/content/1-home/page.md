@@ -10,6 +10,7 @@ Things about me:
 * Love using analog technology
 * I speak English, Spanish and French
 * Enjoy Traveling: Going to Greentech Festival Berlin in May!
+* I love getting song recommendations! [Want to share one?](lists/song-recommendations)
 
 Check out my[ /now](/now) page!
 

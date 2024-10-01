@@ -54,12 +54,13 @@ if (isset($_POST['submit'])) {
     <label class="f6 b db mb2" for="artist">Artist</label>
     <input class="input-reset " type="text" name="artist" id="artist" required>
     <p>Optional:</p>
-    <label class="f6 b db mb2" for="contact">You got a blog? A website? Email?</label>
-    <input style="text-transform: lowercase;" type="text" name="contact" id="contact">
+    
     <label for="note" >Tell me your story behind this song or why you're recommending it!:</label>
     <textarea style="text-transform: lowercase;" id="note" name="note" rows="5" cols="33" >
-    </textarea><br />
-
+    </textarea>
+    <label class="f6 b db mb2" for="contact">You got a blog? A website? Email?</label>
+    <input style="text-transform: lowercase;" type="text" name="contact" id="contact">
+    <br />
     <input class="button" type="submit" name="submit" value="Submit">
 
   </div>
