@@ -48,15 +48,14 @@ if (isset($_POST['submit'])) {
 
   <form class="pa4 black-80" method="post">
     <div class="measure">
-    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
+    <input class="input-reset " name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
     <label class="f6 b db mb2" for="title">Song Title</label>
-    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="title" id="title" required>
+    <input class="input-reset " type="text" name="title" id="title" required>
     <label class="f6 b db mb2" for="artist">Artist</label>
-    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="artist" id="artist" required>
+    <input class="input-reset " type="text" name="artist" id="artist" required>
     <p>Optional:</p>
-        <label class="f6 b db mb2" for="contact">You got a blog? A website? Email?</label>
-
-    <input class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="contact" id="contact" required>
+    <label class="f6 b db mb2" for="contact">You got a blog? A website? Email?</label>
+    <input style="text-transform: lowercase;" type="text" name="contact" id="contact">
     <label for="note" >Tell me your story behind this song or why you're recommending it!:</label>
     <textarea style="text-transform: lowercase;" id="note" name="note" rows="5" cols="33" >
     </textarea><br />
