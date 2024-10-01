@@ -2,6 +2,8 @@
 Title: Lists
 Published: 2024-01-24 21:23:49
 ---
+## Song Recommendations
+[Share your song recommendations with me!](song-recommendations)
 ## Personal Collection {#items}
 [Books](books)
 
