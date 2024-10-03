@@ -3,7 +3,7 @@
   :root,
   ::backdrop {
     color-scheme: dark;
-    --editor-bg: #212121;
+    --editor-bg: #fffffe;
     --editor-text: #dcdcdc;
     --bg: #eff0f3;
     --text: #94a1b2;

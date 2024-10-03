@@ -6,10 +6,7 @@
 </div>
 <div class="content">
 	<div class="fr w-50i dib">
-		<a class="button" href="archive">Blog Archive</a>
-		<a class="button" href="tags">Tags</a>
-		<a class="button" href="roll">Blog Roll</a>
-		</div>
+      <?php $this->yellow->layout("blog-buttons") ?>
 		<br/ >
    <div class="main h-feed" role="main">
       <?php if ($this->yellow->page->get("blogWithFilter")): ?>

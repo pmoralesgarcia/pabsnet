@@ -3,7 +3,7 @@ Title: Photography
 TitleNavigation: Photos
 titleslug: trips
 TitleContent: My Trips & Photography
-Published: 2023-03-01
+Published: 2024-10-02
 ---
 ## Photos
 [Europe](europe)
@@ -19,7 +19,7 @@ Published: 2023-03-01
 
 
 
-## Stories
+## Stories (Coming Soon!)
 ### [Korea - Summer 2022](/korea)
 After 2+ years since the pandemic started, I was part of a University Nebraska - Lincoln Fulbright-Hayes group that traveled to South Korea. I along with 11 other teachers, went to South Korea on an experience of a lifetime.
 
