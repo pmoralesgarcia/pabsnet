@@ -106,7 +106,7 @@ services:
       LETSENCRYPT_HOST: reader2.lifeofpablo.com 
   vouch-proxy:
     container_name: vp-lifeofpablo
-    image: quay.io/vouch/vouch-proxy
+    image: quay.io/vouch/vouch-proxy:alpine-master
     ports:
       - 9090:9090
     volumes:

@@ -5,6 +5,7 @@ Author: Pablo Morales
 Layout: blog
 Tag: San Francisco Pride, SF Pride, IndieWeb Carninval, July 2023, joy, pride
 Image: https://photos.lifeofpablo.com/san-francisco/sf-pride-2023/web-sized/7.jpeg
+Theme: pablo
 ---
 <style>
 @import "https://pabs.tech/media/css/tachyons.css";

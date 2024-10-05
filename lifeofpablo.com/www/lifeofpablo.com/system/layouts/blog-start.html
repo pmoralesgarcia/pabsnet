@@ -34,7 +34,7 @@
       <?php endforeach ?>
       <?php $this->yellow->layout("pagination", $pages) ?>
       <div class="permalink">Permalink: 
-         <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+         <a class="u-url" href="https://lifeofpablo.com<?php echo $page->getLocation(true) ?>">https://lifeofpablo.com<?php echo $page->getLocation(true) ?></a>
       </div>
    </div>
 </div>
