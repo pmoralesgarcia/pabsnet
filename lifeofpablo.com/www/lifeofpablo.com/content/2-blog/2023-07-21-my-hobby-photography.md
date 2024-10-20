@@ -5,6 +5,7 @@ Author: Pablo Morales
 Layout: blog
 Tag: photography, hobby, film photography, digital photography, analog photography, digital, analog, video, DSLR, moments 
 Image: https://photos.lifeofpablo.com/sf-jun-5-23/web-sized/000013130010.jpg
+Theme: pablo
 ---
 <div markdown="1">
 <article class="roboto pb5 ">
