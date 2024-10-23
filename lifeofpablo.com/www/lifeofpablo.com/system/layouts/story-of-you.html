@@ -1,0 +1,65 @@
+<?php $this->yellow->layout("header") ?>
+<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+
+
+<?php
+
+/**
+ * Use an HTML form to create a new entry in the
+ * users table.
+ *
+ */
+ require "system/layouts/config.php";
+ require "system/layouts/common.php";
+
+if (isset($_POST['submit'])) {
+  if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
+
+  try  {
+    $connection = new PDO($dsn, $username, $password, $options);
+    
+    $story = array(
+      "name" => $_POST['name'],
+      "email"  => $_POST['email'],
+      "note"     => $_POST['note']
+      );
+
+    $sql = sprintf(
+      "INSERT INTO %s (%s) values (%s)",
+      "stories",
+      implode(", ", array_keys($story)),
+      ":" . implode(", :", array_keys($story))
+    );
+    
+    $statement = $connection->prepare($sql);
+    $statement->execute($story);
+  } catch(PDOException $error) {
+      echo $sql . "<br>" . $error->getMessage();
+  }
+}
+?>
+
+  <?php if (isset($_POST['submit']) && $statement) : ?>
+    <blockquote>Your entry, <em><?php echo escape($_POST['title']); ?></em> successfully added. Thanks for the recommendation!</blockquote>
+  <?php endif; ?>
+
+  <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+
+  <form class="pa4 black-80" method="post">
+    <div class="measure">
+    <input class="input-reset " name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
+    <label class="f6 b db mb2" for="name">Name</label>
+    <input class="input-reset " type="text" name="name" id="name" required>
+    <label class="f6 b db mb2" for="email">Email</label>
+    <input class="input-reset " type="email" name="email" id="email" required>
+    
+    <label for="note" >Feel free to share anything you'd like about yourself.</label>
+    <textarea id="note" name="note" rows="5" cols="33">
+    </textarea>
+    <br /><br />
+    <input class="button" type="submit" name="submit" value="Submit">
+
+  </div>
+  </form>
+
+  <?php $this->yellow->layout("footer") ?>
