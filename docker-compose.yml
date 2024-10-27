@@ -71,39 +71,6 @@ services:
       test: ["CMD", "pg_isready", "-U", "miniflux"]
       interval: 10s
       start_period: 30s
-  freshrss:
-    depends_on:
-      - mariadb
-      - vouch-proxy
-    image: freshrss/freshrss:1.21.0
-    volumes:
-      - freshrss_data:/var/www/FreshRSS/data
-      - freshrss_extensions:/var/www/FreshRSS/extensions
-    ports:
-      - 8085:80
-    restart: always
-    logging:
-      options:
-        max-size: 10m
-    environment:
-      TRUSTED_PROXY: "0.0.0.0/0"
-      FRESHRSS_INSTALL: |-
-        --api_enabled
-        --db-base freshrss
-        --db-host mariadb
-        --db-password ${FRESHRSS_MYSQL_PASSWORD}
-        --db-type mysql
-        --db-user ${FRESHRSS_MYSQL_USER}
-        --default_user ${FRESHRSS_USER}
-        --language en
-      FRESHRSS_USER: |-
-        --api_password ${FRESHRSS_API_PASSWORD}
-        --email ${FRESHRSS_EMAIL}
-        --language en
-        --password ${FRESHRSS_PASSWORD}
-        --user ${FRESHRSS_USER}
-      VIRTUAL_HOST: reader2.lifeofpablo.com
-      LETSENCRYPT_HOST: reader2.lifeofpablo.com 
   vouch-proxy:
     container_name: vp-lifeofpablo
     image: quay.io/vouch/vouch-proxy:alpine-master
@@ -115,17 +82,6 @@ services:
     environment:
       VIRTUAL_HOST: auth.lifeofpablo.com
       LETSENCRYPT_HOST: auth.lifeofpablo.com
-  thelounge:
-    image: ghcr.io/thelounge/thelounge:4
-    container_name: thelounge
-    ports:
-      - "9524:9000"
-    restart: always
-    volumes:
-      - ./thelounge:/var/opt/thelounge # bind lounge config from the host's file syste
-    environment:
-      - VIRTUAL_HOST=chat.lifeofpablo.com
-      - LETSENCRYPT_HOST=chat.lifeofpablo.com
   korea:
     container_name: korea
     restart: always
@@ -389,7 +345,7 @@ services:
       # (Optional) Allow specific google email address to log in for demo purposes
       # - UPSTREAM_DEFAULT_EMAIL_ADDRESSES=*
 
-      - UPSTREAM_CONFIGFILE=./sso/upstream_configs.yml
+      - UPSTREAM_CONFIGFILE=/sso/upstream_configs.yml
       - PROVIDER_URL_EXTERNAL=https://sso.lifeofpablo.com
       - PROVIDER_URL_INTERNAL=http://host.docker.internal
 
@@ -403,7 +359,7 @@ services:
       #     openssl rand -base64 32
       #
       # to generate your own.
-      - SESSION_COOKIE_SECRET=${sso-proxy-session}
+      - SESSION_COOKIE_SECRET=${SSO_PROXY_SESSION
 
       # Disable https for demo purposes
       - SESSION_COOKIE_SECURE=true
@@ -428,7 +384,7 @@ services:
 
     entrypoint: /bin/sso-auth
     env_file:
-      ./sso/env
+      ./sso/env:ro
     environment:
       # Allow any google account to log in for demo purposes
       - AUTHORIZE_EMAIL_DOMAINS=lifeofpablo.com
@@ -443,8 +399,8 @@ services:
       - SERVER_HOST=sso-auth.lifeofpablo.com
 
       # These values must match sso-proxy's CLIENT_ID and CLIENT_SECRET values
-      - CLIENT_ID=${SSO_CLIENT_ID}
-      - CLIENT_SECRET=${SSO_CLIENT_SECRET}
+      - CLIENT_ID=${SSO_CLIENT_ID2}
+      - CLIENT_SECRET=${SSO_CLIENT_SECRET2}
 
       # XXX: These secrets are for demonstration purposes only! Use
       #
@@ -466,7 +422,5 @@ services:
     expose:
       - 4180
 volumes:
- freshrss_data:
- freshrss_extensions:
  mariadb:
  miniflux-db:

@@ -83,6 +83,8 @@ jobs:
             SSO_CLIENT_ID=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
             SSO_CLIENT_SECRET1=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
             SSO_CLIENT_ID1=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
+            SSO_CLIENT_SECRET2=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
+            SSO_CLIENT_ID2=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
             SSO_PROXY_SESSION=${{ steps.op-load-secret.outputs.SSO_PROXY_SESSION }} \
             SSO_AUTH_SESSION=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION }} \
             SSO_AUTH_SESSION_KEY=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION_KEY }} \
@@ -114,6 +116,8 @@ jobs:
             SSO_CLIENT_ID=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
             SSO_CLIENT_SECRET1=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
             SSO_CLIENT_ID1=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
+            SSO_CLIENT_SECRET2=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
+            SSO_CLIENT_ID2=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
             SSO_PROXY_SESSION=${{ steps.op-load-secret.outputs.SSO_PROXY_SESSION }} \
             SSO_AUTH_SESSION=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION }} \
             SSO_AUTH_SESSION_KEY=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION_KEY }} \
