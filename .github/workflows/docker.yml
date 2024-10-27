@@ -90,7 +90,7 @@ jobs:
             SSO_AUTH_SESSION_KEY=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION_KEY }} \
             export LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LISTS_MUSIC_LISTENED }} \
             export LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
-            docker compose down --remove-orphans
+            docker compose down
             FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
             FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
             MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
@@ -121,4 +121,4 @@ jobs:
             SSO_PROXY_SESSION=${{ steps.op-load-secret.outputs.SSO_PROXY_SESSION }} \
             SSO_AUTH_SESSION=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION }} \
             SSO_AUTH_SESSION_KEY=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION_KEY }} \
-            docker compose up --detach
+            docker compose up -d
