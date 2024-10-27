@@ -359,7 +359,7 @@ services:
       #     openssl rand -base64 32
       #
       # to generate your own.
-      - SESSION_COOKIE_SECRET=${SSO_PROXY_SESSION
+      - SESSION_COOKIE_SECRET=${SSO_PROXY_SESSION}
 
       # Disable https for demo purposes
       - SESSION_COOKIE_SECURE=true
