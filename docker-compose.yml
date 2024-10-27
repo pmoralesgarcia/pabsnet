@@ -451,7 +451,7 @@ services:
       #     openssl rand -base64 32
       #
       # to generate your own.
-      - SESSION_KEY=${SS0_AUTH_SESSION}
+      - SESSION_KEY=${SSO_AUTH_SESSION}
       - SESSION_COOKIE_SECRET=${SSO_AUTH_SESSION_KEY}
 
       # Disable https for demo purposes
