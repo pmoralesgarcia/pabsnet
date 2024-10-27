@@ -335,6 +335,7 @@ services:
     # Swap the two lines below to build from the current commit instead of
     # pulling the latest dev image
     image: buzzfeed/sso-dev:latest
+    container_name: pabs-sso-proxy
     # build: ..
 
     entrypoint: /bin/sso-proxy
@@ -380,6 +381,7 @@ services:
     # Swap the two lines below to build from the current commit instead of
     # pulling the latest dev image
     image: buzzfeed/sso-dev:latest
+    container_name: pabs-sso-auth
     # build: ..
 
     entrypoint: /bin/sso-auth
