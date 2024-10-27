@@ -280,7 +280,7 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
-  docker:
+  bludit-gtf:
     image: 'bludit/docker:latest'
     ports:
       - '8202:80'
@@ -384,7 +384,7 @@ services:
 
     entrypoint: /bin/sso-auth
     env_file:
-      ./sso/env:ro
+      ./sso/env
     environment:
       # Allow any google account to log in for demo purposes
       - AUTHORIZE_EMAIL_DOMAINS=lifeofpablo.com
