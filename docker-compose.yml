@@ -280,16 +280,6 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
-  bludit-gtf-1a:
-    image: 'bludit/docker:latest'
-    ports:
-      - '8202:80'
-    volumes:
-      - ./gtf:/usr/share/nginx/html/bl-content
-    container_name: bludit-gtf
-    environment:
-      VIRTUAL_HOST: gtf.lifeofpablo.com
-      LETSENCRYPT_HOST: gtf.lifeofpablo.com
   grocy:
     image: lscr.io/linuxserver/grocy:latest
     container_name: grocy
