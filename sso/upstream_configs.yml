@@ -1,6 +1,6 @@
 - service: httpbin
   default:
-    from: https://httpbin.lifeofpablo.com
+    from: https://httpbin.sso.lifeofpablo.com
     to: http://httpbin:8200
 
 
