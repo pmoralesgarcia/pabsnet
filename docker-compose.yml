@@ -280,7 +280,7 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
-  bludit-gtf:
+  bludit-gtf-1a:
     image: 'bludit/docker:latest'
     ports:
       - '8202:80'
