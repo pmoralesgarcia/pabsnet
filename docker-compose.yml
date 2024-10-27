@@ -239,9 +239,6 @@ services:
     container_name: httpbin
     ports:
       - '8200:80'
-    environment:
-      - VIRTUAL_HOST=httpbin.lifeofpablo.com
-      - LETSENCRYPT_HOST=httpbin.lifeofpablo.com
     restart: always
   europe24:
     container_name: europe24
@@ -378,7 +375,96 @@ services:
       - VIRTUAL_HOST=find.pabs.lol
       - LETSENCRYPT_HOST=find.pabs.lol
     restart: unless-stopped
+  sso-proxy:
+    # Swap the two lines below to build from the current commit instead of
+    # pulling the latest dev image
+    image: buzzfeed/sso-dev:latest
+    # build: ..
 
+    entrypoint: /bin/sso-proxy
+    environment:
+      # Allow any google account to log in for demo purposes
+      - UPSTREAM_DEFAULT_EMAIL_DOMAINS=lifeofpablo.com
+
+      # (Optional) Allow specific google email address to log in for demo purposes
+      # - UPSTREAM_DEFAULT_EMAIL_ADDRESSES=*
+
+      - UPSTREAM_CONFIGFILE=./sso/upstream_configs.yml
+      - PROVIDER_URL_EXTERNAL=https://sso.lifeofpablo.com
+      - PROVIDER_URL_INTERNAL=http://host.docker.internal
+
+      # CLIENT_ID and CLIENT_SECRET must match sso-auth's PROXY_CLIENT_ID and
+      # PROXY_CLIENT_SECRET configuration
+      - CLIENT_ID=${SSO_CLIENT_ID}
+      - CLIENT_SECRET=${SSO_CLIENT_SECRET}
+
+      # XXX: These secrets are for demonstration purposes only! Use
+      #
+      #     openssl rand -base64 32
+      #
+      # to generate your own.
+      - SESSION_COOKIE_SECRET=${sso-proxy-session}
+
+      # Disable https for demo purposes
+      - SESSION_COOKIE_SECURE=true
+
+      # TODO: these config values should probably have defaults
+      - UPSTREAM_CLUSTER=dev
+      - METRICS_STATSD_HOST=127.0.0.1
+      - METRICS_STATSD_PORT=8125
+
+      # Tells nginx-proxy service how to route requests to this service
+      - VIRTUAL_HOST=*.lifeofpablo.com
+    volumes:
+      - ./sso/upstream_configs.yml:/sso/upstream_configs.yml:ro
+    expose:
+      - 4180
+
+  sso-auth:
+    # Swap the two lines below to build from the current commit instead of
+    # pulling the latest dev image
+    image: buzzfeed/sso-dev:latest
+    # build: ..
+
+    entrypoint: /bin/sso-auth
+    env_file:
+      ./sso/env
+    environment:
+      # Allow any google account to log in for demo purposes
+      - AUTHORIZE_EMAIL_DOMAINS=lifeofpablo.com
+
+      # (Optional) Allow specific email address to log in for demo purposes
+      # This overrides AUTHORIZE_EMAIL_DOMAINS
+      # - AUTHORIZE_EMAIL_ADDRESSES=*
+
+      - AUTHORIZE_PROXY_DOMAINS=lifeofpablo.com
+
+      - SERVER_SCHEME=https
+      - SERVER_HOST=sso-auth.lifeofpablo.com
+
+      # These values must match sso-proxy's CLIENT_ID and CLIENT_SECRET values
+      - CLIENT_ID=${SSO_CLIENT_ID}
+      - CLIENT_SECRET=${SSO_CLIENT_SECRET}
+
+      # XXX: These secrets are for demonstration purposes only! Use
+      #
+      #     openssl rand -base64 32
+      #
+      # to generate your own.
+      - SESSION_KEY=${SS0_AUTH_SESSION}
+      - SESSION_COOKIE_SECRET=${SSO_AUTH_SESSION_KEY}
+
+      # Disable https for demo purposes
+      - SESSION_COOKIE_SECURE=true
+
+      # TODO: these config values should probably have defaults
+      - METRICS_STATSD_HOST=127.0.0.1
+      - METRICS_STATSD_PORT=8125
+
+      # Tells nginx-proxy service how to route requests to this service
+      - VIRTUAL_HOST=sso-auth.lifeofpablo.com,host.docker.internal
+    expose:
+      - 4180
 volumes:
  freshrss_data:
  freshrss_extensions:
