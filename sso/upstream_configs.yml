@@ -3,4 +3,12 @@
     from: https://httpbin.sso.lifeofpablo.com
     to: http://httpbin:8200
 
+- service: owntracks-frontend
+  default:
+    from: https://find.sso.lifeofpablo.com
+    to: http://owntracks-frontend/
+    skip_auth_regex:
+        - ^\/pub\/$
+
+
 

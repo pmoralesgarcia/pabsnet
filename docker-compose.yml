@@ -318,8 +318,6 @@ services:
     environment:
       - SERVER_HOST=owntracks-recorder
       - SERVER_PORT=8083
-      - VIRTUAL_HOST=find.pabs.lol
-      - LETSENCRYPT_HOST=find.pabs.lol
     restart: unless-stopped
   sso-proxy:
     # Swap the two lines below to build from the current commit instead of
@@ -361,7 +359,8 @@ services:
       - METRICS_STATSD_PORT=8125
 
       # Tells nginx-proxy service how to route requests to this service
-      - VIRTUAL_HOST=*.lifeofpablo.com
+      - VIRTUAL_HOST=*.sso.lifeofpablo.com
+      - LETSENCRYPT_HOST=*.sso.lifeofpablo.com
     volumes:
       - ./sso/upstream_configs.yml:/sso/upstream_configs.yml:ro
     expose:
@@ -411,6 +410,7 @@ services:
 
       # Tells nginx-proxy service how to route requests to this service
       - VIRTUAL_HOST=sso-auth.lifeofpablo.com,host.docker.internal
+      - LETSENCRYPT_HOST=sso-auth.lifeofpablo.com
     expose:
       - 4180
 volumes:
