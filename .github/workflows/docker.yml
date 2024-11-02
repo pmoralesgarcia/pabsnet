@@ -44,6 +44,8 @@ jobs:
           GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
           SSO_CLIENT_ID: op://pablo/sso-lifeofpablo/username
           SSO_CLIENT_SECRET: op://pablo/sso-lifeofpablo/password
+          SSO_CLIENT_ID2: op://pablo/sso-lifeofpablo/username
+          SSO_CLIENT_SECRET2: op://pablo/sso-lifeofpablo/password
           SSO_PROXY_SESSION: op://pablo/sso-lifeofpablo/sso-proxy-session
           SSO_AUTH_SESSION: op://pablo/sso-lifeofpablo/sso-auth-session
           SSO_AUTH_SESSION_KEY: op://pablo/sso-lifeofpablo/sso-auth-session-key
@@ -83,8 +85,8 @@ jobs:
             SSO_CLIENT_ID=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
             SSO_CLIENT_SECRET1=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
             SSO_CLIENT_ID1=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
-            SSO_CLIENT_SECRET2=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
-            SSO_CLIENT_ID2=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
+            SSO_CLIENT_SECRET2=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET2 }} \
+            SSO_CLIENT_ID2=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID2 }} \
             SSO_PROXY_SESSION=${{ steps.op-load-secret.outputs.SSO_PROXY_SESSION }} \
             SSO_AUTH_SESSION=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION }} \
             SSO_AUTH_SESSION_KEY=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION_KEY }} \
@@ -116,8 +118,8 @@ jobs:
             SSO_CLIENT_ID=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
             SSO_CLIENT_SECRET1=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
             SSO_CLIENT_ID1=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
-            SSO_CLIENT_SECRET2=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
-            SSO_CLIENT_ID2=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
+            SSO_CLIENT_SECRET2=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET2 }} \
+            SSO_CLIENT_ID2=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID2 }} \
             SSO_PROXY_SESSION=${{ steps.op-load-secret.outputs.SSO_PROXY_SESSION }} \
             SSO_AUTH_SESSION=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION }} \
             SSO_AUTH_SESSION_KEY=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION_KEY }} \

@@ -335,7 +335,7 @@ services:
       # - UPSTREAM_DEFAULT_EMAIL_ADDRESSES=*
 
       - UPSTREAM_CONFIGFILE=/sso/upstream_configs.yml
-      - PROVIDER_URL_EXTERNAL=https://sso.lifeofpablo.com
+      - PROVIDER_URL_EXTERNAL=http://sso.lifeofpablo.com
       - PROVIDER_URL_INTERNAL=http://host.docker.internal
 
       # CLIENT_ID and CLIENT_SECRET must match sso-auth's PROXY_CLIENT_ID and
@@ -360,7 +360,6 @@ services:
 
       # Tells nginx-proxy service how to route requests to this service
       - VIRTUAL_HOST=*.sso.lifeofpablo.com
-      - LETSENCRYPT_HOST=sso.lifeofpablo.com,find.sso.lifeofpablo.com, httpbin.sso.lifeofpablo.com
     volumes:
       - ./sso/upstream_configs.yml:/sso/upstream_configs.yml:ro
     expose:
@@ -410,7 +409,6 @@ services:
 
       # Tells nginx-proxy service how to route requests to this service
       - VIRTUAL_HOST=sso-auth.lifeofpablo.com,host.docker.internal
-      - LETSENCRYPT_HOST=sso-auth.lifeofpablo.com
     expose:
       - 4180
 volumes:
