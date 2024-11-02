@@ -351,7 +351,7 @@ services:
       - SESSION_COOKIE_SECRET=${SSO_PROXY_SESSION}
 
       # Disable https for demo purposes
-      - SESSION_COOKIE_SECURE=true
+      - SESSION_COOKIE_SECURE=false
 
       # TODO: these config values should probably have defaults
       - UPSTREAM_CLUSTER=dev
@@ -360,7 +360,7 @@ services:
 
       # Tells nginx-proxy service how to route requests to this service
       - VIRTUAL_HOST=*.sso.lifeofpablo.com
-      - LETSENCRYPT_HOST=*.sso.lifeofpablo.com
+      - LETSENCRYPT_HOST=sso.lifeofpablo.com,find.sso.lifeofpablo.com, httpbin.sso.lifeofpablo.com
     volumes:
       - ./sso/upstream_configs.yml:/sso/upstream_configs.yml:ro
     expose:
@@ -386,7 +386,7 @@ services:
 
       - AUTHORIZE_PROXY_DOMAINS=lifeofpablo.com
 
-      - SERVER_SCHEME=https
+      - SERVER_SCHEME=http
       - SERVER_HOST=sso-auth.lifeofpablo.com
 
       # These values must match sso-proxy's CLIENT_ID and CLIENT_SECRET values
@@ -402,7 +402,7 @@ services:
       - SESSION_COOKIE_SECRET=${SSO_AUTH_SESSION_KEY}
 
       # Disable https for demo purposes
-      - SESSION_COOKIE_SECURE=true
+      - SESSION_COOKIE_SECURE=false
 
       # TODO: these config values should probably have defaults
       - METRICS_STATSD_HOST=127.0.0.1
