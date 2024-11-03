@@ -1,4 +1,30 @@
 <?php $this->yellow->layout("header") ?>
+
+<?php
+
+/**
+ * Use an HTML form to create a new entry in the
+ * users table.
+ *
+ */
+ require "system/layouts/config.php";
+ require "system/layouts/common.php";
+
+
+
+try {
+  $connection = new PDO($dsn, $username, $password, $options);
+
+  $sql = "SELECT * FROM cds ORDER BY title DESC";
+
+  $statement = $connection->prepare($sql);
+  $statement->execute();
+
+  $result = $statement->fetchAll();
+} catch(PDOException $error) {
+  echo $sql . "<br>" . $error->getMessage();
+}
+?>
 <div class="content">
    <div class="main h-entry" role="main">
       <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
@@ -10,40 +36,20 @@
                   <tr>
                      <th class="fw6 bb b--black-20 tl pb3 pr3">Title</th>
                      <th class="fw6 bb b--black-20 tl pb3 pr3">Artist</th>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3">Publisher</th>
+                   <!--  <th class="fw6 bb b--black-20 tl pb3 pr3">Publisher</th> -->
                      <th class="fw6 bb b--black-20 tl pb3 pr3">Year</th>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3 ">Date Added</th>
+                <!--    <th class="fw6 bb b--black-20 tl pb3 pr3 ">Date Added</th>--> 
                   </tr>
                </thead>
                <tbody class="lh-copy">
-                  <?php
-                     $catalog_json = file_get_contents('media/downloads/cds.json');
-                     
-                     $decoded_json = json_decode($catalog_json, true);
-                     
-                     $items = $decoded_json['cds'];
-                     
-                     
-                     foreach($items as $item) {
-                       $name = $item['Title'];
-                       $artist = $item['Artist'];
-                     	 $year = $item['Year'];
-                       $date_added = $item['Books issued'];
-                       $publisher = $item['Publisher'];
-                     
-                       
-                     
-                       echo '<tr class="h-item">';
-                       echo '<td class="pv3 pr3 bb b--black-20 p-name"><a href="https://www.discogs.com/search/?q='.$name.' '.$artist.'&type=all&format_exact=CD" class="u-url">'.$name.'</td>';
-                       echo '<td class="pv3 pr3 bb b--black-20">'.$artist.'</td>';
-                       echo '<td class="pv3 pr3 bb b--black-20">'.$publisher.'</td>';
-                       echo '<td class="pv3 pr3 bb b--black-20">'.$year.'</td>';
-                       echo '<td class="pv3 pr3 bb b--black-20">'.$date_added.'</td>';
-                       echo '</tr>';
-                     
-                     
-                     }
-                     ?>
+                  <?php foreach ($result as $row) : ?>
+                  <tr>
+                    <td class="p-name"><a href="https://www.discogs.com/search/?q=%22<?php echo escape($row["title"]); ?> <?php echo escape($row["artist"]); ?>%22&type=all&format_exact=Cassette" class="u-url"><?php echo escape($row["title"]); ?></a></td>
+                    <td><?php echo escape($row["artist"]); ?></td>
+                    <td><?php echo escape($row["copyright_year"]); ?></td>
+                  </tr>
+                    <?php endforeach; ?>
+   
                </tbody>
             </table>
          </div>
