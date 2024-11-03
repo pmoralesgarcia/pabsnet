@@ -1,6 +1,13 @@
 <?php $this->yellow->layout("header") ?>
 
-<?php
+
+<div class="content">
+   <div class="main h-entry" role="main">
+      <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+      <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+      <div class="pa4">
+         <div class="overflow-auto">
+            <?php
 
 /**
  * Use an HTML form to create a new entry in the
@@ -15,7 +22,7 @@
 try {
   $connection = new PDO($dsn, $username, $password, $options);
 
-  $sql = "SELECT * FROM cds ORDER BY title DESC";
+  $sql = "SELECT * FROM vinyls ORDER BY title DESC";
 
   $statement = $connection->prepare($sql);
   $statement->execute();
@@ -25,33 +32,31 @@ try {
   echo $sql . "<br>" . $error->getMessage();
 }
 ?>
-<div class="content">
-   <div class="main h-entry" role="main">
-      <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
-      <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
-      <div class="pa4">
-         <div class="overflow-auto">
-            <table class="f6-ns w-100 mw8 center" cellspacing="0">
-               <thead>
-                  <tr>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3">Title</th>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3">Artist</th>
-                   <!--  <th class="fw6 bb b--black-20 tl pb3 pr3">Publisher</th> -->
-                     <th class="fw6 bb b--black-20 tl pb3 pr3">Year</th>
-                <!--    <th class="fw6 bb b--black-20 tl pb3 pr3 ">Date Added</th>--> 
-                  </tr>
-               </thead>
-               <tbody class="lh-copy">
-                  <?php foreach ($result as $row) : ?>
-                  <tr>
-                    <td class="p-name"><a href="https://www.discogs.com/search/?q=%22<?php echo escape($row["title"]); ?> <?php echo escape($row["artist"]); ?>%22&type=all&format_exact=Cassette" class="u-url"><?php echo escape($row["title"]); ?></a></td>
-                    <td><?php echo escape($row["artist"]); ?></td>
-                    <td><?php echo escape($row["copyright_year"]); ?></td>
-                  </tr>
-                    <?php endforeach; ?>
-   
-               </tbody>
-            </table>
+        
+
+
+
+
+
+
+<div class="h-entry">
+<table>
+  <tr class="h-item">
+    <th>Album</th>
+    <th>Artist</th>
+    <th>Year</th>
+  </tr>
+  <?php foreach ($result as $row) : ?>
+  <tr>
+    <td class="p-name"><a href="https://www.discogs.com/search/?q=%22<?php echo escape($row["title"]); ?> <?php echo escape($row["artist"]); ?>%22&type=all&format_exact=Cassette" class="u-url"><?php echo escape($row["title"]); ?></a></td>
+    <td><?php echo escape($row["artist"]); ?></td>
+    <td><?php echo escape($row["copyright_year"]); ?></td>
+  </tr>
+    <?php endforeach; ?>
+
+</table> 
+
+</div>
          </div>
       </div>
       <div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
