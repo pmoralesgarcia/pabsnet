@@ -22,7 +22,7 @@
 try {
   $connection = new PDO($dsn, $username, $password, $options);
 
-  $sql = "SELECT * FROM vinyls ORDER BY title DESC";
+  $sql = "SELECT * FROM cds ORDER BY title DESC";
 
   $statement = $connection->prepare($sql);
   $statement->execute();
