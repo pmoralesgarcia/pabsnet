@@ -4,6 +4,9 @@ Published: 2024-01-24 21:23:49
 ---
 ## Song Recommendations
 [Share your song recommendations with me!](song-recommendations)
+
+## Story of You
+[I want to write a short little story about you](story-of-you)
 ## Personal Collection {#items}
 [Books](books)
 

@@ -1,4 +1,4 @@
-<?php $this->yellow->layout("about-header") ?>
+<?php $this->yellow->layout("header") ?>
 <div class="content h-entry">
    <div class="main e-content" role="main">
       
@@ -16,11 +16,9 @@
             		         echo 'Please <a href="https://auth.lifeofpablo.com/login?url=https://lifeofpablo.com">Sign in</a>';
             			 ?> -->
       <header class="about-header h-card sitename">
-         <img class="me u-photo" src="https://static.lifeofpablo.com/media/images/profile/pablo.jpeg" alt="picture of Pablo" /> 
-         <h1><a class="u-url u-uid" href="https://lifeofpablo.com"><span class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></span></a></h1>
+        
 
          <!-- Title -->
-         <?php $this->yellow->layout("nav-home") ?>
          <div class="p-note" markdown="1">
             Hey, I'm Pablo and I'm based in San Francisco. I work as an IT Consultant at Ignition IT. I really enjoy working with technology and improve technology accessibilty.
          </div>

@@ -1,7 +1,6 @@
 ---
 Title: Home
 TitleContent: Pablo Morales
-Layout: about-page
 Published: 2023-09-25 23:36:09
 ---
 Things about me:
@@ -13,5 +12,12 @@ Things about me:
 * I love getting song recommendations! [Want to share one?](lists/song-recommendations)
 
 Check out my[ /now](/now) page!
+
+<style>
+.main > h1 {
+display: none;
+}
+
+</style>
 
 
