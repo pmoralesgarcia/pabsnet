@@ -29,22 +29,26 @@ try {
 ?>
         
 
-<div class="pa4 mt0 measure center">
+
+
+
+
+
+
+<table>
+  <tr class="h-item">
+    <th>Album</th>
+    <th>Artist</th>
+    <th>Year</th>
+  </tr>
   <?php foreach ($result as $row) : ?>
-  <p id="<?php echo escape($row["id"]); ?>"><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["title"]); ?>+<?php echo escape($row["artist"]); ?>"><?php echo escape($row["title"]); ?></a></p>
-  <p><a href="https://duckduckgo.com/?t=ffab&q=<?php echo escape($row["artist"]); ?>"><?php echo escape($row["artist"]); ?></a></p>
-  <p><?php echo escape($row["date"]); ?></p>
-  <p><?php echo escape($row["id"]); ?></p>
-  <?php endforeach; ?>
+  <tr>
+    <td class="p-name"><a href="https://www.discogs.com/search/?q=%22<?php echo escape($row["title"]); ?> <?php echo escape($row["artist"]); ?>%22&type=all&format_exact=Cassette" class="u-url"><?php echo escape($row["title"]); ?></a></td>
+    <td><?php echo escape($row["artist"]); ?></td>
+    <td><?php echo escape($row["copyright_year"]); ?></td>
+  </tr>
+    <?php endforeach; ?>
 
-
-  echo '<tr class="h-item">';
-    echo '<td class=" p-name"><a href="https://www.discogs.com/search/?q=%22'.$name.' '.$artist.'%22&type=all&format_exact=Cassette" class="u-url">'.$name.'</td>';
-    echo '<td class="">'.$artist.'</td>';
-    echo '<td class="">'.$publisher.'</td>';
-    echo '<td class="">'.$year.'</td>';
-    echo '<td class="">'.$date_added.'</td>';
-    echo '</tr>';
-</div>
+</table> 
 
   <?php $this->yellow->layout("footer") ?>
