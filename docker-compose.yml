@@ -317,6 +317,20 @@ services:
       - SERVER_HOST=owntracks-recorder
       - SERVER_PORT=8083
     restart: unless-stopped
+  lifeofpablo-login:
+    container_name: korea
+    restart: always
+    build:
+      dockerfile: ./login.lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./login.lifeofpablo.com/www/login.lifeofpablo.com:/var/www/html
+    ports:
+      - "9289:80"
+    environment:
+      - VIRTUAL_HOST=login.lifeofpablo.com
+      - LETSENCRYPT_HOST=login.lifeofpablo.com
+
 
 volumes:
  mariadb:

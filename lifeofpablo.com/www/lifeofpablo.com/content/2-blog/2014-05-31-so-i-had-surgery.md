@@ -24,9 +24,3 @@ I'll be like "what are you looking at?" I'll let you well you know what happens 
 Wish me luck! I hope for a speedful recovery.
 
 &nbsp;
-
-<a title="Register with this blog" href="http://pabs.altervista.org/blog/wp-login.php?action=register">Registe</a>r or<a title="Login" href="http://pabs.altervista.org/blog/wp-login.php"> Log-in</a> to my blog.
-
-&nbsp;
-
-&nbsp;
