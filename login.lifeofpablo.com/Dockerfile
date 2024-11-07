@@ -10,7 +10,7 @@ RUN apt update -y && \
 
 #RUN mkdir -p /var/www/login.lifeofpablo.com  
 
-COPY ./www/login.lifeofpablo.com /var/www/login.lifeofpablo.com/
+COPY ./login.lifeofpablo.com/www/login.lifeofpablo.com /var/www/login.lifeofpablo.com/
 
 
 VOLUME /var/www/login.lifeofpablo.com
