@@ -33,7 +33,7 @@ COPY ./login.lifeofpablo.com/nginx/login.lifeofpablo.com.conf /etc/nginx/sites-e
 
 EXPOSE 80
 
-COPY ./login.lifeofpablo.com/start.sh . 
+COPY ./login.lifeofpablo.com/start.sh /
 
 CMD ["sh", "/start.sh"]
 
