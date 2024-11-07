@@ -10,9 +10,13 @@ RUN apt update -y && \
 
 #RUN mkdir -p /var/www/login.lifeofpablo.com  
 
-# VOLUME /var/www/login.lifeofpablo.com
+COPY ./www/login.lifeofpablo.com /var/www/login.lifeofpablo.com/
 
-# WORKDIR  /var/www/login.lifeofpablo.com
+
+VOLUME /var/www/login.lifeofpablo.com
+
+WORKDIR  /var/www/login.lifeofpablo.com
+
 
 #RUN curl -L https://github.com/datenstrom/yellow/archive/main.zip -o yellow-main.zip
 
@@ -22,15 +26,14 @@ RUN apt update -y && \
 
 #COPY ./www/login.lifeofpablo.com /tmp/login.lifeofpablo.com
 
-#COPY ./www/login.lifeofpablo.com /var/www/login.lifeofpablo.com/
-
+RUN chmod -R a+rw /var/www/html
 #RUN chmod -R a+rw *
 
-COPY ./nginx/login.lifeofpablo.com.conf /etc/nginx/sites-enabled/default
+COPY ./login.lifeofpablo.com/nginx/login.lifeofpablo.com.conf /etc/nginx/sites-enabled/default
 
 EXPOSE 80
 
-COPY ./start.sh . 
+COPY ./login.lifeofpablo.com/start.sh . 
 
 CMD ["sh", "/start.sh"]
 
