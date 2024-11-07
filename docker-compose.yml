@@ -318,7 +318,7 @@ services:
       - SERVER_PORT=8083
     restart: unless-stopped
   lifeofpablo-login:
-    container_name: korea
+    container_name: lifeofpablo-login
     restart: always
     build:
       dockerfile: ./login.lifeofpablo.com/Dockerfile  
