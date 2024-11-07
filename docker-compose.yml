@@ -328,8 +328,8 @@ services:
     ports:
       - "9289:80"
     environment:
-      - VIRTUAL_HOST=login.lifeofpablo.com
-      - LETSENCRYPT_HOST=login.lifeofpablo.com
+      - VIRTUAL_HOST=indieauth.lifeofpablo.com
+      - LETSENCRYPT_HOST=indieauth.lifeofpablo.com
 
 
 volumes:
