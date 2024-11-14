@@ -337,8 +337,8 @@ services:
     environment:
       NODE_ENV: production
       LISTS: ${LISTS}
-      VIRTUAL_HOST: lang.lifeofpablo.com
-      LETSENCRYPT_HOST: lang.lifeofpablo.com
+      VIRTUAL_HOST: api.lifeofpablo.com
+      LETSENCRYPT_HOST: api.lifeofpablo.com
     ports:
       - 3453:3000
 volumes:
