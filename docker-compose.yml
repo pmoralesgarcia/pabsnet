@@ -341,9 +341,6 @@ services:
       LETSENCRYPT_HOST: lang.lifeofpablo.com
     ports:
       - 3453:3000
-    depends_on:
-      mariadb
-
 volumes:
  mariadb:
  miniflux-db:
