@@ -29,6 +29,7 @@ jobs:
           FRESHRSS_PASSWORD: op://pablo/freshrss-docker/freshrss_password
           FRESHRSS_API_PASSWORD: op://pablo/freshrss-docker/FRESHRSS_API_PASSWORD
           DEFAULT_EMAIL: op://pablo/default_email/email
+          LISTS: op://pablo/lists-pabsnet2/password
           YOURLS_DB_USER: op://pablo/YOURLS/YOURLS_DB_USER
           YOURLS_DB_PASS: op://pablo/YOURLS/YOURLS_DB_PASS
           YOURLS_USER: op://pablo/YOURLS/username
@@ -90,7 +91,7 @@ jobs:
             SSO_PROXY_SESSION=${{ steps.op-load-secret.outputs.SSO_PROXY_SESSION }} \
             SSO_AUTH_SESSION=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION }} \
             SSO_AUTH_SESSION_KEY=${{ steps.op-load-secret.outputs.SSO_AUTH_SESSION_KEY }} \
-            export LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LISTS_MUSIC_LISTENED }} \
+            LISTS=${{ steps.op-load-secret.outputs.LISTS }} \
             export LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
             docker compose down
             FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
@@ -114,6 +115,7 @@ jobs:
             GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
+            LISTS=${{ steps.op-load-secret.outputs.LISTS }} \
             SSO_CLIENT_SECRET=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
             SSO_CLIENT_ID=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
             SSO_CLIENT_SECRET1=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \

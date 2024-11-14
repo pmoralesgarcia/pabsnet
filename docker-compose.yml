@@ -330,6 +330,20 @@ services:
     environment:
       - VIRTUAL_HOST=indieauth.lifeofpablo.com
       - LETSENCRYPT_HOST=indieauth.lifeofpablo.com
+  prog-lang:
+    container_name: prog-lang
+    build:
+      context: ./programming-languages-api
+    environment:
+      NODE_ENV: production
+      LISTS: ${LISTS}
+      VIRTUAL_HOST: lang.lifeofpablo.com
+      LETSENCRYPT_HOST: lang.lifeofpablo.com
+    ports:
+      - 3453:3000
+     depends_on:
+       mariadb:
+         condition: service_healthy
 
 
 volumes:
