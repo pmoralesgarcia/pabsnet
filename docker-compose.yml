@@ -342,8 +342,8 @@ services:
     ports:
       - 3453:3000
     depends_on:
-      mariadb:
-      
+      mariadb
+
 volumes:
  mariadb:
  miniflux-db:
