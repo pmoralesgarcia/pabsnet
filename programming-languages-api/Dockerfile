@@ -5,7 +5,6 @@
 # https://docs.docker.com/go/dockerfile-reference/
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
-ARG APP_ENV=ZYcUxkXyp6BG2fsM7 
 ARG NODE_VERSION=20.17.0
 
 FROM node:${NODE_VERSION}-alpine
