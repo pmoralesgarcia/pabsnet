@@ -343,9 +343,7 @@ services:
       - 3453:3000
     depends_on:
       mariadb:
-        condition: service_healthy
-
-
+      
 volumes:
  mariadb:
  miniflux-db:
