@@ -16,7 +16,18 @@ async function callSpSearch(id) {
 
   return results;
 }
+
+async function callSpVinylSearch(id) {
+  const connection = await mysql.createConnection(config.db);
+  const [results, ] = await connection.query(
+    "SELECT title, artist, copyright_year, label, isbn, catalog_number, info_url, thumbnail_url, notes FROM vinyls where id = " + id + ""
+  );
+
+  return results;
+}
+
 module.exports = {
   query,
-  callSpSearch
+  callSpSearch,
+  callSpVinylSearch
 };
