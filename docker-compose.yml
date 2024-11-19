@@ -334,7 +334,7 @@ services:
   pabs-api:
     container_name: pabs-api
     build:
-      dockerfile: ./pabs-api/Dockerfile
+      context: ./pabs-api
     environment:
       - NODE_ENV=production
       - API_DB_HOST
