@@ -38,10 +38,11 @@ services:
     volumes:
       - mariadb:/var/lib/mysql:Z
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD
       - MARIADB_AUTO_UPGRADE=1
       - MARIADB_DISABLE_UPGRADE_BACKUP=1
       - TZ=America/Los_Angeles 
+
   miniflux:
     image: miniflux/miniflux:2.0.51
     container_name: miniflux
@@ -330,17 +331,22 @@ services:
     environment:
       - VIRTUAL_HOST=indieauth.lifeofpablo.com
       - LETSENCRYPT_HOST=indieauth.lifeofpablo.com
-  prog-lang:
-    container_name: prog-lang
+  pabs-api:
+    container_name: pabs-api
     build:
-      context: ./programming-languages-api
+      context: ./pabs-api
     environment:
-      NODE_ENV: production
-      LISTS: ${LISTS}
-      VIRTUAL_HOST: api.lifeofpablo.com
-      LETSENCRYPT_HOST: api.lifeofpablo.com
+      - NODE_ENV=production
+      - API_DB_HOST
+      - API_DB_USER
+      - API_DB_PASS
+      - API_DB
+      - VIRTUAL_HOST=api.lifeofpablo.com
+      - LETSENCRYPT_HOST=api.lifeofpablo.com
     ports:
       - 3453:3000
+
 volumes:
  mariadb:
  miniflux-db:
+

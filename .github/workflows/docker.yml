@@ -18,6 +18,10 @@ jobs:
           export-env: false
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          API_DB_HOST: op://pablo/lists-pabsnet2/server
+          API_DB_PASS: op://pablo/lists-pabsnet2/password
+          API_DB_USER: op://pablo/lists-pabsnet2/username
+          API_DB: op://pablo/lists-pabsnet2/database
           USERNAME: op://pablo/pabsnet2/username
           PRIVATE_SSH_KEY: op://pablo/pabsnet2/private key
           SERVER_HOST: op://pablo/pabsnet2/host
@@ -29,7 +33,6 @@ jobs:
           FRESHRSS_PASSWORD: op://pablo/freshrss-docker/freshrss_password
           FRESHRSS_API_PASSWORD: op://pablo/freshrss-docker/FRESHRSS_API_PASSWORD
           DEFAULT_EMAIL: op://pablo/default_email/email
-          LISTS: op://pablo/lists-pabsnet2/password
           YOURLS_DB_USER: op://pablo/YOURLS/YOURLS_DB_USER
           YOURLS_DB_PASS: op://pablo/YOURLS/YOURLS_DB_PASS
           YOURLS_USER: op://pablo/YOURLS/username
@@ -61,6 +64,10 @@ jobs:
             cd ~/pabsnet
             git pull
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+            API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
+            API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
+            API_DB_PASS=${{ steps.op-load-secret.outputs.API_DB_PASS }} \
+            API_DB=${{ steps.op-load-secret.outputs.API_DB }} \
             FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
             FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
             MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
@@ -94,6 +101,10 @@ jobs:
             LISTS=${{ steps.op-load-secret.outputs.LISTS }} \
             export LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
             docker compose down
+            API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
+            API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
+            API_DB_PASS=${{ steps.op-load-secret.outputs.API_DB_PASS }} \
+            API_DB=${{ steps.op-load-secret.outputs.API_DB }} \
             FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
             FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
             MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
