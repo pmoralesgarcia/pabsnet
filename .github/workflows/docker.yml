@@ -58,9 +58,8 @@ jobs:
           key: ${{ steps.op-load-secret.outputs.PRIVATE_SSH_KEY }}
           port: 22
           script: |
-            git clone git@github.com:pmoralesgarcia/pabsnet.git
             cd ~/pabsnet
-            
+            git pull
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
             FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
             FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
