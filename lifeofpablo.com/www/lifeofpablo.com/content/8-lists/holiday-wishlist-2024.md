@@ -16,3 +16,5 @@ Status: unlisted
 ](https://chromeindustries.com/products/powell-sneaker?variant=40685798391868)
 
 * [Chrome Industries Mini Buckle Keychain](https://chromeindustries.com/products/mini-buckle-keychain-1?pr_prod_strat=pinned&pr_rec_id=fabccbcda&pr_rec_pid=7549288775740&pr_ref_pid=7147574165564&pr_seq=uniform&variant=41918090149948)
+
+* [AirTags (Sam Club)](https://www.samsclub.com/p/apple-airtag-4-pack-mx542ll-a/P990336783?xid=plp_product_3)
