@@ -1,55 +1,117 @@
 <?php $this->yellow->layout("header") ?>
 <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
 
+<div class="content">
+  <div class="main h-entry" role="main">
+    <header class="tc ph4">
+      <h1 class="f3 f2-m f1-l fw2 mv3">
+        <?php echo $this->yellow->page->getHtml("titleContent") ?>
+      </h1>
+      <h2 class="f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
+        <?php echo $this->yellow->page->getHtml("Description") ?>
+      </h2>
+    </header>
+    
+    
+  <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+  <?php $catalog_json = file_get_contents('https://api.lifeofpablo.com/vinyls');
+  $decoded_json = json_decode($catalog_json, true);
+  
+  $items = $decoded_json['data'];
 
-<?php
+  $one_item = $items[rand(0, count($decoded_json['data']) - 1)];
+  $id = $one_item['id'];
+  $name = $one_item['title'];
+  $artist = $one_item['artist'];
+  $cover = $one_item['thumbnail_url'];
+  $info_url = $one_item['info_url'];
+  $year = $one_item['copyright_year'];
+  $label = $one_item['label'];
 
-/**
- * Use an HTML form to create a new entry in the
- * users table.
- *
- */
- require "system/layouts/config.php";
- require "system/layouts/common.php";
+  echo '<a class="db center mw5 tc black link dim" title="'.$name.'"';
+  echo 'href="'.$info_url.'">';
+  echo '';
+  echo '<img style="width: 50%;"/';
+  echo 'alt="'.$name.' Album Cover"';
+  echo 'src="'.$cover.'"';
+  echo '>';
+  echo '';
+  echo '<dl class="mt2 f6 lh-copy">';
+  echo '<dt class="clip">Title</dt>';
+  echo '<dd class="ml0">'.$name.'</dd>';
+  echo '<dt class="clip">Artist</dt>';
+  echo '<dd class="ml0 gray">'.$artist.'</dd>';
+  echo '</dl>';
+  echo '</a>';
+  echo '';
+  echo '';
+
+  ?>
+  <table>
+    <tr>
+<!--    <th>Album Cover</th> -->  
+      <th>Album</th>
+      <th>Artist</th>
+      <th>Copyright</th>
+    </tr>
+
+    <?php
+  $catalog_json = file_get_contents('https://api.lifeofpablo.com/vinyls');
+
+$decoded_json = json_decode($catalog_json, true);
+$items = $decoded_json['data'];
+foreach($items as $item) {
+  $id = $item['id'];
+  $name = $item['title'];
+  $artist = $item['artist'];
+	$cover = $item['thumbnail_url'];
+  $info_url = $item['info_url'];
+  $year = $item['copyright_year'];
+  $label = $item['label'];
+  
+
+  echo '<tr>';
+# echo '<td><img src="'.$cover.'" style="width:2%" alt="'.$name.' album cover"></td>';
 
 
+  echo '<td><a href="'.$info_url.'">'.$name.'</a></td>';
+  echo '<td><a href="https://www.discogs.com/search/?q='.$artist.'&type=all&format_exact=Vinyl">'.$artist.'</a> </td>';
+  echo '<td>&copy; '.$year.' '.$label.'</td>';
+  echo '</tr>';
 
-try {
-  $connection = new PDO($dsn, $username, $password, $options);
 
-  $sql = "SELECT * FROM vinyls ORDER BY title DESC";
-
-  $statement = $connection->prepare($sql);
-  $statement->execute();
-
-  $result = $statement->fetchAll();
-} catch(PDOException $error) {
-  echo $sql . "<br>" . $error->getMessage();
+#
 }
 ?>
-        
+</div>
+
+    <!-- <style type="text/css" media="all">
+  :target {
+      -webkit-animation: target-fade 10s 1;
+      -moz-animation: target-fade 10s 1;
+  }
+  
+  @-webkit-keyframes target-fade {
+      0% { background-color: rgba(255, 163, 215, 1); }
+      100% { background-color: rgba(255, 163, 215, 1); }
+  }
+  
+  @-moz-keyframes target-fade {
+      0% { background-color: rgb(166, 163, 255); }
+      100% { background-color: rgba(255, 163, 215, 1); }
+  }
+  </style> -->
+</table>
+
+<div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+  
 
 
 
 
 
 
-<div class="h-entry">
-<table>
-  <tr class="h-item">
-    <th>Album</th>
-    <th>Artist</th>
-    <th>Year</th>
-  </tr>
-  <?php foreach ($result as $row) : ?>
-  <tr>
-    <td class="p-name"><a href="https://www.discogs.com/search/?q=%22<?php echo escape($row["title"]); ?> <?php echo escape($row["artist"]); ?>%22&type=all&format_exact=Cassette" class="u-url"><?php echo escape($row["title"]); ?></a></td>
-    <td><?php echo escape($row["artist"]); ?></td>
-    <td><?php echo escape($row["copyright_year"]); ?></td>
-  </tr>
-    <?php endforeach; ?>
 
-</table> 
 
 </div>
 
