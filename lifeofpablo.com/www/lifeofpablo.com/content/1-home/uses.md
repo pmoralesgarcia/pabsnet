@@ -5,7 +5,6 @@ Published: 2024-01-24 22:00:59
 ### Communication Clients
 * Discord
 * Slack
-* The Lounge (self-hosted)
 * Signal
 ### Software
 * Operating Systems
@@ -16,9 +15,7 @@ Published: 2024-01-24 22:00:59
   * Firefox
 
 ### RSS Reader
-* FreshRSS (self-hosted)
 * Miniflux (self-hosted)
-* NetNewsWire (iOS)
 
 ### Text-Editors
 * Vim

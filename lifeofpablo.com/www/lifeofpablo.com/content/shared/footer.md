@@ -11,13 +11,13 @@ Status: shared
     <i class="f2 dib h2 w2 fa-brands fa-linkedin blue"></i>
   </a>
 
-  <a class="link near-black hover-silver dib mh3 tc" href="https://social.lifeofpablo.com" title="Mastodon">
+  <!--- <a class="link near-black hover-silver dib mh3 tc" href="https://social.lifeofpablo.com" title="Mastodon">
     <i class="f2 dib h2 w2 fa-brands fa-mastodon purple"></i>
-  </a>
+  </a> -->
 
-  <a class="link near-black hover-silver dib mh3 tc" href="https://micropub.lifeofpablo.com/" title="Microblog">
+   <!--- <a class="link near-black hover-silver dib mh3 tc" href="https://micropub.lifeofpablo.com/" title="Microblog">
     <i class="f2 dib h2 w2 fa-brands fa-microblog orange"></i>
-  </a>
+  </a> -->
 
   <a class="link near-black hover-silver dib mh3 tc" href="/cookie-policy" title="Cookies">
     <i class="f2 dib h2 w2 fa-solid fa-cookie brown pink"></i>
