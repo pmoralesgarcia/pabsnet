@@ -18,6 +18,6 @@ ImageAlt: IndieWeb Logo
 
 Join [Tantek](https://tantek.com) and me for an informal IndieWeb brunch in person in San Francisco. We'll meet outside the venue right before noon on Sunday, and get a table or two as needed. Space is limited capacity, first 8 RSVPs.
 
-Learn more about the event!: https://events.indieweb.org/2024/12/indieweb-sf-brunch-jfTJ1SbEpDTx
+Learn more about the event!: [https://events.indieweb.org/2024/12/indieweb-sf-brunch-jfTJ1SbEpDTx](https://events.indieweb.org/2024/12/indieweb-sf-brunch-jfTJ1SbEpDTx)
 
 Feel free to RSVP via Webmention or send me an email!
