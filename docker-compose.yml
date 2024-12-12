@@ -177,7 +177,7 @@ services:
     ports:
       - 8122:80
     volumes:
-      - ./climateweeknyc.lifeofpablo.com/www/climateweeknyc.lifeofpablo.com:/var/www/html
+      - ./climateweeknyc.lifeofpablo.com/www:/var/www/html
     environment:
       - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
       - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
