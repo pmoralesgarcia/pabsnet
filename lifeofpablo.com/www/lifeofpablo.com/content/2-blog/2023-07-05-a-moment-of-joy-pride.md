@@ -7,21 +7,7 @@ Tag: San Francisco Pride, SF Pride, IndieWeb Carninval, July 2023, joy, pride
 Image: https://photos.lifeofpablo.com/san-francisco/sf-pride-2023/web-sized/7.jpeg
 Theme: pablo
 ---
-<style>
-@import "https://pabs.tech/media/css/tachyons.css";
-body {
-overflow-x: hidden;
-}
-.full-width {
-	left: 50%;
-	margin-left: -50vw;
-	margin-right: -50vw;
-	max-width: 100vw;
-	position: relative;
-	right: 50%;
-	width: 100vw;
-}
-</style>
+
 <div class="full-width">
 <article class="athelas">
   <div class="vh-100 dt w-100 tc bg-dark-gray white cover" style="background:url(https://photos.lifeofpablo.com/san-francisco/sf-pride-2023/web-sized/7.jpeg) no-repeat center;">
@@ -136,3 +122,23 @@ Here are the things I felt. (Hover over with your mouse.
 
   </div>
 </article>
+
+<style>
+@import "https://pabs.tech/media/css/tachyons.css";
+body {
+overflow-x: hidden;
+}
+.full-width {
+	left: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	max-width: 100vw;
+	position: relative;
+	right: 50%;
+	width: 100vw;
+}
+.u-photo {
+  border-radius: 50%;
+  width: 5%;
+  height: auto;
+</style>
