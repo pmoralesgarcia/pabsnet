@@ -28,6 +28,7 @@ overflow-x: hidden;
 
 **Film/Analog**
 
+* [Delores Park](delores-park)
 * [Filming on mini-dv tapes in San Francisco](filming-minidv-sf)
 * [Birthday Weekend](san-francisco/birthday-weekend)
 * [Ocean Beach](san-francisco/ocean-beach)
