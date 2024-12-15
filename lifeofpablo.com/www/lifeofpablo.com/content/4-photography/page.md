@@ -12,7 +12,7 @@ Published: 2024-10-02
 
 [Mexico](mexico)
 
-[South Korea](/interactives/photos)
+[South Korea](/korea/interactives/photos)
 
 [United States](united-states)
 
