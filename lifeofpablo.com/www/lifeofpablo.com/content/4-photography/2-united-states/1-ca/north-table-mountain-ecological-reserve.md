@@ -1,6 +1,6 @@
 ---
 Title: North Table Mountain Ecological Reserve
-Date: 2023-12-26
+Date: 2024-12-14
 ---
 Things you see on a hike. 🚶🏾🥾
 

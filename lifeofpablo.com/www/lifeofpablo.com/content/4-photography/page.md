@@ -12,7 +12,7 @@ Published: 2024-10-02
 
 [Mexico](mexico)
 
-[South Korea](https://korea.lifeofpablo.com/interactives/photos)
+[South Korea](/interactives/photos)
 
 [United States](united-states)
 

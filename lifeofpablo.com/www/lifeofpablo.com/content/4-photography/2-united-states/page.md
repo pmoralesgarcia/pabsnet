@@ -1,12 +1,12 @@
 ---
 Title: United States
-Published: 2023-09-25 23:36:09
+Published: 2024-12-14 23:36:09
 ---
 
 ### California
 [Los Angeles](united-states/los-angeles)
 
-[North Table Mountain Ecological Reserve](north-table-mountain-ecological-reserve)
+[North Table Mountain Ecological Reserve](united-states/ca/north-table-mountain-ecological-reserve)
 
 [Salinas](united-states/ca/salinas)
 
@@ -14,7 +14,7 @@ Published: 2023-09-25 23:36:09
 
 [Sacramento](sacramento)
 
-[San Francisco](san-francisco)
+[San Francisco](united-states/ca/san-francisco)
 
 [San Luis Reservoir](united-states/ca/san-luis-resevoir)
 

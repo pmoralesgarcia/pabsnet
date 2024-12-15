@@ -21,17 +21,17 @@ overflow-x: hidden;
 
 **Digital Photography**
 
-* [Ocean Beach](san-francisco/ocean-beach-digital)
-* [SF Pride](san-francisco/san-francisco-pride)
-* [Land's End Lookout](san-francisco/lands-end-lookout)
-* [Skatepark](san-francisco/skatepark)
+* [Ocean Beach](ocean-beach-digital)
+* [SF Pride](san-francisco-pride)
+* [Land's End Lookout](lands-end-lookout)
+* [Skatepark](skatepark)
 
 **Film/Analog**
 
 * [Delores Park](delores-park)
 * [Filming on mini-dv tapes in San Francisco](filming-minidv-sf)
-* [Birthday Weekend](san-francisco/birthday-weekend)
-* [Ocean Beach](san-francisco/ocean-beach)
+* [Birthday Weekend](birthday-weekend)
+* [Ocean Beach](ocean-beach)
 
 
 
