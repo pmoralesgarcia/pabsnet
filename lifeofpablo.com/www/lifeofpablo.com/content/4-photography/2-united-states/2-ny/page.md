@@ -1,6 +1,5 @@
 ---
 Title: New York City
-TitleSlug: NYC 2023
 Author: Pablo Morales
 Published: 2023-11-11 21:37
 Image: https://photos.lifeofpablo.com/nyc-2023/91140007.JPG

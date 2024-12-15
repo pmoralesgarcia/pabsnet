@@ -1,7 +1,6 @@
 ---
 Title: San Francisco Pride
 Published: 2023-03-01
-Theme: pablo
 ---
 ### A great event!
 

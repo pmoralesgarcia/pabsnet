@@ -4,15 +4,15 @@ Published: 2024-12-14 23:36:09
 ---
 
 ### California
-[Los Angeles](los-angeles)
+[Los Angeles](ca/los-angeles)
 
 [North Table Mountain Ecological Reserve](ca/north-table-mountain-ecological-reserve)
 
 [Salinas](ca/salinas)
 
-[San Diego](san-diego)
+[San Diego](ca/san-diego)
 
-[Sacramento](sacramento)
+[Sacramento](ca/sacramento)
 
 [San Francisco](ca/san-francisco)
 
@@ -23,10 +23,10 @@ Published: 2024-12-14 23:36:09
 
 ### Nebraska
 
-[Omaha](united-states/omaha)
+[Omaha](ne/omaha)
 
 ### New York
-[New York](nyc-2023)
+[New York](ny)
 
 ### Washington
-[Seattle](united-states/seattle)
+[Seattle](wa/seattle)
