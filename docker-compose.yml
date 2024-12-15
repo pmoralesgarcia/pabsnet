@@ -1,7 +1,7 @@
 services:
   nginx:
     container_name: nginx
-    image: nginxproxy/nginx-proxy:1.4
+    image: jwilder/nginx-proxy:alpine
     restart: unless-stopped
     ports:
         - 80:80
@@ -29,7 +29,7 @@ services:
     environment:
         DEFAULT_EMAIL: ${DEFAULT_EMAIL}
   mariadb:
-    image: mariadb:10.11
+    image: mariadb:11
     ports:
       - 3306:3306
     container_name: mariadb
@@ -44,7 +44,7 @@ services:
       - TZ=America/Los_Angeles 
 
   miniflux:
-    image: miniflux/miniflux:2.0.51
+    image: miniflux/miniflux:2.2.3
     container_name: miniflux
     ports:
       - "8084:8080"
@@ -265,7 +265,7 @@ services:
     volumes:
       - ./ghost/content:/var/lib/ghost/content
   yourls:
-    image: yourls:1.9.2
+    image: yourls:1.9-fpm-alpine
     container_name: yourls
     restart: always
     ports:
