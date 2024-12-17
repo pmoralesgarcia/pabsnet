@@ -56,7 +56,9 @@ Published: 2024-01-24 21:23:49
 ## Things I Do
 [Hikes](hikes)
 
-[Photography](/photography ) [Places I've developed at](/photography/places-to-develop-film)
+[Photography](/photography ) 
+
+* [Places I've developed at](/photography/places-to-develop-film)
 
 [Runs](runs)
 
