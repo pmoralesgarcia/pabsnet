@@ -2,7 +2,7 @@
 Title: Seattle/Vancouver Trip 
 Published: 2016-06-21 23:53:19
 Author: Pablo Morales
-Layout: Blog
+Layout: blog
 Tag: 2016, trip, seattle, vancouver
 ---
 I am finally back from my trip that I planned out with my friends. Where did I go? Good Question! I went to Seattle and Vancouver, BC to check out a new part of the world. Relatively close I should say. Checking out those places has been real fun! This vacation was well needed! Work was starting to get to me! I did not know how much longer I was going to take it.  
