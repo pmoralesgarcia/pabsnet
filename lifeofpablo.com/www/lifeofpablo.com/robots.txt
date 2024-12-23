@@ -60,7 +60,7 @@ Disallow: /
 User-agent: Pinterestbot
 Disallow: /
 
-User-agent: Barkrowler
+User-agent: barkrowler
 Disallow: /
 
 User-agent: *
@@ -300,6 +300,9 @@ User-agent: BecomeBot
 Disallow: /
 
 User-agent: ConveraCrawler
+Disallow: /
+
+User-agent: ClaudeBot
 Disallow: /
 
 User-agent: NerdyBot
