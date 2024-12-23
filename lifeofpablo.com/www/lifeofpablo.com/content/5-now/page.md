@@ -3,7 +3,7 @@ Title: Now
 TitleContent: What is Pablo doing now?
 TitleNavigation: /now
 TitleSlug: now
-Published: 2024-09-21 23:36:09
+Published: 2024-12-22 23:36:09
 ---
 **Where I live**: I currently live in the beautiful San Francisco! &#127750;
 
@@ -11,9 +11,9 @@ Published: 2024-09-21 23:36:09
 
 **Certifications**: I'm Google certified in IT and Google Workspace. Currently working on a few cybersecurity and networking courses. &#128295;
 
-**Startups**: I'm helping my friend, [Sammy Harper](https://www.sammyharper.com/) with his startup, [Terrabyte](https://www.terrabyte.eco/). I'm also working on a different startup idea with [Chris Wan](https://www.chriswan.me/#/). &#128165;
+**Startups**: I'm helping my friend, [Sammy Harper](https://www.sammyharper.com/) with his startup, [Terrabyte](https://www.terrabyte.eco/). I'm also working on a different startup idea with [Chris Wan](https://www.chriswan.me/#/).  &#127758;
 
-**Travel**: I plan on going to NYC. I really want to visit the Duolingo Office! &#129417;
+**Travel**: I want to take my closest friends to Oaxaca, Mexico.  &#127474;&#127485;
 
 **Blog**: I enjoy writing  [blog posts](https://lifeofpablo.com/blog/) on topics I enjoy. I wrote 100 blog posts in 2023. &#128221;
 
@@ -23,4 +23,4 @@ Published: 2024-09-21 23:36:09
 
 [Learn more about /now pages!](https://nownownow.com/about)
 
-Last Updated: 2024-09-21
+Last Updated: 2024-12-22
