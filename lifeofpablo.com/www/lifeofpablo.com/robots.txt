@@ -60,6 +60,9 @@ Disallow: /
 User-agent: Pinterestbot
 Disallow: /
 
+User-agent: Barkrowler
+Disallow: /
+
 User-agent: *
 Disallow: /harming/humans
 Disallow: /harming/machines
