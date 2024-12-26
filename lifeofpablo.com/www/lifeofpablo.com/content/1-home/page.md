@@ -9,7 +9,7 @@ Things about me:
 * Love using analog technology
 * I speak English, Spanish and French
 * Enjoy Traveling! Check out my [photos](photography)
-* I love getting song recommendations! [Want to share one?](lists/song-recommendations)
+* I love getting song recommendations!
 
 Check out my[ /now](/now) page!
 
