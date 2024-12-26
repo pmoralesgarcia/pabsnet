@@ -345,7 +345,16 @@ services:
       - LETSENCRYPT_HOST=api.lifeofpablo.com
     ports:
       - 3453:3000
-
+  11vty:
+    container_name: 11vty
+    build:
+      context: ./11vty/eleventy-from-scratch
+    environment:
+      - NODE_ENV=production
+      - VIRTUAL_HOST=beta.lifeofpablo.com
+      - LETSENCRYPT_HOST=beta.lifeofpablo.com
+    ports:
+      - 3455:3000
 volumes:
  mariadb:
  miniflux-db:

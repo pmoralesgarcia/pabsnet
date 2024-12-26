@@ -1,8 +1,3 @@
-lifeofpablo.com/www/lifeofpablo.com/system/extensions/yellow-user.ini
-**/.DS_Store
-**/.env
-.env
-
 # Misc
 *.log
 npm-debug.*
@@ -17,3 +12,4 @@ npm-debug.*
 node_modules
 dist
 src/_includes/css
+
