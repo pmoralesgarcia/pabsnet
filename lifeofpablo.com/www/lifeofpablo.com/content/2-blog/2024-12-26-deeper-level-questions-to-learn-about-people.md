@@ -5,7 +5,7 @@ Author: Pablo Morales
 Layout: blog
 Tag: 2024, 100 questions, chatgpt, people, discussion, questions, get to know people
 Description: 
-Image: https://static.lifeofpablo.com/media/blog/100-questions/questions.jpg
+Image: https://static.lifeofpablo.com/media/blog/100-questions/question.jpg
 ImageAlt: What can you do today that you couldn't do a year ago?
 
 ---
@@ -20,7 +20,7 @@ I will find a way to answer these questions. I will do my best to do it in order
 
 100 Questions in 100 Days! Let's begin!
 
-Would you like to help me answer some of these questions? Please email me at [pablo [at] lifeofpablo.com](mailto:pablo@lifeofpablo.com). Make sure to tell me which question you'd like to discuss!
+Would you like to help me answer some of these questions? Please email me at [pablo [at] lifeofpablo.com](mailto:pablo@lifeofpablo.com) or send me a webmention! Make sure to tell me which question you'd like to discuss!
 
 Key:
 
