@@ -1,6 +1,6 @@
 FROM node:22-slim
 
-WORKDIR /src
+WORKDIR /
 
 COPY package*.json ./
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "node", "index.js" ]
+CMD ["npm", "start"]
