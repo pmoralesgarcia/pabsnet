@@ -90,7 +90,7 @@ services:
       dockerfile: ./korea.lifeofpablo.com/Dockerfile  
     volumes:
       #Project root
-      - ./korea.lifeofpablo.com/www/korea.lifeofpablo.com:/var/www/html
+      - ./korea.lifeofpablo.com/www:/var/www/html
     ports:
       - "8092:80"
     environment:
