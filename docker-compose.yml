@@ -354,7 +354,7 @@ services:
       - VIRTUAL_HOST=beta.lifeofpablo.com
       - LETSENCRYPT_HOST=beta.lifeofpablo.com
     ports:
-      - 3455:3000
+      - 3455:8080
 volumes:
  mariadb:
  miniflux-db:
