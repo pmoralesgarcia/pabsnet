@@ -65,6 +65,11 @@ Published: 2024-01-24 21:23:49
 ## Who I Follow
 [Blog Roll](/blog/roll)
 
+## Working Out
+[General Workout Plan](exercise/workout-overview)
+
+[Weekly Workout Plan](exercise/workout-weekly)
+
 ## Uses
 [Uses](/uses)
 

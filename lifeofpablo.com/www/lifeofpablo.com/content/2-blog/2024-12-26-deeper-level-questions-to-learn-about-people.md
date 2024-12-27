@@ -4,7 +4,7 @@ Published: 2024-12-26 00:55:10
 Author: Pablo Morales
 Layout: blog
 Tag: 2024, 100 questions, chatgpt, people, discussion, questions, get to know people
-Description: 
+Description: Asking my self and other deeper-level questions.
 Image: https://static.lifeofpablo.com/media/blog/100-questions/question.jpg
 ImageAlt: What can you do today that you couldn't do a year ago?
 
@@ -30,7 +30,7 @@ Key:
 
 
 ## <span id="pf" markdown="1">Philosophy & Mindset</span>  
-1. <span id="1" markdown="1">What is your definition of success? <span class="status unanswered">🔴</span><span class="answered-content">✅ [🔗](#response-1)</span></span>  
+1. <span id="1" markdown="1">What is your definition of success? <span class="status unanswered hidden">🔴</span><span class="answered-content">✅ [🔗](what-is-your-definition-of-success)</span></span>  
 
 2. <span id="2" markdown="1">What motivates you to work hard? <span class="status unanswered">🔴</span><span class="answered-content">✅ [🔗](#response-2)</span></span>  
 
