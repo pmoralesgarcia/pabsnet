@@ -32,7 +32,7 @@ Key:
 ## <span id="pf" markdown="1">Philosophy & Mindset</span>  
 1. <span id="1" markdown="1">What is your definition of success? <span class="status unanswered hidden">🔴</span><span class="answered-content">✅ [🔗](what-is-your-definition-of-success)</span></span>  
 
-2. <span id="2" markdown="1">What motivates you to work hard? <span class="status unanswered">🔴</span><span class="answered-content">✅ [🔗](#response-2)</span></span>  
+2. <span id="2" markdown="1">What motivates you to work hard? <span class="status unanswered hidden">🔴</span><span class="answered-content">✅ [🔗](q-2)</span></span>  
 
 3. <span id="3" markdown="1">What’s the biggest risk you’ve ever taken? <span class="status unanswered">🔴</span><span class="answered-content">✅ [🔗](#response-3)</span></span>  
 
