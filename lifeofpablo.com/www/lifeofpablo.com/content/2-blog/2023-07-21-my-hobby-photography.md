@@ -136,7 +136,7 @@ The traditional dances are beautiful.
 Korea has a special place in my heart.
   <div class="cf ph2-ns">
     <div class="fl w-100 w-50-ns pa2" markdown="1">
-[image https://photos.lifeofpablo.com/korea/media/images/film-photos/62070003.JPG "group photo"]
+[image https://photos.lifeofpablo.com/korea/media/images/film-photos/web/62070003.jpeg "group photo"]
 </div>
     <div class="fl w-100 w-50-ns pa2">
 <dl class="lh-title pa4 mt0">
@@ -184,7 +184,7 @@ These were some cool dudes!
   <dt class="f6 b">Activity:</dt>
   <dd class="ml0">Two surfer dudes posing with their boards.</dd>
  <dt class="f6 b">More Photos in San Francisco:</dt>
-  <dd class="ml0" markdown="1">[Gallery](https://lifeofpablo.com/photography/san-francisco)</dd
+  <dd class="ml0" markdown="1">[Gallery](/photography/united-states/ca/san-francisco/ocean-beach)</dd
 </dl>
 </div>
     </div>
