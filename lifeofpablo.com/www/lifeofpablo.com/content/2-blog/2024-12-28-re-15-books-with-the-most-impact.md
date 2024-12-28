@@ -8,7 +8,7 @@ Description: These 15 books have made an impact on me some way or another.
 Image: https://static.lifeofpablo.com/media/blog/15-books/books.jpg
 ImageAlt: Books
 ---
-[Tracy](https://tracydurnell.com/) nominated me a while ago (more like July) to share my list(s) of books that have impacted me. Reiterating what Tracy wrote, many of these books had their moment with me and others still hold strong to me. 
+[Tracy](https://tracydurnell.com/) nominated me a while ago (more like July) to share my [list(s) of books](https://tracydurnell.com/2024/07/10/re-15-books-with-the-most-impact/) that have impacted me. Reiterating what Tracy wrote, many of these books had their moment with me and others still hold strong to me. 
 
 *I won't go too in-depth for some of these for various reasons. I also don't wan't to give too many spoilers.*
 
