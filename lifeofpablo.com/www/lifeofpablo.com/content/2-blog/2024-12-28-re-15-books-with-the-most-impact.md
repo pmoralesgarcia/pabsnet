@@ -1,6 +1,6 @@
 ---
 Title: Re: 15 Books with the Most Impact
-Published: 2024-12-27 20:21:53
+Published: 2024-12-28 20:21:53
 Author: Pablo Morales
 Layout: blog
 Tag: 2024, books, books that impacted me, impact, reply, webmention
