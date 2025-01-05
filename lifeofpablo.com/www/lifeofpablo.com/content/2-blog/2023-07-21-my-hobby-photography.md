@@ -204,7 +204,7 @@ These were some cool dudes!
   <dt class="f6 b">Activity:</dt>
   <dd class="ml0">Looking at the street signs.</dd>
   <dt class="f6 b">More Photos in Sacramento:</dt>
-  <dd class="ml0" markdown="1">[Gallery](https://lifeofpablo.com/photography/sacramento)</dd>
+  <dd class="ml0" markdown="1">[Gallery](https://lifeofpablo.com/photography/united-states/ca/sacramento)</dd>
 </dl>
 </div>
     </div>
@@ -223,5 +223,10 @@ overflow-x: hidden;
 	position: relative;
 	right: 50%;
 	width: 100vw;
+
+.u-photo {
+width: 2%;
+height: auto;
+border-radius: 50%;
 }
 </style>
