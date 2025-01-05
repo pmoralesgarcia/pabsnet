@@ -281,6 +281,20 @@ services:
       LETSENCRYPT_HOST: pabs.lol
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
+  grocy:
+    image: lscr.io/linuxserver/grocy:latest
+    container_name: grocy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VIRTUAL_HOST=grocy.lifeofpablo.com
+      - LETSENCRYPT_HOST=grocy.lifeofpablo.com
+    volumes:
+      - ./grocy/config:/config
+    ports:
+      - 9284:80
+    restart: unless-stopped
   owntracks-recorder:
     container_name: owntracks-recorder
     image: owntracks/recorder
