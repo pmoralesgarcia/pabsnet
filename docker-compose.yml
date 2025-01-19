@@ -198,11 +198,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ="America/Los_Angeles"
+      - VIRTUAL_HOST=pabs.tech
+      - LETSENCRYPT_HOST=pabs.tech
     volumes:
       - ./pabstech/config:/config
     ports:
       - 8203:80
-    restart: unless-stopped
+    restart: unless-stopped      
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
