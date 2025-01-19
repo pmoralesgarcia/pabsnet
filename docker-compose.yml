@@ -191,6 +191,18 @@ services:
       - 8124:80
     volumes:
       - ./lifeofpablo-interactives/www:/var/www/html
+  pabstech:
+    image: lscr.io/linuxserver/grav:latest
+    container_name: pabstech
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ="America/Los_Angeles"
+    volumes:
+      - ./pabstech/config:/config
+    ports:
+      - 8203:80
+    restart: unless-stopped
   httpbin:
     image: kennethreitz/httpbin
     container_name: httpbin
