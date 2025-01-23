@@ -3,9 +3,9 @@ Title: Blog page
 Published: @datetime
 Author: @username
 Layout: blog
-Tag: 2024
+Tag: 2025
 Description: 
-Image: https://static.lifeofpablo.com/
+Image: https://static.lifeofpablo.com/media/blog
 ImageAlt: 
 Status: draft
 ---
