@@ -440,9 +440,12 @@ services:
     # build: ..
 
     entrypoint: /bin/sso-auth
-    env_file:
-      ./sso/env
     environment:
+      - PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${SSO_CLIENT_SECRET}
+      - PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${SSO_CLIENT_ID}
+      - PROVIDER_GOOGLEQUICKSTART_TYPE=google
+      - PROVIDER_GOOGLEQUICKSTART_SLUG=google
+
       # Allow any google account to log in for demo purposes
       - AUTHORIZE_EMAIL_DOMAINS=lifeofpablo.com
 
@@ -476,6 +479,7 @@ services:
 
       # Tells nginx-proxy service how to route requests to this service
       - VIRTUAL_HOST=sso-auth.lifeofpablo.com,host.docker.internal
+      - LETSENCRYPT_HOST=sso-auth.lifeofpablo.com
     expose:
       - 4180
 
