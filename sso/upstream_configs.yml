@@ -1,14 +1,27 @@
 - service: httpbin
   default:
-    from: https://httpbin.sso.lifeofpablo.com
-    to: http://httpbin:8200
+    from: httpbin.sso.lifeofpablo.com
+    to: http://httpbin:8080
 
-- service: owntracks-frontend
+- service: hello-world
   default:
-    from: https://find.sso.lifeofpablo.com
-    to: http://owntracks-frontend/
-    skip_auth_regex:
-        - ^\/pub\/$
+    from: hello-world.sso.lifeofpablo.com
+    to: http://hello-world/
 
 
+- service: it-tools
+  default:
+    from: it-tools.sso.lifeofpablo.com
+    to: http://it-tools/
+      
 
+- service: jetlogs
+  default:
+    from: jetlogs.sso.lifeofpablo.com
+    to: http://jetlog:3000
+
+
+- service: dozzle 
+  default:
+    from: dozzle.sso.lifeofpablo.com
+    to: http://dozzle

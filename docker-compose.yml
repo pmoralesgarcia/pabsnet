@@ -369,6 +369,165 @@ services:
       - LETSENCRYPT_HOST=beta.lifeofpablo.com
     ports:
       - 3455:8080
+    # ===========================================================================
+  # sso services
+  #
+  # Here we provide a minimal sso installation for demo purposes that allows
+  # any valid google account to log in, and hard codes the various secrets
+  # required to secure communication.
+  #
+  # A more realistic deployment will likely require a specific organization's
+  # email domain and restrict access to upstream services based on Google Group
+  # membership.
+  #
+  # The sso-proxy service is handing requests to any domain under
+  # *.sso.localtest.me and the sso-auth service is available at sso-
+  # auth.localtest.me.
+  #
+  # There are two upstream services defined below, which can be accessed at
+  #  - http://hello-world.sso.localtest.me
+  #  - http://httpbin.sso.localtest.me
+  # ===========================================================================
+  sso-proxy:
+    # Swap the two lines below to build from the current commit instead of
+    # pulling the latest dev image
+    image: buzzfeed/sso-dev:latest
+    # build: ..
+
+    entrypoint: /bin/sso-proxy
+    environment:
+      # Allow any google account to log in for demo purposes
+      - UPSTREAM_DEFAULT_EMAIL_DOMAINS=lifeofpablo.com
+
+      # (Optional) Allow specific google email address to log in for demo purposes
+      # - UPSTREAM_DEFAULT_EMAIL_ADDRESSES=*
+
+      - UPSTREAM_CONFIGFILE=/sso/upstream_configs.yml
+      - PROVIDER_URL_EXTERNAL=http://sso-auth.lifeofpablo.com
+      - PROVIDER_URL_INTERNAL=http://host.docker.internal
+
+      # CLIENT_ID and CLIENT_SECRET must match sso-auth's PROXY_CLIENT_ID and
+      # PROXY_CLIENT_SECRET configuration
+      - CLIENT_ID=${SSO_CLIENT_ID1}
+      - CLIENT_SECRET=${SSO_CLIENT_SECRET1}
+
+      # XXX: These secrets are for demonstration purposes only! Use
+      #
+      #     openssl rand -base64 32
+      #
+      # to generate your own.
+      - SESSION_COOKIE_SECRET=${SSO_PROXY_SESSION}
+
+      # Disable https for demo purposes
+      - SESSION_COOKIE_SECURE=false
+
+      # TODO: these config values should probably have defaults
+      - UPSTREAM_CLUSTER=dev
+      - METRICS_STATSD_HOST=127.0.0.1
+      - METRICS_STATSD_PORT=8125
+
+      # Tells nginx-proxy service how to route requests to this service
+      - VIRTUAL_HOST=*.sso.lifeofpablo.com
+    volumes:
+      - ./sso/upstream_configs.yml:/sso/upstream_configs.yml:ro
+    expose:
+      - 4180
+
+  sso-auth:
+    # Swap the two lines below to build from the current commit instead of
+    # pulling the latest dev image
+    image: buzzfeed/sso-dev:latest
+    # build: ..
+
+    entrypoint: /bin/sso-auth
+    env_file:
+      ./sso/env
+    environment:
+      # Allow any google account to log in for demo purposes
+      - AUTHORIZE_EMAIL_DOMAINS=lifeofpablo.com
+
+      # (Optional) Allow specific email address to log in for demo purposes
+      # This overrides AUTHORIZE_EMAIL_DOMAINS
+      # - AUTHORIZE_EMAIL_ADDRESSES=*
+
+      - AUTHORIZE_PROXY_DOMAINS=lifeofpablo.com
+
+      - SERVER_SCHEME=http
+      - SERVER_HOST=sso-auth.lifeofpablo.com
+
+      # These values must match sso-proxy's CLIENT_ID and CLIENT_SECRET values
+      - CLIENT_ID=${SSO_CLIENT_ID2}
+      - CLIENT_SECRET=${SSO_CLIENT_SECRET2}
+
+      # XXX: These secrets are for demonstration purposes only! Use
+      #
+      #     openssl rand -base64 32
+      #
+      # to generate your own.
+      - SESSION_KEY=${SSO_AUTH_SESSION_KEY}
+      - SESSION_COOKIE_SECRET=${SSO_AUTH_SESSION}
+
+      # Disable https for demo purposes
+      - SESSION_COOKIE_SECURE=false
+
+      # TODO: these config values should probably have defaults
+      - METRICS_STATSD_HOST=127.0.0.1
+      - METRICS_STATSD_PORT=8125
+
+      # Tells nginx-proxy service how to route requests to this service
+      - VIRTUAL_HOST=sso-auth.lifeofpablo.com,host.docker.internal
+    expose:
+      - 4180
+
+  # ===========================================================================
+  # Upstream services protected by sso
+  #
+  # These services can be accessed at
+  # - hello-world.sso.localtest.me
+  # - httpbin.sso.localtest.me
+  # ===========================================================================
+
+  hello-world:
+    image: tutum/hello-world:latest
+    expose:
+      - 80
+  it-tools:
+    image: 'corentinth/it-tools:latest'
+    ports:
+      - '8087:80'
+    restart: unless-stopped
+    container_name: it-tools
+
+  # ===========================================================================
+  # nginx-proxy handles routing of requests to the sso-proxy and sso-auth
+  # containers.  See its docs for more info:
+  # https://github.com/jwilder/nginx-proxy
+  # ===========================================================================
+  nginx-proxy:
+    image: jwilder/nginx-proxy:latest
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  jetlog:
+    image: pbogre/jetlog
+    environment:
+     - PUID=1000
+     - PGID=1000
+     - JETLOG_PORT=3000
+    volumes:
+      - ./jetlog:/data
+    restart: unless-stopped
+    expose:
+      - 3000
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 3445:8080
 volumes:
  mariadb:
  miniflux-db:
