@@ -487,47 +487,8 @@ services:
   # - httpbin.sso.localtest.me
   # ===========================================================================
 
-  hello-world:
-    image: tutum/hello-world:latest
-    expose:
-      - 80
-  it-tools:
-    image: 'corentinth/it-tools:latest'
-    ports:
-      - '8087:80'
-    restart: unless-stopped
-    container_name: it-tools
 
-  # ===========================================================================
-  # nginx-proxy handles routing of requests to the sso-proxy and sso-auth
-  # containers.  See its docs for more info:
-  # https://github.com/jwilder/nginx-proxy
-  # ===========================================================================
-  nginx-proxy:
-    image: jwilder/nginx-proxy:latest
-    ports:
-      - "80:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
 
-  jetlog:
-    image: pbogre/jetlog
-    environment:
-     - PUID=1000
-     - PGID=1000
-     - JETLOG_PORT=3000
-    volumes:
-      - ./jetlog:/data
-    restart: unless-stopped
-    expose:
-      - 3000
-  dozzle:
-    container_name: dozzle
-    image: amir20/dozzle:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      - 3445:8080
 volumes:
  mariadb:
  miniflux-db:
