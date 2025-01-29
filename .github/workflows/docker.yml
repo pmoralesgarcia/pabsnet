@@ -46,8 +46,8 @@ jobs:
           GHOST_SMTP_PORT: op://pablo/ghost-pabsnet/smtp_port
           GHOST_SMTP_USER: op://pablo/ghost-pabsnet/email
           GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
-          SSO_CLIENT_ID: op://pablo/sso-lifeofpablo/username
-          SSO_CLIENT_SECRET: op://pablo/sso-lifeofpablo/password
+          PROVIDER_GOOGLEQUICKSTART_CLIENT_ID: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_ID
+          PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET
           SSO_CLIENT_ID2: op://pablo/sso-lifeofpablo/username
           SSO_CLIENT_SECRET2: op://pablo/sso-lifeofpablo/password
           SSO_PROXY_SESSION: op://pablo/sso-lifeofpablo/sso-proxy-session
@@ -89,8 +89,8 @@ jobs:
             GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            SSO_CLIENT_SECRET=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
-            SSO_CLIENT_ID=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
+            PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
+            PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
             SSO_CLIENT_SECRET1=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET }} \
             SSO_CLIENT_ID1=${{ steps.op-load-secret.outputs.SSO_CLIENT_ID }} \
             SSO_CLIENT_SECRET2=${{ steps.op-load-secret.outputs.SSO_CLIENT_SECRET2 }} \
