@@ -402,7 +402,7 @@ services:
     environment:
       - PGUSER
       - POSTGRES_PASSWORD
-    # networks:
+   # # networks:
     #  - 'zitadel'
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-d", "zitadel", "-U", "postgres"]
