@@ -61,6 +61,8 @@ jobs:
           ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
           ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE
           ZITADEL_EXTERNALSECURE: op://pablo/sso-lifeofpablo/ZITADEL_EXTERNALSECURE
+          PGUSER: op://pablo/sso-lifeofpablo/PGUSER
+          POSTGRES_PASSWORD: op://pablo/sso-lifeofpablo/POSTGRES_PASSWORD
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -108,6 +110,8 @@ jobs:
             ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD }} \
             ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE }} \
             ZITADEL_EXTERNALSECURE=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            PGUSER=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            POSTGRES_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -145,4 +149,6 @@ jobs:
             ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD }} \
             ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE }} \
             ZITADEL_EXTERNALSECURE=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            PGUSER=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            POSTGRES_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
             docker compose up --detach

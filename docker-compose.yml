@@ -370,6 +370,7 @@ services:
     ports:
       - 3455:8080
   zitadel:
+    container_name: zitadel
     restart: 'always'
     networks:
       - 'zitadel'
@@ -395,6 +396,7 @@ services:
       - '5887:8080'
 
   zit-db:
+    container_name: zit-db
     restart: 'always'
     image: postgres:16-alpine
     environment:
