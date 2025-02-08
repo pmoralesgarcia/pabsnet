@@ -369,43 +369,6 @@ services:
       - LETSENCRYPT_HOST=beta.lifeofpablo.com
     ports:
       - 3455:8080
-  zitadel:
-    container_name: zitadel
-    restart: 'always'
-    image: 'ghcr.io/zitadel/zitadel:latest'
-    command: 'start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled'
-    environment:
-      - ZITADEL_DATABASE_POSTGRES_HOST=zit-db
-      - ZITADEL_DATABASE_POSTGRES_PORT=5432
-      - ZITADEL_DATABASE_POSTGRES_DATABASE
-      - ZITADEL_DATABASE_POSTGRES_USER_USERNAME
-      - ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
-      - ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE
-      - ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
-      - ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
-      - ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE
-      - ZITADEL_EXTERNALSECURE
-      - VIRTUAL_HOST=sso.lifeofpablo.com
-      - LETSENCRYPT_HOST=sso.lifeofpablo.com
-    depends_on:
-      zit-db:
-        condition: 'service_healthy'
-    ports:
-      - '5887:8080'
-
-  zit-db:
-    container_name: zit-db
-    restart: 'always'
-    image: postgres:16-alpine
-    environment:
-      - PGUSER
-      - POSTGRES_PASSWORD
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "zitadel", "-U", "postgres"]
-      interval: '10s'
-      timeout: '30s'
-      retries: 5
-      start_period: '20s'
 
 
 volumes:
