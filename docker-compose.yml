@@ -397,7 +397,6 @@ services:
     environment:
       - VIRTUAL_HOST=portainer.lifeofpablo.com
       - LETSENCRYPT_HOST=portainer.lifeofpablo.com
-
 volumes:
  mariadb:
  miniflux-db:
