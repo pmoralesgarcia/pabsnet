@@ -7,6 +7,7 @@ Tag: 2024, Valentine's Day
 Description: Being alone on Valentine's Day isn't so bad.
 Image: https://static.lifeofpablo.com/media/images/blog-images/valentines-day-2024/IMG_8399.jpeg
 ImageAlt: A colorful Valentine's Day Card
+Theme: pablo
 ---
 <div class="bg-washed-red pa3 dark-pink ba b--dotted bw4 baskerville">
    <h1 class="f6 f2-m f-subheadline-l fw6 tc dark-pink">Happy Valentine's Day!</h1>

@@ -4,6 +4,7 @@ Published: 2023-08-08 20:15:53
 Author: Pablo Morales
 Layout: blog
 Tag: Oaxaca, Mexico, final days, wrapping up, trip, vacation 2023, summer 2023, audio post
+Theme: pablo
 ---
 <article class="cf ph3 ph5-ns pv5 bg-yellow navy b--dashed b--dark-green">
   <header class="fn fl-ns w-50-ns pr4-ns">
