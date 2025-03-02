@@ -10,7 +10,7 @@ ImageAlt: Creating self-expression
 ---
 This month's [IndieWeb Carnival](https://indieweb.org/IndieWeb_Carnival) focuses on self-expression. Everyone and anyone is welcome to participate!
 
-! Send me a webmention or email me at [pablo[at]lifeofpablo.com](mailto:pablo@lifeofpablo.com) to submit your posts.
+! Send me a webmention or email me at [pablo[at]lifeofpablo.com](mailto:pablo@lifeofpablo.com) to submit your posts. I will create a round up post and i will update this blog post with thr replies I receive! 
 
 ## What is self-expression? 
 
