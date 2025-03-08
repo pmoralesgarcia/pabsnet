@@ -28,11 +28,11 @@ Self-expression comes in various forms. It manifests differently in every person
 
 For me, I love speaking languages! I love playing games in French and being super duper competitive. I love reading in Spanish! 
 
-I grew up in a Mexican household which has greatly influenced my ways of self-expression. I love speaking with more emotion at home and being surrounded by people with my cultural background. An example of this when I am angry, I will cuss in Spanish like no other. I feel so much better after letting it all out. This [Instagram reel](https://www.instagram.com/p/DGg6FAnSJuj/) in Spanish will tell you what I mean.
+I grew up in a Mexican household which has greatly influenced my ways of self-expression. I love speaking with more emotion at home and being surrounded by people with my cultural background. An example of this is when I am angry, I will cuss in Spanish like no other. I feel so much better after letting it all out. This [Instagram reel](https://www.instagram.com/p/DGg6FAnSJuj/) in Spanish will tell you what I mean.
 
 The Mexican culture influences my American side and vice versa. I would consider myself very expressive in English. Ever since I was a kid, I loved saying, "That's so cute" or "That flower is so pretty." Sharing your emotions is very beautiful. Don't be afraid of saying things out loud like this. Fuck that toxic masculinity garbage!
 
-I love blogging and journaling. I love having a journal - getting lost in my thoughts while jotting them down on beautiful lined or dotted paper on a park bench or sitting crisscross applesauce on the top of a building in San Francisco. I love sharing my thoughts publicly blogging or quietly on paper. Not all forms of expression have to be public. Self-expression also includes time when it's you and only you involved. This includes, recording audio notes, coding your new blog engine, or building an arcade cabinet. Alone time is self-expression.
+I love blogging and journaling. I love having a journal - getting lost in my thoughts while jotting them down on beautiful lined or dotted paper on a park bench or sitting crisscross applesauce on the top of a building in San Francisco. I love sharing my thoughts publicly blogging or quietly on paper. Not all forms of expression have to be public. Self-expression also includes time when it's you and only you involved. This includes recording audio notes, coding your new blog engine, or building an arcade cabinet. Alone time is self-expression.
 
 As I've become older, I've stopped caring as much about what people perceive of me (or what I thought people perceived of me) in the things that interest me. Self-expression is about how comfortable you can be with yourself. It comes down to loving yourself more every day. I love dressing in bright colors, especially on a nice sunny day. It makes me feel great and brightens my mood. Heck, find me wearing the brightest pink shirt out in public in the streets of San Francisco. 
 
@@ -46,11 +46,11 @@ How you view self-expression is open to interpretation. How do you self-express?
 
 *What does self-expression do for you?*
 
-*Do you use self-expression as coping mechanism?*
+*Do you use self-expression as a coping mechanism?*
 
-*What has been your journey on becoming a more expressive version of yourself?*
+*What has been your journey to becoming a more expressive version of yourself?*
 
-*If your family culture is different from the country that you live in, how do you balance your self-expression? Are they interwined?*
+*If your family culture is different from the country that you live in, how do you balance your self-expression? Are they intertwined?*
 
 <a href="https://news.indieweb.org/en" class="u-syndication">
   Also posted on IndieNews
@@ -58,6 +58,10 @@ How you view self-expression is open to interpretation. How do you self-express?
 
 ### Submissions
 * [Another time](https://subcultureofone.org/2025/03/02/another-time/) by Greg Sarjeant.
+* [tomas](https://blog.inkommit.com/webmentions.html)
+* [I Always Wanted to Write a Manifesto](https://louplummer.lol/i-always-wanted-to-write-a-manifesto/) by Lou Plummer
+* [Self expression in a uniform world](https://fusil.uk/publications/2025/03/07/17348/) by Fusil House
+* [A Little Learning ...But I forgive myself ](https://www.jeremycherfas.net/blog/a-little-learning-) by Jeremy Cherfas
 
 
 
