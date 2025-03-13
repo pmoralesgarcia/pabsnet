@@ -126,10 +126,14 @@ header h1 a:link, header h1 a:hover {
     height: 100%;
   }
 
-    .list {
+  .list {
     list-style-type: none;
     margin: 0;
     padding: 0;
     }
-
+  
+  .img-alt {
+    font-style: italic;
+    margin-top: -0.5em;
+  }
     
