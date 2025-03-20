@@ -343,12 +343,12 @@ services:
       YOURLS_PASS: ${YOURLS_PASS}
       VIRTUAL_HOST: pabs.lol
       LETSENCRYPT_HOST: pabs.lol
+    volumes:
+      - ./yourls/plugins:/var/www/html/user/plugins
     labels:
       - "traefik.http.routers.yourls.rule=Host(`pabs.lol`)"
       - "traefik.http.routers.yourls.entrypoints=websecure"
       - "traefik.http.routers.yourls.tls.certresolver=myresolver"
-    volumes:
-      - ./yourls/plugins:/var/www/html/user/plugins
   grocy:
     image: lscr.io/linuxserver/grocy:latest
     container_name: grocy
