@@ -8,9 +8,9 @@ Description:
 Image: https://static.lifeofpablo.com/mages/blog-images/self-expression-indieweb-carnival/create.jpg
 ImageAlt: Creating self-expression
 ---
-This month's [IndieWeb Carnival](https://indieweb.org/IndieWeb_Carnival) focuses on self-expression. Everyone and anyone is welcome to participate!
+This month's [IndieWeb Carnival](https://indieweb.org/IndieWeb_Carnival) focuses on self-expression. Everyone and anyone is welcome to participate! I love reading posts in different languages!
 
-! Send me a webmention or email me at [pablo[at]lifeofpablo.com](mailto:pablo@lifeofpablo.com) to submit your posts. I will create a round up post and i will update this blog post with thr replies I receive! 
+! Send me a webmention or email me at [pablo[at]lifeofpablo.com](mailto:pablo@lifeofpablo.com) to submit your posts. I will create a round up post and i will update this blog post with the replies I receive! 
 
 ## What is self-expression? 
 
@@ -62,9 +62,13 @@ How you view self-expression is open to interpretation. How do you self-express?
 * [I Always Wanted to Write a Manifesto](https://louplummer.lol/i-always-wanted-to-write-a-manifesto/) by Lou Plummer
 * [Self expression in a uniform world](https://fusil.uk/publications/2025/03/07/17348/) by Fusil House
 * [A Little Learning ...But I forgive myself ](https://www.jeremycherfas.net/blog/a-little-learning-) by Jeremy Cherfas
-
-
-
+* [Lost Signal](https://www.streamof.me/LostSignal/index.html) by Sophia Wood
+* [small Web as self-expression](https://drmollytov.dev/2025-03-19) by (dr) molly tov
+* [Self-Expression](https://skippy.net/self-expression) by Scott Merrill
+* [The Many Expressions of my Soul](https://marisabel.nl/public/blog/The_Many_Expressions_of_my_Soul) by Marisabel
+* [Way over yonder in the low-key](https://bobbyhiltz.com/blog/2025/03/self-expression/) by Bobby Hiltz
+* [Closet what Closet?](https://sarajaksa.eu/2025/03/indieweb-carnival-march-2025-closet-what-closet/) by Sara Jakša
+* [Self-Expression In 2025](https://andrei.xyz/post/self-expression/) by andrei
 
 
 
