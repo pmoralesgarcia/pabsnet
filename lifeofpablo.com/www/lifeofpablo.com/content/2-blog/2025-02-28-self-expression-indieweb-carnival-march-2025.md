@@ -58,7 +58,7 @@ How you view self-expression is open to interpretation. How do you self-express?
 
 ### Submissions
 * [Another time](https://subcultureofone.org/2025/03/02/another-time/) by Greg Sarjeant.
-* [tomas](https://blog.inkommit.com/webmentions.html) (Acknowledgement)
+* [shamanism](https://blog.inkommit.com/webmentions.html) by Tomás
 * [I Always Wanted to Write a Manifesto](https://louplummer.lol/i-always-wanted-to-write-a-manifesto/) by Lou Plummer
 * [Self expression in a uniform world](https://fusil.uk/publications/2025/03/07/17348/) by Fusil House
 * [A Little Learning ...But I forgive myself ](https://www.jeremycherfas.net/blog/a-little-learning-) by Jeremy Cherfas
