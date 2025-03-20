@@ -1,33 +1,58 @@
 services:
-  nginx:
-    container_name: nginx
-    image: jwilder/nginx-proxy:alpine
-    restart: unless-stopped
+  # nginx:
+  #   container_name: nginx
+  #   image: jwilder/nginx-proxy:alpine
+  #   restart: unless-stopped
+  #   ports:
+  #       - 80:80
+  #       - 443:443
+  #   volumes:
+  #       - /var/run/docker.sock:/tmp/docker.sock:ro
+  #       - /var/docker/nginx/html:/usr/share/nginx/html
+  #       - /var/docker/nginx/certs:/etc/nginx/certs
+  #       - /var/docker/nginx/vhost:/etc/nginx/vhost.d
+  #       - /var/docker/nginx/conf:/etc/nginx/conf.d
+  #       - ./nginx-proxy/custom-configs/custom.conf:/etc/nginx/conf.d/custom.conf
+  #   logging:
+  #       options:
+  #           max-size: "10m"
+  #           max-file: "3"
+  # letsencrypt-companion:
+  #   container_name: letsencrypt-companion
+  #   image: jrcs/letsencrypt-nginx-proxy-companion
+  #   restart: unless-stopped
+  #   volumes_from:
+  #       - nginx
+  #   volumes:
+  #       - /var/run/docker.sock:/var/run/docker.sock
+  #       - /var/docker/nginx/acme:/etc/acme.sh
+  #   environment:
+  #       DEFAULT_EMAIL: ${DEFAULT_EMAIL}
+  reverse-proxy:
+    image: traefik:3.0
+    command:
+      - "--api=true"
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=${DEFAULT_EMAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
-        - 80:80
-        - 443:443
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
     volumes:
-        - /var/run/docker.sock:/tmp/docker.sock:ro
-        - /var/docker/nginx/html:/usr/share/nginx/html
-        - /var/docker/nginx/certs:/etc/nginx/certs
-        - /var/docker/nginx/vhost:/etc/nginx/vhost.d
-        - /var/docker/nginx/conf:/etc/nginx/conf.d
-        - ./nginx-proxy/custom-configs/custom.conf:/etc/nginx/conf.d/custom.conf
-    logging:
-        options:
-            max-size: "10m"
-            max-file: "3"
-  letsencrypt-companion:
-    container_name: letsencrypt-companion
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    restart: unless-stopped
-    volumes_from:
-        - nginx
-    volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - /var/docker/nginx/acme:/etc/acme.sh
-    environment:
-        DEFAULT_EMAIL: ${DEFAULT_EMAIL}
+      - ./letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  whoami:
+    image: traefik/whoami
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`whoami.lifeofpablo.com`)"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.certresolver=myresolver"
   mariadb:
     image: mariadb:11
     ports:
@@ -110,6 +135,10 @@ services:
       - lifeofpablo
       - lifeofpablo-interactives
       - lifeofpablo-linkinbio
+    labels:
+      - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
   lifeofpablo:
     container_name: lifeofpablo
     restart: always
@@ -159,6 +188,10 @@ services:
       - VIRTUAL_HOST=static.lifeofpablo.com
       - LETSENCRYPT_HOST=static.lifeofpablo.com
     restart: always
+    labels:
+      - "traefik.http.routers.lifeofpablo-static.rule=Host(`static.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-static.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-static.tls.certresolver=myresolver"
   lifeofpablo-photos:
     image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-photos
@@ -170,6 +203,10 @@ services:
       - VIRTUAL_HOST=photos.lifeofpablo.com
       - LETSENCRYPT_HOST=photos.lifeofpablo.com
     restart: always
+    labels:
+      - "traefik.http.routers.lifeofpablo-photos.rule=Host(`photos.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-photos.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-photos.tls.certresolver=myresolver"
   lifeofpablo-nyc-climateweek:
     build:
       dockerfile: ./climateweeknyc.lifeofpablo.com/Dockerfile  
