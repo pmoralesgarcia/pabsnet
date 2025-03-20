@@ -84,6 +84,10 @@ services:
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
       - VIRTUAL_HOST=reader.lifeofpablo.com
       - LETSENCRYPT_HOST=reader.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
+      - "traefik.http.routers.miniflux.entrypoints=websecure"
+      - "traefik.http.routers.miniflux.tls.certresolver=myresolver"
   postgres:
     image: postgres:15
     container_name: postgres
@@ -121,6 +125,10 @@ services:
     environment:
       - VIRTUAL_HOST=korea.lifeofpablo.com
       - LETSENCRYPT_HOST=korea.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.korea.rule=Host(`korea.lifeofpablo.com`)"
+      - "traefik.http.routers.korea.entrypoints=websecure"
+      - "traefik.http.routers.korea.tls.certresolver=myresolver"
   lifeofpablo-proxy:
     image: nginx:1.25.3-bookworm-perl
     container_name: lifeofpablo-proxy
@@ -128,9 +136,9 @@ services:
       - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
     ports:
       - 8110:80
-    environment:
-      - VIRTUAL_HOST=lifeofpablo.com
-      - LETSENCRYPT_HOST=lifeofpablo.com
+    # environment:
+    #   - VIRTUAL_HOST=lifeofpablo.com
+    #   - LETSENCRYPT_HOST=lifeofpablo.com
     depends_on:
       - lifeofpablo
       - lifeofpablo-interactives
@@ -219,6 +227,10 @@ services:
       - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
       - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
     restart: always
+    labels:
+      - "traefik.http.routers.lifeofpablo-nyc-climateweek.rule=Host(`climateweeknyc.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-nyc-climateweek.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-nyc-climateweek.tls.certresolver=myresolver"
   lifeofpablo-interactives:
     build:
       dockerfile: ./lifeofpablo-interactives/Dockerfile  
@@ -284,9 +296,10 @@ services:
       - ./1k.lifeofpablo.com/www:/var/www/html
     ports:
       - "8127:80"
-    environment:
-      - VIRTUAL_HOST=1k.lifeofpablo.com
-      - LETSENCRYPT_HOST=1k.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.1k.rule=Host(`1k.lifeofpablo.com`)"
+      - "traefik.http.routers.1k.entrypoints=websecure"
+      - "traefik.http.routers.1k.tls.certresolver=myresolver"
   ghost:
     build: personivebecome
     cap_add:
@@ -330,6 +343,10 @@ services:
       YOURLS_PASS: ${YOURLS_PASS}
       VIRTUAL_HOST: pabs.lol
       LETSENCRYPT_HOST: pabs.lol
+    labels:
+      - "traefik.http.routers.yourls.rule=Host(`pabs.lol`)"
+      - "traefik.http.routers.yourls.entrypoints=websecure"
+      - "traefik.http.routers.yourls.tls.certresolver=myresolver"
     volumes:
       - ./yourls/plugins:/var/www/html/user/plugins
   grocy:
@@ -382,6 +399,10 @@ services:
     environment:
       - VIRTUAL_HOST=indieauth.lifeofpablo.com
       - LETSENCRYPT_HOST=indieauth.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.lifeofpablo-login.rule=Host(`indieauth.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-login.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
   pabs-api:
     container_name: pabs-api
     build:
@@ -394,6 +415,10 @@ services:
       - API_DB
       - VIRTUAL_HOST=api.lifeofpablo.com
       - LETSENCRYPT_HOST=api.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.pabs-api.rule=Host(`api.lifeofpablo.com`)"
+      - "traefik.http.routers.pabs-api.entrypoints=websecure"
+      - "traefik.http.routers.pabs-api.tls.certresolver=myresolver"
     ports:
       - 3453:3000
   11vty:
@@ -404,6 +429,10 @@ services:
       - NODE_ENV=production
       - VIRTUAL_HOST=beta.lifeofpablo.com
       - LETSENCRYPT_HOST=beta.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.11vty.rule=Host(`beta.lifeofpablo.com`)"
+      - "traefik.http.routers.11vty.entrypoints=websecure"
+      - "traefik.http.routers.11vty.tls.certresolver=myresolver"
     ports:
       - 3455:8080
   zitadel:
