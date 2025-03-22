@@ -154,7 +154,7 @@ services:
       dockerfile: ./lifeofpablo.com/Dockerfile  
     volumes:
       #Project root
-      - ./lifeofpablo.com/www/lifeofpablo.com:/var/www/html
+      - ./lifeofpablo.com/www:/var/www/html
     environment:
       - LOP_LISTS_MUSIC_LISTENED=${LISTS_MUSIC_LISTENED}
     ports:
@@ -393,7 +393,7 @@ services:
       dockerfile: ./login.lifeofpablo.com/Dockerfile  
     volumes:
       #Project root
-      - ./login.lifeofpablo.com/www/login.lifeofpablo.com:/var/www/html
+      - ./login.lifeofpablo.com/www:/var/www/html
     ports:
       - "9289:80"
     environment:
