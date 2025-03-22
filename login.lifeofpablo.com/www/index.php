@@ -8,6 +8,7 @@ function error_page($header, $body, $http = '400 Bad Request')
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
         <style>
             .error{
                 width:100%;
@@ -345,6 +346,7 @@ $csrf_code = create_signed_code(APP_KEY, $client_id . $redirect_uri . $state, 2 
     <head>
         <title>Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
         <style>
 h1{text-align:center;margin-top:3%;}
 body {text-align:center;}
