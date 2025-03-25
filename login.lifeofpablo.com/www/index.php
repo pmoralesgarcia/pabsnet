@@ -350,7 +350,7 @@ $csrf_code = create_signed_code(APP_KEY, $client_id . $redirect_uri . $state, 2 
         <style>
 h1{text-align:center;margin-top:3%;}
 body {text-align:center;}
-fieldset, pre {width:400px; margin-left:auto; margin-right:auto;margin-bottom:50px; background-color:#FFC; min-height:1em;}
+fieldset, pre {margin-left:auto; margin-right:auto; margin-bottom:50px; min-height:1em;}
 fieldset {text-align:left;}
 
 .form-login{ 
@@ -364,7 +364,6 @@ padding:20px;
 }
 .form-line{ margin:5px 0 0 0;}
 .submit{width:100%}
-.yellow{background-color:#FFC}
 
         </style>
     </head>
@@ -389,7 +388,7 @@ padding:20px;
                 <input type="hidden" name="_csrf" value="<?php echo $csrf_code; ?>" />
                 <p class="form-line">
                     Logging in as:<br />
-                    <span class="yellow"><?php echo htmlspecialchars(USER_URL); ?></span>
+                    <span><?php echo htmlspecialchars(USER_URL); ?></span>
                 </p>
                 <div class="form-line">
                     <label for="password">Password:</label><br />
