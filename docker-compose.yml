@@ -455,7 +455,7 @@ services:
       zitadel-db:
         condition: 'service_healthy'
     ports:
-      - '8080:8080'
+      - '8089:8080'
     labels:
       - "traefik.http.routers.zitadel.rule=Host(`sso.lifeofpablo.com`)"
       - "traefik.http.routers.zitadel.tls.certresolver=myresolver"
@@ -464,7 +464,7 @@ services:
 #      - "traefik.http.routers.zitadel.service=zitadel-service"
 #      - "traefik.http.services.zitadel-service.loadbalancer.server.scheme=h2c"
 #      - "traefik.http.services.zitadel-service.loadbalancer.server.port=8080"
-      - "traefik.http.services.zitadel-service.loadbalancer.server.url=h2c://zitadel:8080"
+      - "traefik.http.services.zitadel-service.loadbalancer.server.url=h2c://zitadel:8089"
   zitadel-db:
     restart: 'always'
     image: postgres:16-alpine
