@@ -435,90 +435,52 @@ services:
       - "traefik.http.routers.11vty.tls.certresolver=myresolver"
     ports:
       - 3455:8080
-  zitadel-external-tls:
+  
+  zitadel:
+    restart: 'always'
+    image: 'ghcr.io/zitadel/zitadel:latest'
+    command: 'start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled'
+    environment:
+      ZITADEL_DATABASE_POSTGRES_HOST: zitadel-db
+      ZITADEL_DATABASE_POSTGRES_PORT: 5432
+      ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
+      ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: postgres
+      ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: postgres
+      ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
+      ZITADEL_EXTERNALSECURE: false
+    depends_on:
+      zitadel-db:
+        condition: 'service_healthy'
     ports:
-      - 8089:8080
-    extends:
-      service: zitadel-init
-    command: 'start-from-setup --init-projections --masterkey "sKgS7TgLd1ZUEKwJ9lTkAOkHYcifKtwl" --config /zitadel.yaml --steps /zitadel.yaml'
-    environment:
-      ZITADEL_EXTERNALPORT: 443
-      ZITADEL_EXTERNALSECURE: true
-      ZITADEL_TLS_ENABLED: false
-      # database configuration
-      ZITADEL_DATABASE_POSTGRES_HOST: db
-      ZITADEL_DATABASE_POSTGRES_PORT: 5432
-      ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
-      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel_user
-      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: zitadel_pw
-      ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
-      ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: postgres
-      ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: postgres
-      ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
-    depends_on:
-      db:
-        condition: 'service_healthy'
-      zitadel-init:
-        condition: 'service_completed_successfully'
-  zitadel-init:
-    user: '$UID'
-    image: '${ZITADEL_IMAGE:-ghcr.io/zitadel/zitadel:latest}'
-    command: 'init --config /zitadel.yaml'
-    depends_on:
-      db:
-        condition: 'service_healthy'
+      - '8080:8080'
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.zitadel-router.entrypoints=web"
-      - "traefik.http.routers.zitadel-router.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.zitadel-router.service=zitadel-service"
-      - "traefik.http.routers.zitadel-router.tls=true"
-      - "traefik.http.services.zitadel-service.loadbalancer.server.scheme=h2c"
-      - "traefik.http.services.zitadel-service.loadbalancer.server.port=8080"
-      - "traefik.http.services.zitadel-service.loadbalancer.server.url=h2c://zitadel-external-tls:80880890"
-    environment:
-      # Using an external domain other than localhost proofs, that the proxy configuration works.
-      # If ZITADEL can't resolve a requests original host to this domain,
-      # it will return a 404 Instance not found error.
-      ZITADEL_EXTERNALDOMAIN: 127.0.0.1.sslip.io
-      # In case something doesn't work as expected,
-      # it can be handy to be able to read the access logs.
-      ZITADEL_LOGSTORE_ACCESS_STDOUT_ENABLED: true
-      # For convenience, ZITADEL should not ask to change the initial admin users password.
-      ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORDCHANGEREQUIRED: false
-      # database configuration
-      ZITADEL_DATABASE_POSTGRES_HOST: db
-      ZITADEL_DATABASE_POSTGRES_PORT: 5432
-      ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
-      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel_user
-      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: zitadel_pw
-      ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
-      ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: postgres
-      ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: postgres
-      ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
-    healthcheck:
-      test: ["CMD", "/app/zitadel", "ready"]
-      interval: '10s'
-      timeout: '5s'
-      retries: 5
-      start_period: '10s'
-
-  db:
+      - "traefik.http.routers.zitadel.rule=Host(`sso.lifeofpablo.com`)"
+      - "traefik.http.routers.zitadel.tls.certresolver=myresolver"
+      - "traefik.http.routers.11vty.entrypoints=websecure"
+      - "traefik.http.routers.zitadel.rule=PathPrefix(`/`)"
+#      - "traefik.http.routers.zitadel.service=zitadel-service"
+#      - "traefik.http.services.zitadel-service.loadbalancer.server.scheme=h2c"
+#      - "traefik.http.services.zitadel-service.loadbalancer.server.port=8080"
+      - "traefik.http.services.zitadel-service.loadbalancer.server.url=h2c://zitadel:8080"
+  zitadel-db:
     restart: 'always'
     image: postgres:16-alpine
     environment:
+      PGUSER: postgres
       POSTGRES_PASSWORD: postgres
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
-      interval: 5s
-      timeout: 60s
-      retries: 10
-      start_period: 5s
-    volumes:
-      - 'data:/var/lib/postgresql/data:rw'
+      test: ["CMD-SHELL", "pg_isready", "-d", "zitadel", "-U", "postgres"]
+      interval: '10s'
+      timeout: '30s'
+      retries: 5
+      start_period: '20s'
+
+
 
 
 volumes:
  mariadb:
  miniflux-db:
- data:
