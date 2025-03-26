@@ -465,10 +465,10 @@ services:
       - "traefik.http.routers.zitadel.tls.certresolver=myresolver"
       - "traefik.http.routers.zitadel.entrypoints=websecure"
       - "traefik.http.routers.zitadel.rule=PathPrefix(`/`)"
-#      - "traefik.http.routers.zitadel.service=zitadel-service"
-#      - "traefik.http.services.zitadel-service.loadbalancer.server.scheme=h2c"
-#      - "traefik.http.services.zitadel-service.loadbalancer.server.port=8080"
-      - "traefik.http.services.zitadel-service.loadbalancer.server.url=h2c://zitadel:8089"
+      - "traefik.http.routers.zitadel.service=zitadel"
+      - "traefik.http.services.zitadel.loadbalancer.server.scheme=h2c"
+      - "traefik.http.services.zitadel.loadbalancer.server.port=8089"
+      - "traefik.http.services.zitadel.loadbalancer.server.url=h2c://zitadel:8089"
   zitadel-db:
     restart: 'always'
     image: postgres:16-alpine
