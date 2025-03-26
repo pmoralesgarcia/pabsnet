@@ -466,8 +466,8 @@ services:
       - "traefik.http.routers.zitadel.entrypoints=websecure"
       - "traefik.http.routers.zitadel.rule=PathPrefix(`/`)"
       - "traefik.http.routers.zitadel.service=zitadel"
-      - "traefik.http.services.zitadel.loadbalancer.server.scheme=h2c"
-      - "traefik.http.services.zitadel.loadbalancer.server.port=8089"
+  #    - "traefik.http.services.zitadel.loadbalancer.server.scheme=h2c"
+  #    - "traefik.http.services.zitadel.loadbalancer.server.port=8089"
       - "traefik.http.services.zitadel.loadbalancer.server.url=h2c://zitadel:8089"
   zitadel-db:
     restart: 'always'
