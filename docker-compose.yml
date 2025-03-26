@@ -463,7 +463,7 @@ services:
     labels:
       - "traefik.http.routers.zitadel.rule=Host(`sso.lifeofpablo.com`)"
       - "traefik.http.routers.zitadel.tls.certresolver=myresolver"
-      - "traefik.http.routers.11vty.entrypoints=websecure"
+      - "traefik.http.routers.zitadel.entrypoints=websecure"
       - "traefik.http.routers.zitadel.rule=PathPrefix(`/`)"
 #      - "traefik.http.routers.zitadel.service=zitadel-service"
 #      - "traefik.http.services.zitadel-service.loadbalancer.server.scheme=h2c"
