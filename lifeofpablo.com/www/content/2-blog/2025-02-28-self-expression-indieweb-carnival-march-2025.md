@@ -69,6 +69,9 @@ How you view self-expression is open to interpretation. How do you self-express?
 * [Way over yonder in the low-key](https://bobbyhiltz.com/blog/2025/03/self-expression/) by Bobby Hiltz
 * [Closet what Closet?](https://sarajaksa.eu/2025/03/indieweb-carnival-march-2025-closet-what-closet/) by Sara Jakša
 * [Self-Expression In 2025](https://andrei.xyz/post/self-expression/) by andrei
+* [Self-expression and Babu's Dream Café](https://rossabaker.com/blog/self-expression-and-babus-dream-caf%C3%A9/) by Ross
+* [Maintaining a multilingual blog is hard (English)](https://alexhsu.com/multilingual/) | [ 玩多語言部落格好像吃力不討好 (Chinese)](https://alexhsu.com/zh/multilingual/) by Alex Hsu
+* [On Self-Expression: My Quarter Century Of Blogging ](https://bix.blog/posts/2025-03-25-on-self-expression-my-quarter-century-of-blogging/) by Bix
 
 
 
