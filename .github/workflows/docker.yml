@@ -41,28 +41,28 @@ jobs:
           MATOMO_MYSQL_USER: op://pablo/matomo/username
           MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
           MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
-          GHOST_MYSQL_PASSWORD: op://pablo/ghost-pabsnet/password
-          GHOST_SMTP_RELAY: op://pablo/ghost-pabsnet/smtp_relay
-          GHOST_SMTP_PORT: op://pablo/ghost-pabsnet/smtp_port
-          GHOST_SMTP_USER: op://pablo/ghost-pabsnet/email
-          GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
-          PROVIDER_GOOGLEQUICKSTART_CLIENT_ID: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_ID
-          PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET
-          SSO_CLIENT_ID2: op://pablo/sso-lifeofpablo/username
-          SSO_CLIENT_SECRET2: op://pablo/sso-lifeofpablo/password
-          SSO_PROXY_SESSION: op://pablo/sso-lifeofpablo/sso-proxy-session
-          SSO_AUTH_SESSION: op://pablo/sso-lifeofpablo/sso-auth-session
-          SSO_AUTH_SESSION_KEY: op://pablo/sso-lifeofpablo/sso-auth-session-key
-          ZITADEL_DATABASE_POSTGRES_DATABASE: op://pablo/sso-lifeofpablo/
-          ZITADEL_DATABASE_POSTGRES_USER_USERNAME: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_DATABASE
-          ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
-          ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE
-          ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
-          ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
-          ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE
-          ZITADEL_EXTERNALSECURE: op://pablo/sso-lifeofpablo/ZITADEL_EXTERNALSECURE
-          PGUSER: op://pablo/sso-lifeofpablo/PGUSER
-          POSTGRES_PASSWORD: op://pablo/sso-lifeofpablo/POSTGRES_PASSWORD
+          # GHOST_MYSQL_PASSWORD: op://pablo/ghost-pabsnet/password
+          # GHOST_SMTP_RELAY: op://pablo/ghost-pabsnet/smtp_relay
+          # GHOST_SMTP_PORT: op://pablo/ghost-pabsnet/smtp_port
+          # GHOST_SMTP_USER: op://pablo/ghost-pabsnet/email
+          # GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
+          # PROVIDER_GOOGLEQUICKSTART_CLIENT_ID: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_ID
+          # PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET
+          # SSO_CLIENT_ID2: op://pablo/sso-lifeofpablo/username
+          # SSO_CLIENT_SECRET2: op://pablo/sso-lifeofpablo/password
+          # SSO_PROXY_SESSION: op://pablo/sso-lifeofpablo/sso-proxy-session
+          # SSO_AUTH_SESSION: op://pablo/sso-lifeofpablo/sso-auth-session
+          # SSO_AUTH_SESSION_KEY: op://pablo/sso-lifeofpablo/sso-auth-session-key
+          # ZITADEL_DATABASE_POSTGRES_DATABASE: op://pablo/sso-lifeofpablo/
+          # ZITADEL_DATABASE_POSTGRES_USER_USERNAME: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_DATABASE
+          # ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
+          # ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE
+          # ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
+          # ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
+          # ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE
+          # ZITADEL_EXTERNALSECURE: op://pablo/sso-lifeofpablo/ZITADEL_EXTERNALSECURE
+          # PGUSER: op://pablo/sso-lifeofpablo/PGUSER
+          # POSTGRES_PASSWORD: op://pablo/sso-lifeofpablo/POSTGRES_PASSWORD
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -94,23 +94,23 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
-            GHOST_SMTP_RELAY=${{ steps.op-load-secret.outputs.GHOST_SMTP_RELAY }} \
-            GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
-            GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
-            GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
-            PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
-            export LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
-            ZITADEL_DATABASE_POSTGRES_DATABASE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_DATABASE }} \
-            ZITADEL_DATABASE_POSTGRES_USER_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_USERNAME }} \
-            ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_PASSWORD }} \
-            ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE }} \
-            ZITADEL_EXTERNALSECURE=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
-            PGUSER=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            # GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
+            # GHOST_SMTP_RELAY=${{ steps.op-load-secret.outputs.GHOST_SMTP_RELAY }} \
+            # GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
+            # GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
+            # GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
+            # PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
+            # PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
+            # export LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
+            # ZITADEL_DATABASE_POSTGRES_DATABASE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_DATABASE }} \
+            # ZITADEL_DATABASE_POSTGRES_USER_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_USERNAME }} \
+            # ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_PASSWORD }} \
+            # ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE }} \
+            # ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME }} \
+            # ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD }} \
+            # ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE }} \
+            # ZITADEL_EXTERNALSECURE=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            # PGUSER=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
             POSTGRES_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
@@ -133,22 +133,22 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
-            GHOST_SMTP_RELAY=${{ steps.op-load-secret.outputs.GHOST_SMTP_RELAY }} \
-            GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
-            GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
-            GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            LISTS=${{ steps.op-load-secret.outputs.LISTS }} \
-            PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
-            PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
-            ZITADEL_DATABASE_POSTGRES_DATABASE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_DATABASE }} \
-            ZITADEL_DATABASE_POSTGRES_USER_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_USERNAME }} \
-            ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_PASSWORD }} \
-            ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE }} \
-            ZITADEL_EXTERNALSECURE=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
-            PGUSER=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
-            POSTGRES_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            # GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
+            # GHOST_SMTP_RELAY=${{ steps.op-load-secret.outputs.GHOST_SMTP_RELAY }} \
+            # GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
+            # GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
+            # GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
+            # LISTS=${{ steps.op-load-secret.outputs.LISTS }} \
+            # PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
+            # PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
+            # ZITADEL_DATABASE_POSTGRES_DATABASE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_DATABASE }} \
+            # ZITADEL_DATABASE_POSTGRES_USER_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_USERNAME }} \
+            # ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_PASSWORD }} \
+            # ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE }} \
+            # ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME }} \
+            # ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD }} \
+            # ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE }} \
+            # ZITADEL_EXTERNALSECURE=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            # PGUSER=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            # POSTGRES_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
             docker compose up --detach

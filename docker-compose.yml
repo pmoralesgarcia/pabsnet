@@ -47,13 +47,6 @@ services:
     volumes:
       - ./letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
-
-  whoami:
-    image: traefik/whoami
-    labels:
-      - "traefik.http.routers.whoami.rule=Host(`whoami.lifeofpablo.com`)"
-      - "traefik.http.routers.whoami.entrypoints=websecure"
-      - "traefik.http.routers.whoami.tls.certresolver=myresolver"
   mariadb:
     image: mariadb:11
     ports:
@@ -437,50 +430,50 @@ services:
     ports:
       - 3455:8080
   
-  zitadel:
-    restart: 'always'
-    image: 'ghcr.io/zitadel/zitadel:latest'
-    command: 'start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled'
-    environment:
-      ZITADEL_EXTERNALPORT: 443
-      ZITADEL_EXTERNALSECURE: true
-      ZITADEL_TLS_ENABLED: false
-      ZITADEL_EXTERNALDOMAIN: sso.lifeofpablo.com
-      ZITADEL_DATABASE_POSTGRES_HOST: zitadel-db
-      ZITADEL_DATABASE_POSTGRES_PORT: 5432
-      ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
-      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel
-      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: zitadel
-      ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
-      ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: postgres
-      ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: postgres
-      ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
-    depends_on:
-      zitadel-db:
-        condition: 'service_healthy'
-    ports:
-      - '8089:8080'
-    labels:
-      - "traefik.http.routers.zitadel.rule=Host(`sso.lifeofpablo.com`)"
-      - "traefik.http.routers.zitadel.tls.certresolver=myresolver"
-      - "traefik.http.routers.zitadel.entrypoints=websecure"
-      - "traefik.http.routers.zitadel.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.zitadel.service=zitadel"
-      - "traefik.http.services.zitadel.loadbalancer.server.scheme=h2c"
-  #    - "traefik.http.services.zitadel.loadbalancer.server.port=8089"
-      - "traefik.http.services.zitadel.loadbalancer.server.url=h2c://zitadel:8089"
-  zitadel-db:
-    restart: 'always'
-    image: postgres:16-alpine
-    environment:
-      PGUSER: postgres
-      POSTGRES_PASSWORD: postgres
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "zitadel", "-U", "postgres"]
-      interval: '10s'
-      timeout: '30s'
-      retries: 5
-      start_period: '20s'
+  # zitadel:
+  #   restart: 'always'
+  #   image: 'ghcr.io/zitadel/zitadel:latest'
+  #   command: 'start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled'
+  #   environment:
+  #     ZITADEL_EXTERNALPORT: 443
+  #     ZITADEL_EXTERNALSECURE: true
+  #     ZITADEL_TLS_ENABLED: false
+  #     ZITADEL_EXTERNALDOMAIN: sso.lifeofpablo.com
+  #     ZITADEL_DATABASE_POSTGRES_HOST: zitadel-db
+  #     ZITADEL_DATABASE_POSTGRES_PORT: 5432
+  #     ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
+  #     ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel
+  #     ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: zitadel
+  #     ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
+  #     ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: postgres
+  #     ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: postgres
+  #     ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
+  #   depends_on:
+  #     zitadel-db:
+  #       condition: 'service_healthy'
+  #   ports:
+  #     - '8089:8080'
+  #   labels:
+  #     - "traefik.http.routers.zitadel.rule=Host(`sso.lifeofpablo.com`)"
+  #     - "traefik.http.routers.zitadel.tls.certresolver=myresolver"
+  #     - "traefik.http.routers.zitadel.entrypoints=websecure"
+  #     - "traefik.http.routers.zitadel.rule=PathPrefix(`/`)"
+  #     - "traefik.http.routers.zitadel.service=zitadel"
+  #     - "traefik.http.services.zitadel.loadbalancer.server.scheme=h2c"
+  # #    - "traefik.http.services.zitadel.loadbalancer.server.port=8089"
+  #     - "traefik.http.services.zitadel.loadbalancer.server.url=h2c://zitadel:8089"
+  # zitadel-db:
+  #   restart: 'always'
+  #   image: postgres:16-alpine
+  #   environment:
+  #     PGUSER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready", "-d", "zitadel", "-U", "postgres"]
+  #     interval: '10s'
+  #     timeout: '30s'
+  #     retries: 5
+  #     start_period: '20s'
 
 
 
