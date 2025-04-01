@@ -20,6 +20,8 @@ Check out my[ /now](/now) page!
 
 
 <style>
+@import url(https://cdn.simplecss.org/simple.css);
+
 .main > h1 {
 display: none;
 }
