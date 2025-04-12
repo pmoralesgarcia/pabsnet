@@ -323,7 +323,7 @@ services:
     volumes:
       - ./ghost/content:/var/lib/ghost/content
   yourls:
-    image: yourls:1.10.0-fpm-alpine
+    image: yourls:1.10
     container_name: yourls
     restart: always
     ports:
