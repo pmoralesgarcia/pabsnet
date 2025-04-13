@@ -7,6 +7,7 @@ Tag: 2025, letting go, emotions, love, health
 Description: Letting go
 Image: https://static.lifeofpablo.com/media/blog/letting-go/story.jpg
 ImageAlt: Journal
+Status: unlisted
 ---
 I think about you often. I want you here, but you're there. When I do see you, I have the best of times. Every time my phone buzzes and it's you, you brighten my day. You bring me happiness, pleasure, and enlightenment. I forget my problems when I'm with you. 
 
