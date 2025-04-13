@@ -14,7 +14,7 @@
     
     
   <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
-  <?php $catalog_json = file_get_contents('https://api.lifeofpablo.com/vinyls');
+  <?php $catalog_json = file_get_contents('https://script.google.com/macros/s/AKfycbzsb_aa4CWQYjBnyrjCso7gmUxfopsfo9YTQlH1rKB2YrlrVvMYU4Y9_bG4n8uPhMUY/exec?path=vinyls&action=read');
   $decoded_json = json_decode($catalog_json, true);
   
   $items = $decoded_json['data'];
