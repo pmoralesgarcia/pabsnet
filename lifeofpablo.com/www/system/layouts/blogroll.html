@@ -43,6 +43,50 @@ foreach ($categorized_data as $category => $people_in_category) {
     echo '</ul>';
 }
 ?>
+
+<?php
+ $catalog_json = file_get_contents('https://pabs.lol/blogrollapi'); // **Important:** Replace with the actual path to your JSON file
+
+ $decoded_json = json_decode($catalog_json, true);
+
+ $persons = $decoded_json['data'];
+
+ // Array to store categories and their associated entries
+ $categorized_data = [];
+
+ foreach ($persons as $person) {
+     $name = $person['Name'];
+     $website = $person['website'];
+     $rss = $person['rss'];
+     $category = $person['category'];
+     $display = isset($person['hide']) ? $person['hide'] : false;
+
+     if ($display == false) {
+         if (!isset($categorized_data[$category])) {
+             $categorized_data[$category] = [];
+         }
+
+         $categorized_data[$category][] = [
+             'name' => $name,
+             'website' => $website,
+             'rss' => $rss,
+         ];
+     }
+ }
+
+ // Output the data separated by category
+ foreach ($categorized_data as $category => $items) {
+     echo '<h2>' . htmlspecialchars($category) . '</h2>';
+     echo '<ul>';
+     foreach ($items as $item) {
+         echo '<li><a href="' . htmlspecialchars($item['website']) . '">' . htmlspecialchars($item['name']) . '</a> <a href="' . htmlspecialchars($item['rss']) . '">(RSS)</a></li>';
+     }
+     echo '</ul>';
+ }
+
+ ?>
+
+
 <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
 
 

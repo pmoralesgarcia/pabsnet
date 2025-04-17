@@ -13,75 +13,101 @@
     </header>
     
     
-  <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
-  <?php $catalog_json = file_get_contents('https://script.google.com/macros/s/AKfycbzsb_aa4CWQYjBnyrjCso7gmUxfopsfo9YTQlH1rKB2YrlrVvMYU4Y9_bG4n8uPhMUY/exec?path=vinyls&action=read');
-  $decoded_json = json_decode($catalog_json, true);
   
-  $items = $decoded_json['data'];
 
-  $one_item = $items[rand(0, count($decoded_json['data']) - 1)];
-  $id = $one_item['id'];
-  $name = $one_item['title'];
-  $artist = $one_item['artist'];
-  $cover = $one_item['thumbnail_url'];
-  $info_url = $one_item['info_url'];
-  $year = $one_item['copyright_year'];
-  $label = $one_item['label'];
 
-  echo '<a class="db center mw5 tc black link dim" title="'.$name.'"';
-  echo 'href="'.$info_url.'">';
-  echo '';
-  echo '<img style="width: 50%;"/';
-  echo 'alt="'.$name.' Album Cover"';
-  echo 'src="'.$cover.'"';
-  echo '>';
-  echo '';
-  echo '<dl class="mt2 f6 lh-copy">';
-  echo '<dt class="clip">Title</dt>';
-  echo '<dd class="ml0">'.$name.'</dd>';
-  echo '<dt class="clip">Artist</dt>';
-  echo '<dd class="ml0 gray">'.$artist.'</dd>';
-  echo '</dl>';
-  echo '</a>';
-  echo '';
-  echo '';
+   
 
-  ?>
-  <table>
-    <tr>
-<!--    <th>Album Cover</th> -->  
-      <th>Album</th>
-      <th>Artist</th>
-      <th>Copyright</th>
-    </tr>
+<?php
 
-    <?php
-  $catalog_json = file_get_contents('https://api.lifeofpablo.com/vinyls');
+// --- Configuration for Vinyl Data ---
+$vinyls_api_url = 'https://script.google.com/macros/s/AKfycbzsb_aa4CWQYjBnyrjCso7gmUxfopsfo9YTQlH1rKB2YrlrVvMYU4Y9_bG4n8uPhMUY/exec?path=vinyls&action=read';
+$discogs_search_url = 'https://www.discogs.com/search/?q=';
+$discogs_search_type = '&type=all&format_exact=Vinyl';
 
+// --- Fetch and Decode Vinyl Data ---
+$catalog_json = file_get_contents($vinyls_api_url);
 $decoded_json = json_decode($catalog_json, true);
-$items = $decoded_json['data'];
-foreach($items as $item) {
-  $id = $item['id'];
-  $name = $item['title'];
-  $artist = $item['artist'];
-	$cover = $item['thumbnail_url'];
-  $info_url = $item['info_url'];
-  $year = $item['copyright_year'];
-  $label = $item['label'];
-  
 
-  echo '<tr>';
-# echo '<td><img src="'.$cover.'" style="width:2%" alt="'.$name.' album cover"></td>';
-
-
-  echo '<td><a href="'.$info_url.'">'.$name.'</a></td>';
-  echo '<td><a href="https://www.discogs.com/search/?q='.$artist.'&type=all&format_exact=Vinyl">'.$artist.'</a> </td>';
-  echo '<td>&copy; '.$year.' '.$label.'</td>';
-  echo '</tr>';
-
-
-#
+// --- Handle Potential Errors ---
+if ($decoded_json === null || !isset($decoded_json['data'])) {
+    echo '<p>Error loading vinyl catalog data.</p>';
+    exit;
 }
+
+$vinyls = $decoded_json['data'];
+
+// --- Display a Random Vinyl (if not hidden) ---
+$random_vinyl_index = array_rand($vinyls);
+$random_vinyl = $vinyls[$random_vinyl_index];
+
+$random_id = $random_vinyl['id'];
+$random_name = $random_vinyl['title'];
+$random_artist = $random_vinyl['artist'];
+$random_cover = $random_vinyl['thumbnail_url'];
+$random_info_url = $random_vinyl['info_url'];
+$random_year = $random_vinyl['copyright_year'];
+$random_label = $random_vinyl['label'];
+$random_display = isset($random_vinyl['hide']) ? (bool) $random_vinyl['hide'] : false;
+
+if (!$random_display) {
+    echo '<div class="random-vinyl">';
+    echo '<a target="_blank" class="db center mw5 tc black link dim" title="' . htmlspecialchars($random_name) . '" href="' . htmlspecialchars($random_info_url) . '">';
+    echo '<img style="width: 50%;" alt="' . htmlspecialchars($random_name) . ' Album Cover" src="' . htmlspecialchars($random_cover) . '">';
+    echo '<dl class="mt2 f6 lh-copy">';
+    echo '<dt class="clip">Title</dt>';
+    echo '<dd class="ml0">' . htmlspecialchars($random_name) . '</dd>';
+    echo '<dt class="clip">Artist</dt>';
+    echo '<dd class="ml0 gray">' . htmlspecialchars($random_artist) . '</dd>';
+    echo '</dl>';
+    echo '</a>';
+    echo '</div>';
+}
+
+echo '<h2>Vinyl Catalog</h2>';
+echo '<table>';
+echo '<thead>';
+echo '<tr>';
+echo '<th>Album</th>';
+echo '<th>Artist</th>';
+echo '<th>Copyright</th>';
+echo '<th>Genre</th>'; // Added Genre column
+echo '</tr>';
+echo '</thead>';
+echo '<tbody>';
+
+// --- Sort Vinyls by Name ---
+usort($vinyls, function ($a, $b) {
+    $nameA = isset($a['name']) ? strtolower($a['name']) : '';
+    $nameB = isset($b['name']) ? strtolower($b['name']) : '';
+    return strcmp($nameA, $nameB);
+});
+
+// --- Loop Through and Display Vinyl Information ---
+foreach ($vinyls as $vinyl) {
+    $id = $vinyl['id'];
+    $name = $vinyl['title'];
+    $artist = $vinyl['artist'];
+    $cover = $vinyl['thumbnail_url'];
+    $info_url = $vinyl['info_url'];
+    $year = $vinyl['copyright_year'];
+    $label = $vinyl['label'];
+    $display = isset($vinyl['hide']) ? (bool) $vinyl['hide'] : false;
+    $genre = isset($vinyl['genre']) ? htmlspecialchars($vinyl['genre']) : 'Unknown'; // Get genre, default to 'Unknown'
+
+    if (!$display) {
+        echo '<tr>';
+        echo '<td><a target="_blank" href="' . htmlspecialchars($info_url) . '">' . htmlspecialchars($name) . '</a></td>';
+        echo '<td><a target="_blank" href="' . htmlspecialchars($discogs_search_url . urlencode($artist) . $discogs_search_type) . '" target="_blank">' . htmlspecialchars($artist) . '</a></td>';
+        echo '<td>&copy; ' . htmlspecialchars($year) . ' ' . htmlspecialchars($label) . '</td>';
+        echo '<td>' . $genre . '</td>'; // Display the genre
+        echo '</tr>';
+    }
+}
+
+echo '</tbody>';
+echo '</table>';
+
 ?>
 </div>
 
