@@ -2,26 +2,47 @@
 <div class="content">
 <div class="main h-entry" role="main">
 <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
-<h3 id="indieweb">IndieWeb</h3>
-<ul>
+
+
 <?php
-$catalog_json = file_get_contents('media/downloads/blogroll/indieweb.json');
+$catalog_json = file_get_contents('https://pabs.lol/vinylapi'); 
 
 $decoded_json = json_decode($catalog_json, true);
 
-$persons = $decoded_json['indieweb'];
+$persons = $decoded_json['data'];
+
+// Create an empty array to hold categories and their associated people
+$categorized_data = [];
 
 foreach($persons as $person) {
     $name = $person['Name'];
-    $website = $person['Website'];
-    $rss = $person['RSS'];
+    $website = $person['website'];
+    $rss = $person['rss'];
+    $category = $person['category'];
 
+    // If the category doesn't exist in our array, create a new empty array for it
+    if (!isset($categorized_data[$category])) {
+        $categorized_data[$category] = [];
+    }
 
-echo '<li><a href="'.$website.'">'.$name.'</a> <a href="'.$rss.'">(RSS)</a></li>';
-  
+    // Add the current person's information to the appropriate category
+    $categorized_data[$category][] = [
+        'name' => $name,
+        'website' => $website,
+        'rss' => $rss,
+    ];
+}
+
+// Now loop through the categorized data to display it
+foreach ($categorized_data as $category => $people_in_category) {
+    echo '<h2>' . htmlspecialchars($category) . '</h2>'; // Display the category name
+    echo '<ul>';
+    foreach ($people_in_category as $person) {
+        echo '<li><a href="' . htmlspecialchars($person['website']) . '">' . htmlspecialchars($person['name']) . '</a> <a href="' . htmlspecialchars($person['rss']) . '">(RSS)</a></li>';
+    }
+    echo '</ul>';
 }
 ?>
-</ul>
 <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
 
 
