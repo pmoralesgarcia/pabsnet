@@ -1,33 +1,4 @@
 services:
-  # nginx:
-  #   container_name: nginx
-  #   image: jwilder/nginx-proxy:alpine
-  #   restart: unless-stopped
-  #   ports:
-  #       - 80:80
-  #       - 443:443
-  #   volumes:
-  #       - /var/run/docker.sock:/tmp/docker.sock:ro
-  #       - /var/docker/nginx/html:/usr/share/nginx/html
-  #       - /var/docker/nginx/certs:/etc/nginx/certs
-  #       - /var/docker/nginx/vhost:/etc/nginx/vhost.d
-  #       - /var/docker/nginx/conf:/etc/nginx/conf.d
-  #       - ./nginx-proxy/custom-configs/custom.conf:/etc/nginx/conf.d/custom.conf
-  #   logging:
-  #       options:
-  #           max-size: "10m"
-  #           max-file: "3"
-  # letsencrypt-companion:
-  #   container_name: letsencrypt-companion
-  #   image: jrcs/letsencrypt-nginx-proxy-companion
-  #   restart: unless-stopped
-  #   volumes_from:
-  #       - nginx
-  #   volumes:
-  #       - /var/run/docker.sock:/var/run/docker.sock
-  #       - /var/docker/nginx/acme:/etc/acme.sh
-  #   environment:
-  #       DEFAULT_EMAIL: ${DEFAULT_EMAIL}
   reverse-proxy:
     image: traefik
     command:
@@ -153,8 +124,6 @@ services:
     volumes:
       #Project root
       - ./lifeofpablo.com/www:/var/www/html
-    environment:
-      - LOP_LISTS_MUSIC_LISTENED=${LISTS_MUSIC_LISTENED}
     ports:
       - "8080:80"
   lifeofpablo-guestbook:
@@ -271,19 +240,6 @@ services:
     environment:
       - VIRTUAL_HOST=eu24.lifeofpablo.com
       - LETSENCRYPT_HOST=eu24.lifeofpablo.com
-  lists:
-    container_name: lists
-    restart: always 
-    build:
-      dockerfile: ./lifeofpablo-lists/Dockerfile  
-    volumes:
-      #Project root
-      - ./lifeofpablo-lists/www:/var/www/html
-    ports:
-      - "8126:80"
-    environment:
-      - VIRTUAL_HOST=lists.lifeofpablo.com
-      - LETSENCRYPT_HOST=lists.lifeofpablo.com
   1k:
     container_name: 1k
     restart: always
