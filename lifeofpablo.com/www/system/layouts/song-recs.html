@@ -44,26 +44,42 @@ if (isset($_POST['submit'])) {
     <blockquote>The song, <em><?php echo escape($_POST['title']); ?></em> successfully added. Thanks for the recommendation!</blockquote>
   <?php endif; ?>
 
+  <script>
+window.addEventListener("load", function() {
+  const form = document.getElementById('song-recs');
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const action = e.target.action;
+    fetch(action, {
+      method: 'POST',
+      body: data,
+    })
+    .then(() => {
+      alert("Success!");
+    })
+  });
+});
+
+
+  </script>
   <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
 
-  <form class="pa4 black-80" method="post">
-    <div class="measure">
-    <input class="input-reset " name="csrf" type="hidden" value="<?php echo escape($_SESSION['csrf']); ?>">
-    <label class="f6 b db mb2" for="title">Song Title</label>
-    <input class="input-reset " type="text" name="title" id="title" required>
-    <label class="f6 b db mb2" for="artist">Artist</label>
-    <input class="input-reset " type="text" name="artist" id="artist" required>
-    
-    
-    <label for="note" >Tell me your story behind this song or why you're recommending it! (Optional)</label>
-    <textarea id="note" name="note" rows="5" cols="33" >
-    </textarea>
-    <label class="f6 b db mb2" for="contact">You got a blog? A website? Email? (Optional)</label>
-    <input type="text" name="contact" id="contact">
-    <br />
-    <input class="button" type="submit" name="submit" value="Submit">
+  <form id="song-recs"
+  method="POST" 
+  action="https://script.google.com/macros/s/AKfycbynIqSSrPbQWfEd5NUAj2adfDP63FKKmaB-uCd8ZSqvOhFYmH7Vx9KQN7ersdKhODgPow/exec"
+>
+  <p>Song Title</p>
+  <input name="title" type="text" placeholder="Title" required>
+  <p>Artist</p>
+  <input name="artist" type="text" placeholder="Artist" required>
+  <p>Why do you like this song recommendation (Optional)?</p>
 
-  </div>
-  </form>
+  <textarea  name="note" rows="4" cols="50" placeholder="What's the story?"></textarea>
+  <p>You got a blog? A website? Email? Mastodon? Other platform? (Optional)</p>
+  <input name="contact" type="text" placeholder="Contact" >
+   <br />
+  <button type="submit">Send</button>
+</form>
 
   <?php $this->yellow->layout("footer") ?>
