@@ -2,47 +2,7 @@
 <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
 
 
-<?php
 
-/**
- * Use an HTML form to create a new entry in the
- * users table.
- *
- */
- require "system/layouts/config.php";
- require "system/layouts/common.php";
-
-if (isset($_POST['submit'])) {
-  if (!hash_equals($_SESSION['csrf'], $_POST['csrf'])) die();
-
-  try  {
-    $connection = new PDO($dsn, $username, $password, $options);
-    
-    $new_song = array(
-      "title" => $_POST['title'],
-      "artist"  => $_POST['artist'],
-      "contact"     => $_POST['contact'],
-      "note"     => $_POST['note']
-      );
-
-    $sql = sprintf(
-      "INSERT INTO %s (%s) values (%s)",
-      "music_recs",
-      implode(", ", array_keys($new_song)),
-      ":" . implode(", :", array_keys($new_song))
-    );
-    
-    $statement = $connection->prepare($sql);
-    $statement->execute($new_song);
-  } catch(PDOException $error) {
-      echo $sql . "<br>" . $error->getMessage();
-  }
-}
-?>
-
-  <?php if (isset($_POST['submit']) && $statement) : ?>
-    <blockquote>The song, <em><?php echo escape($_POST['title']); ?></em> successfully added. Thanks for the recommendation!</blockquote>
-  <?php endif; ?>
 
   <script>
 window.addEventListener("load", function() {
@@ -56,7 +16,7 @@ window.addEventListener("load", function() {
       body: data,
     })
     .then(() => {
-      alert("Success!");
+      alert("Success! We received your song request! Thank you for sharing! If you shared your contact, I'm looking forward to connecting!");
     })
   });
 });
