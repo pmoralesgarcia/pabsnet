@@ -48,16 +48,16 @@ jobs:
           GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
           PROVIDER_GOOGLEQUICKSTART_CLIENT_ID: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_ID
           PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET
-          AUTHENTIK_SECRET_KEY: op://services/authentik/AUTHENTIK_SECRET_KEY
-          AUTHENTIK_EMAIL__HOST: op://services/authentik/AUTHENTIK_EMAIL__HOST
-          AUTHENTIK_EMAIL__PORT: op://services/authentik/AUTHENTIK_EMAIL__PORT
-          AUTHENTIK_EMAIL__USERNAME: op://services/authentik/AUTHENTIK_EMAIL__USERNAME
-          AUTHENTIK_EMAIL__PASSWORD: op://services/authentik/AUTHENTIK_EMAIL__PASSWORD
-          AUTHENTIK_EMAIL__USE_TLS: op://services/authentik/AUTHENTIK_EMAIL__USE_TLS
-          AUTHENTIK_EMAIL__USE_SSL: op://services/authentik/AUTHENTIK_EMAIL__USE_SSL
-          AUTHENTIK_EMAIL__TIMEOUT: op://services/authentik/AUTHENTIK_EMAIL__TIMEOUT
-          AUTHENTIK_EMAIL__FROM: op://services/authentik/AUTHENTIK_EMAIL__FROM
-          AUTHENTIK_ERROR_REPORTING__ENABLED: op://services/authentik/AUTHENTIK_ERROR_REPORTING__ENABLED
+          AUTHENTIK_SECRET_KEY: op://pablo/authentik/AUTHENTIK_SECRET_KEY
+          AUTHENTIK_EMAIL__HOST: op://pablo/authentik/AUTHENTIK_EMAIL__HOST
+          AUTHENTIK_EMAIL__PORT: op://pablo/authentik/AUTHENTIK_EMAIL__PORT
+          AUTHENTIK_EMAIL__USERNAME: op://pablo/authentik/AUTHENTIK_EMAIL__USERNAME
+          AUTHENTIK_EMAIL__PASSWORD: op://pablo/authentik/AUTHENTIK_EMAIL__PASSWORD
+          AUTHENTIK_EMAIL__USE_TLS: op://pablo/authentik/AUTHENTIK_EMAIL__USE_TLS
+          AUTHENTIK_EMAIL__USE_SSL: op://pablo/authentik/AUTHENTIK_EMAIL__USE_SSL
+          AUTHENTIK_EMAIL__TIMEOUT: op://pablo/authentik/AUTHENTIK_EMAIL__TIMEOUT
+          AUTHENTIK_EMAIL__FROM: op://pablo/authentik/AUTHENTIK_EMAIL__FROM
+          AUTHENTIK_ERROR_REPORTING__ENABLED: op://pablo/authentik/AUTHENTIK_ERROR_REPORTING__ENABLED
 
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
