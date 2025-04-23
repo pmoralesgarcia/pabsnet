@@ -406,7 +406,7 @@ services:
       - AUTHENTIK_EMAIL__PASSWORD
       - AUTHENTIK_EMAIL__USE_TLS
       - AUTHENTIK_EMAIL__USE_SSL
-      - AUTHENTIK_EMAIL__TIMEOUT
+      - AUTHENTIK_EMAIL__TIMEOUT=10
       - AUTHENTIK_EMAIL__FROM
       - AUTHENTIK_ERROR_REPORTING__ENABLED
     # Starting with 2021.9, you can optionally set this too

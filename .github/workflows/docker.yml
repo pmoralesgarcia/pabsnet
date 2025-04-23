@@ -55,7 +55,6 @@ jobs:
           AUTHENTIK_EMAIL__PASSWORD: op://pablo/authentik/AUTHENTIK_EMAIL__PASSWORD
           AUTHENTIK_EMAIL__USE_TLS: op://pablo/authentik/AUTHENTIK_EMAIL__USE_TLS
           AUTHENTIK_EMAIL__USE_SSL: op://pablo/authentik/AUTHENTIK_EMAIL__USE_SSL
-          AUTHENTIK_EMAIL__TIMEOUT: op://pablo/authentik/AUTHENTIK_EMAIL__TIMEOUT
           AUTH_PG_PASS: op://pablo/authentik/PG_PASS
           AUTHENTIK_EMAIL__FROM: op://pablo/authentik/AUTHENTIK_EMAIL__FROM
           AUTHENTIK_ERROR_REPORTING__ENABLED: op://pablo/authentik/AUTHENTIK_ERROR_REPORTING__ENABLED
@@ -106,7 +105,6 @@ jobs:
             AUTHENTIK_EMAIL__PASSWORD=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PASSWORD }}
             AUTHENTIK_EMAIL__USE_TLS=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_TLS }}
             AUTHENTIK_EMAIL__USE_SSL=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_SSL }}
-            AUTHENTIK_EMAIL__TIMEOUT=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__TIMEOUT }}
             AUTHENTIK_EMAIL__FROM=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__FROM }}
             AUTHENTIK_ERROR_REPORTING__ENABLED=${{ steps.op-load-secret.outputs.AUTHENTIK_ERROR_REPORTING__ENABLED }}
             docker compose down
@@ -146,7 +144,6 @@ jobs:
             AUTHENTIK_EMAIL__PASSWORD=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PASSWORD }}
             AUTHENTIK_EMAIL__USE_TLS=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_TLS }}
             AUTHENTIK_EMAIL__USE_SSL=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_SSL }}
-            AUTHENTIK_EMAIL__TIMEOUT=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__TIMEOUT }}
             AUTHENTIK_EMAIL__FROM=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__FROM }}
             AUTHENTIK_ERROR_REPORTING__ENABLED=${{ steps.op-load-secret.outputs.AUTHENTIK_ERROR_REPORTING__ENABLED }}
             docker compose up --detach
