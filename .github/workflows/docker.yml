@@ -48,21 +48,17 @@ jobs:
           GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
           PROVIDER_GOOGLEQUICKSTART_CLIENT_ID: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_ID
           PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET
-          SSO_CLIENT_ID2: op://pablo/sso-lifeofpablo/username
-          SSO_CLIENT_SECRET2: op://pablo/sso-lifeofpablo/password
-          SSO_PROXY_SESSION: op://pablo/sso-lifeofpablo/sso-proxy-session
-          SSO_AUTH_SESSION: op://pablo/sso-lifeofpablo/sso-auth-session
-          SSO_AUTH_SESSION_KEY: op://pablo/sso-lifeofpablo/sso-auth-session-key
-          ZITADEL_DATABASE_POSTGRES_DATABASE: op://pablo/sso-lifeofpablo/
-          ZITADEL_DATABASE_POSTGRES_USER_USERNAME: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_DATABASE
-          ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_USER_PASSWORD
-          ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE
-          ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME
-          ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD
-          ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: op://pablo/sso-lifeofpablo/ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE
-          ZITADEL_EXTERNALSECURE: op://pablo/sso-lifeofpablo/ZITADEL_EXTERNALSECURE
-          PGUSER: op://pablo/sso-lifeofpablo/PGUSER
-          POSTGRES_PASSWORD: op://pablo/sso-lifeofpablo/POSTGRES_PASSWORD
+          AUTHENTIK_SECRET_KEY: op://services/authentik/AUTHENTIK_SECRET_KEY
+          AUTHENTIK_EMAIL__HOST: op://services/authentik/AUTHENTIK_EMAIL__HOST
+          AUTHENTIK_EMAIL__PORT: op://services/authentik/AUTHENTIK_EMAIL__PORT
+          AUTHENTIK_EMAIL__USERNAME: op://services/authentik/AUTHENTIK_EMAIL__USERNAME
+          AUTHENTIK_EMAIL__PASSWORD: op://services/authentik/AUTHENTIK_EMAIL__PASSWORD
+          AUTHENTIK_EMAIL__USE_TLS: op://services/authentik/AUTHENTIK_EMAIL__USE_TLS
+          AUTHENTIK_EMAIL__USE_SSL: op://services/authentik/AUTHENTIK_EMAIL__USE_SSL
+          AUTHENTIK_EMAIL__TIMEOUT: op://services/authentik/AUTHENTIK_EMAIL__TIMEOUT
+          AUTHENTIK_EMAIL__FROM: op://services/authentik/AUTHENTIK_EMAIL__FROM
+          AUTHENTIK_ERROR_REPORTING__ENABLED: op://services/authentik/AUTHENTIK_ERROR_REPORTING__ENABLED
+
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -101,17 +97,17 @@ jobs:
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
             PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
             PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
-            export LOP_LISTS_MUSIC_LISTENED=${{ steps.op-load-secret.outputs.LOP_LISTS_MUSIC_LISTENED }} \
-            ZITADEL_DATABASE_POSTGRES_DATABASE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_DATABASE }} \
-            ZITADEL_DATABASE_POSTGRES_USER_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_USERNAME }} \
-            ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_PASSWORD }} \
-            ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE }} \
-            ZITADEL_EXTERNALSECURE=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
-            PGUSER=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
-            POSTGRES_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            AUTH_PG_PASS=${{ steps.op-load-secret.outputs.AUTH_PG_PASS }}
+            AUTHENTIK_SECRET_KEY=${{ steps.op-load-secret.outputs.AUTHENTIK_SECRET_KEY }}
+            AUTHENTIK_EMAIL__HOST=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__HOST }}
+            AUTHENTIK_EMAIL__PORT=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PORT }}
+            AUTHENTIK_EMAIL__USERNAME=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USERNAME }}
+            AUTHENTIK_EMAIL__PASSWORD=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PASSWORD }}
+            AUTHENTIK_EMAIL__USE_TLS=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_TLS }}
+            AUTHENTIK_EMAIL__USE_SSL=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_SSL }}
+            AUTHENTIK_EMAIL__TIMEOUT=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__TIMEOUT }}
+            AUTHENTIK_EMAIL__FROM=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__FROM }}
+            AUTHENTIK_ERROR_REPORTING__ENABLED=${{ steps.op-load-secret.outputs.AUTHENTIK_ERROR_REPORTING__ENABLED }}
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -141,14 +137,15 @@ jobs:
             LISTS=${{ steps.op-load-secret.outputs.LISTS }} \
             PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
             PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
-            ZITADEL_DATABASE_POSTGRES_DATABASE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_DATABASE }} \
-            ZITADEL_DATABASE_POSTGRES_USER_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_USERNAME }} \
-            ZITADEL_DATABASE_POSTGRES_USER_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_PASSWORD }} \
-            ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD }} \
-            ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE=${{ steps.op-load-secret.outputs.ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE }} \
-            ZITADEL_EXTERNALSECURE=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
-            PGUSER=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
-            POSTGRES_PASSWORD=${{ steps.op-load-secret.outputs.ZITADEL_EXTERNALSECURE }} \
+            AUTH_PG_PASS=${{ steps.op-load-secret.outputs.AUTH_PG_PASS }}
+            AUTHENTIK_SECRET_KEY=${{ steps.op-load-secret.outputs.AUTHENTIK_SECRET_KEY }}
+            AUTHENTIK_EMAIL__HOST=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__HOST }}
+            AUTHENTIK_EMAIL__PORT=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PORT }}
+            AUTHENTIK_EMAIL__USERNAME=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USERNAME }}
+            AUTHENTIK_EMAIL__PASSWORD=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PASSWORD }}
+            AUTHENTIK_EMAIL__USE_TLS=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_TLS }}
+            AUTHENTIK_EMAIL__USE_SSL=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_SSL }}
+            AUTHENTIK_EMAIL__TIMEOUT=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__TIMEOUT }}
+            AUTHENTIK_EMAIL__FROM=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__FROM }}
+            AUTHENTIK_ERROR_REPORTING__ENABLED=${{ steps.op-load-secret.outputs.AUTHENTIK_ERROR_REPORTING__ENABLED }}
             docker compose up --detach
