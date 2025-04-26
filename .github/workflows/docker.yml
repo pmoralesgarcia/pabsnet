@@ -46,19 +46,6 @@ jobs:
           GHOST_SMTP_PORT: op://pablo/ghost-pabsnet/smtp_port
           GHOST_SMTP_USER: op://pablo/ghost-pabsnet/email
           GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
-          PROVIDER_GOOGLEQUICKSTART_CLIENT_ID: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_ID
-          PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET: op://pablo/sso-lifeofpablo/PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET
-          AUTHENTIK_SECRET_KEY: op://pablo/authentik/AUTHENTIK_SECRET_KEY
-          AUTHENTIK_EMAIL__HOST: op://pablo/authentik/AUTHENTIK_EMAIL__HOST
-          AUTHENTIK_EMAIL__PORT: op://pablo/authentik/AUTHENTIK_EMAIL__PORT
-          AUTHENTIK_EMAIL__USERNAME: op://pablo/authentik/AUTHENTIK_EMAIL__USERNAME
-          AUTHENTIK_EMAIL__PASSWORD: op://pablo/authentik/AUTHENTIK_EMAIL__PASSWORD
-          AUTHENTIK_EMAIL__USE_TLS: op://pablo/authentik/AUTHENTIK_EMAIL__USE_TLS
-          AUTHENTIK_EMAIL__USE_SSL: op://pablo/authentik/AUTHENTIK_EMAIL__USE_SSL
-          AUTH_PG_PASS: op://pablo/authentik/PG_PASS
-          AUTHENTIK_EMAIL__FROM: op://pablo/authentik/AUTHENTIK_EMAIL__FROM
-          AUTHENTIK_ERROR_REPORTING__ENABLED: op://pablo/authentik/AUTHENTIK_ERROR_REPORTING__ENABLED
-
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -95,18 +82,6 @@ jobs:
             GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
-            PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
-            AUTH_PG_PASS=${{ steps.op-load-secret.outputs.AUTH_PG_PASS }}
-            AUTHENTIK_SECRET_KEY=${{ steps.op-load-secret.outputs.AUTHENTIK_SECRET_KEY }}
-            AUTHENTIK_EMAIL__HOST=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__HOST }}
-            AUTHENTIK_EMAIL__PORT=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PORT }}
-            AUTHENTIK_EMAIL__USERNAME=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USERNAME }}
-            AUTHENTIK_EMAIL__PASSWORD=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PASSWORD }}
-            AUTHENTIK_EMAIL__USE_TLS=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_TLS }}
-            AUTHENTIK_EMAIL__USE_SSL=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_SSL }}
-            AUTHENTIK_EMAIL__FROM=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__FROM }}
-            AUTHENTIK_ERROR_REPORTING__ENABLED=${{ steps.op-load-secret.outputs.AUTHENTIK_ERROR_REPORTING__ENABLED }}
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -133,17 +108,4 @@ jobs:
             GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            LISTS=${{ steps.op-load-secret.outputs.LISTS }} \
-            PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_SECRET }} \
-            PROVIDER_GOOGLEQUICKSTART_CLIENT_ID=${{ steps.op-load-secret.outputs.PROVIDER_GOOGLEQUICKSTART_CLIENT_ID }} \
-            AUTH_PG_PASS=${{ steps.op-load-secret.outputs.AUTH_PG_PASS }}
-            AUTHENTIK_SECRET_KEY=${{ steps.op-load-secret.outputs.AUTHENTIK_SECRET_KEY }}
-            AUTHENTIK_EMAIL__HOST=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__HOST }}
-            AUTHENTIK_EMAIL__PORT=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PORT }}
-            AUTHENTIK_EMAIL__USERNAME=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USERNAME }}
-            AUTHENTIK_EMAIL__PASSWORD=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__PASSWORD }}
-            AUTHENTIK_EMAIL__USE_TLS=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_TLS }}
-            AUTHENTIK_EMAIL__USE_SSL=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__USE_SSL }}
-            AUTHENTIK_EMAIL__FROM=${{ steps.op-load-secret.outputs.AUTHENTIK_EMAIL__FROM }}
-            AUTHENTIK_ERROR_REPORTING__ENABLED=${{ steps.op-load-secret.outputs.AUTHENTIK_ERROR_REPORTING__ENABLED }}
             docker compose up --detach

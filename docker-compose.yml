@@ -51,8 +51,6 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${FRESHRSS_USER}
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
-      - VIRTUAL_HOST=reader.lifeofpablo.com
-      - LETSENCRYPT_HOST=reader.lifeofpablo.com
     labels:
       - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
       - "traefik.http.routers.miniflux.entrypoints=websecure"
