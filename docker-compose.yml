@@ -377,8 +377,8 @@ services:
       - "traefik.http.routers.pabs-api.tls.certresolver=myresolver"
     ports:
       - 3453:3000
-  11vty:
-    container_name: 11vty
+  11ty:
+    container_name: 11ty
     build:
       context: ./11vty/eleventy-from-scratch
     environment:
@@ -386,7 +386,7 @@ services:
       - VIRTUAL_HOST=beta.lifeofpablo.com
       - LETSENCRYPT_HOST=beta.lifeofpablo.com
     ports:
-      - 3455:80
+      - 3455:8080
   lifeofpablo-11ty-proxy:
     container_name: lifeofpablo-11ty-proxy
     image: nginx:bookworm
