@@ -395,7 +395,7 @@ services:
     volumes:
       - ./nginx-proxy/lifeofpablo-11ty:/etc/nginx/conf.d
     depends_on:
-      - 11vty 
+      - 11ty 
     labels:
       - "traefik.http.routers.11vty.rule=Host(`beta.lifeofpablo.com`)"
       - "traefik.http.routers.11vty.entrypoints=websecure"
