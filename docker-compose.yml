@@ -79,6 +79,10 @@ services:
     environment:
       VIRTUAL_HOST: auth.lifeofpablo.com
       LETSENCRYPT_HOST: auth.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.vouch-proxy.rule=Host(`auth.lifeofpablo.com`)"
+      - "traefik.http.routers.vouch-proxy.entrypoints=websecure"
+      - "traefik.http.routers.vouch-proxy.tls.certresolver=myresolver"
   korea:
     container_name: korea
     restart: always
@@ -151,7 +155,7 @@ services:
     ports:
       - "8083:80"
   lifeofpablo-static:
-    image: nginx:1.25.3-bookworm-perl
+    image: nginx:bookworm-perl
     container_name: lifeofpablo-static
     ports:
       - 8120:80
@@ -166,7 +170,7 @@ services:
       - "traefik.http.routers.lifeofpablo-static.entrypoints=websecure"
       - "traefik.http.routers.lifeofpablo-static.tls.certresolver=myresolver"
   lifeofpablo-photos:
-    image: nginx:1.25.3-bookworm-perl
+    image: nginx:bookworm-perl
     container_name: lifeofpablo-photos
     ports:
       - 8121:80
@@ -381,12 +385,31 @@ services:
       - NODE_ENV=production
       - VIRTUAL_HOST=beta.lifeofpablo.com
       - LETSENCRYPT_HOST=beta.lifeofpablo.com
+    ports:
+      - 3455:80
+  lifeofpablo-11ty-proxy:
+    container_name: lifeofpablo-11ty-proxy
+    image: nginx:bookworm
+    ports: 
+      - 3456:80
+    volumes:
+      - ./nginx-proxy/lifeofpablo-11ty:/etc/nginx/conf.d
+    depends_on:
+      - 11vty 
     labels:
       - "traefik.http.routers.11vty.rule=Host(`beta.lifeofpablo.com`)"
       - "traefik.http.routers.11vty.entrypoints=websecure"
       - "traefik.http.routers.11vty.tls.certresolver=myresolver"
-    ports:
-      - 3455:8080
+  goblog:
+    container_name: goblog
+    image: ghcr.io/jlelse/goblog:latest # or :tools
+    restart: unless-stopped # auto restart the container
+    volumes:
+      - ./config:/app/config # Config directory
+      - ./data:/app/data # Data directory, used for database, keys, uploads etc.
+      - ./static:/app/static # Static directory, if you want to publish static files
+    environment:
+      - TZ=America/Los_Angeles # You timezone
 #   authentik-proxy:
 #     image: ghcr.io/goauthentik/proxy
 #     ports:
