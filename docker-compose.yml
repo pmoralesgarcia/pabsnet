@@ -266,7 +266,7 @@ services:
     depends_on:
       - mariadb
     environment:
-      url: https://personivebecome.com
+      url: https://personivebecome.lifeofpablo.com
       database__client: mysql
       database__connection__host: mariadb
       database__connection__user: ghost
@@ -280,10 +280,12 @@ services:
       mail__options__auth__pass: ${GHOST_SMTP_PASSWORD}
       APP_TRUSTED_PROXIES: REMOTE_ADDR
       mail__from: "Person I've Become Podcast"
-      VIRTUAL_HOST: personivebecome.com
-      LETSENCRYPT_HOST: personivebecome.com
     volumes:
       - ./ghost/content:/var/lib/ghost/content
+    labels:
+      - "traefik.http.routers.personivebecome.rule=Host(`personivebecome.lifeofpablo.com`)"
+     # - "traefik.http.routers.personivebecome.entrypoints=websecure"
+     # - "traefik.http.routers.personivebecome.tls.certresolver=myresolver"
   yourls:
     image: yourls:1.10
     container_name: yourls
@@ -377,6 +379,12 @@ services:
       - "traefik.http.routers.pabs-api.tls.certresolver=myresolver"
     ports:
       - 3453:3000
+  docs:
+    container_name: docs
+    build:
+      context: ./docs
+    ports:
+      - 3454:3000
   11ty:
     container_name: 11ty
     build:
@@ -410,6 +418,7 @@ services:
       - ./static:/app/static # Static directory, if you want to publish static files
     environment:
       - TZ=America/Los_Angeles # You timezone
+
 #   authentik-proxy:
 #     image: ghcr.io/goauthentik/proxy
 #     ports:
