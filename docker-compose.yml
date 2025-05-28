@@ -284,8 +284,8 @@ services:
       - ./ghost/content:/var/lib/ghost/content
     labels:
       - "traefik.http.routers.personivebecome.rule=Host(`personivebecome.lifeofpablo.com`)"
-     # - "traefik.http.routers.personivebecome.entrypoints=websecure"
-     # - "traefik.http.routers.personivebecome.tls.certresolver=myresolver"
+      - "traefik.http.routers.personivebecome.entrypoints=websecure"
+      - "traefik.http.routers.personivebecome.tls.certresolver=myresolver"
   yourls:
     image: yourls:1.10
     container_name: yourls
