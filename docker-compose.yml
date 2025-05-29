@@ -38,7 +38,7 @@ services:
       - TZ=America/Los_Angeles 
 
   miniflux:
-    image: miniflux/miniflux:2.2.3
+    image: miniflux/miniflux:2.2.9
     container_name: miniflux
     ports:
       - "8084:8080"
@@ -49,6 +49,8 @@ services:
       - DATABASE_URL=postgres://miniflux:${FRESHRSS_MYSQL_PASSWORD}@postgres/miniflux?sslmode=disable
       - RUN_MIGRATIONS=1
       - CREATE_ADMIN=1
+      - BASE_URL=https://reader.lifeofpablo.com
+      - ROOT_URL=https://reader.lifeofpablo.com
       - ADMIN_USERNAME=${FRESHRSS_USER}
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
       - OAUTH2_PROVIDER=${MINIFLUX_OAUTH2_PROVIDER}
@@ -56,6 +58,7 @@ services:
       - OAUTH2_CLIENT_SECRET=${MINIFLUX_OAUTH2_CLIENT_SECRET}
       - OAUTH2_REDIRECT_URL=${MINIFLUX_OAUTH2_REDIRECT_URL}
       - OAUTH2_OIDC_DISCOVERY_ENDPOINT=${MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT}
+      - OAUTH2_USER_CREATION=1
     labels:
       - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
       - "traefik.http.routers.miniflux.entrypoints=websecure"
