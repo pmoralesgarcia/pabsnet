@@ -450,6 +450,23 @@ services:
       JWT_SECRET: 985694ae54fc4451bc414ef6ef4b021c72a20829be8cdc7efd198911be32480ea9c8b5e48180c145ce712e73113d011bc715bd1441d58a699b61aca6fc2b39482edd597210dcb34083d9b490223cd6e6535392e44a30772e082b12a07b61d1534ccc364fa8aee4bc045a7ffbec7a87d32d4d28d057762e53a165a7484010428302991911cdd8101b9d6401efa4fc22e489b00e15262be1cadb4b2f61629c4e3580e5f22c753a05b47213aa09ea0b6b5774ea7ffb78ea1e3c8f0fff3c1ca4b0ee97dac02e0e212196a384a8b4c61f98a08995446c617433253ea886739db739d0539f8629d392712a540aba540c268e8490f5cb67b55af38cf376190b35975166 # Change to a secure secret
     networks:
       - app_network
+  gollum:
+    image: gollumwiki/gollum
+    restart: always
+    ports:
+      - "4567:4567/tcp" # change the first port number to expose Gollum on a different port on the host
+    volumes:
+      # - ${PWD}/config.rb:/etc/gollum/config.rb # if using config.rb in your current directory
+      - ./wikidata:/wiki # with your repository in the 'wiki' subdirectory of your current directory
+    command:
+      # - "--config=/etc/gollum/config.rb" # if using config.rb
+      - "--math"
+      # - ... # your additional options here
+    labels:
+      - "traefik.http.routers.wiki.rule=Host(`wiki.lifeofpablo.com`)"
+      - "traefik.http.routers.wiki.entrypoints=websecure"
+      - "traefik.http.routers.wiki.tls.certresolver=myresolver"
+
 
 #   authentik-proxy:
 #     image: ghcr.io/goauthentik/proxy
