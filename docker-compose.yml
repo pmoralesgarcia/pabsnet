@@ -420,18 +420,53 @@ services:
   #     - ./static:/app/static # Static directory, if you want to publish static files
   #   environment:
   #     - TZ=America/Los_Angeles # You timezone
-  datasette:
-    container_name: datasette
+  datasette-proxy:
+    image: nginx:1.25.3-bookworm-perl
+    container_name: lifeofpablo-proxy
+    volumes:
+      - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
+    ports:
+      - 8111:80
+    depends_on:
+      - datasette-media
+      - datasette-recs
+      - lifeofpablo-linkinbio
+    labels:
+      - "traefik.http.routers.datasette.rule=Host(`datasette.lifeofpablo.com`)"
+      - "traefik.http.routers.datasette.entrypoints=websecure"
+      - "traefik.http.routers.datasette.tls.certresolver=myresolver"
+  datasette-home:
+    container_name: datasette-home
+    restart: always
+    build:
+      dockerfile: ./1k.lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./1k.lifeofpablo.com/www:/var/www/html
+    ports:
+      - "8127:80"
+    labels:
+      - "traefik.http.routers.1k.rule=Host(`1k.lifeofpablo.com`)"
+      - "traefik.http.routers.1k.entrypoints=websecure"
+      - "traefik.http.routers.1k.tls.certresolver=myresolver"
+  datasette-media:
+    container_name: datasette-media
     image: datasetteproject/datasette
     volumes:
       - ./datasette:/mnt
     ports:
       - '8001:8001'
-    command: datasette -p 8001 -h 0.0.0.0 /mnt/fixtures.db --load-extension=spatialite
-    labels:
-      - "traefik.http.routers.datasette.rule=Host(`datasette.lifeofpablo.com`)"
-      - "traefik.http.routers.datasette.entrypoints=websecure"
-      - "traefik.http.routers.datasette.tls.certresolver=myresolver"
+    command: datasette -p 8001 -h 0.0.0.0 /mnt/data.db --load-extension=spatialite
+  
+  datasette-recs:
+    container_name: datasette-recs
+    image: datasetteproject/datasette
+    volumes:
+      - ./datasette/recs:/mnt/
+    ports:
+      - '8002:8001'
+    command: datasette -p 8001 -h 0.0.0.0 /mnt/  --load-extension=spatialite
+    
 
   
 
