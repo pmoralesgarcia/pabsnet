@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'lifeofpablo.com/**'
+      - 'datasette/**'
 jobs:
   Build:
     name: Build
@@ -36,5 +36,4 @@ jobs:
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           cd ~/pabsnet
           git pull
-          cd ~/pabsnet/lifeofpablo.com
-          chmod -R a+rw ~/pabsnet/lifeofpablo.com
+          docker compose restart datasette-recs
