@@ -1,9 +1,9 @@
-name: Deploy lifeofpablo.com
+name: Deploy datasette
 on:
   workflow_dispatch:
   push:
     paths:
-      - 'datasette/**'
+      - 'datasette/recs**'
 jobs:
   Build:
     name: Build
