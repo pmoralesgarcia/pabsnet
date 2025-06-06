@@ -425,7 +425,7 @@ services:
     container_name: datasette-recs
     image: datasetteproject/datasette
     volumes:
-      - ./datasette/recs:/mnt/
+      - ./datasette:/mnt/
     ports:
       - '8001:8001'
     command: datasette -p 8001 -h 0.0.0.0 /mnt/ --metadata /mnt/metadata.json --load-extension=spatialite --static assets:/mnt/static-files/ --memory
