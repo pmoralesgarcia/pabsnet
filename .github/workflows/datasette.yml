@@ -36,4 +36,4 @@ jobs:
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
           cd ~/pabsnet
           git pull
-          docker compose restart datasette-recs
+          docker compose restart datasette
