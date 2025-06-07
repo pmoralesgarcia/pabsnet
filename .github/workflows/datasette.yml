@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'datasette/recs**'
+      - 'datasette'
 jobs:
   Build:
     name: Build
