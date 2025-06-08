@@ -3,7 +3,7 @@
 // Function to fetch data from the API and populate the HTML links
 async function fetchAndPopulateLinks() {
   // IMPORTANT: Replace this with the actual URL of your API endpoint
-  const apiUrl = 'http://localhost:8001/linkinbio/links.json?_shape=array'; 
+  const apiUrl = 'https://datasette.lifeofpablo.com/linkinbio/links.json?_shape=array'; 
 
   const linksContainer = document.querySelector('.button-stack');
   if (!linksContainer) {
