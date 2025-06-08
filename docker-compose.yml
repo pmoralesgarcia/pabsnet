@@ -428,7 +428,7 @@ services:
       - ./datasette:/mnt/
     ports:
       - '8001:8001'
-    command: datasette --reload -p 8001 -h 0.0.0.0 /mnt/ --metadata /mnt/metadata.json --load-extension=spatialite --static assets:/mnt/static-files/ 
+    command: datasette --reload -p 8001 -h 0.0.0.0 /mnt/ --metadata /mnt/metadata.json --load-extension=spatialite --static assets:/mnt/static-files/ --cors
     labels:
       - "traefik.http.routers.datasette.rule=Host(`datasette.lifeofpablo.com`)"
       - "traefik.http.routers.datasette.entrypoints=websecure"
