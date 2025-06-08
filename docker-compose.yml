@@ -217,26 +217,26 @@ services:
       - 8124:80
     volumes:
       - ./lifeofpablo-interactives/www:/var/www/html
-  pabstech:
-    image: lscr.io/linuxserver/grav:latest
-    container_name: pabstech
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ="America/Los_Angeles"
-      - VIRTUAL_HOST=pabs.tech
-      - LETSENCRYPT_HOST=pabs.tech
-    volumes:
-      - ./pabstech/config:/config
-    ports:
-      - 8203:80
-    restart: unless-stopped      
-  httpbin:
-    image: kennethreitz/httpbin
-    container_name: httpbin
-    ports:
-      - '8200:80'
-    restart: always
+  # pabstech:
+  #   image: lscr.io/linuxserver/grav:latest
+  #   container_name: pabstech
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ="America/Los_Angeles"
+  #     - VIRTUAL_HOST=pabs.tech
+  #     - LETSENCRYPT_HOST=pabs.tech
+  #   volumes:
+  #     - ./pabstech/config:/config
+  #   ports:
+  #     - 8203:80
+  #   restart: unless-stopped      
+  # httpbin:
+  #   image: kennethreitz/httpbin
+  #   container_name: httpbin
+  #   ports:
+  #     - '8200:80'
+  #   restart: always
   europe24:
     container_name: europe24
     restart: always 
@@ -315,43 +315,43 @@ services:
       - "traefik.http.routers.yourls.rule=Host(`pabs.lol`)"
       - "traefik.http.routers.yourls.entrypoints=websecure"
       - "traefik.http.routers.yourls.tls.certresolver=myresolver"
-  grocy:
-    image: lscr.io/linuxserver/grocy:latest
-    container_name: grocy
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-      - VIRTUAL_HOST=grocy.lifeofpablo.com
-      - LETSENCRYPT_HOST=grocy.lifeofpablo.com
-    volumes:
-      - ./grocy/config:/config
-    ports:
-      - 9284:80
-    restart: unless-stopped
-  owntracks-recorder:
-    container_name: owntracks-recorder
-    image: owntracks/recorder
-    ports:
-      - 9285:8083
-    environment:
-      - OTR_PORT=0 # disables MQTT
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./owntracks-recorder/config:/config
-      - ./owntracks-recorder/store:/store
-    restart: unless-stopped
-  owntracks-frontend:
-    container_name: owntracks-frontend
-    image: owntracks/frontend
-    ports:
-      - 9287:80
-    volumes:
-      - ./owntracks-frontend/config.js:/usr/share/nginx/html/config/config.js
-    environment:
-      - SERVER_HOST=owntracks-recorder
-      - SERVER_PORT=8083
-    restart: unless-stopped
+  # grocy:
+  #   image: lscr.io/linuxserver/grocy:latest
+  #   container_name: grocy
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Etc/UTC
+  #     - VIRTUAL_HOST=grocy.lifeofpablo.com
+  #     - LETSENCRYPT_HOST=grocy.lifeofpablo.com
+  #   volumes:
+  #     - ./grocy/config:/config
+  #   ports:
+  #     - 9284:80
+  #   restart: unless-stopped
+  # owntracks-recorder:
+  #   container_name: owntracks-recorder
+  #   image: owntracks/recorder
+  #   ports:
+  #     - 9285:8083
+  #   environment:
+  #     - OTR_PORT=0 # disables MQTT
+  #   volumes:
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - ./owntracks-recorder/config:/config
+  #     - ./owntracks-recorder/store:/store
+  #   restart: unless-stopped
+  # owntracks-frontend:
+  #   container_name: owntracks-frontend
+  #   image: owntracks/frontend
+  #   ports:
+  #     - 9287:80
+  #   volumes:
+  #     - ./owntracks-frontend/config.js:/usr/share/nginx/html/config/config.js
+  #   environment:
+  #     - SERVER_HOST=owntracks-recorder
+  #     - SERVER_PORT=8083
+  #   restart: unless-stopped
   lifeofpablo-login:
     container_name: lifeofpablo-login
     restart: always
