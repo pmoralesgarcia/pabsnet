@@ -1,0 +1,71 @@
+# Google AI 
+User-agent: Google-Extended
+Disallow: /
+
+# Google Images
+User-agent: Googlebot-Image
+Disallow: /
+
+# Common Crawl
+User-agent: CCBot
+Disallow: /
+  
+# OpenAI
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+# Omgili
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: Omgili
+Disallow: /
+
+# Facebook AI
+User-agent: FacebookBot
+Disallow: /
+
+# Turn It In Plagiarism Checker
+User-agent: TurnitinBot
+Disallow: /
+
+# Name Protect
+User-agent: NPBot
+Disallow: /
+
+# Sly Search
+User-agent: SlySearch
+Disallow: /
+
+# Miscellaneous
+User-agent: The Knowledge AI
+Disallow: /
+
+User-agent: 360Spider
+Disallow: /
+
+User-agent: aiHitBot
+Disallow: /
+
+User-agent: netEstate NE Crawler
+Disallow: /
+
+User-agent: Pinterestbot
+Disallow: /
+
+User-agent: *
+Disallow: /harming/humans
+Disallow: /harming/machines
+Disallow: /risking/your/own/existence
+Disallow: /edit/
+Disallow: /logged-out
+Noindex: /logged-out
+
+User-Agent: SemrushBot
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
