@@ -421,18 +421,18 @@ services:
   #   environment:
   #     - TZ=America/Los_Angeles # You timezone
 
-  datasette:
-    container_name: datasette-recs
-    image: datasetteproject/datasette
-    volumes:
-      - ./datasette:/mnt/
-    ports:
-      - '8001:8001'
-    command: datasette --reload -p 8001 -h 0.0.0.0 /mnt/ --metadata /mnt/metadata.json --load-extension=spatialite --static assets:/mnt/static-files/ --cors
-    labels:
-      - "traefik.http.routers.datasette.rule=Host(`datasette.lifeofpablo.com`)"
-      - "traefik.http.routers.datasette.entrypoints=websecure"
-      - "traefik.http.routers.datasette.tls.certresolver=myresolver"
+  # datasette:
+  #   container_name: datasette-recs
+  #   image: datasetteproject/datasette
+  #   volumes:
+  #     - ./datasette:/mnt/
+  #   ports:
+  #     - '8001:8001'
+  #   command: datasette --reload -p 8001 -h 0.0.0.0 /mnt/ --metadata /mnt/metadata.json --load-extension=spatialite --static assets:/mnt/static-files/ --cors
+  #   labels:
+  #     - "traefik.http.routers.datasette.rule=Host(`datasette.lifeofpablo.com`)"
+  #     - "traefik.http.routers.datasette.entrypoints=websecure"
+  #     - "traefik.http.routers.datasette.tls.certresolver=myresolver"
 
   
 
