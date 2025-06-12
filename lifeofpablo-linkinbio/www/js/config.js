@@ -2,7 +2,7 @@
 
 async function fetchAndApplyPageConfig() {
   // IMPORTANT: Replace this with the actual URL of your page configuration API endpoint
-  const configApiUrl = 'https://datasette.lifeofpablo.com/linkinbio/config.json?_shape=array'; 
+  const configApiUrl = 'https://static.lifeofpablo.com/linkinbio/config.json'; 
 
   try {
     const response = await fetch(configApiUrl);
