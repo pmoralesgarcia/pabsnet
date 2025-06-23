@@ -126,8 +126,8 @@ services:
       - 1k
     labels:
       - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
-      # - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
-      # - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
+      - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
   lifeofpablo:
     container_name: lifeofpablo
     restart: always
