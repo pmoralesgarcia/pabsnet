@@ -122,10 +122,12 @@ services:
       - lifeofpablo
       - lifeofpablo-interactives
       - lifeofpablo-linkinbio
+      - lifeofpablo-nyc-climateweek
+      - 1k
     labels:
       - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
-      - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
-      - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
+      # - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
+      # - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
   lifeofpablo:
     container_name: lifeofpablo
     restart: always
@@ -254,7 +256,7 @@ services:
     container_name: 1k
     restart: always
     build:
-      dockerfile: ./1k.lifeofpablo.com/Dockerfile  
+      dockerfile: ./1k.lifeofpablo.com/Dockerfile
     volumes:
       #Project root
       - ./1k.lifeofpablo.com/www:/var/www/html
@@ -410,6 +412,13 @@ services:
       - "traefik.http.routers.11vty.rule=Host(`beta.lifeofpablo.com`)"
       - "traefik.http.routers.11vty.entrypoints=websecure"
       - "traefik.http.routers.11vty.tls.certresolver=myresolver"
+  otterwiki:
+    image: redimp/otterwiki:2
+    restart: unless-stopped
+    ports:
+      - 8089:80
+    volumes:
+      - ./otterwiki:/app-data
   # goblog:
   #   container_name: goblog
   #   image: ghcr.io/jlelse/goblog:latest # or :tools
