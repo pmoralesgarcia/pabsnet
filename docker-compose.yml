@@ -432,8 +432,8 @@ services:
       - DB_POSTGRESDB_HOST=n8n_postgres
       - DB_POSTGRESDB_PORT=${N8N_DB_PORT}
       - DB_POSTGRESDB_DATABASE=${N8N_DB}
-      - DB_POSTGRESDB_USER=${N8N_NON_ROOT_USER}
-      - DB_POSTGRESDB_PASSWORD=${N8N_NON_ROOT_PW}
+      - DB_POSTGRESDB_USER=${N8N_USER}
+      - DB_POSTGRESDB_PASSWORD=${N8N_PW}
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
     ports:
       - 5678:5678
@@ -446,6 +446,8 @@ services:
       - "traefik.http.routers.n8n.rule=Host(`n8n.lifeofpablo.com`)"
       - "traefik.http.routers.n8n.entrypoints=websecure"
       - "traefik.http.routers.n8n.tls.certresolver=myresolver"
+    env_file:
+      - fileName
     depends_on:
       postgres:
         condition: service_healthy
