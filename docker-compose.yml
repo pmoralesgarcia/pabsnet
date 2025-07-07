@@ -53,12 +53,6 @@ services:
       - ROOT_URL=https://reader.lifeofpablo.com
       - ADMIN_USERNAME=${FRESHRSS_USER}
       - ADMIN_PASSWORD=${FRESHRSS_PASSWORD}
-      - OAUTH2_PROVIDER=${MINIFLUX_OAUTH2_PROVIDER}
-      - OAUTH2_CLIENT_ID=${MINIFLUX_OAUTH2_CLIENT_ID}
-      - OAUTH2_CLIENT_SECRET=${MINIFLUX_OAUTH2_CLIENT_SECRET}
-      - OAUTH2_REDIRECT_URL=${MINIFLUX_OAUTH2_REDIRECT_URL}
-      - OAUTH2_OIDC_DISCOVERY_ENDPOINT=${MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT}
-      - OAUTH2_USER_CREATION=1
     labels:
       - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
       - "traefik.http.routers.miniflux.entrypoints=websecure"
@@ -122,8 +116,6 @@ services:
       - lifeofpablo
       - lifeofpablo-interactives
       - lifeofpablo-linkinbio
-      - lifeofpablo-nyc-climateweek
-      - 1k
     labels:
       - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
       - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
@@ -256,7 +248,7 @@ services:
     container_name: 1k
     restart: always
     build:
-      dockerfile: ./1k.lifeofpablo.com/Dockerfile
+      dockerfile: ./1k.lifeofpablo.com/Dockerfile  
     volumes:
       #Project root
       - ./1k.lifeofpablo.com/www:/var/www/html
@@ -412,13 +404,50 @@ services:
       - "traefik.http.routers.11vty.rule=Host(`beta.lifeofpablo.com`)"
       - "traefik.http.routers.11vty.entrypoints=websecure"
       - "traefik.http.routers.11vty.tls.certresolver=myresolver"
-  otterwiki:
-    image: redimp/otterwiki:2
-    restart: unless-stopped
-    ports:
-      - 8089:80
+  
+  n8n-postgres:
+    image: postgres:16
+    restart: always
+    environment:
+      - POSTGRES_USER=${N8N_PG_USER}
+      - POSTGRES_PASSWORD=${N8N_PG_PW}
+      - POSTGRES_DB=${N8N_PG_DB}
+      - POSTGRES_NON_ROOT_USER=${N8N_PG_NON_ROOT_USER}
+      - POSTGRES_NON_ROOT_PASSWORD${N8N_PG_NON_ROOT_PW}
     volumes:
-      - ./otterwiki:/app-data
+      - db_storage:/var/lib/postgresql/data
+      - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: always
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=n8n-postgres
+      - DB_POSTGRESDB_PORT=${N8N_DB_PORT}
+      - DB_POSTGRESDB_DATABASE=${N8N_DB}
+      - DB_POSTGRESDB_USER=${N8N_NON_ROOT_USER}
+      - DB_POSTGRESDB_PASSWORD=${N8N_NON_ROOT_PW}
+    ports:
+      - 5678:5678
+    links:
+      - n8n-postgres
+    volumes:
+      - n8n_storage:/home/node/.n8n
+      - ./n8n/local-files:/files
+    labels:
+      - "traefik.http.routers.n8n.rule=Host(`n8n.pabs.lol`)"
+      - "traefik.http.routers.n8n.entrypoints=websecure"
+      - "traefik.http.routers.n8n.tls.certresolver=myresolver"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   # goblog:
   #   container_name: goblog
   #   image: ghcr.io/jlelse/goblog:latest # or :tools
@@ -430,18 +459,18 @@ services:
   #   environment:
   #     - TZ=America/Los_Angeles # You timezone
 
-  # datasette:
-  #   container_name: datasette-recs
-  #   image: datasetteproject/datasette
-  #   volumes:
-  #     - ./datasette:/mnt/
-  #   ports:
-  #     - '8001:8001'
-  #   command: datasette --reload -p 8001 -h 0.0.0.0 /mnt/ --metadata /mnt/metadata.json --load-extension=spatialite --static assets:/mnt/static-files/ --cors
-  #   labels:
-  #     - "traefik.http.routers.datasette.rule=Host(`datasette.lifeofpablo.com`)"
-  #     - "traefik.http.routers.datasette.entrypoints=websecure"
-  #     - "traefik.http.routers.datasette.tls.certresolver=myresolver"
+    # datasette:
+    #   container_name: datasette-recs
+    #   image: datasetteproject/datasette
+    #   volumes:
+    #     - ./datasette:/mnt/
+    #   ports:
+    #     - '8001:8001'
+    #   command: datasette --reload -p 8001 -h 0.0.0.0 /mnt/ --metadata /mnt/metadata.json --load-extension=spatialite --static assets:/mnt/static-files/ --cors
+    #   labels:
+    #     - "traefik.http.routers.datasette.rule=Host(`datasette.lifeofpablo.com`)"
+    #     - "traefik.http.routers.datasette.entrypoints=websecure"
+    #     - "traefik.http.routers.datasette.tls.certresolver=myresolver"
 
   
 
@@ -539,6 +568,8 @@ volumes:
  miniflux-db:
  postgres_data:
     driver: local
+ db_storage:
+ n8n_storage:
 
 networks:
   app_network:
