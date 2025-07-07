@@ -572,7 +572,7 @@ volumes:
  miniflux-db:
  postgres_data:
     driver: local
- n8n_db_storage:
+ db_storage:
  n8n_storage:
 
 networks:
