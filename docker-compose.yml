@@ -573,7 +573,7 @@ volumes:
  postgres_data:
     driver: local
  db_storage:
- n8n_storage:
+#  n8n_storage:
 
 networks:
   app_network:
