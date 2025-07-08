@@ -416,7 +416,7 @@ services:
       - POSTGRES_NON_ROOT_USER=${N8N_PG_NON_ROOT_USER}
       - POSTGRES_NON_ROOT_PASSWORD${N8N_PG_NON_ROOT_PW}
     volumes:
-      - n8n_db_storage:/var/lib/postgresql/data
+      - db_storage:/var/lib/postgresql/data
       - ./n8n/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -h localhost -U ${N8N_PG_USER1} -d ${N8N_PG_DB1}']
@@ -432,8 +432,8 @@ services:
       - DB_POSTGRESDB_HOST=n8n_postgres
       - DB_POSTGRESDB_PORT=${N8N_DB_PORT}
       - DB_POSTGRESDB_DATABASE=${N8N_DB}
-      - DB_POSTGRESDB_USER=${N8N_USER}
-      - DB_POSTGRESDB_PASSWORD=${N8N_PW}
+      - DB_POSTGRESDB_USER=${N8N_NR_USER}
+      - DB_POSTGRESDB_PASSWORD=${N8N_NR_PW}
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
     ports:
       - 5678:5678
