@@ -41,17 +41,6 @@ jobs:
           API_DB_PASS: op://pablo/lists-pabsnet2/password
           API_DB_USER: op://pablo/lists-pabsnet2/username
           API_DB: op://pablo/lists-pabsnet2/database
-          N8N_DB_PORT: op://pablo/n8n-docker/N8N_DB_PORT
-          N8N_DB: op://pablo/n8n-docker/N8N_DB
-          N8N_NON_ROOT_USER: op://pablo/n8n-docker/N8N_NON_ROOT_USER
-          N8N_NON_ROOT_PW: op://pablo/n8n-docker/N8N_NON_ROOT_PW
-          N8N_PG_USER: op://pablo/n8n-docker/N8N_PG_USER
-          N8N_PG_PW: op://pablo/n8n-docker/N8N_PG_PW
-          N8N_PG_DB: op://pablo/n8n-docker/N8N_PG_DB
-          N8N_PG_NON_ROOT_USER: op://pablo/n8n-docker/N8N_PG_NON_ROOT_USER
-          N8N_PG_NON_ROOT_PW: op://pablo/n8n-docker/N8N_PG_NON_ROOT_PW
-          N8N_NR_USER: op://pablo/n8n-docker/N8N_PG_NON_ROOT_USER
-          N8N_NR_PW: op://pablo/n8n-docker/N8N_PG_NON_ROOT_PW
       
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
@@ -84,17 +73,6 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            N8N_DB_PORT=${{ steps.op-load-secret.outputs.N8N_DB_PORT }} \
-            N8N_DB=${{ steps.op-load-secret.outputs.N8N_DB }} \
-            N8N_NON_ROOT_USER=${{ steps.op-load-secret.outputs.N8N_NON_ROOT_USER }} \
-            N8N_NON_ROOT_PW=${{ steps.op-load-secret.outputs.N8N_NON_ROOT_PW }} \
-            N8N_PG_USER=${{ steps.op-load-secret.outputs.N8N_PG_USER }} \
-            N8N_PG_PW=${{ steps.op-load-secret.outputs.N8N_PG_PW }} \
-            N8N_PG_DB=${{ steps.op-load-secret.outputs.N8N_PG_DB }} \
-            N8N_PG_NON_ROOT_USER=${{ steps.op-load-secret.outputs.N8N_PG_NON_ROOT_USER }} \
-            N8N_PG_NON_ROOT_PW=${{ steps.op-load-secret.outputs.N8N_PG_NON_ROOT_PW }} \
-            N8N_NR_USER=${{ steps.op-load-secret.outputs.N8N_NR_USER }} \
-            N8N_NR_PW=${{ steps.op-load-secret.outputs.N8N_NR_PW }} \
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -116,13 +94,4 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            N8N_DB_PORT=${{ steps.op-load-secret.outputs.N8N_DB_PORT }} \
-            N8N_DB=${{ steps.op-load-secret.outputs.N8N_DB }} \
-            N8N_NON_ROOT_USER=${{ steps.op-load-secret.outputs.N8N_NON_ROOT_USER }} \
-            N8N_NON_ROOT_PW=${{ steps.op-load-secret.outputs.N8N_NON_ROOT_PW }} \
-            N8N_PG_USER=${{ steps.op-load-secret.outputs.N8N_PG_USER }} \
-            N8N_PG_PW=${{ steps.op-load-secret.outputs.N8N_PG_PW }} \
-            N8N_PG_DB=${{ steps.op-load-secret.outputs.N8N_PG_DB }} \
-            N8N_NR_USER=${{ steps.op-load-secret.outputs.N8N_NR_USER }} \
-            N8N_NR_PW=${{ steps.op-load-secret.outputs.N8N_NR_PW }} \
             docker compose up --detach
