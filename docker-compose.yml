@@ -417,7 +417,7 @@ services:
       - POSTGRES_NON_ROOT_PASSWORD${N8N_PG_NON_ROOT_PW}
     volumes:
       - n8n_db_storage:/var/lib/postgresql/data
-      - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
+      - ./n8n/init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -h localhost -U ${N8N_PG_USER1} -d ${N8N_PG_DB1}']
       interval: 5s
@@ -572,8 +572,8 @@ volumes:
  miniflux-db:
  postgres_data:
     driver: local
-#  db_storage:
-#  n8n_storage:
+ db_storage:
+ n8n_storage:
 
 networks:
   app_network:

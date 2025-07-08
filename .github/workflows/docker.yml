@@ -94,15 +94,15 @@ jobs:
             GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            N8N_DB_PORT=${{ steps.op-load-secret.outputs.N8N_DB_PORT }} \
-            N8N_DB=${{ steps.op-load-secret.outputs.N8N_DB }} \
-            N8N_USER=${{ steps.op-load-secret.outputs.N8N_USER }} \
-            N8N_PW=${{ steps.op-load-secret.outputs.N8N_PW }} \
-            N8N_PG_USER=${{ steps.op-load-secret.outputs.N8N_PG_USER }} \
-            N8N_PG_PW=${{ steps.op-load-secret.outputs.N8N_PG_PW }} \
-            N8N_PG_DB=${{ steps.op-load-secret.outputs.N8N_PG_DB }} \
-            N8N_PG_NON_ROOT_USER=${{ steps.op-load-secret.outputs.N8N_PG_NON_ROOT_USER }} \
-            N8N_PG_NON_ROOT_PW=${{ steps.op-load-secret.outputs.N8N_PG_NON_ROOT_PW }} \
+            N8N_DB_PORT: op://pablo/n8n-docker/N8N_DB_PORT
+            N8N_DB: op://pablo/n8n-docker/N8N_DB
+            N8N_NON_ROOT_USER: op://pablo/n8n-docker/N8N_NON_ROOT_USER
+            N8N_NON_ROOT_PW: op://pablo/n8n-docker/N8N_NON_ROOT_PW
+            N8N_PG_USER: op://pablo/n8n-docker/N8N_PG_USER
+            N8N_PG_PW: op://pablo/n8n-docker/N8N_PG_PW
+            N8N_PG_DB: op://pablo/n8n-docker/N8N_PG_DB
+            N8N_PG_NON_ROOT_USER: op://pablo/n8n-docker/N8N_PG_NON_ROOT_USER
+            N8N_PG_NON_ROOT_PW: op://pablo/n8n-docker/N8N_PG_NON_ROOT_PW
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -129,13 +129,11 @@ jobs:
             GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
             GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
             GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            N8N_DB_PORT=${{ steps.op-load-secret.outputs.N8N_DB_PORT }} \
-            N8N_DB=${{ steps.op-load-secret.outputs.N8N_DB }} \
-            N8N_USER=${{ steps.op-load-secret.outputs.N8N_USER }} \
-            N8N_PW=${{ steps.op-load-secret.outputs.N8N_PW }} \
-            N8N_PG_USER=${{ steps.op-load-secret.outputs.N8N_PG_USER }} \
-            N8N_PG_PW=${{ steps.op-load-secret.outputs.N8N_PG_PW }} \
-            N8N_PG_DB=${{ steps.op-load-secret.outputs.N8N_PG_DB }} \
-            N8N_PG_NON_ROOT_USER=${{ steps.op-load-secret.outputs.N8N_PG_NON_ROOT_USER }} \
-            N8N_PG_NON_ROOT_PW=${{ steps.op-load-secret.outputs.N8N_PG_NON_ROOT_PW }} \
+            N8N_NON_ROOT_USER: op://pablo/n8n-docker/N8N_NON_ROOT_USER
+            N8N_NON_ROOT_PW: op://pablo/n8n-docker/N8N_NON_ROOT_PW
+            N8N_PG_USER: op://pablo/n8n-docker/N8N_PG_USER
+            N8N_PG_PW: op://pablo/n8n-docker/N8N_PG_PW
+            N8N_PG_DB: op://pablo/n8n-docker/N8N_PG_DB
+            N8N_PG_NON_ROOT_USER: op://pablo/n8n-docker/N8N_PG_NON_ROOT_USER
+            N8N_PG_NON_ROOT_PW: op://pablo/n8n-docker/N8N_PG_NON_ROOT_PW
             docker compose up --detach
