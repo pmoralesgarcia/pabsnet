@@ -18,10 +18,6 @@ jobs:
           export-env: false
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          API_DB_HOST: op://pablo/lists-pabsnet2/server
-          API_DB_PASS: op://pablo/lists-pabsnet2/password
-          API_DB_USER: op://pablo/lists-pabsnet2/username
-          API_DB: op://pablo/lists-pabsnet2/database
           USERNAME: op://pablo/pabsnet2/username
           PRIVATE_SSH_KEY: op://pablo/pabsnet2/private key
           SERVER_HOST: op://pablo/pabsnet2/host
@@ -41,17 +37,11 @@ jobs:
           MATOMO_MYSQL_USER: op://pablo/matomo/username
           MATOMO_MYSQL_DATABASE: op://pablo/matomo/database
           MATOMO_MYSQL_PASSWORD: op://pablo/matomo/password
-          GHOST_MYSQL_PASSWORD: op://pablo/ghost-pabsnet/password
-          GHOST_SMTP_RELAY: op://pablo/ghost-pabsnet/smtp_relay
-          GHOST_SMTP_PORT: op://pablo/ghost-pabsnet/smtp_port
-          GHOST_SMTP_USER: op://pablo/ghost-pabsnet/email
-          GHOST_SMTP_PASSWORD: op://pablo/ghost-pabsnet/app_password
-          MINIFLUX_OAUTH2_PROVIDER: op://pablo/miniflux/MINIFLUX_OAUTH2_PROVIDER
-          MINIFLUX_OAUTH2_CLIENT_ID: op://pablo/miniflux/MINIFLUX_OAUTH2_CLIENT_ID
-          MINIFLUX_OAUTH2_CLIENT_SECRET: op://pablo/miniflux/MINIFLUX_OAUTH2_CLIENT_SECRET
-          MINIFLUX_OAUTH2_REDIRECT_URL: op://pablo/miniflux/MINIFLUX_OAUTH2_REDIRECT_URL
-          MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT: op://pablo/miniflux/MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT
-          
+          API_DB_HOST: op://pablo/lists-pabsnet2/server
+          API_DB_PASS: op://pablo/lists-pabsnet2/password
+          API_DB_USER: op://pablo/lists-pabsnet2/username
+          API_DB: op://pablo/lists-pabsnet2/database
+      
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -83,16 +73,6 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
-            GHOST_SMTP_RELAY=${{ steps.op-load-secret.outputs.GHOST_SMTP_RELAY }} \
-            GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
-            GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
-            GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            MINIFLUX_OAUTH2_PROVIDER=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_PROVIDER }} \
-            MINIFLUX_OAUTH2_CLIENT_ID=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_ID }} \
-            MINIFLUX_OAUTH2_CLIENT_SECRET=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_SECRET }} \
-            MINIFLUX_OAUTH2_REDIRECT_URL=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }} \
-            MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }} \
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -114,14 +94,4 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            GHOST_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_MYSQL_PASSWORD }} \
-            GHOST_SMTP_RELAY=${{ steps.op-load-secret.outputs.GHOST_SMTP_RELAY }} \
-            GHOST_SMTP_PORT=${{ steps.op-load-secret.outputs.GHOST_SMTP_PORT }} \
-            GHOST_SMTP_USER=${{ steps.op-load-secret.outputs.GHOST_SMTP_USER }} \
-            GHOST_SMTP_PASSWORD=${{ steps.op-load-secret.outputs.GHOST_SMTP_PASSWORD }} \
-            MINIFLUX_OAUTH2_PROVIDER=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_PROVIDER }} \
-            MINIFLUX_OAUTH2_CLIENT_ID=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_ID }} \
-            MINIFLUX_OAUTH2_CLIENT_SECRET=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_SECRET }} \
-            MINIFLUX_OAUTH2_REDIRECT_URL=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }} \
-            MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }} \
             docker compose up --detach

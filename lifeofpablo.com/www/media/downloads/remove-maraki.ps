@@ -1,0 +1,25 @@
+# Find the specific product instance
+$productToUninstall = Get-CimInstance -ClassName Win32_Product -Filter "Name='Cisco Meraki Endpoint Agent'"
+
+# Check if the product was found
+if ($productToUninstall) {
+    Write-Host "Found 'Cisco Meraki Endpoint Agent'. Attempting to uninstall..."
+    
+    # Invoke the Uninstall method
+    try {
+        $uninstallResult = Invoke-CimMethod -InputObject $productToUninstall -MethodName Uninstall
+        
+        # Check the return value of the uninstall method
+        if ($uninstallResult.ReturnValue -eq 0) {
+            Write-Host "Uninstallation of 'Cisco Meraki Endpoint Agent' successful."
+        } else {
+            Write-Warning "Uninstallation of 'Cisco Meraki Endpoint Agent' failed with return code: $($uninstallResult.ReturnValue)."
+            Write-Warning "Refer to WMI error codes for more information (e.g., 1603 for general installation error)."
+        }
+    }
+    catch {
+        Write-Error "An error occurred during uninstallation: $($_.Exception.Message)"
+    }
+} else {
+    Write-Host "'Cisco Meraki Endpoint Agent' not found on this system."
+}
