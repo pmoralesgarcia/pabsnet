@@ -57,8 +57,8 @@ services:
       - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
       - "traefik.http.routers.miniflux.entrypoints=websecure"
       - "traefik.http.routers.miniflux.tls.certresolver=myresolver"
-      - "traefik.http.middlewares.test-auth.forwardauth.address=https://auth.lifeofpablo.com/auth"
-      - "traefik.http.middlewares.test-auth.forwardauth.trustForwardHeader=true"
+      - "traefik.http.middlewares.miniflux.forwardauth.address=https://auth.lifeofpablo.com/auth"
+      - "traefik.http.middlewares.miniflux.forwardauth.trustForwardHeader=true"
   postgres:
     image: postgres:15
     container_name: postgres
@@ -77,8 +77,8 @@ services:
     image: quay.io/vouch/vouch-proxy:alpine-master
     ports:
       - 9090:9090
-    volumes:
-      - ./vouch-proxy-config:/config
+    # volumes:
+    #   - ./vouch-proxy-config:/config
     restart: always
     environment:
       - VOUCH_DOMAINS
