@@ -57,6 +57,8 @@ services:
       - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
       - "traefik.http.routers.miniflux.entrypoints=websecure"
       - "traefik.http.routers.miniflux.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.test-auth.forwardauth.address=https://auth.lifeofpablo.com/auth"
+      - "traefik.http.middlewares.test-auth.forwardauth.trustForwardHeader=true"
   postgres:
     image: postgres:15
     container_name: postgres
@@ -79,8 +81,11 @@ services:
       - ./vouch-proxy-config:/config
     restart: always
     environment:
-      VIRTUAL_HOST: auth.lifeofpablo.com
-      LETSENCRYPT_HOST: auth.lifeofpablo.com
+      - VOUCH_DOMAINS
+      - OAUTH_PROVIDER=${VOUCH_OAUTH_PROVIDER}
+      - OAUTH_CLIENT_ID=${VOUCH_OAUTH_CLIENT_ID}
+      - OAUTH_CLIENT_SECRET=${VOUCH_OAUTH_CLIENT_SECRET}
+      - OAUTH_CALLBACK_URL=${VOUCH_OAUTH_CALLBACK_URL}
     labels:
       - "traefik.http.routers.vouch-proxy.rule=Host(`auth.lifeofpablo.com`)"
       - "traefik.http.routers.vouch-proxy.entrypoints=websecure"

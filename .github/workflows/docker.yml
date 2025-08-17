@@ -41,6 +41,11 @@ jobs:
           API_DB_PASS: op://pablo/lists-pabsnet2/password
           API_DB_USER: op://pablo/lists-pabsnet2/username
           API_DB: op://pablo/lists-pabsnet2/database
+          VOUCH_DOMAINS: op://pablo/vp-lifeofpablo/VOUCH_DOMAINS
+          VOUCH_OAUTH_PROVIDER: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_PROVIDER
+          VOUCH_OAUTH_CLIENT_ID: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_ID
+          VOUCH_OAUTH_CLIENT_SECRET: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_SECRET
+          VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CALLBACK_URL
       
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
@@ -73,6 +78,11 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+            VOUCH_DOMAINS=${{ steps.op-load-secret.outputs.VOUCH_DOMAINS }} \
+            VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
+            VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
+            VOUCH_OAUTH_CLIENT_SECRET=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_SECRET }} \
+            VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -94,4 +104,9 @@ jobs:
             MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
             MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
             MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
+            VOUCH_DOMAINS=${{ steps.op-load-secret.outputs.VOUCH_DOMAINS }} \
+            VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
+            VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
+            VOUCH_OAUTH_CLIENT_SECRET=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_SECRET }} \
+            VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
             docker compose up --detach
