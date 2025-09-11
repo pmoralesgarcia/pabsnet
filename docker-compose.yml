@@ -409,8 +409,55 @@ services:
       - "traefik.http.routers.11vty.rule=Host(`beta.lifeofpablo.com`)"
       - "traefik.http.routers.11vty.entrypoints=websecure"
       - "traefik.http.routers.11vty.tls.certresolver=myresolver"
+  it-tools:
+    image: 'corentinth/it-tools:latest'
+    ports:
+      - '8234:80'
+    restart: unless-stopped
+    container_name: it-tools
+    labels:
+      - "traefik.http.routers.it-tools.rule=Host(`it-tools.lifeofpablo.com`)"
+      - "traefik.http.routers.it-tools.entrypoints=websecure"
+      - "traefik.http.routers.it-tools.tls.certresolver=myresolver"
  
+  spotify-server:
+    container_name: spotify-server
+    image: yooooomi/your_spotify_server
+    restart: always
+    ports:
+      - "8240:8080"
+    links:
+      - spotify-db
+    depends_on:
+      - spotify-db
+    environment:
+      - API_ENDPOINT=https://ss.lifeofpablo.com # This MUST be included as a valid URL in the spotify dashboard
+      - CLIENT_ENDPOINT=https://ms.lifeofpablo.com
+      - SPOTIFY_PUBLIC
+      - SPOTIFY_SECRET
+    labels:
+      - "traefik.http.routers.spotify-server.rule=Host(`ss.lifeofpablo.com`)"
+      - "traefik.http.routers.spotify-server.entrypoints=websecure"
+      - "traefik.http.routers.spotify-server.tls.certresolver=myresolver"
 
+  spotify-db:
+    container_name: spotify-db
+    image: mongo:6
+    restart: always
+    volumes:
+      - ./your_spotify_db:/data/db
+
+  spotify-front:
+    image: yooooomi/your_spotify_client
+    restart: always
+    ports:
+      - "3212:3000"
+    environment:
+      API_ENDPOINT: https://ss.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.spotify-front.rule=Host(`ms.lifeofpablo.com`)"
+      - "traefik.http.routers.spotify-front.entrypoints=websecure"
+      - "traefik.http.routers.spotify-front.tls.certresolver=myresolver"
 
   # goblog:
   #   container_name: goblog
