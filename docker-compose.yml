@@ -435,6 +435,8 @@ services:
       - CLIENT_ENDPOINT=https://ms.lifeofpablo.com
       - SPOTIFY_PUBLIC
       - SPOTIFY_SECRET
+      - MONGO_ENDPOINT=mongodb://spotify-db:27017/your_spotify
+      - TIMEZONE= America/Los_Angeles
     labels:
       - "traefik.http.routers.spotify-server.rule=Host(`ss.lifeofpablo.com`)"
       - "traefik.http.routers.spotify-server.entrypoints=websecure"
