@@ -460,6 +460,23 @@ services:
       - "traefik.http.routers.spotify-front.rule=Host(`ms.lifeofpablo.com`)"
       - "traefik.http.routers.spotify-front.entrypoints=websecure"
       - "traefik.http.routers.spotify-front.tls.certresolver=myresolver"
+  gollum:
+    container_name: gollum
+    image: gollumwiki/gollum:6
+    restart: always
+    ports:
+      - "4567:4567/tcp" # change the first port number to expose Gollum on a different port on the host
+    volumes:
+      # - ${PWD}/config.rb:/etc/gollum/config.rb # if using config.rb in your current directory
+      - ./wikidata:/wiki # with your repository in the 'wiki' subdirectory of your current directory
+    command:
+      # - "--config=/etc/gollum/config.rb" # if using config.rb
+      - "--math"
+      # - ... # your additional options here
+    labels:
+      - "traefik.http.routers.gollum.rule=Host(`wiki.lifeofpablo.com`)"
+      - "traefik.http.routers.gollum.entrypoints=websecure"
+      - "traefik.http.routers.gollum.tls.certresolver=myresolver"
 
   # goblog:
   #   container_name: goblog
