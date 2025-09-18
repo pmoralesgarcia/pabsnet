@@ -472,6 +472,7 @@ services:
     command:
       # - "--config=/etc/gollum/config.rb" # if using config.rb
       - "--math"
+      - "--base-path /"
       # - ... # your additional options here
     labels:
       - "traefik.http.routers.gollum.rule=Host(`wiki.lifeofpablo.com`)"
