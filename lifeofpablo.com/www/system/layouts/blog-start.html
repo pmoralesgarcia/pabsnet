@@ -27,15 +27,18 @@
          <div class="entry-meta">
             <p><span class="dt-published"><?php echo $page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card"><?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span></p>
          </div>
-         This post was written in <span class="ttu b"><?php echo $page->getHtml("Language") ?></span> <!-- (<?php echo $page->yellow->language->getTextHtml("languageLocale") ?>)--></p>
-         <div class="entry-content e-content"><?php echo $this->yellow->toolbox->createTextDescription($page->getContentHtml(), 0, false, "<!--more-->", "<a href=\"".$page->getLocation(true)."\">".$this->yellow->language->getTextHtml("blogMore")."</a>") ?></div>
+         This post was written in <span style="text-transform: uppercase;" class="ttu b"> <?php echo $page->getHtml("Language") ?>.</span> </p>
+         <!-- <div class="entry-content e-content"><?php echo $this->yellow->toolbox->createTextDescription($page->getContentHtml(), 0, false, "<!--more-->", "<a href=\"".$page->getLocation(true)."\">".$this->yellow->language->getTextHtml("blogMore")."</a>") ?></div> -->
+          
+      </div>
+      <div class="permalink">
+         <a class="u-url" href="https://lifeofpablo.com<?php echo $page->getLocation(true) ?>">Read Blog Post</a>
       </div>
       <hr class="rounded">
       <?php endforeach ?>
       <?php $this->yellow->layout("pagination", $pages) ?>
-      <div class="permalink">Permalink: 
-         <a class="u-url" href="https://lifeofpablo.com<?php echo $page->getLocation(true) ?>">https://lifeofpablo.com<?php echo $page->getLocation(true) ?></a>
-      </div>
+      
    </div>
 </div>
+
 <?php $this->yellow->layout("footer") ?>
