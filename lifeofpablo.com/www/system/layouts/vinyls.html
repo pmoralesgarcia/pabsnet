@@ -17,7 +17,6 @@
 
 
    
-
 <?php
 
 // --- Configuration for Vinyl Data ---
@@ -37,32 +36,57 @@ if ($decoded_json === null || !isset($decoded_json['data'])) {
 
 $vinyls = $decoded_json['data'];
 
-// --- Display a Random Vinyl (if not hidden) ---
-$random_vinyl_index = array_rand($vinyls);
-$random_vinyl = $vinyls[$random_vinyl_index];
-
-$random_id = $random_vinyl['id'];
-$random_name = $random_vinyl['title'];
-$random_artist = $random_vinyl['artist'];
-$random_cover = $random_vinyl['thumbnail_url'];
-$random_info_url = $random_vinyl['info_url'];
-$random_year = $random_vinyl['copyright_year'];
-$random_label = $random_vinyl['label'];
-$random_display = isset($random_vinyl['hide']) ? (bool) $random_vinyl['hide'] : false;
-
-if (!$random_display) {
-    echo '<div class="random-vinyl">';
-    echo '<a target="_blank" class="db center mw5 tc black link dim" title="' . htmlspecialchars($random_name) . '" href="' . htmlspecialchars($random_info_url) . '">';
-    echo '<img style="width: 50%;" alt="' . htmlspecialchars($random_name) . ' Album Cover" src="' . htmlspecialchars($random_cover) . '">';
-    echo '<dl class="mt2 f6 lh-copy">';
-    echo '<dt class="clip">Title</dt>';
-    echo '<dd class="ml0">' . htmlspecialchars($random_name) . '</dd>';
-    echo '<dt class="clip">Artist</dt>';
-    echo '<dd class="ml0 gray">' . htmlspecialchars($random_artist) . '</dd>';
-    echo '</dl>';
-    echo '</a>';
-    echo '</div>';
+// --- Store Vinyls in an associative array for easy lookup by ID ---
+$vinyls_by_id = [];
+foreach ($vinyls as $v) {
+    if (isset($v['id'])) {
+        $vinyls_by_id[$v['id']] = $v;
+    }
 }
+
+// ====================================================================
+// NEW LOGIC: Check for a requested vinyl ID in the URL
+// ====================================================================
+$requested_id = isset($_GET['id']) ? htmlspecialchars($_GET['id']) : null;
+
+if ($requested_id && isset($vinyls_by_id[$requested_id])) {
+    
+    // --- Display a Single Vinyl Page ---
+    $vinyl = $vinyls_by_id[$requested_id];
+    $name = htmlspecialchars($vinyl['title']);
+    $artist = htmlspecialchars($vinyl['artist']);
+    $cover = htmlspecialchars($vinyl['thumbnail_url']);
+    $year = htmlspecialchars($vinyl['copyright_year']);
+    $label = htmlspecialchars($vinyl['label']);
+    $genre = isset($vinyl['genre']) ? htmlspecialchars($vinyl['genre']) : 'Unknown';
+    $info_url = htmlspecialchars($vinyl['info_url']);
+
+    echo '<h1>' . $name . ' by ' . $artist . '</h1>';
+    echo '<p><a href="vinyls">Back to Catalog</a></p>';
+    echo '<div class="single-vinyl-details" style="display:flex; gap: 20px;">';
+    echo '<img style="width: 300px;" alt="' . $name . ' Album Cover" src="' . $cover . '">';
+    echo '<div>';
+    echo '<h2>Details</h2>';
+    echo '<p><strong>Artist:</strong> ' . $artist . '</p>';
+    echo '<p><strong>Year:</strong> ' . $year . '</p>';
+    echo '<p><strong>Label:</strong> ' . $label . '</p>';
+    echo '<p><strong>Genre:</strong> ' . $genre . '</p>';
+    echo '<p><strong>More Info:</strong> <a target="_blank" href="' . $info_url . '">View Info Page</a></p>';
+    // Add more details from your data here, e.g., description, tracklist, etc.
+    echo '</div>';
+    echo '</div>';
+    
+    // Stop execution to prevent the catalog table from showing
+    exit; 
+
+} 
+// ====================================================================
+// END NEW LOGIC
+// ====================================================================
+
+
+// --- Code continues to display the full catalog if no specific ID is requested ---
+// The random vinyl display logic goes here (if you still want it)
 
 echo '<h2>Vinyl Catalog</h2>';
 echo '<table>';
@@ -71,15 +95,15 @@ echo '<tr>';
 echo '<th>Album</th>';
 echo '<th>Artist</th>';
 echo '<th>Copyright</th>';
-echo '<th>Genre</th>'; // Added Genre column
+echo '<th>Genre</th>'; 
 echo '</tr>';
 echo '</thead>';
 echo '<tbody>';
 
 // --- Sort Vinyls by Name ---
 usort($vinyls, function ($a, $b) {
-    $nameA = isset($a['name']) ? strtolower($a['name']) : '';
-    $nameB = isset($b['name']) ? strtolower($b['name']) : '';
+    $nameA = isset($a['title']) ? strtolower($a['title']) : ''; // Use 'title' as per your data loop
+    $nameB = isset($b['title']) ? strtolower($b['title']) : ''; // Use 'title' as per your data loop
     return strcmp($nameA, $nameB);
 });
 
@@ -88,19 +112,19 @@ foreach ($vinyls as $vinyl) {
     $id = $vinyl['id'];
     $name = $vinyl['title'];
     $artist = $vinyl['artist'];
-    $cover = $vinyl['thumbnail_url'];
-    $info_url = $vinyl['info_url'];
     $year = $vinyl['copyright_year'];
-    $label = $vinyl['label'];
     $display = isset($vinyl['hide']) ? (bool) $vinyl['hide'] : false;
-    $genre = isset($vinyl['genre']) ? htmlspecialchars($vinyl['genre']) : 'Unknown'; // Get genre, default to 'Unknown'
+    $genre = isset($vinyl['genre']) ? htmlspecialchars($vinyl['genre']) : 'Unknown'; 
 
     if (!$display) {
+        // Updated Link: The link now points to the current script with the vinyl ID parameter.
+        $single_page_url = 'vinyls?id=' . urlencode($id);
+        
         echo '<tr>';
-        echo '<td><a target="_blank" href="' . htmlspecialchars($info_url) . '">' . htmlspecialchars($name) . '</a></td>';
-        echo '<td><a target="_blank" href="' . htmlspecialchars($discogs_search_url . urlencode($artist) . $discogs_search_type) . '" target="_blank">' . htmlspecialchars($artist) . '</a></td>';
-        echo '<td>&copy; ' . htmlspecialchars($year) . ' ' . htmlspecialchars($label) . '</td>';
-        echo '<td>' . $genre . '</td>'; // Display the genre
+        echo '<td><a href="' . htmlspecialchars($single_page_url) . '">' . htmlspecialchars($name) . '</a></td>';
+        echo '<td><a target="_blank" href="' . htmlspecialchars($discogs_search_url . urlencode($artist) . $discogs_search_type) . '">' . htmlspecialchars($artist) . '</a></td>';
+        echo '<td>&copy; ' . htmlspecialchars($year) . '</td>';
+        echo '<td>' . $genre . '</td>'; 
         echo '</tr>';
     }
 }
@@ -109,25 +133,6 @@ echo '</tbody>';
 echo '</table>';
 
 ?>
-</div>
-
-    <!-- <style type="text/css" media="all">
-  :target {
-      -webkit-animation: target-fade 10s 1;
-      -moz-animation: target-fade 10s 1;
-  }
-  
-  @-webkit-keyframes target-fade {
-      0% { background-color: rgba(255, 163, 215, 1); }
-      100% { background-color: rgba(255, 163, 215, 1); }
-  }
-  
-  @-moz-keyframes target-fade {
-      0% { background-color: rgb(166, 163, 255); }
-      100% { background-color: rgba(255, 163, 215, 1); }
-  }
-  </style> -->
-</table>
 
 <div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
   
