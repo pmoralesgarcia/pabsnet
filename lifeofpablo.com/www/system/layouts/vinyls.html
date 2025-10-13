@@ -64,7 +64,7 @@ if ($requested_id && isset($vinyls_by_id[$requested_id])) {
     echo '<h1>' . $name . ' by ' . $artist . '</h1>';
     echo '<p><a href="vinyls">Back to Catalog</a></p>';
     echo '<div class="single-vinyl-details" style="display:flex; gap: 20px;">';
-    echo '<img style="width: 300px;" alt="' . $name . ' Album Cover" src="' . $cover . '">';
+    echo '<img style="max-width:50%; height: 50%;" alt="' . $name . ' Album Cover" src="' . $cover . '">';
     echo '<div>';
     echo '<h2>Details</h2>';
     echo '<p><strong>Artist:</strong> ' . $artist . '</p>';
