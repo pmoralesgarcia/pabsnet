@@ -121,10 +121,10 @@ services:
       - lifeofpablo
       - lifeofpablo-interactives
       - lifeofpablo-linkinbio
-    labels:
-      - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
-      - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
-      - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
+    # labels:
+    #   - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
+    #   - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
+    #   - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
   lifeofpablo:
     container_name: lifeofpablo
     restart: always
@@ -370,7 +370,7 @@ services:
     container_name: lifeofpablo-login
     restart: always
     build:
-      dockerfile: ./login.lifeofpablo.com/Dockerfile  
+      dockerfile: ./login.lifeofpablo.com/Dockerfile
     volumes:
       #Project root
       - ./login.lifeofpablo.com/www:/var/www/html
