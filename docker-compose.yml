@@ -121,8 +121,8 @@ services:
       - lifeofpablo
       - lifeofpablo-interactives
       - lifeofpablo-linkinbio
-    # labels:
-    #   - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
+    labels:
+      - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
     #   - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
     #   - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
   lifeofpablo:
