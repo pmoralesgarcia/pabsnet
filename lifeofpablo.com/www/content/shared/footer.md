@@ -44,7 +44,6 @@ An <a href="https://xn--sr8hvo.ws">IndieWeb Webring</a> 🕸💍
 
     <br /><small class="f5 db tc">© 2023 <a href="https://pabs.tech/">
     
-    <b>Pabs Tech LLC</b></a>, All Rights Reserved</small>
     
 
 
