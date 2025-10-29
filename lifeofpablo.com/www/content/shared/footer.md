@@ -3,11 +3,11 @@ Title: Footer
 Status: shared
 ---
 <div class="wrap     tc">
-<a class="link near-black hover-silver dib mh3 tc" href="https://github.com/pmoralesgarcia" title="GitHub">
+<a class="link near-black hover-silver dib mh3 tc" href="https://pabs.lol/github" title="GitHub">
     <i class="f2 dib h2 w2 fa-brands fa-github black"></i>
   </a>
 
-  <a class="link near-black hover-silver dib mh3 tc blue" href="https://linkedin.com/in/pmoralesgarcia" title="LinkedIn">
+  <a class="link near-black hover-silver dib mh3 tc blue" href="https://pabs.lol/linkedin" title="LinkedIn">
     <i class="f2 dib h2 w2 fa-brands fa-linkedin blue"></i>
   </a>
 
@@ -26,10 +26,10 @@ Status: shared
   <a class="link near-black hover-silver dib mh3 tc" href="/complaint-form" title="Complaint Form">
     <i class="f2 dib h2 w2 fa-solid fa-file-signature gold"></i>
   </a>
-<a class="link near-black hover-silver dib mh3 tc" href="mailto:pablo@lifeofpablo.com" title="Email">
+<a class="link near-black hover-silver dib mh3 tc" href="https://pabs.lol/email" title="Email">
     <i class="f2 dib h2 w2 fa-solid fa-envelope hot-pink"></i>
   </a>
-  <a class="link near-black hover-silver dib mh3 tc" href="/linkinbio" title="Links">
+  <a class="link near-black hover-silver dib mh3 tc" href="https://pabs.lol/linkinbio" title="Links">
     <i class="f2 dib h2 w2 fa-solid fa-link green"></i>
   </a>
 
