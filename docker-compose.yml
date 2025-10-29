@@ -135,6 +135,19 @@ services:
       - ./lifeofpablo.com/www:/var/www/html
     ports:
       - "8080:80"
+  lifeofpablo-giftmanager:
+    image: icbest/giftmanager:latest
+    container_name: lifeofpablo-giftmanager
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./giftmanager:/app/data/
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    labels:
+      - "traefik.http.routers.lifeofpablo-giftmanager.rule=Host(`giftmanager.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-giftmanager.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-giftmanager.tls.certresolver=myresolver"
   lifeofpablo-guestbook:
     container_name: lifeofpablo-guestbook
     restart: always 
