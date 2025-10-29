@@ -15,7 +15,7 @@ Published: 2024-12-22 23:36:09
 
 **Travel**: I want to take my closest friends to Oaxaca, Mexico.  &#127474;&#127485;
 
-**Blog**: I enjoy writing  [blog posts](blog/) on topics I enjoy. I wrote 100 blog posts in 2023. &#128221;
+**Blog**: I enjoy writing  [blog posts](/blog) on topics I enjoy. I wrote 100 blog posts in 2023. &#128221;
 
 **Lists**: I enjoy making [lists](https://lifeofpablo.com/lists/) of things I own or people I follow. Check out my [vinyls](https://lifeofpablo.com/lists/vinyls) I own. &#128220;
 
