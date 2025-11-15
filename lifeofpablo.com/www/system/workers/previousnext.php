@@ -26,7 +26,7 @@ class YellowPreviousnext {
                 $output .= "<p>";
                 if ($pagePrevious!=null) {
                     $text = preg_replace("/@title/i", $pagePrevious->get("title"), $this->yellow->language->getText("previousnextPagePrevious"));
-                    $output .= "<a class=\"previous\" href=\"".$pagePrevious->getLocation(true)."\">".htmlspecialchars($text)."</a>";
+                    $output .= "<a class=\"previous\" href=\"".$pagePrevious->getLocation(true)."\">".htmlspecialchars($text)."</a><br />";
                 }
                 if ($pageNext!=null) {
                     if ($pagePrevious) $output .= " ";
