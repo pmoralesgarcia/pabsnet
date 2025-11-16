@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build ./lifeofpablo --file Dockerfile --tag lifeofpablo-site:$(date +%s)
+      run: docker build ./lifeofpablo/DockerFile --file Dockerfile --tag lifeofpablo-site:$(date +%s)
