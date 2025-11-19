@@ -5,4 +5,4 @@ Author: Pablo Morales
 Layout: note
 Tag: RSVP, events, IndieWeb
 ---
-RSVPs <span class="p-rsvp">yes</span> to <a href="https://events.indieweb.org/2025/12/indiewebcamp-san-diego-2025-jhCO6w8CyVHg" class="u-in-reply-to">IndieWebCamp San Diego 2025 </a>
+RSVPs <span class="p-rsvp">maybe</span> to <a href="https://events.indieweb.org/2025/12/indiewebcamp-san-diego-2025-jhCO6w8CyVHg" class="u-in-reply-to">IndieWebCamp San Diego 2025 </a>
