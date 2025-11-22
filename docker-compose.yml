@@ -135,19 +135,21 @@ services:
       - ./lifeofpablo.com/www:/var/www/html
     ports:
       - "8080:80"
-  lifeofpablo-giftmanager:
-    image: icbest/giftmanager:latest
-    container_name: lifeofpablo-giftmanager
+  wishlist:
+    container_name: wishlist
+    image: ghcr.io/cmintey/wishlist:latest
     ports:
-      - "5000:5000"
+      - 3280:3280
     volumes:
-      - ./giftmanager:/app/data/
-      - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
+      - ./wishlist/uploads:/usr/src/app/uploads  # This is where user image uploads will be stored
+      - ./wishlist/data:/usr/src/app/data        # This is where the sqlite database will be stored
+    environment:
+      ORIGIN: https://wishlist.lifeofpablo.com
+      TOKEN_TIME: 72 # hours until signup and password reset tokens expire
     labels:
-      - "traefik.http.routers.lifeofpablo-giftmanager.rule=Host(`giftmanager.lifeofpablo.com`)"
-      - "traefik.http.routers.lifeofpablo-giftmanager.entrypoints=websecure"
-      - "traefik.http.routers.lifeofpablo-giftmanager.tls.certresolver=myresolver"
+      - "traefik.http.routers.wishlist.rule=Host(`wishlist.lifeofpablo.com`)"
+      - "traefik.http.routers.wishlist.entrypoints=websecure"
+      - "traefik.http.routers.wishlist.tls.certresolver=myresolver"
   lifeofpablo-guestbook:
     container_name: lifeofpablo-guestbook
     restart: always 
