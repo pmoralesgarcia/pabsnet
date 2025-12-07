@@ -20,7 +20,7 @@
 <?php
 
 // --- Configuration for Vinyl Data ---
-$vinyls_api_url = 'https://script.google.com/macros/s/AKfycbzsb_aa4CWQYjBnyrjCso7gmUxfopsfo9YTQlH1rKB2YrlrVvMYU4Y9_bG4n8uPhMUY/exec?path=vinyls&action=read';
+$vinyls_api_url = 'https://api.lifeofpablo.com/vinyls';
 $discogs_search_url = 'https://www.discogs.com/search/?q=';
 $discogs_search_type = '&type=all&format_exact=Vinyl';
 
@@ -70,7 +70,7 @@ if ($requested_id && isset($vinyls_by_id[$requested_id])) {
     echo '<p><strong>Artist:</strong> ' . $artist . '</p>';
     echo '<p><strong>Year:</strong> ' . $year . '</p>';
     echo '<p><strong>Label:</strong> ' . $label . '</p>';
-    echo '<p><strong>Genre:</strong> ' . $genre . '</p>';
+    // echo '<p><strong>Genre:</strong> ' . $genre . '</p>';
     echo '<p><strong>More Info:</strong> <a target="_blank" href="' . $info_url . '">View Info Page</a></p>';
     // Add more details from your data here, e.g., description, tracklist, etc.
     echo '</div>';
@@ -95,7 +95,7 @@ echo '<tr>';
 echo '<th>Album</th>';
 echo '<th>Artist</th>';
 echo '<th>Copyright</th>';
-echo '<th>Genre</th>'; 
+// echo '<th>Genre</th>'; 
 echo '</tr>';
 echo '</thead>';
 echo '<tbody>';
@@ -123,8 +123,8 @@ foreach ($vinyls as $vinyl) {
         echo '<tr>';
         echo '<td><a href="' . htmlspecialchars($single_page_url) . '">' . htmlspecialchars($name) . '</a></td>';
         echo '<td><a target="_blank" href="' . htmlspecialchars($discogs_search_url . urlencode($artist) . $discogs_search_type) . '">' . htmlspecialchars($artist) . '</a></td>';
-        echo '<td>&copy; ' . htmlspecialchars($year) . '</td>';
-        echo '<td>' . $genre . '</td>'; 
+        echo '<td>&copy; ' . $year . '</td>';
+        // echo '<td>' . $genre . '</td>'; 
         echo '</tr>';
     }
 }
