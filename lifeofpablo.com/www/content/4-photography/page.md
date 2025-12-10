@@ -5,6 +5,7 @@ TitleNavigation: Photos
 TitleContent: My Trips & Photography
 Published: 2025-02-07
 ---
+![Korea](https://photos.lifeofpablo.com/korea/website/62070013.jpg)
 ## Photos
 [Europe](europe)
 

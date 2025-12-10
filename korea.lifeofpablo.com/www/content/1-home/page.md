@@ -1,5 +1,6 @@
 ---
 Title: Adventures in Korea
+Layout: new-homepage
 ---
 <style>
 body {
