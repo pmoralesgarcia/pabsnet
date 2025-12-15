@@ -2,7 +2,7 @@
 // Update extension, https://github.com/annaesvensson/yellow-update
 
 class YellowUpdate {
-    const VERSION = "0.9.8";
+    const VERSION = "0.9.5";
     const PRIORITY = "2";
     public $yellow;                 // access to API
     public $extensions;             // number of extensions
@@ -71,11 +71,32 @@ class YellowUpdate {
     // Handle page content element
     public function onParseContentElement($page, $name, $text, $attributes, $type) {
         $output = null;
-        if ($name=="about" && $type=="inline") {
-            list($dummy, $settingsCurrent) = $this->getExtensionSettings(true);
-            $output = "Datenstrom Yellow ".YellowCore::RELEASE."<br />\n";
-            foreach ($settingsCurrent as $key=>$value) {
-                $output .= ucfirst($key)." ".$value->get("version")."<br />\n";
+        if ($name=="yellow" && $type=="inline") {
+            if ($text=="about") {
+                list($dummy, $settingsCurrent) = $this->getExtensionSettings(true);
+                $output = "Datenstrom Yellow ".YellowCore::RELEASE."<br />\n";
+                foreach ($settingsCurrent as $key=>$value) {
+                    $output .= ucfirst($key)." ".$value->get("version")."<br />\n";
+                }
+            }
+            if ($text=="release") $output = "Datenstrom Yellow ".YellowCore::RELEASE;
+            if ($text=="log") {
+                $fileName = $this->yellow->system->get("coreExtensionDirectory").$this->yellow->system->get("coreWebsiteFile");
+                $fileHandle = @fopen($fileName, "rb");
+                if ($fileHandle) {
+                    clearstatcache(true, $fileName);
+                    if (flock($fileHandle, LOCK_SH)) {
+                        $dataBufferSize = 1024;
+                        fseek($fileHandle, max(0, filesize($fileName) - $dataBufferSize));
+                        $dataBuffer = fread($fileHandle, $dataBufferSize);
+                        if (strlenb($dataBuffer)==$dataBufferSize) {
+                            $dataBuffer = ($pos = strposu($dataBuffer, "\n")) ? substru($dataBuffer, $pos+1) : $dataBuffer;
+                        }
+                        flock($fileHandle, LOCK_UN);
+                    }
+                    fclose($fileHandle);
+                }
+                $output = str_replace("\n", "<br />\n", htmlspecialchars($dataBuffer));
             }
         }
         return $output;
@@ -884,7 +905,7 @@ class YellowUpdate {
         $fileData = curl_exec($curlHandle);
         $statusCode = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
         $redirectUrl = ($statusCode>=300 && $statusCode<=399) ? curl_getinfo($curlHandle, CURLINFO_REDIRECT_URL) : "";
-        if (PHP_VERSION_ID<80000) curl_close($curlHandle);
+        curl_close($curlHandle);
         if ($statusCode==0) {
             $statusCode = 450;
             $this->yellow->page->error($statusCode, "Can't connect to the update server!");

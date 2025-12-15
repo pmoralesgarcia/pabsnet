@@ -2,7 +2,7 @@
 // French extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/french
 
 class YellowFrench {
-    const VERSION = "0.9.4";
+    const VERSION = "0.9.3";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -184,7 +184,7 @@ class YellowFrench {
             "EditToolbarH3: Titre 3",
             "EditToolbarParagraph: Texte normal",
             "EditToolbarImportant: Texte important",
-            "EditToolbarPre: Bloc de code",
+            "EditToolbarPre: Code source",
             "EditToolbarQuote: Citation",
             "EditToolbarBold: Gras",
             "EditToolbarItalic: Italique",
@@ -221,7 +221,7 @@ class YellowFrench {
             "GenerateDescription: Créez un site web statique.",
             "GermanDescription: German language.",
             "HelpDescription: Help for your website.",
-            "HighlightDescription: Highlight code blocks.",
+            "HighlightDescription: Highlight source code.",
             "HungarianDescription: Hungarian language.",
             "IconDescription: Icons and symbols.",
             "ImageDescription: Add images and thumbnails.",
@@ -280,7 +280,7 @@ class YellowFrench {
             "TocDescription: Table of contents.",
             "TrafficDescription: Create traffic analytics from log files.",
             "TurkishDescription: Turkish language.",
-            "UpdateDescription: Gardez vos extensions à jour.",
+            "UpdateDescription: Gardez votre site web à jour.",
             "UpdateExtensionDefaultDescription: No description available.",
             "UpdateExtensionDeveloper: Developed by @x.",
             "UpdateExtensionDesigner: Designed by @x.",

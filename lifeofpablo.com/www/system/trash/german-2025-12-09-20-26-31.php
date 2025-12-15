@@ -2,7 +2,7 @@
 // German extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/german
 
 class YellowGerman {
-    const VERSION = "0.9.4";
+    const VERSION = "0.9.3";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -62,7 +62,7 @@ class YellowGerman {
             "CoreDateWeekstart: Montag",
             "CoreDecimalSeparator: ,",
             "CoreError404Title: Datei nicht gefunden",
-            "CoreError404Text: Die angeforderte Datei wurde nicht gefunden. Oh nein …",
+            "CoreError404Text: Die angeforderte Datei wurde nicht gefunden. Oh nein...",
             "CoreError420Title: Seite nicht öffentlich",
             "CoreError420Text: Die angeforderte Seite ist nicht öffentlich. [yellow error]",
             "CoreError430Title: Anmeldung fehlgeschlagen",
@@ -184,7 +184,7 @@ class YellowGerman {
             "EditToolbarH3: Überschrift 3",
             "EditToolbarParagraph: Normaler Text",
             "EditToolbarImportant: Wichtiger Text",
-            "EditToolbarPre: Codeblock",
+            "EditToolbarPre: Quellcode",
             "EditToolbarQuote: Zitat",
             "EditToolbarBold: Fettschrift",
             "EditToolbarItalic: Kursiv",
@@ -221,7 +221,7 @@ class YellowGerman {
             "GenerateDescription: Statische Webseite generieren.",
             "GermanDescription: Deutsche Sprache.",
             "HelpDescription: Hilfe für deine Webseite.",
-            "HighlightDescription: Codeblöcke hervorheben.",
+            "HighlightDescription: Quellcode hervorheben.",
             "HungarianDescription: Ungarische Sprache.",
             "IconDescription: Icons und Symbole.",
             "ImageDescription: Bilder in unterschiedlichen Größen hinzufügen.",
@@ -280,7 +280,7 @@ class YellowGerman {
             "TocDescription: Inhaltsverzeichnis anzeigen.",
             "TrafficDescription: Zugriffsanalysen aus Logdateien erstellen.",
             "TurkishDescription: Türkische Sprache.",
-            "UpdateDescription: Erweiterungen auf dem neusten Stand halten.",
+            "UpdateDescription: Webseite auf dem neusten Stand halten.",
             "UpdateExtensionDefaultDescription: Keine Beschreibung vorhanden.",
             "UpdateExtensionDeveloper: Entwickelt von @x.",
             "UpdateExtensionDesigner: Entworfen von @x.",

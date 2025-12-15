@@ -2,7 +2,7 @@
 // Spanish extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/spanish
 
 class YellowSpanish {
-    const VERSION = "0.9.3";
+    const VERSION = "0.9.4";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -62,7 +62,7 @@ class YellowSpanish {
             "CoreDateWeekstart: Lunes",
             "CoreDecimalSeparator: ,",
             "CoreError404Title: Archivo no encontrado",
-            "CoreError404Text: El archivo solicitado no fue encontrado. Oh no...",
+            "CoreError404Text: El archivo solicitado no fue encontrado. Oh no…",
             "CoreError420Title: Page not public",
             "CoreError420Text: The requested page is not public. [yellow error]",
             "CoreError430Title: Login failed",
@@ -184,7 +184,7 @@ class YellowSpanish {
             "EditToolbarH3: Heading 3",
             "EditToolbarParagraph: Normal text",
             "EditToolbarImportant: Important text",
-            "EditToolbarPre: Source code",
+            "EditToolbarPre: Code block",
             "EditToolbarQuote: Quote",
             "EditToolbarBold: Bold",
             "EditToolbarItalic: Italic",
@@ -221,7 +221,7 @@ class YellowSpanish {
             "GenerateDescription: Crea un sitio web estático.",
             "GermanDescription: German language.",
             "HelpDescription: Help for your website.",
-            "HighlightDescription: Highlight source code.",
+            "HighlightDescription: Highlight code blocks.",
             "HungarianDescription: Hungarian language.",
             "IconDescription: Icons and symbols.",
             "ImageDescription: Add images and thumbnails.",
@@ -280,7 +280,7 @@ class YellowSpanish {
             "TocDescription: Table of contents.",
             "TrafficDescription: Create traffic analytics from log files.",
             "TurkishDescription: Turkish language.",
-            "UpdateDescription: Mantenga su sitio web actualizado.",
+            "UpdateDescription: Mantenga sus extensiones actualizadas.",
             "UpdateExtensionDefaultDescription: No description available.",
             "UpdateExtensionDeveloper: Developed by @x.",
             "UpdateExtensionDesigner: Designed by @x.",

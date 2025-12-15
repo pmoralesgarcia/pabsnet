@@ -2,7 +2,7 @@
 // English extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/english
 
 class YellowEnglish {
-    const VERSION = "0.9.4";
+    const VERSION = "0.9.3";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -62,7 +62,7 @@ class YellowEnglish {
             "CoreDateWeekstart: Monday",
             "CoreDecimalSeparator: .",
             "CoreError404Title: File not found",
-            "CoreError404Text: The requested file was not found. Oh no…",
+            "CoreError404Text: The requested file was not found. Oh no...",
             "CoreError420Title: Page not public",
             "CoreError420Text: The requested page is not public. [yellow error]",
             "CoreError430Title: Login failed",
@@ -184,7 +184,7 @@ class YellowEnglish {
             "EditToolbarH3: Heading 3",
             "EditToolbarParagraph: Normal text",
             "EditToolbarImportant: Important text",
-            "EditToolbarPre: Code block",
+            "EditToolbarPre: Source code",
             "EditToolbarQuote: Quote",
             "EditToolbarBold: Bold",
             "EditToolbarItalic: Italic",
@@ -221,7 +221,7 @@ class YellowEnglish {
             "GenerateDescription: Generate a static website.",
             "GermanDescription: German language.",
             "HelpDescription: Help for your website.",
-            "HighlightDescription: Highlight code blocks.",
+            "HighlightDescription: Highlight source code.",
             "HungarianDescription: Hungarian language.",
             "IconDescription: Icons and symbols.",
             "ImageDescription: Add images and thumbnails.",
@@ -280,7 +280,7 @@ class YellowEnglish {
             "TocDescription: Table of contents.",
             "TrafficDescription: Create traffic analytics from log files.",
             "TurkishDescription: Turkish language.",
-            "UpdateDescription: Keep your extensions up to date.",
+            "UpdateDescription: Keep your website up to date.",
             "UpdateExtensionDefaultDescription: No description available.",
             "UpdateExtensionDeveloper: Developed by @x.",
             "UpdateExtensionDesigner: Designed by @x.",

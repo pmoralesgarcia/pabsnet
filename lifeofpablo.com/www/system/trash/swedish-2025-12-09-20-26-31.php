@@ -2,7 +2,7 @@
 // Swedish extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/swedish
 
 class YellowSwedish {
-    const VERSION = "0.9.4";
+    const VERSION = "0.9.3";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -62,7 +62,7 @@ class YellowSwedish {
             "CoreDateWeekstart: Måndag",
             "CoreDecimalSeparator: ,",
             "CoreError404Title: Filen hittades inte",
-            "CoreError404Text: Den begärda filen kunde inte hittas. Å nej…",
+            "CoreError404Text: Den begärda filen kunde inte hittas. Å nej...",
             "CoreError420Title: Sidan är inte offentlig",
             "CoreError420Text: Den begärda sidan är inte offentlig. [yellow error]",
             "CoreError430Title: Inloggningen misslyckades",
@@ -184,7 +184,7 @@ class YellowSwedish {
             "EditToolbarH3: Rubrik 3",
             "EditToolbarParagraph: Normal text",
             "EditToolbarImportant: Viktig text",
-            "EditToolbarPre: Kodblock",
+            "EditToolbarPre: Källkod",
             "EditToolbarQuote: Citat",
             "EditToolbarBold: Fet",
             "EditToolbarItalic: Kursiv",
@@ -221,7 +221,7 @@ class YellowSwedish {
             "GenerateDescription: Generera en statisk webbplats.",
             "GermanDescription: Tyska språket.",
             "HelpDescription: Hjälp för din webbplats.",
-            "HighlightDescription: Markera kodblock.",
+            "HighlightDescription: Markera källkod.",
             "HungarianDescription: Ungerska språket.",
             "IconDescription: Ikoner och symboler.",
             "ImageDescription: Lägg till bilder och miniatyrbilder.",
@@ -280,7 +280,7 @@ class YellowSwedish {
             "TocDescription: Innehållsförteckning.",
             "TrafficDescription: Skapa trafikanalyser från loggfiler.",
             "TurkishDescription: Turkiska språket.",
-            "UpdateDescription: Håll dina tillägg uppdaterade.",
+            "UpdateDescription: Håll din webbplats uppdaterad.",
             "UpdateExtensionDefaultDescription: Ingen beskrivning finns tillgänglig.",
             "UpdateExtensionDeveloper: Utvecklad av @x.",
             "UpdateExtensionDesigner: Designad av @x.",
