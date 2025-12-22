@@ -136,4 +136,49 @@ header h1 a:link, header h1 a:hover {
     font-style: italic;
     margin-top: -0.5em;
   }
+
+  .archive-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.archive-year h2 {
+    margin-top: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.archive-month-header {
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.archive-entry {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.archive-meta {
+    flex: 0 0 60px; /* Fixed width for dates */
+    font-size: 0.9rem;
+}
+
+.entry-link {
+    text-decoration: none;
+    
+    font-size: 1.1rem;
+}
+
+.entry-link:hover {
+    text-decoration: underline;
+}
+
+.archive-count {
+    font-size: 0.8rem;
+    color: #999;
+    font-weight: normal;
+}
     
