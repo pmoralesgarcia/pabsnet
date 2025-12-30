@@ -47,19 +47,19 @@ foreach ($vinyls as $v) {
 // ====================================================================
 // NEW LOGIC: Check for a requested vinyl ID in the URL
 // ====================================================================
-$requested_id = isset($_GET['id']) ? htmlspecialchars($_GET['id']) : null;
+$requested_id = isset($_GET['id']) ? $_GET['id'] : null;
 
 if ($requested_id && isset($vinyls_by_id[$requested_id])) {
     
     // --- Display a Single Vinyl Page ---
     $vinyl = $vinyls_by_id[$requested_id];
-    $name = htmlspecialchars($vinyl['title']);
-    $artist = htmlspecialchars($vinyl['artist']);
-    $cover = htmlspecialchars($vinyl['thumbnail_url']);
-    $year = htmlspecialchars($vinyl['copyright_year']);
-    $label = htmlspecialchars($vinyl['label']);
-    $genre = isset($vinyl['genre']) ? htmlspecialchars($vinyl['genre']) : 'Unknown';
-    $info_url = htmlspecialchars($vinyl['info_url']);
+    $name = $vinyl['title'];
+    $artist = $vinyl['artist'];
+    $cover = $vinyl['thumbnail_url'];
+    $year = $vinyl['copyright_year'];
+    $label = $vinyl['label'];
+    $genre = isset($vinyl['genre']) ? $vinyl['genre'] : 'Unknown';
+    $info_url = $vinyl['info_url'];
 
     echo '<h1>' . $name . ' by ' . $artist . '</h1>';
     echo '<p><a href="vinyls">Back to Catalog</a></p>';
@@ -85,52 +85,40 @@ if ($requested_id && isset($vinyls_by_id[$requested_id])) {
 // ====================================================================
 
 
-// --- Code continues to display the full catalog if no specific ID is requested ---
-// The random vinyl display logic goes here (if you still want it)
-
 echo '<h2>Vinyl Catalog</h2>';
-echo '<table>';
-echo '<thead>';
-echo '<tr>';
-echo '<th>Album</th>';
-echo '<th>Artist</th>';
-echo '<th>Copyright</th>';
-// echo '<th>Genre</th>'; 
-echo '</tr>';
-echo '</thead>';
-echo '<tbody>';
 
 // --- Sort Vinyls by Name ---
 usort($vinyls, function ($a, $b) {
-    $nameA = isset($a['title']) ? strtolower($a['title']) : ''; // Use 'title' as per your data loop
-    $nameB = isset($b['title']) ? strtolower($b['title']) : ''; // Use 'title' as per your data loop
+    $nameA = isset($a['title']) ? strtolower($a['title']) : '';
+    $nameB = isset($b['title']) ? strtolower($b['title']) : '';
     return strcmp($nameA, $nameB);
 });
 
-// --- Loop Through and Display Vinyl Information ---
+echo '<div class="vinyl-grid">';
+
 foreach ($vinyls as $vinyl) {
     $id = $vinyl['id'];
     $name = $vinyl['title'];
-    $artist = $vinyl['artist'];
     $year = $vinyl['copyright_year'];
     $display = isset($vinyl['hide']) ? (bool) $vinyl['hide'] : false;
-    $genre = isset($vinyl['genre']) ? htmlspecialchars($vinyl['genre']) : 'Unknown'; 
+    
+    // Using a placeholder if 'cover_url' doesn't exist in your array
+    $cover = isset($vinyl['thumbnail_url']) ? $vinyl['thumbnail_url'] : 'https://static.lifeofpablo.com/media/vinyls/placeholder.png';
 
     if (!$display) {
-        // Updated Link: The link now points to the current script with the vinyl ID parameter.
         $single_page_url = 'vinyls?id=' . urlencode($id);
-        
-        echo '<tr>';
-        echo '<td><a href="' . htmlspecialchars($single_page_url) . '">' . htmlspecialchars($name) . '</a></td>';
-        echo '<td><a target="_blank" href="' . htmlspecialchars($discogs_search_url . urlencode($artist) . $discogs_search_type) . '">' . htmlspecialchars($artist) . '</a></td>';
-        echo '<td>&copy; ' . $year . '</td>';
-        // echo '<td>' . $genre . '</td>'; 
-        echo '</tr>';
+
+        echo '<div class="vinyl-item">';
+            echo '<a href="' . $single_page_url . '">';
+                echo '<img src="' . $cover . '" alt="Cover">';
+                echo '<strong>' . $name . '</strong>';
+            echo '</a>';
+            echo '<span>' . $year . '</span>';
+        echo '</div>';
     }
 }
 
-echo '</tbody>';
-echo '</table>';
+echo '</div>';
 
 ?>
 

@@ -182,3 +182,38 @@ header h1 a:link, header h1 a:hover {
     font-weight: normal;
 }
     
+
+/* Vinyl style */
+
+/* The container that holds all vinyls */
+.vinyl-grid {
+    display: grid;
+    /* Automatically creates columns that are at least 150px wide */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+/* Each individual record entry */
+.vinyl-item {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+/* Make sure the cover images are square and fit the grid */
+.vinyl-item img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+/* Simple text formatting */
+.vinyl-item strong {
+    font-size: 16px;
+}
+
+.vinyl-item span {
+    font-size: 14px;
+    color: grey;
+}
