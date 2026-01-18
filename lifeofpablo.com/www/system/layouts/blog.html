@@ -8,7 +8,7 @@
 <?php endif ?>
 <div class="<?php echo $this->yellow->page->getHtml("entryClass") ?>">
 <div class="entry-title p-name"><h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1></div>
-<figure>
+<figure class="blog-cover">
     <img src="<?php echo $this->yellow->page->getHtml("image") ?>">
     <figcaption><?php echo $this->yellow->page->getHtml("imageAlt") ?></figcaption>
 </figure>
@@ -21,7 +21,7 @@
 <?php echo $this->yellow->page->getExtraHtml("link") ?>
 <?php if ($this->yellow->page->isExisting("tag")): ?>
 <div class="entry-tags">
-<p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo ", "; echo "<a class=\"p-category button\" href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
+<p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo " &#x2022; "; echo "<a class=\"p-category\" href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
 </div>
 <?php endif ?>
 <div class="permalink">Permalink: 

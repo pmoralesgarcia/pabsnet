@@ -1,0 +1,20 @@
+<?php $this->yellow->layout("header") ?>
+
+<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<?php echo $this->yellow->page->getContentHtml() ?>
+
+<?php $pages = $this->yellow->content->index()->filter("layout", "blog")->sort("published", false) ?>
+
+<nav class="tags_nav">
+  <ul class="list pa3 pa5-ns">
+    <?php foreach ($pages->group("tag") as $tag=>$collection): ?>
+    <li class="dib mr2 h-item">
+      <a role="button" class="post_tag p-name u-url f4 f2-ns b db pa2 link dim mid-gray" title="Tag: <?php echo strtolower(htmlspecialchars($tag)) ?>" aria-label="Tag: <?php echo strtolower(htmlspecialchars($tag)) ?>" href="<?php echo $this->yellow->page->getBase() . "/blog/" . $this->yellow->lookup->normaliseArguments("tag:$tag") ?>">
+        <?php echo htmlspecialchars($tag) . " <sup><strong><sup>" . count($collection) . "</sup></strong></sup>" ?>
+      </a>
+    </li>
+    <?php endforeach ?>
+  </ul>
+</nav>
+
+<?php $this->yellow->layout("footer") ?>

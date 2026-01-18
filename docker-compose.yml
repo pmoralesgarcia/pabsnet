@@ -38,7 +38,7 @@ services:
       - TZ=America/Los_Angeles 
 
   miniflux:
-    image: miniflux/miniflux:2.2.12
+    image: miniflux/miniflux:2.2.15
     container_name: miniflux
     ports:
       - "8084:8080"
