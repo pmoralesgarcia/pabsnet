@@ -5,14 +5,11 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const app = express();
 
-const SECRET_KEY = process.env.API_JWT_SECRET; 
+const SECRET_KEY = 'b4b0e47fd8e1bfa1c424551bf2296ca01675d52b49376008d1e156a09b62410e'; 
 const pool = mariadb.createPool({
-    host: process.env.API_DB_HOST2,
-    user: process.env.API_DB_USER2,
-    password: process.env.API_DB_PASS2,
-    database: process.env.API_DB2
-    // connectionLimit: 5
-    });
+    host: 'db', user: 'admin', password: 'app_password',
+    database: 'media_collection', connectionLimit: 5
+});
 
 app.use(cors()); // Crucial for external data pulls
 app.use(express.json());
@@ -93,7 +90,7 @@ app.get('/api/v1/public/:mediaType', async (req, res) => {
     let conn;
     try {
         conn = await pool.getConnection();
-        const rows = await conn.query(`SELECT id, title, artist, copyright_year, genre, label, thumbnail_url, info_url  FROM ${req.params.mediaType}`);
+        const rows = await conn.query(`SELECT id,title, artist, copyright_year, genre, label, info_url, thumbnail_url FROM ${req.params.mediaType}`);
         res.json({ 
             status: "success", 
             message: "Public access granted",
@@ -105,5 +102,7 @@ app.get('/api/v1/public/:mediaType', async (req, res) => {
         if (conn) conn.end(); 
     }
 });
+
+
 
 app.listen(3000, () => console.log('REST API v1 active on port 3000'));
