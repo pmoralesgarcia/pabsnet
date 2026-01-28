@@ -423,8 +423,6 @@ services:
     restart: always
     ports:
       - "3460:3000"
-    depends_on:
-      - db
     environment:
       - NODE_ENV=production
       - API_DB_HOST2
