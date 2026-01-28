@@ -141,7 +141,7 @@
         currentItem = item; editId = item.id;
         document.getElementById('v-title').innerText = item.title;
         document.getElementById('v-artist').innerText = item.artist;
-        document.getElementById('v-thumb').src = item.thumbnail_url || 'https://via.placeholder.com/120';
+        document.getElementById('v-thumb').src = item.thumbnail_url || 'https://static.lifeofpablo.com/media/vinyls/placeholder.png';
         document.getElementById('v-grid').innerHTML = fields.map(f => {
             let val = item[f] || '-';
             if(f === 'info_url' && item[f]) val = `<a href="${item[f]}" target="_blank" style="color:var(--accent)">Learn more ↗</a>`;

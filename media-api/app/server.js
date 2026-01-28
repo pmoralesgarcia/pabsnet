@@ -93,7 +93,7 @@ app.get('/api/v1/public/:mediaType', async (req, res) => {
     let conn;
     try {
         conn = await pool.getConnection();
-        const rows = await conn.query(`SELECT title, artist, copyright_year, genre, thumbnail_url FROM ${req.params.mediaType}`);
+        const rows = await conn.query(`SELECT id, title, artist, copyright_year, genre, label, thumbnail_url, info_url,  FROM ${req.params.mediaType}`);
         res.json({ 
             status: "success", 
             message: "Public access granted",
