@@ -418,7 +418,7 @@ services:
       - 3453:3000
   
   media-api:
-    build: ./media-api
+    build: ./media-api/app
     container_name: media-api
     restart: always
     ports:
