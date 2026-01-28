@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Media Vault Pro v1</title>
+    <style>
+        :root { --primary: #2c3e50; --accent: #3498db; --bg: #f4f7f6; --success: #27ae60; --danger: #e74c3c; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .hidden { display: none !important; }
+        .nav { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        button { padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; color: white; background: var(--accent); }
+        .btn-tab.active { background: var(--primary); }
+        input, textarea { padding: 10px; border: 1px solid #ddd; border-radius: 6px; width: 100%; box-sizing: border-box; }
+        
+        /* Modal */
+        .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-content { background: white; width: 90%; max-width: 700px; max-height: 85vh; overflow-y: auto; border-radius: 12px; padding: 30px; position: relative; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .info-label { font-size: 11px; color: #888; text-transform: uppercase; font-weight: bold; }
+        .info-value { font-size: 14px; color: #333; margin-top: 2px; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+        .clickable-title { color: var(--accent); cursor: pointer; text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="login-view">
+        <h2 style="text-align:center">Vault Login</h2>
+        <div style="max-width:300px; margin:auto">
+            <input type="text" id="u" placeholder="Username">
+            <input type="password" id="p" style="margin-top:10px" placeholder="Password">
+            <button onclick="login()" style="width:100%; margin-top:15px">Login</button>
+        </div>
+    </div>
+
+    <div id="main-view" class="hidden">
+        <div class="nav">
+            <button class="btn-tab active" id="tab-vinyls" onclick="switchTab('vinyls')">Vinyls</button>
+            <button class="btn-tab" id="tab-cds" onclick="switchTab('cds')">CDs</button>
+            <button class="btn-tab" id="tab-dvds" onclick="switchTab('dvds')">DVDs</button>
+            <button onclick="logout()" style="background:#95a5a6; margin-left:auto">Logout</button>
+        </div>
+        <input type="text" id="search" placeholder="Filter..." style="margin-bottom:15px" oninput="loadData()">
+        <button onclick="openForm()" style="background:var(--success); width:100%; margin-bottom:15px">+ Add New</button>
+        <table>
+            <thead><tr><th>Title</th><th>Artist</th><th>Year</th><th>Action</th></tr></thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+</div>
+
+<div id="modal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <button onclick="closeModal()" style="position:absolute; top:15px; right:15px; background:var(--danger)">Close</button>
+        <div id="view-mode">
+            <div style="display:flex; gap:20px; border-bottom:1px solid #eee; padding-bottom:15px; margin-bottom:15px;">
+                <img id="v-thumb" style="width:120px; height:120px; object-fit:cover; border-radius:8px;">
+                <div>
+                    <h2 id="v-title" style="margin:0"></h2>
+                    <p id="v-artist" style="color:#666"></p>
+                    <button onclick="toggleMode('edit')">Edit</button>
+                </div>
+            </div>
+            <div id="v-grid" class="info-grid"></div>
+        </div>
+
+        <div id="edit-mode" class="hidden">
+            <div class="info-grid">
+                <input type="text" data-key="title" placeholder="Title">
+                <input type="text" data-key="artist" placeholder="Artist">
+                <input type="text" data-key="genre" placeholder="Genre">
+                <input type="number" data-key="copyright_year" placeholder="Year">
+                <input type="text" data-key="label" placeholder="Label">
+                <input type="text" data-key="barcode" placeholder="Barcode">
+                <input type="text" data-key="info_url" placeholder="Info URL">
+                <input type="text" data-key="thumbnail_url" placeholder="Thumb URL">
+                <textarea data-key="notes" placeholder="Notes" style="grid-column: span 2"></textarea>
+            </div>
+            <button onclick="saveEntry()" style="background:var(--success); margin-top:15px">Save</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentTab = 'vinyls', editId = null, currentItem = null;
+    const fields = ['genre', 'copyright_year', 'label', 'barcode', 'info_url', 'notes'];
+
+    window.onload = () => { if(localStorage.getItem('token')) showApp(); };
+
+    async function login() {
+        const username = document.getElementById('u').value;
+        const password = document.getElementById('p').value;
+        const r = await fetch('/api/v1/auth/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ username, password })
+        });
+        
+        // Safety check for JSON
+        if (r.headers.get("content-type")?.includes("application/json")) {
+            const res = await r.json();
+            if(res.status === "success") {
+                localStorage.setItem('token', res.data.token);
+                showApp();
+            } else alert(res.message);
+        } else {
+            console.error(await r.text());
+            alert("Server returned a non-JSON error. Check API path.");
+        }
+    }
+
+    function showApp() { document.getElementById('login-view').classList.add('hidden'); document.getElementById('main-view').classList.remove('hidden'); loadData(); }
+    function logout() { localStorage.removeItem('token'); location.reload(); }
+
+    async function apiFetch(url, opt = {}) {
+        opt.headers = {...opt.headers, 'Authorization': localStorage.getItem('token'), 'Content-Type': 'application/json'};
+        const r = await fetch(url, opt);
+        if(r.status === 401) logout();
+        return r.json();
+    }
+
+    function switchTab(t) { currentTab = t; document.querySelectorAll('.btn-tab').forEach(b => b.classList.toggle('active', b.id === `tab-${t}`)); loadData(); }
+
+    async function loadData() {
+        const q = document.getElementById('search').value;
+        const res = await apiFetch(`/api/v1/${currentTab}?search=${q}`);
+        if(res.status === "success") {
+            document.getElementById('table-body').innerHTML = res.data.map(item => `
+                <tr>
+                    <td><b class="clickable-title" onclick='openView(${JSON.stringify(item).replace(/'/g, "&apos;")})'>${item.title}</b></td>
+                    <td>${item.artist}</td><td>${item.copyright_year}</td>
+                    <td><button onclick="deleteItem(${item.id})" style="background:var(--danger)">Del</button></td>
+                </tr>`).join('');
+        }
+    }
+
+    function openView(item) {
+        currentItem = item; editId = item.id;
+        document.getElementById('v-title').innerText = item.title;
+        document.getElementById('v-artist').innerText = item.artist;
+        document.getElementById('v-thumb').src = item.thumbnail_url || 'https://via.placeholder.com/120';
+        document.getElementById('v-grid').innerHTML = fields.map(f => {
+            let val = item[f] || '-';
+            if(f === 'info_url' && item[f]) val = `<a href="${item[f]}" target="_blank" style="color:var(--accent)">Learn more ↗</a>`;
+            return `<div class="info-item"><div class="info-label">${f}</div><div class="info-value">${val}</div></div>`;
+        }).join('');
+        toggleMode('view');
+        document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function toggleMode(m) {
+        document.getElementById('view-mode').classList.toggle('hidden', m === 'edit');
+        document.getElementById('edit-mode').classList.toggle('hidden', m === 'view');
+        if(m === 'edit' && currentItem) document.querySelectorAll('[data-key]').forEach(i => i.value = currentItem[i.dataset.key] || '');
+    }
+
+    function openForm() { editId = null; currentItem = null; document.querySelectorAll('[data-key]').forEach(i => i.value = ''); toggleMode('edit'); document.getElementById('modal').classList.remove('hidden'); }
+    function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+    async function saveEntry() {
+        const payload = {}; document.querySelectorAll('[data-key]').forEach(i => payload[i.dataset.key] = i.value);
+        const method = editId ? 'PUT' : 'POST';
+        const url = editId ? `/api/v1/${currentTab}/${editId}` : `/api/v1/${currentTab}`;
+        const res = await apiFetch(url, {method, body: JSON.stringify(payload)});
+        if(res.status === "success") { closeModal(); loadData(); }
+    }
+
+    async function deleteItem(id) { if(confirm("Delete?")) { await apiFetch(`/api/v1/${currentTab}/${id}`, {method:'DELETE'}); loadData(); } }
+</script>
+</body>
+</html>

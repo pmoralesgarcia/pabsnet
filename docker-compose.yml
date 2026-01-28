@@ -416,6 +416,28 @@ services:
       - "traefik.http.routers.pabs-api.tls.certresolver=myresolver"
     ports:
       - 3453:3000
+  
+  media-api:
+    build: ./media-api
+    container_name: media-api
+    restart: always
+    ports:
+      - "3460:3000"
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=production
+      - API_DB_HOST2
+      - API_DB_USER2
+      - API_DB_PASS2
+      - API_DB2
+      - API_JWT_SECRET
+      - VIRTUAL_HOST=media-api.lifeofpablo.com
+      - LETSENCRYPT_HOST=media-api.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.media-api.rule=Host(`media-api.lifeofpablo.com`)"
+      - "traefik.http.routers.media-api.entrypoints=websecure"
+      - "traefik.http.routers.media-api.tls.certresolver=myresolver"
   11ty:
     container_name: 11ty
     build:
@@ -490,6 +512,7 @@ services:
       - "traefik.http.routers.spotify-front.rule=Host(`ms.lifeofpablo.com`)"
       - "traefik.http.routers.spotify-front.entrypoints=websecure"
       - "traefik.http.routers.spotify-front.tls.certresolver=myresolver"
+
   
  
 
