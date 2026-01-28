@@ -1,55 +1,143 @@
 <?php $this->yellow->layout("header") ?>
+
 <div class="content">
-   <div class="main h-entry" role="main">
-      <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
-      <div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
-      <div class="pa4">
-         <div class="overflow-auto">
-            <table class="f6-ns w-100 mw8 center" cellspacing="0">
-               <thead>
-                  <tr>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3">Title</th>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3">Artist</th>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3">Publisher</th>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3">Year</th>
-                     <th class="fw6 bb b--black-20 tl pb3 pr3 ">Date Added</th>
-                  </tr>
-               </thead>
-               <tbody class="lh-copy">
-                  <?php
-                     $catalog_json = file_get_contents('media/downloads/cds.json');
-                     
-                     $decoded_json = json_decode($catalog_json, true);
-                     
-                     $items = $decoded_json['cds'];
-                     
-                     
-                     foreach($items as $item) {
-                       $name = $item['Title'];
-                       $artist = $item['Artist'];
-                     	 $year = $item['Year'];
-                       $date_added = $item['Books issued'];
-                       $publisher = $item['Publisher'];
-                     
-                       
-                     
-                       echo '<tr class="h-item">';
-                       echo '<td class="pv3 pr3 bb b--black-20 p-name"><a href="https://www.discogs.com/search/?q='.$name.' '.$artist.'&type=all&format_exact=CD" class="u-url">'.$name.'</td>';
-                       echo '<td class="pv3 pr3 bb b--black-20">'.$artist.'</td>';
-                       echo '<td class="pv3 pr3 bb b--black-20">'.$publisher.'</td>';
-                       echo '<td class="pv3 pr3 bb b--black-20">'.$year.'</td>';
-                       echo '<td class="pv3 pr3 bb b--black-20">'.$date_added.'</td>';
-                       echo '</tr>';
-                     
-                     
-                     }
-                     ?>
-               </tbody>
-            </table>
-         </div>
-      </div>
-      <div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
-      </div>
-   </div>
+  <div class="main h-entry" role="main">
+    <header class="tc ph4">
+      <h1 class="f3 f2-m f1-l fw2 mv3">
+        <?php echo $this->yellow->page->getHtml("titleContent") ?>
+      </h1>
+    </header>
+
+<?php
+// --- Configuration for CD Data ---
+$cds_api_url = 'https://media-api.lifeofpablo.com/api/v1/public/cds';
+$discogs_search_url = 'https://www.discogs.com/search/?q=';
+$discogs_search_type = '&type=all&format_exact=CD'; // Specific to CD format
+
+$catalog_json = file_get_contents($cds_api_url);
+$decoded_json = json_decode($catalog_json, true);
+
+// --- Handle Potential Errors ---
+if ($decoded_json === null || !isset($decoded_json['data'])) {
+    echo '<p>Error loading CD catalog data.</p>';
+    exit;
+}
+
+$collection = $decoded_json['data'];
+
+// --- Store CDs in an associative array for easy lookup by ID ---
+$cds_by_id = [];
+foreach ($collection as $item) {
+    if (isset($item['id'])) {
+        $cds_by_id[$item['id']] = $item;
+    }
+}
+
+// ====================================================================
+// SINGLE CD VIEW
+// ====================================================================
+$requested_id = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($requested_id && isset($cds_by_id[$requested_id])) {
+    
+    $cd = $cds_by_id[$requested_id];
+    $name = $cd['title'];
+    $artist = $cd['artist'];
+    $cover = $cd['thumbnail_url'];
+    $year = $cd['copyright_year'];
+    $label = $cd['label'];
+    $info_url = $cd['info_url'];
+
+    echo '<h1>' . $name . ' by ' . $artist . '</h1>';
+    echo '<p><a href="cds">Back to CD Collection</a></p>';
+    echo '<div class="single-cd-details" style="display:flex; gap: 20px;">';
+    echo '<img style="max-width:50%; height: auto; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="' . $name . ' CD Cover" src="' . $cover . '">';
+    echo '<div>';
+    echo '<h2>Album Info</h2>';
+    echo '<p><strong>Artist:</strong> ' . $artist . '</p>';
+    echo '<p><strong>Released:</strong> ' . $year . '</p>';
+    echo '<p><strong>Label:</strong> ' . $label . '</p>';
+    echo '<p><strong><a target="_blank" href="' . $info_url . '">View on Discogs</a> &#128191;</p>';
+    echo '</div>';
+    echo '</div>';
+
+    echo '<div class="permalink">
+    Permalink: <a class="u-url" href="https://lifeofpablo.com' . $this->yellow->page->getLocation(false) . '">
+    https://lifeofpablo.com' . $this->yellow->page->getLocation(false) . '</a>
+</div>';
+    
+    exit; 
+} 
+
+// ====================================================================
+// CATALOG VIEW
+// ====================================================================
+echo '<div class="filter-controls">';
+echo '    <input type="text" id="searchInput" placeholder="Search albums or artists..." onkeyup="filterCollection()">';
+echo '    <select id="sortSelect" onchange="filterCollection()">';
+echo '        <option value="title">Sort by Title (A-Z)</option>';
+echo '        <option value="artist">Sort by Artist</option>';
+echo '        <option value="year-new">Sort by Year (Newest)</option>';
+echo '        <option value="year-old">Sort by Year (Oldest)</option>';
+echo '    </select>';
+echo '</div>';
+
+echo '<div class="cd-grid" id="cdGrid">';
+
+foreach ($collection as $cd) {
+    if (empty($cd['hide'])) {
+        $id = $cd['id'];
+        $name = $cd['title'];
+        $artist = $cd['artist'];
+        $year = $cd['copyright_year'];
+        // Updated placeholder to generic CD image if missing
+        $cover = isset($cd['thumbnail_url']) ? $cd['thumbnail_url'] : 'https://static.lifeofpablo.com/media/cds/placeholder-cd.png';
+        $single_page_url = 'cds?id=' . urlencode($id);
+
+        echo '<div class="cd-item" data-title="' . $name . '" data-artist="' . $artist . '" data-year="' . $year . '">';
+            echo '<a href="' . $single_page_url . '">';
+                echo '<img src="' . $cover . '" alt="CD Cover Art">';
+                echo '<strong>' . $name . '</strong>';
+            echo '</a>';
+            echo '<span>' . $artist . '</span>';
+            echo '<span>' . $year . '</span>';
+        echo '</div>';
+    }
+}
+echo '</div>';
+?>
+
+<div class="permalink">
+    Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation(false) ?>">
+    https://lifeofpablo.com<?php echo $this->yellow->page->getLocation(false) ?></a>
 </div>
+
+</div>
+
 <?php $this->yellow->layout("footer") ?>
+
+<script>
+    function filterCollection() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const sortValue = document.getElementById('sortSelect').value;
+        const grid = document.getElementById('cdGrid');
+        const items = Array.from(grid.getElementsByClassName('cd-item'));
+
+        items.forEach(item => {
+            const title = item.getAttribute('data-title').toLowerCase();
+            const artist = item.getAttribute('data-artist').toLowerCase();
+            item.style.display = (title.includes(query) || artist.includes(query)) ? "" : "none";
+        });
+
+        items.sort((a, b) => {
+            let valA = a.getAttribute('data-' + sortValue.split('-')[0]).toLowerCase();
+            let valB = b.getAttribute('data-' + sortValue.split('-')[0]).toLowerCase();
+
+            if (sortValue === 'year-new') return valB - valA;
+            if (sortValue === 'year-old') return valA - valB;
+            return valA.localeCompare(valB);
+        });
+
+        items.forEach(item => grid.appendChild(item));
+    }
+</script>
