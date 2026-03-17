@@ -1,0 +1,187 @@
+<?php $this->yellow->layout("header") ?>
+
+<div class="content">
+  <div class="main h-entry" role="main">
+    <header class="tc ph4">
+      <h1 class="f3 f2-m f1-l fw2 mv3">
+        <?php echo $this->yellow->page->getHtml("titleContent") ?>
+      </h1>
+    </header>
+
+<?php
+// Use the full URL instead of a local path
+$url = 'https://static.lifeofpablo.com/api/transit/master_tap_history.json'; 
+
+// 1. Fetch the data using the URL
+$jsonData = file_get_contents($url);
+
+// 2. Check if the fetch actually worked
+if ($jsonData !== false) {
+    
+    $transactions = json_decode($jsonData, true);
+
+    if (json_last_error() === JSON_ERROR_NONE) {
+        $count = count($transactions);
+        echo "There are <b>" . $count . "</b> public transit taps.";
+    } else {
+        echo "Error: The URL returned data, but it wasn't valid JSON.";
+    }
+
+} else {
+    echo "Error: Could not reach the URL. Check the link or your server's 'allow_url_fopen' setting.";
+}
+
+?>
+
+<p>This is a work in progress as a work on importing my transit trips. Currently <a href="https://www.clippercard.com">Clipper Card</a> is still facing issues with data and exporting that makes it hard to get data efficiently.</p>
+
+
+
+<?php
+/** * 1. DATA PROCESSING 
+ */
+$url = 'https://static.lifeofpablo.com/api/transit/master_tap_history.json'; // Replace with your URL
+
+// Fetching the JSON
+$jsonData = @file_get_contents($url);
+$taps = json_decode($jsonData, true);
+
+$matrix = [];
+$totalTaps = 0;
+
+if ($taps && is_array($taps)) {
+    $totalTaps = count($taps);
+    foreach ($taps as $tap) {
+        $date = new DateTime($tap['transaction_date']);
+        $year = $date->format('Y');
+        $month = (int)$date->format('m');
+
+        if (!isset($matrix[$year][$month])) {
+            $matrix[$year][$month] = 0;
+        }
+        $matrix[$year][$month]++;
+    }
+    krsort($matrix); // Newest years first
+}
+?>
+
+<style>
+    .tap-container {
+        margin: 2rem 0;
+        padding: 1rem;
+        border: var(--border-width) solid var(--border);
+        border-radius: var(--standard-border-radius);
+        background-color: var(--bg);
+    }
+
+    .tap-year-section {
+        margin-bottom: 2rem;
+    }
+
+    .tap-year-title {
+        color: var(--accent);
+        border-bottom: var(--border-width) solid var(--border);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+    }
+
+    /* The Month Grid */
+    .tap-grid {
+        display: grid;
+        /* Responsive grid: fits as many as possible, at least 80px wide */
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 10px;
+    }
+
+    .tap-box {
+        padding: 10px 5px;
+        border-radius: var(--standard-border-radius);
+        text-align: center;
+        border: var(--border-width) solid var(--border);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease;
+    }
+
+    .tap-box:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent);
+    }
+
+    .tap-label {
+        font-family: var(--mono-font);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: var(--text-light);
+    }
+
+    .tap-number {
+        font-size: 1.4rem;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    /* HEATMAP COLORS - Using your Accent and Text colors */
+    /* Empty/Zero */
+    .tap-lvl-0 { background-color: var(--disabled); opacity: 0.5; }
+    
+    /* Low Activity (using a faint version of your text color or accent) */
+    .tap-lvl-1 { background-color: var(--accent-bg); border-color: var(--accent); color: var(--text); }
+    
+    /* Medium Activity */
+    .tap-lvl-2 { background-color: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+    
+    /* High Activity */
+    .tap-lvl-3 { 
+        background-color: var(--code); /* Using your 'code' color for a pop of high intensity */
+        color: #fff; 
+        border-color: var(--code);
+    }
+</style>
+
+<section class="tap-container">
+    <header style="background: none; border: none; text-align: left; padding: 0;">
+        <h3>Activity Dashboard</h3>
+        <p>Total recorded taps: <strong><?php echo $totalTaps; ?></strong></p>
+    </header>
+
+    <?php if (empty($matrix)): ?>
+        <aside>No transaction data found at the provided source.</aside>
+    <?php else: ?>
+        <?php foreach ($matrix as $year => $months): ?>
+            <div class="tap-year-section">
+                <h4 class="tap-year-title"><?php echo $year; ?></h4>
+                <div class="tap-grid">
+                    <?php 
+                    for ($m = 1; $m <= 12; $m++) {
+                        $count = $months[$m] ?? 0;
+                        
+                        // Logic for color intensity
+                        $lvl = 'tap-lvl-0';
+                        if ($count > 0)  $lvl = 'tap-lvl-1';
+                        if ($count > 15) $lvl = 'tap-lvl-2';
+                        if ($count > 40) $lvl = 'tap-lvl-3';
+
+                        // Get Month Short Name (Jan, Feb, etc)
+                        $monthName = date("M", mktime(0, 0, 0, $m, 10));
+                        ?>
+                        <div class="tap-box <?php echo $lvl; ?>" title="<?php echo $count; ?> taps in <?php echo $monthName; ?> <?php echo $year; ?>">
+                            <span class="tap-label"><?php echo $monthName; ?></span>
+                            <span class="tap-number"><?php echo $count; ?></span>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</section>
+
+<div class="permalink">
+    Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation(false) ?>">
+    https://lifeofpablo.com<?php echo $this->yellow->page->getLocation(false) ?></a>
+</div>
+
+</div>
+
+<?php $this->yellow->layout("footer") ?>
+
