@@ -391,3 +391,36 @@ a:hover {
         border: none !important;
     }
 }
+
+
+/* Audio Files */
+
+  .audio-grid {
+    display: grid;
+    /* This creates columns that are at least 250px wide, filling the available space */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+  }
+
+  .audio-item {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .audio-item strong {
+    display: block;
+    margin-bottom: 8px;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    word-break: break-all;
+  }
+
+  audio {
+    width: 100%;
+  }
+
