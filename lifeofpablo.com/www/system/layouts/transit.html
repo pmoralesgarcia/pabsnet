@@ -38,115 +38,85 @@ if ($jsonData !== false) {
 
 
 <?php
-/** * 1. DATA PROCESSING 
+/** * 1. DATA PROCESSING (For Nested Year Structure) 
  */
-$url = 'https://static.lifeofpablo.com/api/transit/master_tap_history.json'; // Replace with your URL
+$url = 'https://static.lifeofpablo.com/api/transit/master_tap_history.json'; 
 
-// Fetching the JSON
 $jsonData = @file_get_contents($url);
-$taps = json_decode($jsonData, true);
+$dataByYear = json_decode($jsonData, true);
 
 $matrix = [];
 $totalTaps = 0;
 
-if ($taps && is_array($taps)) {
-    $totalTaps = count($taps);
-    foreach ($taps as $tap) {
-        $date = new DateTime($tap['transaction_date']);
-        $year = $date->format('Y');
-        $month = (int)$date->format('m');
-
-        if (!isset($matrix[$year][$month])) {
-            $matrix[$year][$month] = 0;
+if ($dataByYear && is_array($dataByYear)) {
+    // 1. Loop through each Year key (e.g., "2024", "2023")
+    foreach ($dataByYear as $year => $transactions) {
+        $matrix[$year] = array_fill(1, 12, 0); // Initialize Jan-Dec with 0
+        
+        // 2. Loop through transactions inside that year
+        foreach ($transactions as $tap) {
+            $totalTaps++;
+            $date = new DateTime($tap['transaction_date']);
+            $month = (int)$date->format('m');
+            
+            $matrix[$year][$month]++;
         }
-        $matrix[$year][$month]++;
     }
-    krsort($matrix); // Newest years first
+    krsort($matrix); // Ensure 2026 is above 2025
 }
 ?>
 
 <style>
     .tap-container {
         margin: 2rem 0;
-        padding: 1rem;
+        padding: 1.5rem;
         border: var(--border-width) solid var(--border);
         border-radius: var(--standard-border-radius);
         background-color: var(--bg);
     }
-
-    .tap-year-section {
-        margin-bottom: 2rem;
-    }
-
+    .tap-year-section { margin-bottom: 2.5rem; }
     .tap-year-title {
         color: var(--accent);
         border-bottom: var(--border-width) solid var(--border);
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
     }
-
-    /* The Month Grid */
     .tap-grid {
         display: grid;
-        /* Responsive grid: fits as many as possible, at least 80px wide */
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        gap: 12px;
     }
-
     .tap-box {
-        padding: 10px 5px;
+        padding: 12px 5px;
         border-radius: var(--standard-border-radius);
         text-align: center;
         border: var(--border-width) solid var(--border);
         display: flex;
         flex-direction: column;
-        transition: transform 0.2s ease;
     }
-
-    .tap-box:hover {
-        transform: translateY(-3px);
-        border-color: var(--accent);
-    }
-
     .tap-label {
         font-family: var(--mono-font);
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
         color: var(--text-light);
     }
+    .tap-number { font-size: 1.4rem; font-weight: bold; }
 
-    .tap-number {
-        font-size: 1.4rem;
-        font-weight: bold;
-        line-height: 1.2;
-    }
-
-    /* HEATMAP COLORS - Using your Accent and Text colors */
-    /* Empty/Zero */
-    .tap-lvl-0 { background-color: var(--disabled); opacity: 0.5; }
-    
-    /* Low Activity (using a faint version of your text color or accent) */
-    .tap-lvl-1 { background-color: var(--accent-bg); border-color: var(--accent); color: var(--text); }
-    
-    /* Medium Activity */
-    .tap-lvl-2 { background-color: var(--accent); color: var(--accent-text); border-color: var(--accent); }
-    
-    /* High Activity */
-    .tap-lvl-3 { 
-        background-color: var(--code); /* Using your 'code' color for a pop of high intensity */
-        color: #fff; 
-        border-color: var(--code);
-    }
+    /* Theme-aware Heatmap Colors */
+    .tap-lvl-0 { background-color: var(--disabled); opacity: 0.4; }
+    .tap-lvl-1 { background-color: var(--accent-bg); border-color: var(--accent); }
+    .tap-lvl-2 { background-color: var(--accent); color: var(--accent-text); }
+    .tap-lvl-3 { background-color: var(--code); color: #fff; border-color: var(--code); }
 </style>
 
 <section class="tap-container">
     <header style="background: none; border: none; text-align: left; padding: 0;">
         <h3>Activity Dashboard</h3>
-        <p>Total recorded taps: <strong><?php echo $totalTaps; ?></strong></p>
+        <p>Total recorded taps: <strong><?php echo number_format($totalTaps); ?></strong></p>
     </header>
 
     <?php if (empty($matrix)): ?>
-        <aside>No transaction data found at the provided source.</aside>
+        <aside>No data found. Check your JSON source.</aside>
     <?php else: ?>
         <?php foreach ($matrix as $year => $months): ?>
             <div class="tap-year-section">
@@ -154,18 +124,16 @@ if ($taps && is_array($taps)) {
                 <div class="tap-grid">
                     <?php 
                     for ($m = 1; $m <= 12; $m++) {
-                        $count = $months[$m] ?? 0;
+                        $count = $months[$m];
                         
-                        // Logic for color intensity
                         $lvl = 'tap-lvl-0';
                         if ($count > 0)  $lvl = 'tap-lvl-1';
                         if ($count > 15) $lvl = 'tap-lvl-2';
                         if ($count > 40) $lvl = 'tap-lvl-3';
 
-                        // Get Month Short Name (Jan, Feb, etc)
                         $monthName = date("M", mktime(0, 0, 0, $m, 10));
                         ?>
-                        <div class="tap-box <?php echo $lvl; ?>" title="<?php echo $count; ?> taps in <?php echo $monthName; ?> <?php echo $year; ?>">
+                        <div class="tap-box <?php echo $lvl; ?>" title="<?php echo $count; ?> taps">
                             <span class="tap-label"><?php echo $monthName; ?></span>
                             <span class="tap-number"><?php echo $count; ?></span>
                         </div>
