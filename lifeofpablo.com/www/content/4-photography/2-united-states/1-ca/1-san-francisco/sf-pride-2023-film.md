@@ -2,8 +2,7 @@
 Title: San Francisco Pride 2023 on Film
 TitleSlug: SF Pride 2023 Film 
 Published: 2026-03-18 23:51:32
-Image: https://photos.lifeofpablo.com/san-francisco/film-sf-pride-2023/
-/000015740014.jpg
+Image: https://photos.lifeofpablo.com/san-francisco/film-sf-pride-2023/000015740014.jpg
 ImageAlt: A film shot of the Pride
 ---
 
