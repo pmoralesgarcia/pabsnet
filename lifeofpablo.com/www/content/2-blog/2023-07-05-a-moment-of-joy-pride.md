@@ -3,7 +3,7 @@ Title: A Moment of Joy: Pride
 Published: 2023-07-05 12:51:24
 Author: Pablo Morales
 Layout: blog
-Tag: San Francisco Pride, SF Pride, IndieWeb Carninval, July 2023, joy, pride
+Tag: San Francisco Pride, SF Pride, IndieWeb Carnival, July 2023, joy, pride
 Image: https://photos.lifeofpablo.com/san-francisco/sf-pride-2023/web-sized/7.jpeg
 Theme: pablo
 ---
@@ -137,8 +137,15 @@ overflow-x: hidden;
 	right: 50%;
 	width: 100vw;
 }
+
+
+.blog-cover img, .entry-meta, .entry-title > h1 {
+  display: none;
+}
 .u-photo {
   border-radius: 50%;
   width: 5%;
   height: auto;
+
+
 </style>

@@ -23,13 +23,14 @@ overflow-x: hidden;
 
 * [Blue Grass](bluegrass)
 * [Ocean Beach](ocean-beach-digital)
-* [SF Pride](san-francisco-pride)
+* [SF Pride 2023](san-francisco-pride)
 * [Land's End Lookout](lands-end-lookout)
 * [Skatepark](skatepark)
 
 **Film/Analog**
 
 * [Delores Park](delores-park)
+* [SF Pride 2023](sf-pride-2023-film)
 * [Filming on mini-dv tapes in San Francisco](filming-minidv-sf)
 * [Birthday Weekend](birthday-weekend)
 * [Ocean Beach](ocean-beach)
