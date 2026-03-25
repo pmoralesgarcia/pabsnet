@@ -10,8 +10,13 @@ ImageAlt: Entrance to Muir Woods
 Status: draft
 ---
 
-I'm excited to write this post.
+Wha
 
+
+
+* What adventure or journey are you currently on with your growth?
+
+* 
 <a href="https://news.indieweb.org/en" class="u-syndication">
   Also posted on IndieNews
 </a>
