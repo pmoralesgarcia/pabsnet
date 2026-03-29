@@ -1,12 +1,13 @@
 ---
 Title: IndieWeb Carnival 2026 - Adventure
-Published: 2026-03-28
+Published: 2026-03-29
 Author: Pablo Morales
 Layout: blog
 Tag: 2026, IndieWeb Carnival, IndieWeb, writing, adventure, growth
 Description: What's your current adventure
 Image: https://static.lifeofpablo.com/media/blog/2026-03-25-indieweb-carnival-2026-adventure/adventure-pabs.gif
 ImageAlt: Pablo standing on boulders.
+Status: draft
 ---
 
 **For April 2026, I'm hosting the [IndieWeb Carnival](https://indieweb.org/IndieWeb_Carnival) on the topic of adventure. Everyone and anyone is welcome to participate! I love reading posts in different languages!**
@@ -30,6 +31,7 @@ Every day is a new adventure in San Francisco; you never know who or what you'll
 
 I love the thrill of taking a side adventure by stumbling on a new place to eat. It's good to venture off from the places you feel comfortable eating at on the daily.
 
+Living in a city like San Francisco has allowed me to grow and become more authentic with myself. Personal growth has always been an ongoing adventure for me. 
 
 This city has so much to offer. New day, new adventure!
 
@@ -53,6 +55,7 @@ In case you need some ideas to get started on your carnival post.
 
 * What adventure or journey are you currently on with your growth?
 * What’s the most adventurous thing you’ve ever done?
+* How do you feel about your personal website?
 * How would you compare and contrast these two ideas: adventure and journey?
 * Do you have an adventure you've had planned but never managed to go on?
 * What song reminds of you of a road trip adventure?
