@@ -7,7 +7,7 @@ Tag: 2026, IndieWeb Carnival, IndieWeb, writing, adventure, growth
 Description: What's your current adventure
 Image: https://static.lifeofpablo.com/media/blog/2026-03-25-indieweb-carnival-2026-adventure/adventure-pabs.gif
 ImageAlt: Pablo standing on boulders.
-Status: draft
+Status: public
 ---
 
 **For April 2026, I'm hosting the [IndieWeb Carnival](https://indieweb.org/IndieWeb_Carnival) on the topic of adventure. Everyone and anyone is welcome to participate! I love reading posts in different languages!**
