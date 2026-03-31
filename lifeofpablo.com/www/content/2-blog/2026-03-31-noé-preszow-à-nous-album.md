@@ -7,10 +7,11 @@ Tag: 2026, musique, music, french music, Noé Preszow, À nous
 Description: An album that I like in French.
 Image: https://static.lifeofpablo.com/media/blog
 ImageAlt: La pochette de l'album À nous de Noé Preszow.
-Status: draft
+Language: fr
+Status: public
 ---
 
-J'aime cette album, À nous par Noé Preszow. Souvent, j'écoute la chanson << Les Armes que j'ai >>. J'apprécie l'ambiance de la chanson. Vous connaissez Noé Preszow ?
+En ce moment, il est 1h43 et je peux pas dormir et avec beacoup d'énergie. Je vous presente l'album:  À nous par Noé Preszow. J'aime bien cette album. Souvent, j'écoute la chanson << Les Armes que j'ai >>. J'apprécie l'ambiance de la chanson. Vous connaissez Noé Preszow ? Avez-vous des recommandations de chansons par lui ou des autres?
 
 <div class="blog-feature">
   <div class="video-container">
