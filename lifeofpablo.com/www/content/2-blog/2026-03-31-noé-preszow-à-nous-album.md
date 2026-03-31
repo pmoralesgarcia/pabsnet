@@ -1,18 +1,19 @@
 ---
 Title: Noé Preszow : À nous (Album)
-Published: 2026-03-31 01:25:24
+Published: 2026-03-31
 Author: Pablo Morales
 Layout: blog
 Tag: 2026, musique, music, french music, Noé Preszow, À nous
 Description: An album that I like in French.
 Image: https://static.lifeofpablo.com/media/blog
-ImageAlt: 
-Language: fr
+ImageAlt: La pochette de l'album À nous de Noé Preszow.
 Status: draft
 ---
+
+J'aime cette album, À nous par Noé Preszow. Souvent, j'écoute la chanson << Les Armes que j'ai >>. J'apprécie l'ambiance de la chanson. Vous connaissez Noé Preszow ?
+
 <div class="blog-feature">
   <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/videoseries?si=5ws-zszhlmDQwE0T&amp;list=PL0DeBA-UK-39m_DWKuQ0xUsHBqBApM2Em" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>
 </div>
-
