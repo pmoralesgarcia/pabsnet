@@ -5,7 +5,7 @@ Author: Pablo Morales
 Layout: blog
 Tag: 2026, musique, music, french music, Noé Preszow, À nous
 Description: An album that I like in French.
-Image: https://static.lifeofpablo.com/media/blog
+Image: https://static.lifeofpablo.com/media/blog/2026-03-31-no-preszow-nous-album/noe-preszow-a-nous.jpg
 ImageAlt: La pochette de l'album À nous de Noé Preszow.
 Language: fr
 Status: public
