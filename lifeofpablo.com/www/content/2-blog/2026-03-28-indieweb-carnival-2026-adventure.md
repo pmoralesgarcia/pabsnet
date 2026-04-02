@@ -1,6 +1,6 @@
 ---
 Title: IndieWeb Carnival 2026 - Adventure
-Published: 2026-04-02
+Published: 2026-03-28
 Author: Pablo Morales
 Layout: blog
 Tag: 2026, IndieWeb Carnival, IndieWeb, writing, adventure, growth
