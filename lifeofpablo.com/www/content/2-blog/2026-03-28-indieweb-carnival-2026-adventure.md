@@ -1,6 +1,6 @@
 ---
 Title: IndieWeb Carnival 2026 - Adventure
-Published: 2026-03-29
+Published: 2026-04-02
 Author: Pablo Morales
 Layout: blog
 Tag: 2026, IndieWeb Carnival, IndieWeb, writing, adventure, growth
@@ -64,6 +64,13 @@ In case you need some ideas to get started on your carnival post.
 **Adventure means something to all of us. What does it mean to you?**
 
 Send me a webmention, email the link of your response at [pablo[at]lifeofpablo.com](mailto:pablo@lifeofpablo.com), or find me on [Bluesky](https://bsky.app/profile/lifeofpablo.com) to submit your posts. I will create a round-up post, and update this blog post with the replies I receive!
+
+
+## Submissions 
+
+* [Sara Jaksa](https://sarajaksa.eu/2026/03/indieweb-carnvial-april-2026-ne-iscem-dogodivscin-in-prigod-one-vcasih-najdejo-mene/)
+* [James](https://jamesg.blog/2026/04/01/seven-hills)
+
 
 <a href="https://news.indieweb.org/en" class="u-syndication">
   Also posted on IndieNews
