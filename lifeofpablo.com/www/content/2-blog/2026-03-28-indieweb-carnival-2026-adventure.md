@@ -2,11 +2,11 @@
 Title: IndieWeb Carnival 2026 - Adventure
 Published: 2026-03-28
 Author: Pablo Morales
+Language: en
 Layout: blog
 Tag: 2026, IndieWeb Carnival, IndieWeb, writing, adventure, growth
 Description: What's your current adventure
 Image: https://static.lifeofpablo.com/media/blog/2026-03-25-indieweb-carnival-2026-adventure/adventure-pabs.gif
-ImageAlt: Pablo standing on boulders.
 Status: public
 ---
 
@@ -68,8 +68,8 @@ Send me a webmention, email the link of your response at [pablo[at]lifeofpablo.c
 
 ## Submissions 
 
-* [Sara Jaksa](https://sarajaksa.eu/2026/03/indieweb-carnvial-april-2026-ne-iscem-dogodivscin-in-prigod-one-vcasih-najdejo-mene/)
-* [James](https://jamesg.blog/2026/04/01/seven-hills)
+* [Ne iščem dogodivščin in prigod, one včasih najdejo mene](https://sarajaksa.eu/2026/03/indieweb-carnvial-april-2026-ne-iscem-dogodivscin-in-prigod-one-vcasih-najdejo-mene/) by Sara Jakša
+* [Seven hills](https://jamesg.blog/2026/04/01/seven-hills) by James
 
 
 <a href="https://news.indieweb.org/en" class="u-syndication">
