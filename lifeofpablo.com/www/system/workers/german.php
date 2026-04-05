@@ -2,7 +2,7 @@
 // German extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/german
 
 class YellowGerman {
-    const VERSION = "0.9.4";
+    const VERSION = "0.9.5";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -36,7 +36,7 @@ class YellowGerman {
             "ContactMailSpam: [Spam]",
             "ContactMailHeader: Du hast eine Nachricht von @sender erhalten:",
             "ContactMailFooter: Diese E-Mail wurde über @sitename verschickt - @title",
-            "ContactStatusNone: Sag Hallo! Dein Feedback ist sehr willkommen.",
+            "ContactStatusNone: Sag Hallo! Wir freuen uns über dein Feedback.",
             "ContactStatusIncomplete: Bitte alle Felder ausfüllen.",
             "ContactStatusInvalid: Bitte eine gültige E-Mail angeben.",
             "ContactStatusReview: Bitte entferne Links aus der Nachricht.",
@@ -66,7 +66,7 @@ class YellowGerman {
             "CoreError420Title: Seite nicht öffentlich",
             "CoreError420Text: Die angeforderte Seite ist nicht öffentlich. [yellow error]",
             "CoreError430Title: Anmeldung fehlgeschlagen",
-            "CoreError430Text: E-Mail oder Kennwort ist falsch. [Bitte erneut versuchen](#data-action-login).",
+            "CoreError430Text: Die E-Mail oder das Kennwort ist falsch. [Bitte erneut versuchen](#data-action-login).",
             "CoreError434Title: Seite nicht gefunden",
             "CoreError434Text: Die angeforderte Seite wurde nicht gefunden. [Du kannst diese Seite erstellen](#data-action-edit).",
             "CoreError435Title: Seite nicht gefunden",
@@ -220,12 +220,13 @@ class YellowGerman {
             "GalleryDescription: Bildergalerie mit Popup.",
             "GenerateDescription: Statische Webseite generieren.",
             "GermanDescription: Deutsche Sprache.",
-            "HelpDescription: Hilfe für deine Webseite.",
+            "HelpDescription: Dokumentation der Grundlagen.",
             "HighlightDescription: Codeblöcke hervorheben.",
             "HungarianDescription: Ungarische Sprache.",
             "IconDescription: Icons und Symbole.",
             "ImageDescription: Bilder in unterschiedlichen Größen hinzufügen.",
             "ImageDefaultAlt: Bild ohne Beschreibung",
+            "IncludeDescription: Geteilte Seiten einbinden.",
             "InstagramDescription: Instagram-Fotos einbinden.",
             "InstallTitle: Hallo",
             "InstallLanguage: Was ist deine Sprache?",

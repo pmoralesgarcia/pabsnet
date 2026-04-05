@@ -2,7 +2,7 @@
 // Swedish extension, https://github.com/annaesvensson/yellow-language/tree/main/translations/swedish
 
 class YellowSwedish {
-    const VERSION = "0.9.4";
+    const VERSION = "0.9.5";
     public $yellow;         // access to API
     
     // Handle initialisation
@@ -36,7 +36,7 @@ class YellowSwedish {
             "ContactMailSpam: [Spam]",
             "ContactMailHeader: Du har fått ett meddelande av @sender:",
             "ContactMailFooter: Detta mail skickades via @sitename - @title",
-            "ContactStatusNone: Säg hej. Din feedback är väldigt välkommen.",
+            "ContactStatusNone: Säg hej. Vi tar gärna emot dina synpunkter.",
             "ContactStatusIncomplete: Vänligen fyll i alla fält.",
             "ContactStatusInvalid: Vänligen ange en giltig emailadress.",
             "ContactStatusReview: Vänligen ta bort länkar från meddelandet.",
@@ -220,12 +220,13 @@ class YellowSwedish {
             "GalleryDescription: Bildgalleri med popup.",
             "GenerateDescription: Generera en statisk webbplats.",
             "GermanDescription: Tyska språket.",
-            "HelpDescription: Hjälp för din webbplats.",
+            "HelpDescription: Dokumentation av grunderna.",
             "HighlightDescription: Markera kodblock.",
             "HungarianDescription: Ungerska språket.",
             "IconDescription: Ikoner och symboler.",
             "ImageDescription: Lägg till bilder och miniatyrbilder.",
             "ImageDefaultAlt: Bild utan beskrivning",
+            "IncludeDescription: Inkludera delade sidor.",
             "InstagramDescription: Bädda in Instagram-foton.",
             "InstallTitle: Hej",
             "InstallLanguage: Vad är ditt språk?",

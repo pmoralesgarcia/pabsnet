@@ -1,0 +1,20 @@
+<?php
+// system/layouts/api-json.html
+$pages = $this->yellow->content->index()->filter("layout", "blog")->sort("published", false);
+$data = [];
+
+foreach ($pages as $page) {
+    $data[] = [
+        "title" => $page->get("title"),
+        "published" => $page->get("published"),
+        "author" => $page->get("author"),
+        "tag" => $page->get("tag"),
+        "url" => $page->getLocation(true),            // true returns the absolute URL with domain
+        "content" => $page->getContentHtml() // Returns the rendered HTML content
+    ];
+}
+
+header("Content-Type: application/json; charset=utf-8");
+echo json_encode($data, JSON_PRETTY_PRINT);
+exit; 
+?>
