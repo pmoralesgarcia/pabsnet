@@ -70,7 +70,7 @@ Send me a webmention, email the link of your response at [pablo[at]lifeofpablo.c
 
 * [Ne iščem dogodivščin in prigod, one včasih najdejo mene](https://sarajaksa.eu/2026/03/indieweb-carnvial-april-2026-ne-iscem-dogodivscin-in-prigod-one-vcasih-najdejo-mene/) by Sara Jakša
 * [Seven hills](https://jamesg.blog/2026/04/01/seven-hills) by James
-
+* [The Road](https://andrei.xyz/post/the-road/) by Andrei
 
 <a href="https://news.indieweb.org/en" class="u-syndication">
   Also posted on IndieNews
