@@ -71,9 +71,9 @@ class YellowApi {
             "published"  => $page->get("published"),
             "tag"        => $page->get("tag"),
             "page_image" => $page->get("image"),
-            "content"    => $page->getContentHtml(),
             "url_full"   => $base . $page->getLocation(),
-            "url_path"   => $page->getLocation()
+            "url_path"   => $page->getLocation(),
+            "content"    => $page->getContentHtml()
         ];
     }
 }
