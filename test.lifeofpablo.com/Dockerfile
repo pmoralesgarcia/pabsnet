@@ -9,7 +9,7 @@ RUN apt update -y && \
 	apt install -y php8.4-fpm php8.4-gd php8.4-cli php8.4-curl php8.4-bz2 php8.4-mbstring php8.4-intl php8.4-zip php8.4-mysql
 
 
-COPY ./lifeofpablo.com/nginx/test.lifeofpablo.com.conf /etc/nginx/sites-enabled/default
+COPY ./test.lifeofpablo.com/nginx/test.lifeofpablo.com.conf /etc/nginx/sites-enabled/default
 
 VOLUME /var/www/html
 
