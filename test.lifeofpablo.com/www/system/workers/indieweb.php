@@ -3,7 +3,7 @@
 // Acts as an IndieAuth Provider, Webmention Receiver, and Micropub Server
 
 class YellowIndieWeb {
-    const VERSION = "0.2.4";
+    const VERSION = "0.2.5";
     public $yellow;
 
     // Handle initialisation
@@ -16,15 +16,18 @@ class YellowIndieWeb {
         $this->yellow->system->setDefault("indieWebAuthFile", "indieauth_codes.ini");
     }
 
-    // Helper to build the base URL
+    // Bulletproof way to get the base URL for localhost or live domains
     public function getBaseUrl() {
-        $protocol = $this->yellow->system->get("serverScheme")."://";
-        $address = $this->yellow->system->get("serverAddress");
-        $base = $this->yellow->system->get("serverBase");
-        return $protocol . $address . $base;
+        $protocol = $this->yellow->lookup->getProtocol();
+        if (empty($protocol)) $protocol = "http"; 
+        
+        $server = $this->yellow->lookup->getServer();
+        $base = $this->yellow->lookup->getBase();
+        
+        return $protocol . "://" . $server . $base;
     }
 
-    // Universal response helper to replace the missing unauthorized() method
+    // Universal response helper to handle various Yellow versions
     public function sendResponse($statusCode, $content, $contentType = "text/html; charset=utf-8") {
         $this->yellow->page->statusCode = $statusCode;
         header("Content-Type: $contentType");
@@ -54,6 +57,7 @@ class YellowIndieWeb {
         return null;
     }
 
+    // Routing for the virtual IndieWeb URLs
     public function onRequest($scheme, $address, $base, $location, $fileName) {
         $authLoc = $this->yellow->system->get("indieWebAuthLocation");
         $mentionLoc = $this->yellow->system->get("indieWebMentionLocation");
@@ -76,12 +80,14 @@ class YellowIndieWeb {
                 return $this->sendResponse(200, "IndieAuth Endpoint Active.");
             }
 
+            // Verify user is logged in as Admin/Edit
             if (!$this->yellow->user->isUser("edit")) {
-                $loginUrl = $this->getBaseUrl() . $this->yellow->system->get("editLocation") . "login/";
+                $loginUrl = $this->yellow->lookup->getBase() . $this->yellow->system->get("editLocation") . "login/";
                 header("Location: " . $loginUrl . "?return=" . urlencode($_SERVER['REQUEST_URI']));
                 exit;
             }
 
+            // Process Approval
             if (isset($_GET['confirm']) && $_GET['confirm'] == 'yes') {
                 $code = bin2hex(random_bytes(16));
                 $this->yellow->user->save($authFile, $code, [
@@ -93,22 +99,19 @@ class YellowIndieWeb {
                 ]);
                 
                 $connector = (strpos($_GET['redirect_uri'], '?') === false) ? '?' : '&';
-                $redirect = $_GET['redirect_uri'] . $connector . http_build_query([
-                    'code' => $code, 
-                    'state' => $_GET['state']
-                ]);
+                $redirect = $_GET['redirect_uri'] . $connector . http_build_query(['code' => $code, 'state' => $_GET['state']]);
                 header("Location: " . $redirect);
                 exit;
             }
-
             return $this->renderAuthScreen($_GET);
         }
 
+        // Token Exchange
         if ($method == "POST") {
             $code = $_POST['code'] ?? '';
             $codes = $this->yellow->user->load($authFile);
-            
-            if (isset($codes[$code]) && $codes[$code]['redirect_uri'] == $_POST['redirect_uri']) {
+            if (is_array($codes) && isset($codes[$code]) && $codes[$code]['redirect_uri'] == $_POST['redirect_uri']) {
+                $this->yellow->user->save($authFile, $code, []); // Cleanup
                 return $this->sendResponse(200, json_encode(['me' => $codes[$code]['me']]), "application/json");
             }
             return $this->sendResponse(400, "Invalid Code");
@@ -121,7 +124,6 @@ class YellowIndieWeb {
             $content = $_POST['content'] ?? '';
             $title = $_POST['name'] ?? 'Post ' . date("Y-m-d H:i");
             $slug = $this->yellow->lookup->normaliseName($title);
-            
             $fileName = "content/1-blog/" . date("Y-m-d-His") . "-$slug.md";
             $fileData = "---\nTitle: $title\n---\n$content";
             
@@ -142,11 +144,7 @@ class YellowIndieWeb {
             $path = $this->yellow->system->get("coreExtensionDirectory") . $this->yellow->system->get("indieWebFile");
             $id = substr(hash("sha256", $source.$target), 0, 8);
             
-            $this->yellow->user->save($path, $id, [
-                "source" => $source, 
-                "target" => $target, 
-                "date" => date("Y-m-d H:i")
-            ]);
+            $this->yellow->user->save($path, $id, ["source" => $source, "target" => $target, "date" => date("Y-m-d H:i")]);
             return $this->sendResponse(202, "Accepted");
         }
         return $this->sendResponse(405, "Method Not Allowed");
@@ -155,6 +153,8 @@ class YellowIndieWeb {
     private function renderWebmentions($page) {
         $path = $this->yellow->system->get("coreExtensionDirectory") . $this->yellow->system->get("indieWebFile");
         $data = $this->yellow->user->load($path);
+        if (!is_array($data)) return ""; 
+        
         $items = "";
         foreach ($data as $m) {
             if (isset($m['target']) && strpos($m['target'], $page->getUrl()) !== false) {
@@ -166,8 +166,7 @@ class YellowIndieWeb {
 
     private function renderAuthScreen($params) {
         $client = htmlspecialchars($params['client_id'] ?? 'Unknown Application');
-        $output = "<h2>Authorize Application</h2>";
-        $output .= "<p>The application <strong>$client</strong> wants to identify you.</p>";
+        $output = "<h2>Authorize Application</h2><p>The application <strong>$client</strong> wants to identify you.</p>";
         $output .= "<a href='?".$_SERVER['QUERY_STRING']."&confirm=yes' style='display:inline-block;background:#007bff;color:white;padding:10px 20px;text-decoration:none;border-radius:4px;'>Authorize and Continue</a>";
         return $this->sendResponse(200, $output);
     }
