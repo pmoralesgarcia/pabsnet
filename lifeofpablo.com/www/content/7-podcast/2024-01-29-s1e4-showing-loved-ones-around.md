@@ -3,7 +3,7 @@ Title: S1E4 - Showing Loved Ones Around
 Published: 2024-01-29 22:45:00
 Author: Pablo Morales
 Tag: Podcast, San Francisco, friendship, International, showing loved ones around
-Layout: blog
+Layout: podcast-episode
 Mediafile: https://static.lifeofpablo.com/podcast/season1/episode-4/s1e4-showing-loved-ones-around.mp3
 Duration: 00:03:34
 Image: https://static.lifeofpablo.com/podcast/season1/episode-4/IMG_4092.jpeg

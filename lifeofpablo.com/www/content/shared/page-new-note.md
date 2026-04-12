@@ -3,6 +3,6 @@ Title: New Note
 Published: @datetime
 Author: @username
 Layout: note
-Tag: Example
+Tag: Note
 ---
-This is a new note.
+Write your note here.

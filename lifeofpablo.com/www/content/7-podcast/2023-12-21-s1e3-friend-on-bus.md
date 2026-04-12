@@ -4,18 +4,14 @@ TitleSlug: S1E3 - friend on bus
 Published: 2023-12-21 19:00:00
 Author: Pablo Morales
 Tag: Podcast, Bus Ride, 2000s, traveling, friendship
-Layout: blog
+Layout: podcast-episode
 Mediafile: https://static.lifeofpablo.com/podcast/season1/episode-3/s1s3-friend-on-the-bus.mp3
 Duration: 00:05:16
 Image: https://static.lifeofpablo.com/podcast/season1/episode-3/bus.jpg
-ImageAlt: Firefox Logo
+ImageAlt: Image of a long distance bus
 Description: Today's episode talks about making a friend on a bus.
 ---
 ### Episode 3 
-
-Today's episode talks about making a friend on a bus.
-
-[audio https://static.lifeofpablo.com/podcast/season1/episode-3/s1s3-friend-on-the-bus.mp3]
 
 [Download this episode](https://static.lifeofpablo.com/podcast/season1/episode-3/s1s3-friend-on-the-bus.mp3)
 

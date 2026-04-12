@@ -1,0 +1,96 @@
+<?php $this->yellow->layout("header") ?>
+
+<style>
+    /* Responsive CSS for the Podcast Player */
+    :root {
+        --podcast-bg: #f4f4f4;
+        --podcast-text: #333;
+        --podcast-border: #ddd;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --podcast-bg: #222;
+            --podcast-text: #eee;
+            --podcast-border: #444;
+        }
+    }
+
+    .podcast-episode .podcast-player {
+        background: var(--podcast-bg);
+        color: var(--podcast-text);
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid var(--podcast-border);
+        margin-bottom: 2em;
+    }
+
+    .episode-image-container {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .episode-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    .episode-image-alt {
+        display: block;
+        font-style: italic;
+        font-size: 0.9em;
+        margin-top: 8px;
+        color: var(--podcast-text);
+        opacity: 0.8;
+    }
+
+    .episode-description {
+        font-weight: bold;
+        margin-bottom: 1.5em;
+    }
+</style>
+
+<div class="content podcast-episode">
+    <div class="main" role="main">
+        <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+
+        <?php if ($this->yellow->page->isExisting("description")): ?>
+            <div class="episode-description">
+                <?php echo $this->yellow->page->getHtml("description") ?>
+            </div>
+        <?php endif ?>
+
+        <?php if ($this->yellow->page->isExisting("image")): ?>
+            <div class="episode-image-container">
+                <img src="<?php echo $this->yellow->page->getHtml("image") ?>" 
+                     alt="<?php echo $this->yellow->page->getHtml("imagealt") ?>" 
+                     class="episode-image">
+                <?php if ($this->yellow->page->isExisting("imagealt")): ?>
+                    <span class="episode-image-alt"><?php echo $this->yellow->page->getHtml("imagealt") ?></span>
+                <?php endif ?>
+            </div>
+        <?php endif ?>
+        
+        <?php if ($this->yellow->page->isExisting("mediafile")): ?>
+            <div class="podcast-player">
+                <p><strong>Listen to this episode:</strong></p>
+                <audio controls style="width: 100%;">
+                    <source src="<?php echo $this->yellow->page->getHtml("mediafile") ?>" type="audio/mpeg">
+                    <a href="<?php echo $this->yellow->page->getHtml("mediafile") ?>">Download MP3</a>
+                </audio>
+                <p style="margin-top: 10px;"><small>Duration: <?php echo $this->yellow->page->getHtml("duration") ?></small></p>
+            </div>
+        <?php endif ?>
+
+        <div class="episode-body">
+            <?php echo $this->yellow->page->getContentHtml() ?>
+        </div>
+        
+        <footer class="episode-footer" style="margin-top: 40px; border-top: 1px solid var(--podcast-border); padding-top: 20px;">
+            <a href="<?php echo $this->yellow->system->get("podcastLocation") ?>">← Back to all episodes</a>
+        </footer>
+    </div>
+</div>
+
+<?php $this->yellow->layout("footer") ?>

@@ -1,34 +1,18 @@
 <?php $this->yellow->layout("header") ?>
-<div class="content ">
-<div class="main h-entry e-content" role="main helvetica pb5" markdown="1">
-	  <div class="vh-100 dt w-100 tc bg-dark-gray white cover" style="background:url(https://photos.lifeofpablo.com/nyc-2023/91140007.JPG) no-repeat center;">
-    <div class="dtc v-mid">
-      <header class="white">
-        <h2 class="f6 fw1 ttu tracked mb2 lh-title podcast white">Podcast</h2>
-        <h3 class="f6 fw1 lh-title white"><?php echo $this->yellow->page->getHtml("published") ?></h3>
-      </header>
-      <h1 class="f1 f-headline-l fw1 i white"><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
-      <div class="ph0 mh0 measure f4 lh-copy center">
-        <p class="fw1">
-        This is a podcast called Pablo's Thoughts Podcast. I'm going to talk about various topics from the IndieWeb to technology, self-care, blogging and things that interest me! </p>
-        <cite class="f6 ttu tracked fs-normal"><?php echo $this->yellow->page->getHtml("author") ?></cite>
-      </div>
-    </div>
-  </div>
+<div class="content">
+    <div class="main" role="main">
+        <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+        
+        <div class="podcast-list">
+            <?php foreach ($this->yellow->page->getPages("podcast") as $page): ?>
+                <article style="margin-bottom: 30px;">
+                    <h3><a href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a></h3>
+                    <p><small><?php echo $page->getDateHtml("published") ?> | Duration: <?php echo $page->getHtml("duration") ?></small></p>
+                </article>
+            <?php endforeach ?>
+        </div>
 
-<?php echo $this->yellow->page->getContentHtml() ?>
-<h2>Episodes</h2>
-<ul>
-<?php $section = $sectionNew = "" ?>
-<?php foreach ($this->yellow->page->getPages("podcast")->paginate($this->yellow->system->get("podcastPaginationLimit")) as $page): ?>
-<?php $sectionNew = $page->getDateHtml($page->isExisting("published") ? "published" : "modified") ?>
-<?php if ($section!=$sectionNew) { $section = $sectionNew; echo "</ul><h2>$section</h2><ul>\n"; } ?>
-<li><a href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a><?php if ($page->isExisting("mediafile")): ?> (<a href="<?php if ($this->yellow->system->isExisting("audioUrlPrefix")) echo $this->yellow->system->get("audioUrlPrefix"); echo $page->getHtml("mediafile") ?>">Download</a>)<?php endif ?></li>
-<?php endforeach ?>
-</ul>
-<?php $this->yellow->layout("pagination", $this->yellow->page->getPages("podcast")) ?>
-</div>
-</div>
-<div class="permalink">Permalink: <a class="u-url" href="https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?>">https://lifeofpablo.com<?php echo $this->yellow->page->getLocation($absoluteLocation = false) ?></a>
+        <?php $this->yellow->layout("pagination", $this->yellow->page->getPages("podcast")) ?>
+    </div>
 </div>
 <?php $this->yellow->layout("footer") ?>

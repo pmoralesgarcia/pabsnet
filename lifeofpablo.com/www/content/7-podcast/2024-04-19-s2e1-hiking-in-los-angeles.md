@@ -3,7 +3,7 @@ Title: S2E1 - Hiking in Los Angeles
 Published: 2024-04-19 22:45:00
 Author: Pablo Morales
 Tag: Podcast, Los Angeles, California, hiking
-Layout: blog
+Layout: podcast-episode
 Mediafile: https://static.lifeofpablo.com/podcast/season1/episode-4/s1e4-showing-loved-ones-around.mp3
 Duration: 00:03:34
 Image: https://static.lifeofpablo.com/media/notes/IMG_0030.jpeg

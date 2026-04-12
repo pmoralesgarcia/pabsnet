@@ -3,7 +3,7 @@ Title: Blog page
 Published: @datetime
 Author: @username
 Layout: blog
-Tag: 2025
+Tag: 2026, 
 Description: 
 Image: https://static.lifeofpablo.com/media/blog
 ImageAlt: 
