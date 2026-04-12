@@ -1,0 +1,46 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+    <div class="main" role="main">
+        <?php if ($this->yellow->page->get("blogWithFilter")): ?>
+            <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+        <?php endif ?>
+
+        <?php $pages = $this->yellow->page->getPages("blog")->paginate($this->yellow->system->get("blogPaginationLimit")) ?>
+        
+        <?php if ($pages->count()): ?>
+            <?php foreach ($pages as $page): ?>
+                <section class="h-entry">
+                    <header class="entry-header">
+                        <h2 class="p-name">
+                            <a href="<?php echo $page->getLocation(true) ?>" class="u-url"><?php echo $page->getHtml("title") ?></a>
+                        </h2>
+                        <div class="entry-meta">
+                            <time class="dt-published" datetime="<?php echo $page->get("published") ?>">
+                                <?php echo $page->getDateHtml("published") ?>
+                            </time>
+                        </div>
+                    </header>
+
+                    <div class="entry-content p-summary">
+                        <?php 
+                        // Generates a summary or uses the tag if present
+                        echo $this->yellow->toolbox->createTextDescription(
+                            $page->getContentHtml(), 
+                            0, 
+                            false, 
+                            "", 
+                            "<a href=\"".$page->getLocation(true)."\">".$this->yellow->language->getTextHtml("blogMore")."</a>"
+                        ) 
+                        ?>
+                    </div>
+                </section>
+                <hr>
+            <?php endforeach ?>
+            
+            <?php $this->yellow->layout("pagination", $pages) ?>
+        <?php else: ?>
+            <p>No posts found.</p>
+        <?php endif ?>
+    </div>
+</div>
+<?php $this->yellow->layout("footer") ?>

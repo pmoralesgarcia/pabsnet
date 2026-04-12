@@ -1,0 +1,19 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content main">
+    <h1>Post Archive</h1>
+    <?php 
+    $pages = $this->yellow->page->getPages("blog");
+    $years = $pages->group("published", false, "Y");
+    foreach ($years as $year => $items): ?>
+        <h2><?php echo $year ?></h2>
+        <ul>
+            <?php foreach ($items as $page): ?>
+                <li>
+                    <?php echo $page->getDateHtml("published") ?>: 
+                    <a href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    <?php endforeach ?>
+</div>
+<?php $this->yellow->layout("footer") ?>

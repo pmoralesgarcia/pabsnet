@@ -1,0 +1,35 @@
+<?php $this->yellow->layout("header") ?>
+<article class="content main h-entry" role="main">
+    <header class="entry-header">
+        <h1 class="p-name"><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+        <div class="entry-meta">
+            <time class="dt-published" datetime="<?php echo $this->yellow->page->get("published") ?>">
+                <?php echo $this->yellow->page->getDateHtml("published") ?>
+            </time>
+            <?php echo $this->yellow->language->getTextHtml("blogBy") ?>
+            <span class="p-author h-card"><?php echo htmlspecialchars($this->yellow->page->get("author")) ?></span>
+        </div>
+    </header>
+
+    <?php if ($this->yellow->page->isExisting("image")): ?>
+    <div class="entry-featured-image">
+        <img src="<?php echo $this->yellow->page->getHtml("image") ?>" 
+             alt="<?php echo $this->yellow->page->getHtml("ImageAlt") ?>" class="u-photo">
+    </div>
+    <?php endif ?>
+
+    <div class="entry-content e-content">
+        <?php echo $this->yellow->page->getContentHtml() ?>
+    </div>
+
+    <?php if ($this->yellow->page->isExisting("tag")): ?>
+    <footer class="entry-footer">
+        <p><?php echo $this->yellow->language->getTextHtml("blogTag") ?>
+        <?php foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag): ?>
+            <a href="<?php echo $this->yellow->page->getPage("blogStart")->getLocation(true) ?>tag/<?php echo $this->yellow->lookup->normaliseClass($tag) ?>" class="p-category"><?php echo htmlspecialchars($tag) ?></a>
+        <?php endforeach ?>
+        </p>
+    </footer>
+    <?php endif ?>
+</article>
+<?php $this->yellow->layout("footer") ?>

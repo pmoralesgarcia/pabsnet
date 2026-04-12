@@ -1,0 +1,37 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content main" role="main">
+    <?php if ($this->yellow->page->get("blogWithFilter")): ?>
+        <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+    <?php endif ?>
+
+    <?php $pages = $this->yellow->page->getPages("blog")->paginate($this->yellow->system->get("blogPaginationLimit")) ?>
+    
+    <?php foreach ($pages as $page): ?>
+        <section class="h-entry">
+            <h2 class="p-name"><a href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a></h2>
+            <p>
+    <span class="dt-published"><?php echo $page->getDateHtml("published") ?></span> 
+    <?php echo $this->yellow->language->getTextHtml("blogBy") ?> 
+    
+    <span class="p-author h-card">
+        <?php 
+        $authors = preg_split("/\s*,\s*/", $page->get("author"), -1, PREG_SPLIT_NO_EMPTY);
+        foreach ($authors as $index => $author): 
+            if ($index > 0) echo ", ";
+            $url = $this->yellow->page->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author");
+            echo '<a href="'.htmlspecialchars($url).'">'.htmlspecialchars($author).'</a>';
+        endforeach; 
+        ?>
+    </span> 
+    
+    | Written in <span style="text-transform: uppercase;" class="ttu b"><?php echo $page->getHtml("Language") ?>.</span>
+</p>
+            <div class="p-summary">
+                <?php echo $this->yellow->toolbox->createTextDescription($page->getContentHtml(), 0, false, "", "<a href=\"".$page->getLocation(true)."\">More</a>") ?>
+            </div>
+        </section>
+        <hr>
+    <?php endforeach ?>
+    <?php $this->yellow->layout("pagination", $pages) ?>
+</div>
+<?php $this->yellow->layout("footer") ?>

@@ -231,6 +231,20 @@ services:
       - 8124:80
     volumes:
       - ./lifeofpablo-interactives/www:/var/www/html
+  lifeofpablo-test:
+    container_name: lifeofpablo-test
+    restart: always
+    build:
+      dockerfile: ./test.lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./test.lifeofpablo.com/www:/var/www/html
+    ports:
+      - "8097:80"
+    labels:
+      - "traefik.http.routers.lifeofpablo-test.rule=Host(`test.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-test.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-test.tls.certresolver=myresolver"
   # gollum:
   #   container_name: gollum
   #   image: gollumwiki/gollum:6

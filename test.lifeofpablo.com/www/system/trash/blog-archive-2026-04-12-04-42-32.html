@@ -1,0 +1,21 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+<div class="main" role="main">
+    <h1><?php echo $this->yellow->page->getHtml("title") ?></h1>
+    <?php 
+    $pages = $this->yellow->page->getPages("blog");
+    $years = $pages->group("published", false, "Y");
+    foreach ($years as $year => $items): ?>
+        <h2 class="archive-year"><?php echo $year ?></h2>
+        <ul class="archive-list">
+            <?php foreach ($items as $page): ?>
+                <li>
+                    <time><?php echo $page->getDateHtml("published") ?></time>: 
+                    <a href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("title") ?></a>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    <?php endforeach ?>
+</div>
+</div>
+<?php $this->yellow->layout("footer") ?>
