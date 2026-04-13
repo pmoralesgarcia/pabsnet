@@ -1,6 +1,6 @@
 <?php
 class YellowIndieWeb {
-    const VERSION = "1.3.1";
+    const VERSION = "1.4.0";
     public $yellow;
 
     public function onLoad($yellow) {
@@ -11,12 +11,12 @@ class YellowIndieWeb {
     public function onRequest($scheme, $address, $base, $location, $fileName) {
         $authLocation = $this->yellow->system->get("indieWebAuthLocation");
 
-        // Metadata discovery for IndieAuth
+        // Metadata discovery for IndieAuth Server
         if ($location == "/.well-known/oauth-authorization-server") {
             return $this->renderMetadata();
         }
 
-        // Main login and server endpoint
+        // Main login and server endpoints
         if ($location == $authLocation) {
             return $this->processLogin();
         }
@@ -41,14 +41,19 @@ class YellowIndieWeb {
         $method = $_SERVER["REQUEST_METHOD"];
         $action = $_REQUEST["action"] ?? "";
 
-        // Server-side: External site asking to identify you
+        // SECURITY: External site checking if a code is valid (Verification Step)
+        if ($method == "POST" && isset($_POST['code']) && !isset($_POST['me'])) {
+            return $this->verifyAuthCode();
+        }
+
+        // Server-side: Authorization Prompt (The "Approve" Screen)
         if (isset($_GET['response_type']) && $_GET['response_type'] == 'code') {
             return $this->renderAuthorizationPrompt();
         }
 
-        // Standard Actions
+        // Standard Login Actions
         if ($action == "logout") {
-            unset($_SESSION["indieauth_me"], $_SESSION["indieauth_name"], $_SESSION["indieauth_pic"], $_SESSION["indieauth_note"]);
+            unset($_SESSION["indieauth_me"], $_SESSION["indieauth_name"], $_SESSION["indieauth_pic"], $_SESSION["indieauth_note"], $_SESSION["indieauth_codes"]);
             header("Location: " . $this->getSiteUrl() . "/");
             exit;
         }
@@ -57,6 +62,60 @@ class YellowIndieWeb {
         if ($method == "POST" && $action == "start") return $this->startIndieAuth();
 
         return $this->renderSimpleForm();
+    }
+
+    private function renderAuthorizationPrompt() {
+        $client_id = $_GET['client_id'] ?? '';
+        $redirect_uri = $_GET['redirect_uri'] ?? '';
+        $state = $_GET['state'] ?? '';
+
+        // Generate a real one-time code and store it in session
+        $code = bin2hex(random_bytes(16));
+        $_SESSION['indieauth_codes'][$code] = [
+            'client_id' => $client_id,
+            'redirect_uri' => $redirect_uri,
+            'expires' => time() + 300 // 5 minute expiry
+        ];
+
+        echo "<html><head><title>Authorize Login</title></head><body style='font-family:sans-serif; background:#f4f4f4; padding:2em;'>";
+        echo "<div style='max-width:450px; margin:auto; background:#fff; padding:2em; border-radius:15px; border:1px solid #ccc; text-align:center;'>";
+        echo "<h2>Authorize Login</h2>";
+        
+        $loggedInMe = rtrim($_SESSION['indieauth_me'] ?? '', '/');
+        $siteMe = rtrim($this->getSiteUrl(), '/');
+
+        if (!empty($loggedInMe) && strcasecmp($loggedInMe, $siteMe) === 0) {
+            $approveUrl = $redirect_uri . (strpos($redirect_uri, '?') !== false ? '&' : '?') . 
+                          "code=" . $code . "&state=" . $state . "&me=" . urlencode($siteMe . "/");
+            
+            echo "<p>The site <strong>" . htmlspecialchars($client_id) . "</strong> wants to identify you as <strong>" . htmlspecialchars($siteMe) . "</strong>.</p>";
+            echo "<a href='".htmlspecialchars($approveUrl)."' style='display:block; background:black; color:white; padding:14px; text-decoration:none; border-radius:5px; font-weight:bold;'>Approve & Log In</a>";
+        } else {
+            echo "<p style='color:red;'>Access Denied. You must be signed into your site locally first.</p>";
+            echo "<a href='?' style='display:block; background:#eee; padding:10px; text-decoration:none; border-radius:5px;'>Sign in to " . htmlspecialchars($siteMe) . "</a>";
+        }
+        echo "<br><a href='" . htmlspecialchars($redirect_uri) . "' style='color:#666; font-size:0.9em;'>Cancel</a>";
+        echo "</div></body></html>";
+        exit;
+    }
+
+    private function verifyAuthCode() {
+        $code = $_POST['code'] ?? '';
+        $client_id = $_POST['client_id'] ?? '';
+        header("Content-Type: application/json");
+
+        if (isset($_SESSION['indieauth_codes'][$code])) {
+            $saved = $_SESSION['indieauth_codes'][$code];
+            if ($saved['client_id'] === $client_id && time() < $saved['expires']) {
+                $response = ['me' => $this->getSiteUrl() . "/"];
+                unset($_SESSION['indieauth_codes'][$code]); // One-time use
+                echo json_encode($response);
+                exit;
+            }
+        }
+        http_response_code(400);
+        echo json_encode(['error' => 'invalid_grant']);
+        exit;
     }
 
     private function startIndieAuth() {
@@ -68,13 +127,12 @@ class YellowIndieWeb {
         $_SESSION["indieweb_state"] = $state;
 
         $params = http_build_query([
-            "me"            => $me,
-            "client_id"     => $this->getSiteUrl() . "/",
-            "redirect_uri"  => $this->getSiteUrl() . $this->yellow->system->get("indieWebAuthLocation") . "?action=callback",
-            "state"         => $state,
+            "me" => $me,
+            "client_id" => $this->getSiteUrl() . "/",
+            "redirect_uri" => $this->getSiteUrl() . $this->yellow->system->get("indieWebAuthLocation") . "?action=callback",
+            "state" => $state,
             "response_type" => "code"
         ]);
-
         header("Location: https://indieauth.com/auth?" . $params);
         exit;
     }
@@ -85,17 +143,12 @@ class YellowIndieWeb {
         if (empty($state) || $state !== $sessionState) die("Invalid state.");
 
         $postData = http_build_query([
-            "code"         => $_GET["code"],
-            "client_id"    => $this->getSiteUrl() . "/",
+            "code" => $_GET["code"],
+            "client_id" => $this->getSiteUrl() . "/",
             "redirect_uri" => $this->getSiteUrl() . $this->yellow->system->get("indieWebAuthLocation") . "?action=callback",
         ]);
 
-        $opts = ["http" => [
-            "method" => "POST",
-            "header" => "Content-type: application/x-www-form-urlencoded\r\nAccept: application/json\r\n",
-            "content" => $postData
-        ]];
-
+        $opts = ["http" => ["method" => "POST", "header" => "Content-type: application/x-www-form-urlencoded\r\nAccept: application/json\r\n", "content" => $postData]];
         $context = stream_context_create($opts);
         $response = @file_get_contents("https://indieauth.com/auth", false, $context);
         $data = json_decode($response, true) ?: parse_str($response, $output);
@@ -123,37 +176,11 @@ class YellowIndieWeb {
         die("Auth Failed");
     }
 
-    private function renderAuthorizationPrompt() {
-        $client_id = $_GET['client_id'] ?? 'Unknown Site';
-        $redirect_uri = $_GET['redirect_uri'] ?? '';
-        $state = $_GET['state'] ?? '';
-
-        echo "<html><head><title>Authorize Login</title></head><body style='font-family:sans-serif; background:#f4f4f4; padding:2em;'>";
-        echo "<div style='max-width:450px; margin:auto; background:#fff; padding:2em; border-radius:15px; border:1px solid #ccc; text-align:center;'>";
-        echo "<h2>Authorize Login</h2>";
-        echo "<p>The site <strong>" . htmlspecialchars($client_id) . "</strong> wants to identify you as <strong>" . htmlspecialchars($this->getSiteUrl()) . "</strong>.</p>";
-        
-        $loggedInMe = rtrim($_SESSION['indieauth_me'] ?? '', '/');
-        $siteMe = rtrim($this->getSiteUrl(), '/');
-
-        if ($loggedInMe == $siteMe) {
-            $approveUrl = $redirect_uri . (strpos($redirect_uri, '?') !== false ? '&' : '?') . "code=VALID_CODE&state=" . $state;
-            echo "<a href='".htmlspecialchars($approveUrl)."' style='display:block; background:black; color:white; padding:12px; text-decoration:none; border-radius:5px;'>Approve & Log In</a>";
-        } else {
-            echo "<p style='color:red;'>You must be signed into your site locally first.</p>";
-            echo "<a href='?'>Sign in to " . htmlspecialchars($siteMe) . "</a>";
-        }
-        echo "<br><br><a href='" . htmlspecialchars($redirect_uri) . "' style='color:#666;'>Cancel</a>";
-        echo "</div></body></html>";
-        exit;
-    }
-
     private function renderSimpleForm() {
         $user = $_SESSION["indieauth_me"] ?? "";
         $pic = $_SESSION["indieauth_pic"] ?? "";
         $name = $_SESSION["indieauth_name"] ?? "";
         $note = $_SESSION["indieauth_note"] ?? "";
-        
         echo "<html><head><title>User Profile</title></head><body style='font-family:sans-serif; background:#f4f4f4; padding:2em; line-height: 1.6;'>";
         if ($user) {
             echo "<div style='max-width: 450px; margin: 40px auto; background:#fff; text-align: center; border: 1px solid #ccc; padding: 2.5em; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);'>";
