@@ -1,0 +1,27 @@
+<div class="user-status" style="display: flex; align-items: center; gap: 8px; font-family: sans-serif;">
+    <?php 
+    if (session_status() === PHP_SESSION_NONE) session_start();
+    
+    $me = $_SESSION["indieauth_me"] ?? "";
+    $pic = $_SESSION["indieauth_pic"] ?? "";
+    $domain = $me ? parse_url($me, PHP_URL_HOST) : "";
+    
+    $basePath = $this->yellow->system->get("serverBase");
+    $loginUrl = $basePath . $this->yellow->system->get("indieWebAuthLocation");
+    
+    if ($me): ?>
+        <?php if ($pic): ?>
+            <img src="<?php echo htmlspecialchars($pic) ?>" alt="" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+        <?php endif; ?>
+        
+        <span class="user-info">
+            Hey, <?php echo htmlspecialchars($domain) ?> !
+        </span>
+        
+        <span style="margin-left: 5px; color: #ccc;">|</span>
+        <a href="<?php echo $loginUrl ?>?action=logout" style="font-size: 0.9em;">Logout</a>
+        
+    <?php else: ?>
+        <a href="<?php echo $loginUrl ?>">Sign in</a>
+    <?php endif; ?>
+</div>
