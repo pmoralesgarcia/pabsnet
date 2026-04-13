@@ -1,0 +1,11 @@
+{
+    "title": "Home",
+    "author": "Pablo Morales",
+    "published": "",
+    "tag": "",
+    "page_image": "",
+    "content": "<p><img src=\"\/media\/images\/photo.jpg\" width=\"1000\" height=\"400\" alt=\"Example\" title=\"Example\" class=\"rounded\" \/><\/p>\n\n<p><a href=\"http:\/\/localhost:8000\/edit\/\">You can edit this page<\/a> or use a text editor. <a href=\"https:\/\/datenstrom.se\/yellow\/help\/\">Get help<\/a>.<\/p>\n",
+    "url_full": "http:\/\/localhost:8000\/",
+    "url_path": "\/",
+    "related": []
+}

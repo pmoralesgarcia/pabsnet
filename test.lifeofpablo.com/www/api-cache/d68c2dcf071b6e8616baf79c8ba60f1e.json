@@ -1,0 +1,100 @@
+{
+    "pagination": {
+        "current": 0,
+        "total": 1,
+        "next": "\/api\/v1\/blog\/",
+        "prev": ""
+    },
+    "items": [
+        {
+            "title": "Declining Picture Taken by TSA",
+            "author": "Pablo Morales",
+            "published": "2024-05-09 14:37:31",
+            "tag": "2024, TSA, facial recognition",
+            "page_image": "https:\/\/static.lifeofpablo.com\/",
+            "content": "<p>Today, I'm flying out of San Francisco (SFO) and I experienced something new today. For the first time, I was asked to have my picture taken by the <em>Transportation Security Administration<\/em>, or commonly known as the <em>TSA<\/em>. I'm not surprised that an airport such as San Francisco would have these implemented as ways of efficiently getting passengers as fast as possible.<\/p>\n\n<p>I politely told the TSA agent that I am declining facial recognition. The agent simply conducted a manual document check. It was a very easy experience and the TSA agent was very respectful.<\/p>\n\n<p>The point here is that you're not required or obligated to have your picture taken for biometric verification in the <strong>United States<\/strong>. You can simply opt-out by requesting so at a point of entry, such as airport customs and of course with the TSA. Your identity document(s) is verified through a manual check.<\/p>\n\n<p>I wrote a post, <em><a href=\"https:\/\/lifeofpablo.com\/blog\/why-i-opted-out-of-facial-recognition-at-customs-and-border-patrol\">Why I Opted-Out of Facial Recognition at Customs and Border Patrol\n<\/a><\/em> on opting out of facial recognition by the United States Customs and Border Patrol and the experience I had.<\/p>\n\n<p>Many people don't know they can decline or aren't aware of the risks that facial recognition have in our society. People need to be more aware of their rights when it comes to biometrics and the data retention of such biometrics.<\/p>\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/declining-picture-taken-by-tsa",
+            "url_path": "\/blog\/declining-picture-taken-by-tsa"
+        },
+        {
+            "title": "Blog page 2",
+            "author": "Pablo Morales",
+            "published": "2024-05-04 20:48:29",
+            "tag": "2024",
+            "page_image": "https:\/\/static.lifeofpablo.com\/",
+            "content": "<p>[youtube Cdt8dCUVWrI center 90%]<\/p>\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/blog-page-2",
+            "url_path": "\/blog\/blog-page-2"
+        },
+        {
+            "title": "First Episode of 'Person I've Become'",
+            "author": "Pablo Morales",
+            "published": "2024-05-03 00:25:05",
+            "tag": "2024, podcast, Person I've Become",
+            "page_image": "https:\/\/photos.lifeofpablo.com\/nyc-2023\/91140019.JPG",
+            "content": "<figure>\n\n<p><img src=\"https:\/\/photos.lifeofpablo.com\/nyc-2023\/91140019.JPG\" alt=\"cover of Person I've Become\" title=\"cover of Person I've Become\" \/>\n<em>Pablo in NYC<\/em><\/p>\n\n<\/figure>\n\n<p>Announcement!!<\/p>\n\n<p>I would like to share that I have posted the first episode of my new podcast, <a href=\"https:\/\/personivebecome.com\/\">Person I've Become<\/a>. <a href=\"https:\/\/personivebecome.com\/episode-1-sammy\/\">My first episode<\/a>, I interview <a href=\"https:\/\/www.sammyharper.com\/\">Sammy Harper<\/a>, an environmentalist and green tech lover on how he's got to this point in his life and the person he's become. It has been exciting to start this new podcasting adventure and I will post more episodes soon!<\/p>\n\n<p>I hope you enjoy the first episode. Send me any comments or questions via email at <a href=\"&#x6d;&#97;&#105;l&#x74;&#x6f;&#58;&#104;&#x65;&#x6c;&#108;&#111;&#64;&#x70;&#101;&#114;s&#x6f;&#x6e;&#105;&#118;&#x65;&#x62;&#101;&#99;o&#x6d;&#x65;&#46;&#99;&#x6f;&#x6d;\">&#104;&#x65;&#x6c;&#108;&#111;&#64;&#x70;&#101;&#114;s&#x6f;&#x6e;&#105;&#118;&#x65;&#x62;&#101;&#99;o&#x6d;&#x65;&#46;&#99;&#x6f;&#x6d;<\/a>. I'm actively looking for guests for the podcast. I'd love to have you!<\/p>\n\n<p><strong>Here's a brief summary of the podcast.<\/strong><br \/>\nEver wonder how the person next door got to where they are? Each episode of The Person I've Become is an exploration of that very question. Host Pablo Morales sits down with everyday people as they navigate career changes, relationships, personal growth, and more. Join us for authentic conversations, raw emotions, and a deeper understanding of what it means to be The Person I've Become.<\/p>\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/first-episode-of-person-i-ve-become",
+            "url_path": "\/blog\/first-episode-of-person-i-ve-become"
+        },
+        {
+            "title": "I'm excited for May!",
+            "author": "Pablo Morales",
+            "published": "2024-05-01 00:12:24",
+            "tag": "2024",
+            "page_image": "https:\/\/static.lifeofpablo.com\/",
+            "content": "<p>I'm really looking forward for the month of May! It will be a busy month but productive.<\/p>\n\n<p>Here's what's happening.<\/p>\n\n<p>I'm entering my final year of my 20's. I'm going to make this a memorable year ahead. There are steps I would like to take before I hit the big 3-0. I'm not scared to enter 30. I want to learn to embrace it.<\/p>\n\n<p>I'm traveling to Germany this month for a green tech conference. I'm building a few arcade units to demo.<\/p>\n\n<p>I'm hoping to start classes as I recently got accepted into a <a href=\"\/blog\/i-got-accepted-to-a-master-s-program\">master's program<\/a>. I really want to teach at the university level.<\/p>\n\n<p>Work on personal and work projects that have been on the back burner. I hope to reach these goals.<\/p>\n\n<p>Continue working on the startup I'm working on with <a href=\"https:\/\/www.chriswan.me\/\">Chris Wan<\/a>. I'm hoping we can address few issues happening in education and to make learning more adaptable to all.<\/p>\n\n<p>What are you excited for the month of May?<\/p>\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/i-m-excited-for-may",
+            "url_path": "\/blog\/i-m-excited-for-may"
+        },
+        {
+            "title": "My Site Redesign is Good Enough - IndieWeb Carnival April 2024",
+            "author": "Pablo Morales",
+            "published": "2024-04-30 22:53:00",
+            "tag": "2024, IndieWeb, IndieWeb Carnival",
+            "page_image": "https:\/\/static.lifeofpablo.com\/media\/images\/blog-images\/good-enough\/pablo.jpeg",
+            "content": "<p>I recently redesigned my website and let me tell you, It was long overdue. The redesign was on my to do list from a long time a go. Things were a mess in the code. It's still a work in progress.  I was using multiple style sheets (I'm still reducing this). I was using a theme I had modified and I was using <em><a href=\"https:\/\/tachyons.io\/\">Tachyons<\/a><\/em>, a CSS framework. Having to add more CSS classes for specific purposes was getting overbearing. Sure my blog posts were getting pretty with various designs and looked a little nicer. I hate to say it, I was often more worried about what my website looked like instead of focusing more of the quality of my posts. An RSS reader simply pulls the content and none of the styling that comes with CSS classes.<\/p>\n\n<p>I was starting to lose it. I simply needed to strip my website of any unnecessary CSS and classes. I was also limited on time so I couldn't commit to something from scratch. I found a simple CSS framework that provided me the bare minimum that made my website look very simple but more put together.<\/p>\n\n<p>The name of the CSS framework is...wait for it... called, <em><a href=\"https:\/\/simplecss.org\/\">simple.css<\/a><\/em>. It's a CSS framework that has no classes built in. Simply load this and boom! Your website is mostly organized without the \"extra\" stuff. It's super simple to override the CSS code to add something specific.<\/p>\n\n<p>Using <em>simple.css<\/em> was good enough for me. Simply, it was a no brainer. It allowed me to address the issues, and it was good enough to implement. <em>simple.css<\/em> is simple and fast. At this time, I don't feel the need to commit to designing from scratch the CSS to make my site pretty. Going minimal is good enough for me.<\/p>\n\n<p>This is why 'Good Enough' is enough to get things done.<\/p>\n\n<p>This blog post is in response to <a href=\"https:\/\/risingthumb.xyz\/\">Aaron<\/a>'s, known as RisingThumb, IndieWeb Carnival April 2024 post on <em><a href=\"https:\/\/risingthumb.xyz\/Writing\/Blog\/IndieWeb_Carnival_of_April\">good enough<\/a><\/em>. Thank you for hosting this month's carnival. Everyone and anyone is welcome to host an <a href=\"https:\/\/indieweb.org\/indieweb-carnival\">IndieWeb Writing Carnival<\/a>.<\/p>\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/my-site-redesign-is-good-enough",
+            "url_path": "\/blog\/my-site-redesign-is-good-enough"
+        },
+        {
+            "title": "I got accepted to a master's program",
+            "author": "Pablo Morales",
+            "published": "2024-04-29 21:21:30",
+            "tag": "2024, education, University of Nebraska at Kearney, Nebraska, online, continuing education",
+            "page_image": "https:\/\/www.unk.edu\/_files\/redesign\/images\/logo.png",
+            "content": "<p><img src=\"https:\/\/www.unk.edu\/_files\/redesign\/images\/logo.png\" alt=\"UNK logo\" title=\"UNK logo\" \/><\/p>\n\n<p>I'm really excited to share that I applied to the graduate program at the alma mater I graduated from at the University of Nebraska at Kearney. I applied for the Masters of Science in Education in Learning, Design &amp; Technology with an Information Technology Concentration. I chose the IT concentration because, I work in IT where I would like to implement my knowledge at the school level. I'm not in the classroom as often anymore. It seemed more appropriate to go this route.<\/p>\n\n<p>I'm really excited to go back to school! I've been itching for this for a while. Since, I still work in education, it seems appropriate to also continue my education and better improve my knowledge and skills in addition to what I do already with other forms of learning.<\/p>\n\n<p>I also value education as well. I want to also have degrees beyond a bachelor's degree. My goal in the near but possibly distance future is to get a doctorate degree. Even with a master's degree, it's been a dream to teach a course or two at the university level. I would teach technology courses specifically for teachers to help eliminate barriers and increase technology literacy for teachers. I would also teach methods for teachers of all ages through scaffolding to embrace technology.<\/p>\n\n<p>As a Latino, I find it important to help represent that we can succeed in higher education.<\/p>\n\n<p>Time to register for classes!<\/p>\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/i-got-accepted-to-a-master-s-program",
+            "url_path": "\/blog\/i-got-accepted-to-a-master-s-program"
+        },
+        {
+            "title": "Nebraska Tornadoes",
+            "author": "Pablo Morales",
+            "published": "2024-04-26 22:17:30",
+            "tag": "2024, weather, climate change, storms, tornadoes",
+            "page_image": "https:\/\/static.lifeofpablo.com\/",
+            "content": "<p>My home state got hit pretty hard with tornadoes today. Many  people's homes were destroyed. My friends and family were giving me updates. They are all okay. Things will get back to normal but will take time. im also worried with climate change, we will see these intense storms happen more often.<\/p>\n\n<p>thinking of my people in Nebraska<\/p>\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/nebraska-tornadoes",
+            "url_path": "\/blog\/nebraska-tornadoes"
+        },
+        {
+            "title": "El tren y los estudiantes universitarios.",
+            "author": "Pablo Morales",
+            "published": "2024-04-26 20:26:11",
+            "tag": "2024, Espa\u00f1ol, Spanish",
+            "page_image": "https:\/\/static.lifeofpablo.com\/",
+            "content": "<p>Hoy es el ultimo viernes de abril. Quiero relajar despu\u00e9s de un dia bien ocupado y productivo. Estoy bien feliz que ya empez\u00f3 el fin de semana.  En este momento estoy escribiendo en el tren y voy para la ciudad de San Francisco. Es mi manera preferida e mas conveniente. Siempre uso mi computadora para que me entretengo. De vez en cuando levante la cabeza y miro a mi alrededor al interior del tren.<\/p>\n\n<p>Cuando me sub\u00ed al tren en Sacramento, estaba medio vaci\u00f3. En la pr\u00f3xima parada de Davis, se suben varios estudiantes universitarios. Traen mucha buena energ\u00eda positiva. Ellos est\u00e1n con sus amigos. Se van de parranda a San Francisco. Muchos toman el tren para regresar a casa.<\/p>\n\n<p>Viendo los estudiantes universitarios me da mucha alegr\u00eda. Me recuerdan mucho cuando estuve en la universidad. Siempre de aventura con mis amigos. Pero en lugar de usar tren, usamos el carro. Estoy contento que ahorra vivo en un lugar que el tren es mas com\u00fan.<\/p>\n\n<p>Me gusta ver que est\u00e1n disfrutando estos momentos preciosos.<\/p>\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/el-tren-y-los-estudiantes-universitarios",
+            "url_path": "\/blog\/el-tren-y-los-estudiantes-universitarios"
+        },
+        {
+            "title": "Blog",
+            "author": "Pablo Morales",
+            "published": "",
+            "tag": "",
+            "page_image": "",
+            "content": "\n",
+            "url_full": "http:\/\/localhost:8000\/blog\/",
+            "url_path": "\/blog\/"
+        }
+    ]
+}

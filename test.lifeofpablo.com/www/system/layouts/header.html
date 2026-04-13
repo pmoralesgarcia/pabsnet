@@ -7,6 +7,8 @@
 <meta name="author" content="<?php echo $this->yellow->page->getHtml("author") ?>" />
 <meta name="generator" content="Datenstrom Yellow" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="authorization_endpoint" href="<?php echo $this->yellow->system->get('serverBase') ?>/login/">
+<link rel="token_endpoint" href="<?php echo $this->yellow->system->get('serverBase') ?>/login/">
 <?php echo $this->yellow->page->getExtraHtml("header") ?>
 </head>
 <body>

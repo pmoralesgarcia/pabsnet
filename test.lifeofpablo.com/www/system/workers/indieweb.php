@@ -1,6 +1,6 @@
 <?php
 class YellowIndieWeb {
-    const VERSION = "1.2.1";
+    const VERSION = "1.3.1";
     public $yellow;
 
     public function onLoad($yellow) {
@@ -11,18 +11,42 @@ class YellowIndieWeb {
     public function onRequest($scheme, $address, $base, $location, $fileName) {
         $authLocation = $this->yellow->system->get("indieWebAuthLocation");
 
+        // Metadata discovery for IndieAuth
+        if ($location == "/.well-known/oauth-authorization-server") {
+            return $this->renderMetadata();
+        }
+
+        // Main login and server endpoint
         if ($location == $authLocation) {
             return $this->processLogin();
         }
         return null;
     }
 
+    private function renderMetadata() {
+        $url = $this->getSiteUrl() . $this->yellow->system->get("indieWebAuthLocation");
+        $metadata = [
+            "issuer" => $this->getSiteUrl() . "/",
+            "authorization_endpoint" => $url,
+            "token_endpoint" => $url,
+            "code_challenge_methods_supported" => ["S256"]
+        ];
+        header("Content-Type: application/json");
+        echo json_encode($metadata);
+        exit;
+    }
+
     private function processLogin() {
+        if (session_status() === PHP_SESSION_NONE) session_start();
         $method = $_SERVER["REQUEST_METHOD"];
         $action = $_REQUEST["action"] ?? "";
 
-        if (session_status() === PHP_SESSION_NONE) session_start();
+        // Server-side: External site asking to identify you
+        if (isset($_GET['response_type']) && $_GET['response_type'] == 'code') {
+            return $this->renderAuthorizationPrompt();
+        }
 
+        // Standard Actions
         if ($action == "logout") {
             unset($_SESSION["indieauth_me"], $_SESSION["indieauth_name"], $_SESSION["indieauth_pic"], $_SESSION["indieauth_note"]);
             header("Location: " . $this->getSiteUrl() . "/");
@@ -79,35 +103,49 @@ class YellowIndieWeb {
 
         if ($me) {
             $_SESSION["indieauth_me"] = $me;
-            $_SESSION["indieauth_pic"] = "";
-            $_SESSION["indieauth_name"] = "";
-            $_SESSION["indieauth_note"] = "";
-
             $homepage = @file_get_contents($me);
             if ($homepage) {
-                // 1. Find u-photo (IndieWeb standard)
                 if (preg_match('/<img[^>]+class=["\'][^"\']*u-photo[^"\']*["\'][^>]+src=["\']([^"\']+)["\']/', $homepage, $match)) {
                     $_SESSION["indieauth_pic"] = $this->absoluteUrl($match[1], $me);
-                } 
-                // 2. Fallback: Find Favicon/Shortcut icon if no u-photo
-                elseif (preg_match('/<link[^>]+rel=["\'](?:icon|apple-touch-icon|shortcut icon)["\'][^>]+href=["\']([^"\']+)["\']/', $homepage, $match)) {
+                } elseif (preg_match('/<link[^>]+rel=["\'](?:icon|apple-touch-icon|shortcut icon)["\'][^>]+href=["\']([^"\']+)["\']/', $homepage, $match)) {
                     $_SESSION["indieauth_pic"] = $this->absoluteUrl($match[1], $me);
                 }
-
-                // Find p-name
                 if (preg_match('/<[^>]+class=["\'][^"\']*p-name[^"\']*["\'][^>]*>(.*?)<\/[^>]+>/s', $homepage, $match)) {
                     $_SESSION["indieauth_name"] = trim(strip_tags($match[1]));
                 }
-                // Find p-note
                 if (preg_match('/<[^>]+class=["\'][^"\']*p-note[^"\']*["\'][^>]*>(.*?)<\/[^>]+>/s', $homepage, $match)) {
                     $_SESSION["indieauth_note"] = trim(strip_tags($match[1]));
                 }
             }
-
             header("Location: " . $this->getSiteUrl() . "/");
             exit;
         }
         die("Auth Failed");
+    }
+
+    private function renderAuthorizationPrompt() {
+        $client_id = $_GET['client_id'] ?? 'Unknown Site';
+        $redirect_uri = $_GET['redirect_uri'] ?? '';
+        $state = $_GET['state'] ?? '';
+
+        echo "<html><head><title>Authorize Login</title></head><body style='font-family:sans-serif; background:#f4f4f4; padding:2em;'>";
+        echo "<div style='max-width:450px; margin:auto; background:#fff; padding:2em; border-radius:15px; border:1px solid #ccc; text-align:center;'>";
+        echo "<h2>Authorize Login</h2>";
+        echo "<p>The site <strong>" . htmlspecialchars($client_id) . "</strong> wants to identify you as <strong>" . htmlspecialchars($this->getSiteUrl()) . "</strong>.</p>";
+        
+        $loggedInMe = rtrim($_SESSION['indieauth_me'] ?? '', '/');
+        $siteMe = rtrim($this->getSiteUrl(), '/');
+
+        if ($loggedInMe == $siteMe) {
+            $approveUrl = $redirect_uri . (strpos($redirect_uri, '?') !== false ? '&' : '?') . "code=VALID_CODE&state=" . $state;
+            echo "<a href='".htmlspecialchars($approveUrl)."' style='display:block; background:black; color:white; padding:12px; text-decoration:none; border-radius:5px;'>Approve & Log In</a>";
+        } else {
+            echo "<p style='color:red;'>You must be signed into your site locally first.</p>";
+            echo "<a href='?'>Sign in to " . htmlspecialchars($siteMe) . "</a>";
+        }
+        echo "<br><br><a href='" . htmlspecialchars($redirect_uri) . "' style='color:#666;'>Cancel</a>";
+        echo "</div></body></html>";
+        exit;
     }
 
     private function renderSimpleForm() {
@@ -119,15 +157,13 @@ class YellowIndieWeb {
         echo "<html><head><title>User Profile</title></head><body style='font-family:sans-serif; background:#f4f4f4; padding:2em; line-height: 1.6;'>";
         if ($user) {
             echo "<div style='max-width: 450px; margin: 40px auto; background:#fff; text-align: center; border: 1px solid #ccc; padding: 2.5em; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);'>";
-            if ($pic) {
-                echo "<img src='".htmlspecialchars($pic)."' style='width:120px; height:120px; border-radius:50%; margin-bottom:1em; object-fit:cover; border: 3px solid #eee;'>";
-            }
+            if ($pic) echo "<img src='".htmlspecialchars($pic)."' style='width:120px; height:120px; border-radius:50%; margin-bottom:1em; object-fit:cover; border: 3px solid #eee;'>";
             $displayName = $name ?: parse_url($user, PHP_URL_HOST);
-            echo "<h2 style='margin-bottom:0.2em;'>" . htmlspecialchars($displayName) . "</h2>";
-            echo "<p style='color:#666; margin-top:0; font-size:0.9em;'>" . htmlspecialchars($user) . "</p>";
+            echo "<h2 style='margin:0;'>" . htmlspecialchars($displayName) . "</h2>";
+            echo "<p style='color:#666; font-size:0.9em;'>" . htmlspecialchars($user) . "</p>";
             if ($note) echo "<p style='font-style:italic; background:#f9f9f9; padding:10px; border-radius:5px;'>" . htmlspecialchars($note) . "</p>";
             echo "<hr style='border:0; border-top:1px solid #eee; margin: 2em 0;'>";
-            echo "<a href='?action=logout' style='color: #d33; text-decoration: none; font-weight:bold;'>Logout</a> | <a href='" . $this->getSiteUrl() . "/' style='text-decoration: none; color:#333;'>Return Home</a>";
+            echo "<a href='?action=logout' style='color: #d33; text-decoration: none;'>Logout</a> | <a href='" . $this->getSiteUrl() . "/' style='text-decoration: none; color:#333;'>Return Home</a>";
             echo "</div>";
         } else {
             echo "<div style='max-width: 400px; margin: 40px auto; background:#fff; padding: 2.5em; border-radius: 15px; border: 1px solid #ccc;'>";
@@ -140,16 +176,13 @@ class YellowIndieWeb {
     private function getSiteUrl() {
         $protocol = $this->yellow->system->get("serverScheme") ?: "http";
         $address = $this->yellow->system->get("serverAddress") ?: $_SERVER['HTTP_HOST'];
-        $base = $this->yellow->system->get("serverBase");
-        return rtrim($protocol . "://" . $address . $base, '/');
+        return rtrim($protocol . "://" . $address . $this->yellow->system->get("serverBase"), '/');
     }
 
     private function absoluteUrl($url, $base) {
         if (parse_url($url, PHP_URL_SCHEME) != '') return $url;
         $baseParts = parse_url($base);
-        $scheme = $baseParts['scheme'];
-        $host = $baseParts['host'];
-        if (strpos($url, '/') === 0) return "$scheme://$host$url";
+        if (strpos($url, '/') === 0) return $baseParts['scheme'] . "://" . $baseParts['host'] . $url;
         return rtrim($base, '/') . '/' . ltrim($url, '/');
     }
 }
