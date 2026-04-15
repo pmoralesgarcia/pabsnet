@@ -71,6 +71,12 @@ Send me a webmention, email the link of your response at [pablo[at]lifeofpablo.c
 * [Ne iščem dogodivščin in prigod, one včasih najdejo mene](https://sarajaksa.eu/2026/03/indieweb-carnvial-april-2026-ne-iscem-dogodivscin-in-prigod-one-vcasih-najdejo-mene/) by Sara Jakša
 * [Seven hills](https://jamesg.blog/2026/04/01/seven-hills) by James
 * [The Road](https://andrei.xyz/post/the-road/) by Andrei
+* [Bikepacking: Descent to Italy](https://www.vknabel.com/posts/bikepacking-descent-to-italy/) by Valentin Knabel
+* [Spirit of Adventure](https://www.akpain.net/blog/spirit-of-adventure/) by Abigail Pain
+* [Preparing for my next adventure](https://reeswrites.com/posts/preparing-for-next-adventure/) by Rees Writes
+* [26W15. À la dérive](https://z1nz0l1n.com/26w15/) by Anthony
+* [My Personal Indy](https://blog.scaglio.id/posts/my-personal-indy/) by Massimo Scagliola
+* [Lakbay sa linya](https://loreleice.net/notebook/iwc-apr2026.html) by Loreleice
 
 <a href="https://news.indieweb.org/en" class="u-syndication">
   Also posted on IndieNews
