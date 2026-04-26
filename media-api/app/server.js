@@ -5,10 +5,13 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const app = express();
 
-const SECRET_KEY = 'b4b0e47fd8e1bfa1c424551bf2296ca01675d52b49376008d1e156a09b62410e'; 
+const SECRET_KEY = process.env.API_JWT_SECRET; 
 const pool = mariadb.createPool({
-    host: 'db', user: 'admin', password: 'app_password',
-    database: 'media_collection', connectionLimit: 5
+    host: process.env.API_DB_HOST2 || 'db',
+    user: process.env.API_DB_USER2,
+    password: process.env.API_DB_PASS2,
+    database: process.env.API_DB2 || 'media_collection',
+    connectionLimit: 10
 });
 
 app.use(cors()); // Crucial for external data pulls
