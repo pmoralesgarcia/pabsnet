@@ -24,7 +24,7 @@ For myself, the first idea that comes to mind is walking through a quiet and pea
 
 ## Adventure with friends
 
-I've gone on many adventures with friends by traveling to different places. We build or relationships by the adventure and growth. It's beautiful seeing this in the people you love. 
+I've gone on many adventures with friends by traveling to different places. We build our relationships by the adventure and growth. It's beautiful seeing this in the people you love. 
 
 ## San Francisco
 Every day is a new adventure in San Francisco; you never know who or what you'll find. My daily routine has to be adjustable, knowing I will find something new to be interested in.
@@ -77,6 +77,10 @@ Send me a webmention, email the link of your response at [pablo[at]lifeofpablo.c
 * [26W15. À la dérive](https://z1nz0l1n.com/26w15/) by Anthony
 * [My Personal Indy](https://blog.scaglio.id/posts/my-personal-indy/) by Massimo Scagliola
 * [Lakbay sa linya](https://loreleice.net/notebook/iwc-apr2026.html) by Loreleice
+* [Mini adventures](https://francescrossley.com/mini-adventures/) by Frances Crossley
+* [Thumbs up for a good adventure](https://hamatti.org/posts/thumbs-up-for-a-good-adventure/) by Juha-Matti Santala
+* [マトンとバターミルクを求めて](https://lastencore.org/posts/maton-battermilk-adventure/) by The Last Encore
+* [The Bottle](https://noahie.xyz/blog/cogito/04-2026/the-bottle/) by Noahie
 
 <a href="https://news.indieweb.org/en" class="u-syndication">
   Also posted on IndieNews

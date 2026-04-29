@@ -8,15 +8,24 @@
 <?php endif ?>
 <div class="<?php echo $this->yellow->page->getHtml("entryClass") ?>">
 <div class="entry-title p-name"><h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1></div>
-<figure class="blog-cover">
+<!-- <figure class="blog-cover">
     <img src="<?php echo $this->yellow->page->getHtml("image") ?>">
     <figcaption><?php echo $this->yellow->page->getHtml("imageAlt") ?></figcaption>
-</figure>
+</figure> -->
 
 <p class="img-alt"></p>
 <div class="entry-meta"><p><span class="dt-published"><?php echo $this->yellow->page->getDateHtml("published") ?></span> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <span class="p-author h-card">&nbsp;<img src="https://static.lifeofpablo.com/pabs-cropped.jpg" class="u-photo">&nbsp;<?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></span> | This post was written in <?php echo $this->yellow->language->getTextHtml("languageDescription") ?> (<?php echo $this->yellow->language->getTextHtml("languageLocale") ?>).</p></div>
 
-<div class="entry-content e-content"><?php echo $this->yellow->page->getContentHtml() ?></div>
+<div class="entry-content e-content">
+    <div class="entry-content">
+    <?php if ($this->yellow->page->isExisting("image")): ?>
+        <div class="entry-image">
+            <img src="<?php echo $this->yellow->page->getHtml("image") ?>" alt="<?php echo $this->yellow->page->getHtml("title") ?>">
+        </div>
+    <?php endif; ?>
+    <?php echo $this->yellow->page->getContentHtml() ?>
+</div>
+</div>
 <?php echo $this->yellow->page->getExtraHtml("profile") ?>
 <?php echo $this->yellow->page->getExtraHtml("link") ?>
 <?php if ($this->yellow->page->isExisting("tag")): ?>
