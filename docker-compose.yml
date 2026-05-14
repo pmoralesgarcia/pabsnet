@@ -104,34 +104,39 @@ services:
       - "traefik.http.routers.korea.rule=Host(`korea.lifeofpablo.com`)"
       - "traefik.http.routers.korea.entrypoints=websecure"
       - "traefik.http.routers.korea.tls.certresolver=myresolver"
-  lifeofpablo-proxy:
-    image: nginx:1.25.3-bookworm-perl
-    container_name: lifeofpablo-proxy
-    volumes:
-      - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
-    ports:
-      - 8110:80
-    # environment:
-    #   - VIRTUAL_HOST=lifeofpablo.com
-    #   - LETSENCRYPT_HOST=lifeofpablo.com
-    depends_on:
-      - lifeofpablo
-      - lifeofpablo-interactives
-      - lifeofpablo-linkinbio
-    labels:
-      - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
-    #   - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
-    #   - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
+  # lifeofpablo-proxy:
+  #   image: nginx:1.25.3-bookworm-perl
+  #   container_name: lifeofpablo-proxy
+  #   volumes:
+  #     - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
+  #   ports:
+  #     - 8110:80
+  #   # environment:
+  #   #   - VIRTUAL_HOST=lifeofpablo.com
+  #   #   - LETSENCRYPT_HOST=lifeofpablo.com
+  #   depends_on:
+  #     - lifeofpablo
+  #     - lifeofpablo-interactives
+  #     - lifeofpablo-linkinbio
+  #   labels:
+  #     - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
+  #   #   - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
+  #   #   - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
   lifeofpablo:
     container_name: lifeofpablo
     restart: always
     build:
-      dockerfile: ./lifeofpablo.com/Dockerfile  
+      context: .
+      dockerfile: ./lifeofpablo.com/Dockerfile
     volumes:
-      #Project root
       - ./lifeofpablo.com/www:/var/www/html
-    ports:
-      - "8080:80"
+    # No need to expose ports to the host; Traefik communicates via the internal network
+    labels:
+      - "traefik.enable=true"
+      # Main Site Rule
+      - "traefik.http.routers.lifeofpablo.rule=Host(`lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo.tls.certresolver=myresolver"
   wishlist:
     container_name: wishlist
     image: ghcr.io/cmintey/wishlist:v0.62.0
@@ -161,18 +166,39 @@ services:
     container_name: lifeofpablo-linkinbio
     restart: always
     build:
+      context: .
       dockerfile: ./lifeofpablo-linkinbio/Dockerfile  
     volumes:
-      #Project root
-      - ./lifeofpablo-linkinbio/www:/var/www/html
-    ports:
-      - "8082:80"
+      # Mount as read-only if the app doesn't need to write to its own source code
+      - ./lifeofpablo-linkinbio/www:/var/www/html:ro
+    # No public ports! Traefik handles the routing internally.
+    networks:
+      - traefik-public # Or whatever your Traefik network name is
+    deploy:
+      resources:
+        limits:
+          memory: 256M # Linkinbio is usually very lightweight
+    labels:
+      - "traefik.enable=true"
+      # This routes lifeofpablo.com/links to this container
+      - "traefik.http.routers.linkinbio.rule=Host(`lifeofpablo.com`) && PathPrefix(`/links`)"
+      - "traefik.http.routers.linkinbio.entrypoints=websecure"
+      - "traefik.http.routers.linkinbio.tls=true"
+      # If your app expects to live at '/', this middleware strips the '/links' prefix before sending it to the container
+      - "traefik.http.middlewares.links-strip.stripprefix.prefixes=/links"
+      - "traefik.http.routers.linkinbio.middlewares=links-strip"
+  
   lifeofpablo-now:
     container_name: lifeofpablo-now
     image: ghcr.io/pmoralesgarcia/now:latest
-    restart: always
-    ports:
-      - "8083:80"
+    labels:
+      - "traefik.enable=true"
+      # This tells Traefik: "If the path starts with /interactives, send it here"
+      - "traefik.http.routers.interactives.rule=Host(`lifeofpablo.com`) && PathPrefix(`/now`)"
+      - "traefik.http.routers.interactives.entrypoints=websecure"
+      - "traefik.http.routers.interactives.tls=true"
+    restart: always  
+      
   lifeofpablo-static:
     image: nginx:bookworm-perl
     container_name: lifeofpablo-static
