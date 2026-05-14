@@ -42,7 +42,7 @@ Status: shared
 An <a href="https://xn--sr8hvo.ws">IndieWeb Webring</a> 🕸💍
 <a href="https://xn--sr8hvo.ws/next">→</a>
 
-    <br /><small class="f5 db tc">© 2023 <a href="https://pabs.tech/">
+    <br /><small class="f5 db tc">© 2026 Pablo Morales
     
     
 

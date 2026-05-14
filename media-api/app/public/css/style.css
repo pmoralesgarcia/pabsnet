@@ -1,20 +1,30 @@
-:root { --primary: #2c3e50; --accent: #3498db; --bg: #f4f7f6; --success: #27ae60; --danger: #e74c3c; }
-
-body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
-.container { max-width: 1000px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-.hidden { display: none !important; }
-
-/* Responsive Navigation */
-.nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
-
-/* Responsive Grid */
-.info-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-@media (min-width: 600px) {
-    .info-grid { grid-template-columns: 1fr 1fr; }
+:root {
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --accent: #3498db;
 }
 
-button { padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; color: white; background: var(--accent); }
-input, textarea { padding: 10px; border: 1px solid #ddd; border-radius: 6px; width: 100%; box-sizing: border-box; }
+body { font-family: sans-serif; padding: 10px; margin: 0; }
+.container { max-width: 800px; margin: auto; }
 
-table { width: 100%; border-collapse: collapse; overflow-x: auto; display: block; }
-th, td { padding: 12px; border-bottom: 1px solid #eee; white-space: nowrap; }
+/* Responsive Navigation */
+.nav { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 15px; }
+
+/* Make Table Responsive */
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; } /* Hide headers on mobile */
+    tr { border: 1px solid #ccc; margin-bottom: 10px; padding: 10px; border-radius: 5px; }
+    td { text-align: right; padding-left: 50%; position: relative; }
+    td::before { content: attr(data-label); position: absolute; left: 10px; font-weight: bold; }
+}
+
+/* Modal adjustments */
+.modal-content { width: 90%; max-width: 500px; padding: 20px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+@media (max-width: 480px) {
+    .info-grid { grid-template-columns: 1fr; }
+}
+
+.hidden { display: none; }

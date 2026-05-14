@@ -1,15 +1,16 @@
 services:
   reverse-proxy:
-    image: traefik:v3.0 # Explicitly use v3 for better performance
+    image: traefik
     command:
-      - "--api.dashboard=true"
+      - "--api=true"
       - "--api.insecure=false"
       - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false" # Security: Only expose labeled services
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.websecure.http.tls=true"
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=${DEFAULT_EMAIL}"
@@ -17,15 +18,46 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "8086:8080"
     volumes:
       - ./letsencrypt:/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock:ro # Read-only for security
-    networks:
-      - app_network
-    restart: unless-stopped
+      - /var/run/docker.sock:/var/run/docker.sock
+  mariadb:
+    image: mariadb:11
+    ports:
+      - 3306:3306
+    container_name: mariadb
+    command: --max-allowed-packet=64MB
+    restart: always
+    volumes:
+      - mariadb:/var/lib/mysql:Z
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MARIADB_AUTO_UPGRADE=1
+      - MARIADB_DISABLE_UPGRADE_BACKUP=1
+      - TZ=America/Los_Angeles 
 
+  miniflux:
+    image: miniflux/miniflux:2.2.19
+    container_name: miniflux
+    ports:
+      - "8084:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgres://miniflux:${FRESHRSS_MYSQL_PASSWORD}@postgres/miniflux?sslmode=disable
+      - RUN_MIGRATIONS=1
+      - BASE_URL=https://reader.lifeofpablo.com
+      - ROOT_URL=https://reader.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
+      - "traefik.http.routers.miniflux.entrypoints=websecure"
+      - "traefik.http.routers.miniflux.tls.certresolver=myresolver"
+      - "traefik.http.middlewares.miniflux.forwardauth.address=https://auth.lifeofpablo.com/auth"
+      - "traefik.http.middlewares.miniflux.forwardauth.trustForwardHeader=true"
   postgres:
-    image: postgres:15-alpine
+    image: postgres:15
     container_name: postgres
     environment:
       - POSTGRES_USER=miniflux
@@ -35,69 +67,549 @@ services:
       - miniflux-db:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "miniflux"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    networks:
-      - app_network
-
-  miniflux:
-    image: miniflux/miniflux:2.2.19
-    container_name: miniflux
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      - DATABASE_URL=postgres://miniflux:${FRESHRSS_MYSQL_PASSWORD}@postgres/miniflux?sslmode=disable
-      - RUN_MIGRATIONS=1
-      - BASE_URL=https://reader.lifeofpablo.com
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
-      - "traefik.http.routers.miniflux.entrypoints=websecure"
-      - "traefik.http.routers.miniflux.tls.certresolver=myresolver"
-      - "traefik.http.services.miniflux.loadbalancer.server.port=8080"
-    networks:
-      - app_network
-
-  mariadb:
-    image: mariadb:11
-    container_name: mariadb
-    command: --max-allowed-packet=64MB
+      interval: 10s
+      start_period: 30s
+  vouch-proxy:
+    container_name: vp-lifeofpablo
+    image: quay.io/vouch/vouch-proxy:alpine-master
+    ports:
+      - 9090:9090
+    # volumes:
+    #   - ./vouch-proxy-config:/config
     restart: always
-    volumes:
-      - mariadb_data:/var/lib/mysql:Z
     environment:
-      - MYSQL_ROOT_PASSWORD
-      - MARIADB_AUTO_UPGRADE=1
-      - TZ=America/Los_Angeles
-    networks:
-      - app_network
+      - VOUCH_DOMAINS
+      - OAUTH_PROVIDER=${VOUCH_OAUTH_PROVIDER}
+      - OAUTH_CLIENT_ID=${VOUCH_OAUTH_CLIENT_ID}
+      - OAUTH_CLIENT_SECRET=${VOUCH_OAUTH_CLIENT_SECRET}
+      - OAUTH_CALLBACK_URL=${VOUCH_OAUTH_CALLBACK_URL}
+    labels:
+      - "traefik.http.routers.vouch-proxy.rule=Host(`auth.lifeofpablo.com`)"
+      - "traefik.http.routers.vouch-proxy.entrypoints=websecure"
+      - "traefik.http.routers.vouch-proxy.tls.certresolver=myresolver"
+  korea:
+    container_name: korea
+    restart: always
+    build:
+      dockerfile: ./korea.lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./korea.lifeofpablo.com/www:/var/www/html
+    ports:
+      - "8092:80"
+    environment:
+      - VIRTUAL_HOST=korea.lifeofpablo.com
+      - LETSENCRYPT_HOST=korea.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.korea.rule=Host(`korea.lifeofpablo.com`)"
+      - "traefik.http.routers.korea.entrypoints=websecure"
+      - "traefik.http.routers.korea.tls.certresolver=myresolver"
+  lifeofpablo-proxy:
+    image: nginx:1.25.3-bookworm-perl
+    container_name: lifeofpablo-proxy
+    volumes:
+      - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
+    ports:
+      - 8110:80
+    # environment:
+    #   - VIRTUAL_HOST=lifeofpablo.com
+    #   - LETSENCRYPT_HOST=lifeofpablo.com
+    depends_on:
+      - lifeofpablo
+      - lifeofpablo-interactives
+      - lifeofpablo-linkinbio
+    labels:
+      - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
+    #   - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
+    #   - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
+  lifeofpablo:
+    container_name: lifeofpablo
+    restart: always
+    build:
+      dockerfile: ./lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./lifeofpablo.com/www:/var/www/html
+    ports:
+      - "8080:80"
+  wishlist:
+    container_name: wishlist
+    image: ghcr.io/cmintey/wishlist:v0.62.0
+    ports:
+      - 3280:3280
+    volumes:
+      - ./wishlist/uploads:/usr/src/app/uploads  # This is where user image uploads will be stored
+      - ./wishlist/data:/usr/src/app/data        # This is where the sqlite database will be stored
+    environment:
+      ORIGIN: https://wishlist.lifeofpablo.com
+      TOKEN_TIME: 72 # hours until signup and password reset tokens expire
+    labels:
+      - "traefik.http.routers.wishlist.rule=Host(`wishlist.lifeofpablo.com`)"
+      - "traefik.http.routers.wishlist.entrypoints=websecure"
+      - "traefik.http.routers.wishlist.tls.certresolver=myresolver"
+  lifeofpablo-guestbook:
+    container_name: lifeofpablo-guestbook
+    restart: always 
+    build:
+      dockerfile: ./lifeofpablo-guestbook/Dockerfile  
+    volumes:
+      #Project root
+      - ./lifeofpablo-guestbook/www/guestbook:/var/www/html
+    ports:
+      - "8081:80"
+  lifeofpablo-linkinbio:
+    container_name: lifeofpablo-linkinbio
+    restart: always
+    build:
+      dockerfile: ./lifeofpablo-linkinbio/Dockerfile  
+    volumes:
+      #Project root
+      - ./lifeofpablo-linkinbio/www:/var/www/html
+    ports:
+      - "8082:80"
+  lifeofpablo-now:
+    container_name: lifeofpablo-now
+    image: ghcr.io/pmoralesgarcia/now:latest
+    restart: always
+    ports:
+      - "8083:80"
+  lifeofpablo-static:
+    image: nginx:bookworm-perl
+    container_name: lifeofpablo-static
+    ports:
+      - 8120:80
+    volumes:
+      - ./nginx-proxy/s3/static.lifeofpablo.com.conf:/etc/nginx/nginx.conf
+    environment:
+      - VIRTUAL_HOST=static.lifeofpablo.com
+      - LETSENCRYPT_HOST=static.lifeofpablo.com
+    restart: always
+    labels:
+      - "traefik.http.routers.lifeofpablo-static.rule=Host(`static.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-static.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-static.tls.certresolver=myresolver"
+  lifeofpablo-photos:
+    image: nginx:bookworm-perl
+    container_name: lifeofpablo-photos
+    ports:
+      - 8121:80
+    volumes:
+      - ./nginx-proxy/s3/photos.lifeofpablo.com.conf:/etc/nginx/nginx.conf
+    environment:
+      - VIRTUAL_HOST=photos.lifeofpablo.com
+      - LETSENCRYPT_HOST=photos.lifeofpablo.com
+    restart: always
+    labels:
+      - "traefik.http.routers.lifeofpablo-photos.rule=Host(`photos.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-photos.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-photos.tls.certresolver=myresolver"
+  lifeofpablo-nyc-climateweek:
+    build:
+      dockerfile: ./climateweeknyc.lifeofpablo.com/Dockerfile  
+    container_name: lifeofpablo-nyc-climateweek
+    ports:
+      - 8122:80
+    volumes:
+      - ./climateweeknyc.lifeofpablo.com/www:/var/www/html
+    environment:
+      - VIRTUAL_HOST=climateweeknyc.lifeofpablo.com
+      - LETSENCRYPT_HOST=climateweeknyc.lifeofpablo.com
+    restart: always
+    labels:
+      - "traefik.http.routers.lifeofpablo-nyc-climateweek.rule=Host(`climateweeknyc.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-nyc-climateweek.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-nyc-climateweek.tls.certresolver=myresolver"
+  lifeofpablo-interactives:
+    build:
+      dockerfile: ./lifeofpablo-interactives/Dockerfile  
+    container_name: lifeofpablo-interactives
+    restart: always
+    ports:
+      - 8124:80
+    volumes:
+      - ./lifeofpablo-interactives/www:/var/www/html
+  lifeofpablo-test:
+    container_name: lifeofpablo-test
+    restart: always
+    build:
+      dockerfile: ./test.lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./test.lifeofpablo.com/www:/var/www/html
+    ports:
+      - "8097:80"
+    labels:
+      - "traefik.http.routers.lifeofpablo-test.rule=Host(`test.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-test.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-test.tls.certresolver=myresolver"
+  # gollum:
+  #   container_name: gollum
+  #   image: gollumwiki/gollum:6
+  #   restart: always
+  #   ports:
+  #     - "4567:4567/tcp" # change the first port number to expose Gollum on a different port on the host
+  #   volumes:
+  #     # - ${PWD}/config.rb:/etc/gollum/config.rb # if using config.rb in your current directory
+  #     - ./wikidata:/wiki # with your repository in the 'wiki' subdirectory of your current directory
+  #   command:
+  #     # - "--config=/etc/gollum/config.rb" # if using config.rb
+  #     - "--math"
+  #     # - "--base-path /"
+  #     # - ... # your additional options here
 
+  # pabstech:
+  #   image: lscr.io/linuxserver/grav:latest
+  #   container_name: pabstech
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ="America/Los_Angeles"
+  #     - VIRTUAL_HOST=pabs.tech
+  #     - LETSENCRYPT_HOST=pabs.tech
+  #   volumes:
+  #     - ./pabstech/config:/config
+  #   ports:
+  #     - 8203:80
+  #   restart: unless-stopped      
+  # httpbin:
+  #   image: kennethreitz/httpbin
+  #   container_name: httpbin
+  #   ports:
+  #     - '8200:80'
+  #   restart: always
+  europe24:
+    container_name: europe24
+    restart: always 
+    build:
+      dockerfile: ./europe24/Dockerfile  
+    volumes:
+      #Project root
+      - ./europe24/www/yellow-main:/var/www/html
+    ports:
+      - "8125:80"
+    environment:
+      - VIRTUAL_HOST=eu24.lifeofpablo.com
+      - LETSENCRYPT_HOST=eu24.lifeofpablo.com
+  1k:
+    container_name: 1k
+    restart: always
+    build:
+      dockerfile: ./1k.lifeofpablo.com/Dockerfile  
+    volumes:
+      #Project root
+      - ./1k.lifeofpablo.com/www:/var/www/html
+    ports:
+      - "8127:80"
+    labels:
+      - "traefik.http.routers.1k.rule=Host(`1k.lifeofpablo.com`)"
+      - "traefik.http.routers.1k.entrypoints=websecure"
+      - "traefik.http.routers.1k.tls.certresolver=myresolver"
+  # ghost:
+  #   build: personivebecome
+  #   cap_add:
+  #     - CAP_SYS_NICE
+  #   restart: always
+  #   ports:
+  #     - 2368:2368
+  #   depends_on:
+  #     - mariadb
+  #   environment:
+  #     url: https://personivebecome.lifeofpablo.com
+  #     database__client: mysql
+  #     database__connection__host: mariadb
+  #     database__connection__user: ghost
+  #     database__connection__password: ${GHOST_MYSQL_PASSWORD}
+  #     database__connection__database: ghost
+  #     mail__service: Mailgun
+  #     mail__transport: SMTP
+  #     mail__options__host: ${GHOST_SMTP_RELAY}
+  #     mail__options__port: ${GHOST_SMTP_PORT}
+  #     mail__options__auth__user: ${GHOST_SMTP_USER}
+  #     mail__options__auth__pass: ${GHOST_SMTP_PASSWORD}
+  #     APP_TRUSTED_PROXIES: REMOTE_ADDR
+  #     mail__from: "Person I've Become Podcast"
+  #   volumes:
+  #     - ./ghost/content:/var/lib/ghost/content
+  #   labels:
+  #     - "traefik.http.routers.personivebecome.rule=Host(`personivebecome.lifeofpablo.com`)"
+  #     - "traefik.http.routers.personivebecome.entrypoints=websecure"
+  #     - "traefik.http.routers.personivebecome.tls.certresolver=myresolver"
   yourls:
     image: yourls:1.10
     container_name: yourls
     restart: always
+    ports:
+      - 8201:80
     environment:
       YOURLS_DB_HOST: mariadb
       YOURLS_DB_USER: ${YOURLS_DB_USER}
       YOURLS_DB_PASS: ${YOURLS_DB_PASS}
       YOURLS_SITE: https://pabs.lol
+      YOURLS_USER: ${YOURLS_USER}
+      YOURLS_PASS: ${YOURLS_PASS}
+      VIRTUAL_HOST: pabs.lol
+      LETSENCRYPT_HOST: pabs.lol
+    volumes:
+      - ./yourls/plugins:/var/www/html/user/plugins
     labels:
-      - "traefik.enable=true"
       - "traefik.http.routers.yourls.rule=Host(`pabs.lol`)"
       - "traefik.http.routers.yourls.entrypoints=websecure"
       - "traefik.http.routers.yourls.tls.certresolver=myresolver"
-    networks:
-      - app_network
+  # grocy:
+  #   image: lscr.io/linuxserver/grocy:latest
+  #   container_name: grocy
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Etc/UTC
+  #     - VIRTUAL_HOST=grocy.lifeofpablo.com
+  #     - LETSENCRYPT_HOST=grocy.lifeofpablo.com
+  #   volumes:
+  #     - ./grocy/config:/config
+  #   ports:
+  #     - 9284:80
+  #   restart: unless-stopped
+  # owntracks-recorder:
+  #   container_name: owntracks-recorder
+  #   image: owntracks/recorder
+  #   ports:
+  #     - 9285:8083
+  #   environment:
+  #     - OTR_PORT=0 # disables MQTT
+  #   volumes:
+  #     - /etc/localtime:/etc/localtime:ro
+  #     - ./owntracks-recorder/config:/config
+  #     - ./owntracks-recorder/store:/store
+  #   restart: unless-stopped
+  # owntracks-frontend:
+  #   container_name: owntracks-frontend
+  #   image: owntracks/frontend
+  #   ports:
+  #     - 9287:80
+  #   volumes:
+  #     - ./owntracks-frontend/config.js:/usr/share/nginx/html/config/config.js
+  #   environment:
+  #     - SERVER_HOST=owntracks-recorder
+  #     - SERVER_PORT=8083
+  #   restart: unless-stopped
+  lifeofpablo-login:
+    container_name: lifeofpablo-login
+    restart: always
+    build:
+      dockerfile: ./login.lifeofpablo.com/Dockerfile
+    volumes:
+      #Project root
+      - ./login.lifeofpablo.com/www:/var/www/html
+    ports:
+      - "9289:80"
+    environment:
+      - VIRTUAL_HOST=indieauth.lifeofpablo.com
+      - LETSENCRYPT_HOST=indieauth.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.lifeofpablo-login.rule=Host(`indieauth.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-login.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
+  pabs-api:
+    container_name: pabs-api
+    build:
+      context: ./pabs-api
+    environment:
+      - NODE_ENV=production
+      - API_DB_HOST
+      - API_DB_USER
+      - API_DB_PASS
+      - API_DB
+      - VIRTUAL_HOST=api.lifeofpablo.com
+      - LETSENCRYPT_HOST=api.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.pabs-api.rule=Host(`api.lifeofpablo.com`)"
+      - "traefik.http.routers.pabs-api.entrypoints=websecure"
+      - "traefik.http.routers.pabs-api.tls.certresolver=myresolver"
+    ports:
+      - 3453:3000
+  
+  media-api:
+    build: ./media-api/app
+    container_name: media-api
+    restart: always
+    ports:
+      - "3460:3000"
+    environment:
+      - NODE_ENV=production
+      - API_DB_HOST2
+      - API_DB_USER2
+      - API_DB_PASS2
+      - API_DB2
+      - API_JWT_SECRET2
+      - API_KANIDM_ISSUER2
+      - API_CLIENT_ID2
+      - API_CLIENT_SECRET2
+      - VIRTUAL_HOST=media-api.lifeofpablo.com
+      - LETSENCRYPT_HOST=media-api.lifeofpablo.com
+    labels:
+      - "traefik.http.routers.media-api.rule=Host(`media-api.lifeofpablo.com`)"
+      - "traefik.http.routers.media-api.entrypoints=websecure"
+      - "traefik.http.routers.media-api.tls.certresolver=myresolver"
+  11ty:
+    container_name: 11ty
+    build:
+      context: ./11vty/eleventy-from-scratch
+    environment:
+      - NODE_ENV=production
+      - VIRTUAL_HOST=beta.lifeofpablo.com
+      - LETSENCRYPT_HOST=beta.lifeofpablo.com
+    ports:
+      - 3455:8080
+  lifeofpablo-11ty-proxy:
+    container_name: lifeofpablo-11ty-proxy
+    image: nginx:bookworm
+    ports: 
+      - 3456:80
+    volumes:
+      - ./nginx-proxy/lifeofpablo-11ty:/etc/nginx/conf.d
+    depends_on:
+      - 11ty 
+    labels:
+      - "traefik.http.routers.11vty.rule=Host(`beta.lifeofpablo.com`)"
+      - "traefik.http.routers.11vty.entrypoints=websecure"
+      - "traefik.http.routers.11vty.tls.certresolver=myresolver"
+  it-tools:
+    image: 'corentinth/it-tools:latest'
+    ports:
+      - '8234:80'
+    restart: unless-stopped
+    container_name: it-tools
+    labels:
+      - "traefik.http.routers.it-tools.rule=Host(`it-tools.lifeofpablo.com`)"
+      - "traefik.http.routers.it-tools.entrypoints=websecure"
+      - "traefik.http.routers.it-tools.tls.certresolver=myresolver"
+ 
+  
+ 
 
-  # ... [Apply similar network/label patterns to your other apps] ...
+  # goblog:
+  #   container_name: goblog
+  #   image: ghcr.io/jlelse/goblog:latest # or :tools
+  #   restart: unless-stopped # auto restart the container
+  #   volumes:
+  #     - ./config:/app/config # Config directory
+  #     - ./data:/app/data # Data directory, used for database, keys, uploads etc.
+  #     - ./static:/app/static # Static directory, if you want to publish static files
+  #   environment:
+  #     - TZ=America/Los_Angeles # You timezone
+
+    # datasette:
+    #   container_name: datasette-recs
+    #   image: datasetteproject/datasette
+    #   volumes:
+    #     - ./datasette:/mnt/
+    #   ports:
+    #     - '8001:8001'
+    #   command: datasette --reload -p 8001 -h 0.0.0.0 /mnt/ --metadata /mnt/metadata.json --load-extension=spatialite --static assets:/mnt/static-files/ --cors
+    #   labels:
+    #     - "traefik.http.routers.datasette.rule=Host(`datasette.lifeofpablo.com`)"
+    #     - "traefik.http.routers.datasette.entrypoints=websecure"
+    #     - "traefik.http.routers.datasette.tls.certresolver=myresolver"
+
+  
+
+#   authentik-proxy:
+#     image: ghcr.io/goauthentik/proxy
+#     ports:
+#       - "9000:9000"
+#       - "9443:9443"
+#     environment:
+#       - PG_PASS=${AUTH_PG_PASS}
+#       - AUTHENTIK_HOST
+#       - AUTHENTIK_INSECURE
+#       - AUTHENTIK_TOKEN
+#       - AUTHENTIK_SECRET_KEY
+#       - AUTHENTIK_EMAIL__HOST
+#       - AUTHENTIK_EMAIL__PORT
+#       - AUTHENTIK_EMAIL__USERNAME
+#       - AUTHENTIK_EMAIL__PASSWORD
+#       - AUTHENTIK_EMAIL__USE_TLS
+#       - AUTHENTIK_EMAIL__USE_SSL
+#       - AUTHENTIK_EMAIL__TIMEOUT=10
+#       - AUTHENTIK_EMAIL__FROM
+#       - AUTHENTIK_ERROR_REPORTING__ENABLED
+#     # Starting with 2021.9, you can optionally set this too
+#     # when authentik_host for internal communication doesn't match the public URL
+#     # AUTHENTIK_HOST_BROWSER: https://external-domain.tld
+#   labels:
+#     traefik.enable: true
+#     traefik.http.routers.authentik.rule: Host(`authentik.lifeofpablo.com`) && PathPrefix(`/outpost.goauthentik.io/`)
+#     # `authentik-proxy` refers to the service name in the compose file.
+#     traefik.http.middlewares.authentik.forwardauth.address: http://authentik-proxy:9000/outpost.goauthentik.io/auth/traefik
+#     traefik.http.middlewares.authentik.forwardauth.trustForwardHeader: true
+#     traefik.http.middlewares.authentik.forwardauth.authResponseHeaders: X-authentik-username,X-authentik-groups,X-authentik-entitlements,X-authentik-email,X-authentik-name,X-authentik-uid,X-authentik-jwt,X-authentik-meta-jwks,X-authentik-meta-outpost,X-authentik-meta-provider,X-authentik-meta-app,X-authentik-meta-version
+    
+#   restart: unless-stopped
+
+# whoami:
+#   image: containous/whoami
+#   labels:
+#     traefik.enable: true
+#     traefik.http.routers.whoami.rule: Host(`whoami.lifeofpablo.com`)
+#     traefik.http.routers.whoami.middlewares: authentik@docker
+#   restart: unless-stopped
+
+  # zitadel:
+  #   restart: 'always'
+  #   image: 'ghcr.io/zitadel/zitadel:latest'
+  #   command: 'start-from-init --masterkey "MasterkeyNeedsToHave32Characters" --tlsMode disabled'
+  #   environment:
+  #     ZITADEL_EXTERNALPORT: 443
+  #     ZITADEL_EXTERNALSECURE: true
+  #     ZITADEL_TLS_ENABLED: false
+  #     ZITADEL_EXTERNALDOMAIN: sso.lifeofpablo.com
+  #     ZITADEL_DATABASE_POSTGRES_HOST: zitadel-db
+  #     ZITADEL_DATABASE_POSTGRES_PORT: 5432
+  #     ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
+  #     ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel
+  #     ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: zitadel
+  #     ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
+  #     ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: postgres
+  #     ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: postgres
+  #     ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
+  #   depends_on:
+  #     zitadel-db:
+  #       condition: 'service_healthy'
+  #   ports:
+  #     - '8089:8080'
+  #   labels:
+  #     - "traefik.http.routers.zitadel.rule=Host(`sso.lifeofpablo.com`)"
+  #     - "traefik.http.routers.zitadel.tls.certresolver=myresolver"
+  #     - "traefik.http.routers.zitadel.entrypoints=websecure"
+  #     - "traefik.http.routers.zitadel.rule=PathPrefix(`/`)"
+  #     - "traefik.http.routers.zitadel.service=zitadel"
+  #     - "traefik.http.services.zitadel.loadbalancer.server.scheme=h2c"
+  # #    - "traefik.http.services.zitadel.loadbalancer.server.port=8089"
+  #     - "traefik.http.services.zitadel.loadbalancer.server.url=h2c://zitadel:8089"
+  # zitadel-db:
+  #   restart: 'always'
+  #   image: postgres:16-alpine
+  #   environment:
+  #     PGUSER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready", "-d", "zitadel", "-U", "postgres"]
+  #     interval: '10s'
+  #     timeout: '30s'
+  #     retries: 5
+  #     start_period: '20s'
+
+
+
+
+volumes:
+ mariadb:
+ miniflux-db:
+ postgres_data:
+    driver: local
+ db_storage:
+ n8n_storage:
 
 networks:
   app_network:
     driver: bridge
-
-volumes:
-  mariadb_data:
-  miniflux-db:
-  letsencrypt:

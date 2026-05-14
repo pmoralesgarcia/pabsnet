@@ -1,22 +1,36 @@
+require('dotenv').config();
 const express = require('express');
 const mariadb = require('mariadb');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const helmet = require('helmet'); // Added for security
 const app = express();
 
-const SECRET_KEY = process.env.API_JWT_SECRET; 
+const SECRET_KEY = process.env.API_JWT_SECRET;
+const VALID_TABLES = ['albums', 'songs', 'artists']; // Whitelist for safety
+
 const pool = mariadb.createPool({
-    host: process.env.API_DB_HOST2 || 'db',
+    host: process.env.API_DB_HOST2,
     user: process.env.API_DB_USER2,
     password: process.env.API_DB_PASS2,
-    database: process.env.API_DB2 || 'media_collection',
+    database: process.env.API_DB2,
     connectionLimit: 10
 });
 
-app.use(cors()); // Crucial for external data pulls
+// Middleware
+app.use(helmet());
+app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+
+// Validation helper for routes using dynamic tables
+const validateTable = (req, res, next) => {
+    if (!VALID_TABLES.includes(req.params.mediaType)) {
+        return res.status(400).json({ status: "error", message: "Invalid resource type" });
+    }
+    next();
+};
 
 const authenticate = (req, res, next) => {
     const token = req.headers['authorization'];
@@ -39,12 +53,12 @@ app.post('/api/v1/auth/login', async (req, res) => {
             return res.json({ status: "success", data: { token } });
         }
         res.status(401).json({ status: "error", message: "Invalid credentials" });
-    } catch (err) { res.status(500).json({ status: "error", message: err.message }); } 
+    } catch (err) { res.status(500).json({ status: "error", message: "Login failed" }); } 
     finally { if (conn) conn.end(); }
 });
 
 // --- MEDIA CRUD ---
-app.get('/api/v1/:mediaType', authenticate, async (req, res) => {
+app.get('/api/v1/:mediaType', validateTable, authenticate, async (req, res) => {
     let conn;
     try {
         conn = await pool.getConnection();
@@ -55,7 +69,7 @@ app.get('/api/v1/:mediaType', authenticate, async (req, res) => {
     finally { if (conn) conn.end(); }
 });
 
-app.post('/api/v1/:mediaType', authenticate, async (req, res) => {
+app.post('/api/v1/:mediaType', validateTable, authenticate, async (req, res) => {
     let conn;
     try {
         conn = await pool.getConnection();
@@ -67,7 +81,7 @@ app.post('/api/v1/:mediaType', authenticate, async (req, res) => {
     finally { if (conn) conn.end(); }
 });
 
-app.put('/api/v1/:mediaType/:id', authenticate, async (req, res) => {
+app.put('/api/v1/:mediaType/:id', validateTable, authenticate, async (req, res) => {
     let conn;
     try {
         conn = await pool.getConnection();
@@ -75,37 +89,29 @@ app.put('/api/v1/:mediaType/:id', authenticate, async (req, res) => {
         const sets = fields.map(f => `${f} = ?`).join(', ');
         await conn.query(`UPDATE ${req.params.mediaType} SET ${sets} WHERE id = ?`, [...Object.values(req.body), req.params.id]);
         res.json({ status: "success", message: "Updated" });
-    } finally { if (conn) conn.end(); }
+    } catch (err) { res.status(400).json({ status: "error", message: "Update failed" }); }
+    finally { if (conn) conn.end(); }
 });
 
-app.delete('/api/v1/:mediaType/:id', authenticate, async (req, res) => {
+app.delete('/api/v1/:mediaType/:id', validateTable, authenticate, async (req, res) => {
     let conn;
     try {
         conn = await pool.getConnection();
         await conn.query(`DELETE FROM ${req.params.mediaType} WHERE id = ?`, [req.params.id]);
         res.json({ status: "success", message: "Deleted" });
-    } finally { if (conn) conn.end(); }
+    } catch (err) { res.status(400).json({ status: "error", message: "Delete failed" }); }
+    finally { if (conn) conn.end(); }
 });
 
-// --- PUBLIC READ-ONLY ROUTE ---
-// This allows anyone to view the collection without a token
-app.get('/api/v1/public/:mediaType', async (req, res) => {
+// --- PUBLIC READ-ONLY ---
+app.get('/api/v1/public/:mediaType', validateTable, async (req, res) => {
     let conn;
     try {
         conn = await pool.getConnection();
-        const rows = await conn.query(`SELECT id,title, artist, copyright_year, genre, label, info_url, thumbnail_url FROM ${req.params.mediaType}`);
-        res.json({ 
-            status: "success", 
-            message: "Public access granted",
-            data: rows 
-        });
-    } catch (err) { 
-        res.status(500).json({ status: "error", message: "Database access failed" }); 
-    } finally { 
-        if (conn) conn.end(); 
-    }
+        const rows = await conn.query(`SELECT id, title, artist, copyright_year, genre FROM ${req.params.mediaType}`);
+        res.json({ status: "success", data: rows });
+    } catch (err) { res.status(500).json({ status: "error", message: "Database error" }); }
+    finally { if (conn) conn.end(); }
 });
-
-
 
 app.listen(3000, () => console.log('REST API v1 active on port 3000'));
