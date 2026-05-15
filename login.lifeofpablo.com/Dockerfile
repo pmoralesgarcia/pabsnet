@@ -10,14 +10,16 @@ RUN apt update -y && \
 
 COPY ./login.lifeofpablo.com/nginx/login.lifeofpablo.com.conf /etc/nginx/sites-enabled/default
 
-# Clean default files
+# Remove default index files
 RUN rm -rf /var/www/html/*
 
 WORKDIR /var/www/html
 
+# Copy the start script to the root
 COPY ./login.lifeofpablo.com/start.sh /start.sh
 RUN chmod +x /start.sh
 
 EXPOSE 80
 
+# Run the start script
 CMD ["/bin/bash", "/start.sh"]
