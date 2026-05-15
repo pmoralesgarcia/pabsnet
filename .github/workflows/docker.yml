@@ -53,6 +53,9 @@ jobs:
           VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CALLBACK_URL
           SPOTIFY_PUBLIC: op://pablo/Spotify/client-id
           SPOTIFY_SECRET: op://pablo/Spotify/client-secret
+          SA_APP_KEY: op://pablo/indieauth.lifeofpablo.com/SA_APP_KEY
+          SA_USER_URL: op://pablo/indieauth.lifeofpablo.com/SA_USER_URL
+          SA_USER_HASH: op://pablo/indieauth.lifeofpablo.com/SA_USER_HASH
       
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
@@ -97,6 +100,9 @@ jobs:
             VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
             SPOTIFY_PUBLIC=${{ steps.op-load-secret.outputs.SPOTIFY_PUBLIC }} \
             SPOTIFY_SECRET=${{ steps.op-load-secret.outputs.SPOTIFY_SECRET }} \
+            SA_APP_KEY=${{ steps.op-load-secret.outputs.SA_APP_KEY }} \
+            SA_USER_URL=${{ steps.op-load-secret.outputs.SA_USER_URL }} \
+            SA_USER_HASH=${{ steps.op-load-secret.outputs.SA_USER_HASH }} \
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -130,4 +136,7 @@ jobs:
             VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
             SPOTIFY_PUBLIC=${{ steps.op-load-secret.outputs.SPOTIFY_PUBLIC }} \
             SPOTIFY_SECRET=${{ steps.op-load-secret.outputs.SPOTIFY_SECRET }} \
+            SA_APP_KEY=${{ steps.op-load-secret.outputs.SA_APP_KEY }} \
+            SA_USER_URL=${{ steps.op-load-secret.outputs.SA_USER_URL }} \
+            SA_USER_HASH=${{ steps.op-load-secret.outputs.SA_USER_HASH }} \
             docker compose up --detach

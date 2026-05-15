@@ -88,19 +88,13 @@ services:
       - "traefik.http.routers.vouch-proxy.entrypoints=websecure"
       - "traefik.http.routers.vouch-proxy.tls.certresolver=myresolver"
   korea:
-    container_name: korea
+    build: 
+      context: .
+      dockerfile: ./korea.lifeofpablo.com/Dockerfile
+    container_name: korea-lifeofpablo
     restart: always
-    build:
-      dockerfile: ./korea.lifeofpablo.com/Dockerfile  
-    volumes:
-      #Project root
-      - ./korea.lifeofpablo.com/www:/var/www/html
-    ports:
-      - "8092:80"
-    environment:
-      - VIRTUAL_HOST=korea.lifeofpablo.com
-      - LETSENCRYPT_HOST=korea.lifeofpablo.com
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.korea.rule=Host(`korea.lifeofpablo.com`)"
       - "traefik.http.routers.korea.entrypoints=websecure"
       - "traefik.http.routers.korea.tls.certresolver=myresolver"
@@ -172,8 +166,6 @@ services:
       # Mount as read-only if the app doesn't need to write to its own source code
       - ./lifeofpablo-linkinbio/www:/var/www/html:ro
     # No public ports! Traefik handles the routing internally.
-    networks:
-      - traefik-public # Or whatever your Traefik network name is
     deploy:
       resources:
         limits:
@@ -422,15 +414,20 @@ services:
     container_name: lifeofpablo-login
     restart: always
     build:
+      context: .
       dockerfile: ./login.lifeofpablo.com/Dockerfile
     volumes:
-      #Project root
       - ./login.lifeofpablo.com/www:/var/www/html
     ports:
       - "9289:80"
     environment:
       - VIRTUAL_HOST=indieauth.lifeofpablo.com
       - LETSENCRYPT_HOST=indieauth.lifeofpablo.com
+      # Selfauth Configuration
+      - SA_APP_URL=https://indieauth.lifeofpablo.com/
+      - SA_APP_KEY
+      - SA_USER_URL
+      - SA_USER_HASH
     labels:
       - "traefik.http.routers.lifeofpablo-login.rule=Host(`indieauth.lifeofpablo.com`)"
       - "traefik.http.routers.lifeofpablo-login.entrypoints=websecure"
