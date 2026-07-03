@@ -1,0 +1,271 @@
+/* Stockholm extension - Korean Travel Edition */
+
+/* Colors and fonts */
+:root {
+    --bg: #fbf9f6;             /* Soft traditional Hanji paper off-white */
+    --code-bg: #f0ede9;
+    --notice1-bg: #fffbf0;
+    --notice2-bg: #fdf0f0;
+    --notice3-bg: #f0f8fe;
+    --heading: #1c2d42;        /* Deep Royal Korean Indigo */
+    --text: #3c4856;           /* Subtle dark charcoal for high legibility */
+    --code: #cd2e3a;
+    --link: #cd2e3a;           /* Vibrant Korean Crimson Red */
+    --link-active: #e65c65;
+    --blockquote-accent: #cd2e3a;
+    --notice1-accent: #fb0;
+    --notice2-accent: #d00;
+    --notice3-accent: #08e;
+    --separator: #e4dec9;      /* Warm, soft separator lines */
+    --border: #cbc3b1;
+    --font: "Open Sans", Helvetica, sans-serif;
+    --monospace-font: Consolas, Menlo, Courier, monospace;
+    --radius: 8px;             /* Consistent smooth corners */
+    --shadow: 0 4px 20px rgba(28, 45, 66, 0.06);
+}
+
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(stockholm-opensans-light.woff) format("woff");
+}
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(stockholm-opensans-regular.woff) format("woff");
+}
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(stockholm-opensans-bold.woff) format("woff");
+}
+
+/* General Layout & Base Styles */
+html, body, div, form, pre, span, tr, th, td, img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 1.05em;
+    font-weight: 400;
+    line-height: 1.65;
+    padding: 1.5rem;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+h1 { font-size: 2.25em; line-height: 1.2; }
+h2 { font-size: 1.75em; margin-top: 1.5em; }
+hr {
+    height: 1px;
+    background: var(--separator);
+    border: 0;
+    margin: 2em 0;
+}
+strong { font-weight: 700; color: var(--heading); }
+a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+a:hover {
+    color: var(--link-active);
+}
+
+/* Page Layout - Responsive Grid Wrapper */
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Better Looking Images & Media */
+.content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2em auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+.content img:hover {
+    transform: scale(1.01);
+}
+
+/* Content Formatting */
+.content h1 { margin: 0 0 1em 0; }
+.content h1 a { color: var(--heading); }
+.content p { margin-bottom: 1.5em; }
+
+/* Elegant Sidebar / Header Styling */
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--separator);
+}
+.header .sitename h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0;
+}
+.header .sitename h1 a {
+    color: var(--heading);
+}
+
+/* Navigation - Mobile-First Layout */
+.navigation ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.navigation a {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.95em;
+    padding: 0.25em 0;
+    border-bottom: 2px solid transparent;
+}
+.navigation li a.active,
+.navigation a:hover {
+    color: var(--link);
+    border-bottom: 2px solid var(--link);
+}
+.navigation-banner { clear: both; display: none; }
+
+/* Tables & Code blocks */
+.content table {
+    width: 100%;
+    margin: 2em 0;
+    border-collapse: collapse;
+}
+.content th, .content td {
+    padding: 0.75em;
+    border-bottom: 1px solid var(--separator);
+    text-align: left;
+}
+.content th { font-weight: 700; color: var(--heading); }
+.content code {
+    font-family: var(--monospace-font);
+    background-color: var(--code-bg);
+    color: var(--code);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 85%;
+}
+.content pre {
+    padding: 1.25em;
+    background-color: var(--code-bg);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    margin: 1.5em 0;
+}
+.content pre code { background: transparent; padding: 0; color: inherit; }
+
+/* Blockquotes & Notices */
+.content blockquote {
+    margin: 1.5em 0;
+    padding: 0.5em 1.5em;
+    border-left: 4px solid var(--blockquote-accent);
+    font-style: italic;
+    color: var(--heading);
+    background: rgba(205, 46, 58, 0.03);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* Blog Layout Adjustments */
+.entry {
+    margin-bottom: 3.5em;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+.entry-title h1 { font-size: 1.8em; margin: 0 0 0.5rem 0; }
+.entry-meta { font-size: 0.85em; color: #888; margin-bottom: 1.5rem; }
+
+/* Audio Layout */
+.audio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+.audio-item {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: var(--radius);
+    border: 1px solid var(--separator);
+    box-shadow: var(--shadow);
+}
+
+/* Footer */
+.footer {
+    margin-top: 3em;
+    padding-top: 1.5em;
+    border-top: 1px solid var(--separator);
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/* Desktop Transformation: Sidebar Navigation Layout */
+@media screen and (min-width: 62em) {
+    body {
+        padding: 3rem;
+    }
+    .page {
+        display: grid;
+        grid-template-columns: 240px 1fr; /* Defines sidebar width & fluid content area */
+        gap: 4rem;
+        align-items: start;
+    }
+    .header {
+        grid-column: 1;
+        position: sticky; /* Sidebar follows user scrolling down the trip journal */
+        top: 3rem;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    .navigation ul {
+        flex-direction: column; /* Vertical alignment for sidebar */
+        gap: 0.75rem;
+    }
+    .navigation a {
+        display: inline-block;
+    }
+    .content {
+        grid-column: 2;
+    }
+    .footer {
+        grid-column: 2;
+        text-align: left;
+    }
+}
+
+/* Small Smartphone Optimization */
+@media screen and (max-width: 32em) {
+    body { padding: 1rem; }
+    .entry { padding: 1.5rem; }
+    h1 { font-size: 1.75em; }
+}
