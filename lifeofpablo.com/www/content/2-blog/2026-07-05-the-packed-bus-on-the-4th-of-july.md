@@ -10,6 +10,6 @@ Image: Status: public
 Status: public
 ---
 
-I’m currently on the 22 bus. It’s packed to the brim to heading to the water front. At least we’ll see firework. The bottom of the bus is scraping the pavement. It’s a circus and I’m here for it. The experience builds character for everyone in the situation. I love the [SFMTA](https://www.sfmta.com/). I love public transit. I hate driving! 
+I’m currently on the 22 bus. It’s packed to the brim to heading to the water front. At least we’ll see fireworks. The bottom of the bus is scraping the pavement. It’s a circus and I’m here for it. The experience builds character for everyone in the situation. I love the [SFMTA](https://www.sfmta.com/). I love public transit. I hate driving! 
 
-Happy Fourth and get your sparklers out. 
+Happy Fourth and get your sparklers out.
