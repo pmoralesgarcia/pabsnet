@@ -20,7 +20,9 @@
     <div class="entry-content">
     <?php if ($this->yellow->page->isExisting("image")): ?>
         <div class="entry-image">
-            <img src="<?php echo $this->yellow->page->getHtml("image") ?>" alt="<?php echo $this->yellow->page->getHtml("title") ?>">
+            <?php if ($this->yellow->page->isExisting("image")): ?>
+                <img src="<?php echo $this->yellow->page->getHtml("image") ?>" alt="<?php echo $this->yellow->page->getHtml("imageAlt") ?>">
+            <?php endif; ?>
         </div>
     <?php endif; ?>
     <?php echo $this->yellow->page->getContentHtml() ?>
