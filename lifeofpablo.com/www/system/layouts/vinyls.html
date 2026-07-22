@@ -1,5 +1,4 @@
 <?php $this->yellow->layout("header") ?>
-<!-- <h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1> -->
 
 <div class="content">
   <div class="main h-entry" role="main">
@@ -7,123 +6,359 @@
       <h1 class="f3 f2-m f1-l fw2 mv3">
         <?php echo $this->yellow->page->getHtml("titleContent") ?>
       </h1>
-      
     </header>
     
     <?php
+    // --- Configuration for Vinyl Data ---
+    $vinyls_api_url = 'http://static.lifeofpablo.com/api/inv/vinyls.json';
 
-// --- Configuration for Vinyl Data ---
-$vinyls_api_url = 'http://static.lifeofpablo.com/api/inv/vinyls.json';
-$discogs_search_url = 'https://www.discogs.com/search/?q=';
-$discogs_search_type = '&type=all&format_exact=Vinyl';
+    // --- Fetch and Decode Vinyl Data ---
+    $catalog_json = @file_get_contents($vinyls_api_url);
+    $decoded_json = json_decode($catalog_json, true);
 
-// --- Fetch and Decode Vinyl Data ---
-$catalog_json = @file_get_contents($vinyls_api_url);
-$decoded_json = json_decode($catalog_json, true);
+    if ($decoded_json === null || !is_array($decoded_json)): ?>
+        <p>Error loading vinyl catalog data.</p>
+    <?php else: 
+        $vinyls = $decoded_json;
 
-// --- Handle Potential Errors ---
-if ($decoded_json === null || !is_array($decoded_json)) {
-    echo '<p>Error loading vinyl catalog data.</p>';
-    exit;
-}
+        // --- Map Vinyls with Index-Based Keys ---
+        $vinyls_by_id = [];
+        foreach ($vinyls as $index => &$v) {
+            $v['id'] = (string)$index;
+            $vinyls_by_id[$v['id']] = $v;
+        }
+        unset($v);
 
-$vinyls = $decoded_json;
+        // Default sort: Title (A-Z)
+        usort($vinyls, function($a, $b) {
+            return strnatcasecmp($a['title'] ?? '', $b['title'] ?? '');
+        });
 
-// --- Store Vinyls using their order index (0, 1, 2...) as key ---
-$vinyls_by_id = [];
-foreach ($vinyls as $index => &$v) {
-    // Set the item's ID to its 0-based array position (or string index)
-    $v['id'] = (string)$index; 
-    $vinyls_by_id[$v['id']] = $v;
-}
-unset($v); // Break reference
+        $requested_id = $_GET['id'] ?? null;
+    ?>
 
-// ====================================================================
-// NEW LOGIC: Check for a requested vinyl ID in the URL
-// ====================================================================
-// Works for numeric parameters, e.g. vinyls?id=0, vinyls?id=1, etc.
-$requested_id = isset($_GET['id']) ? (string)$_GET['id'] : null;
+    <!-- Minimal & Responsive Layout Styles -->
+    <style>
+        /* Catalog Controls & Grid */
+        .filter-controls { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+        .filter-controls input, .filter-controls select { flex: 1; min-width: 180px; }
+        .vinyl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 24px; }
+        .vinyl-item { text-align: center; }
+        .vinyl-item img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; }
+        .vinyl-item strong, .vinyl-item span { display: block; }
 
-if ($requested_id !== null && isset($vinyls_by_id[$requested_id])) {
-    
-    // --- Display a Single Vinyl Page ---
-    $vinyl = $vinyls_by_id[$requested_id];
-    
-    $name = htmlspecialchars($vinyl['title'] ?? 'Unknown Title');
-    $artist = htmlspecialchars($vinyl['artist'] ?? 'Unknown Artist');
-    $cover = htmlspecialchars($vinyl['thumbnail_url'] ?? 'https://static.lifeofpablo.com/media/vinyls/placeholder.png');
-    $year = htmlspecialchars($vinyl['copyright_year'] ?? 'N/A');
-    $label = htmlspecialchars($vinyl['label'] ?? 'N/A');
-    $genre = htmlspecialchars(!empty($vinyl['genre']) ? $vinyl['genre'] : 'N/A');
-    $catalog_num = htmlspecialchars($vinyl['catalog_number'] ?? '');
-    $location = htmlspecialchars($vinyl['location_purchased'] ?? '');
-    $notes = htmlspecialchars($vinyl['notes'] ?? '');
-    $info_url = htmlspecialchars($vinyl['info_url'] ?? '');
+        /* Navigation Button */
+        .back-link-wrapper { margin-bottom: 20px; }
+        .back-link { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+            text-decoration: none; 
+            font-size: 0.9em; 
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+        }
+        .back-link:hover { opacity: 1; text-decoration: underline; }
 
-    echo '<h1>' . $name . ' by ' . $artist . '</h1>';
-    echo '<p><a href="vinyls"> Back to Catalog</a></p>';
-    echo '<div class="single-vinyl-details" style="display:flex; gap: 20px; align-items: flex-start;">';
-    echo '<img style="max-width:300px; width: 100%; height: auto;" alt="' . $name . ' Album Cover" src="' . $cover . '">';
-    echo '<div>';
-    echo '<h2>Details</h2>';
-    echo '<p><strong>Artist:</strong> ' . $artist . '</p>';
-    echo '<p><strong>Year:</strong> ' . $year . '</p>';
-    echo '<p><strong>Label:</strong> ' . $label . '</p>';
-    if ($genre !== 'N/A') echo '<p><strong>Genre:</strong> ' . $genre . '</p>';
-    if ($catalog_num) echo '<p><strong>Catalog #:</strong> ' . $catalog_num . '</p>';
-    if ($location) echo '<p><strong>Purchased At:</strong> ' . $location . '</p>';
-    if ($notes) echo '<p><strong>Notes:</strong> ' . $notes . '</p>';
-    
-    if ($info_url) {
-        echo '<p><a target="_blank" rel="noopener" href="' . $info_url . '">Learn More on Discogs</a> &#9835;</p>';
-    }
-    
-    echo '</div>';
-    echo '</div>';
-    
-    // Stop execution to prevent the catalog table from showing
-    exit; 
-} 
-// ====================================================================
-// END NEW LOGIC
-// ====================================================================
+        /* Responsive Product Detail Layout */
+        .single-vinyl-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            margin-top: 12px;
+        }
 
-echo '<div class="filter-controls">';
-echo '    <input type="text" id="searchInput" placeholder="Search albums or artists..." onkeyup="filterVinyls()">';
-echo '    <select id="sortSelect" onchange="filterVinyls()">';
-echo '        <option value="title">Sort by Title (A-Z)</option>';
-echo '        <option value="artist">Sort by Artist</option>';
-echo '        <option value="year-new">Sort by Year (Newest)</option>';
-echo '        <option value="year-old">Sort by Year (Oldest)</option>';
-echo '    </select>';
-echo '</div>';
+        .single-vinyl-art {
+            width: 100%;
+            max-width: 360px;
+            margin: 0 auto;
+        }
 
-echo '<div class="vinyl-grid" id="vinylGrid">';
+        .single-vinyl-art img {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
 
-foreach ($vinyls as $vinyl) {
-    if (empty($vinyl['hide'])) {
-        $id = $vinyl['id']; // This is now 0, 1, 2...
-        $name = htmlspecialchars($vinyl['title'] ?? 'Untitled');
-        $artist = htmlspecialchars($vinyl['artist'] ?? 'Unknown');
-        $year = htmlspecialchars($vinyl['copyright_year'] ?? '');
-        $cover = htmlspecialchars(!empty($vinyl['thumbnail_url']) ? $vinyl['thumbnail_url'] : 'https://static.lifeofpablo.com/media/vinyls/placeholder.png');
-        $single_page_url = 'vinyls?id=' . urlencode($id);
+        .single-vinyl-header h1 {
+            margin: 0 0 6px 0;
+            font-size: 1.75em;
+            line-height: 1.25;
+        }
 
-        echo '<div class="vinyl-item" data-title="' . $name . '" data-artist="' . $artist . '" data-year="' . $year . '">';
-            echo '<a href="' . $single_page_url . '">';
-                echo '<img src="' . $cover . '" alt="' . $name . ' Cover">';
-                echo '<strong>' . $name . '</strong>';
-            echo '</a>';
-            echo '<span>' . $artist . '</span>';
-            if ($year) echo '<span>' . $year . '</span>';
-        echo '</div>';
-    }
-}
-echo '</div>';
-?>
+        .single-vinyl-header .artist-subhead {
+            font-size: 1.25em;
+            opacity: 0.8;
+            margin: 0 0 20px 0;
+        }
 
+        /* Detail Metadata Key-Value List */
+        .vinyl-meta-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 16px 0;
+            border-top: 1px solid rgba(127, 127, 127, 0.2);
+            border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+        }
 
+        .meta-item strong {
+            display: block;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.65;
+            margin-bottom: 2px;
+        }
 
-   
+        .meta-item span {
+            font-size: 1em;
+            word-break: break-word;
+        }
+
+        .vinyl-extra-info p {
+            margin: 0 0 12px 0;
+            line-height: 1.5;
+        }
+
+        /* Desktop Layout Optimization */
+        @media (min-width: 700px) {
+            .single-vinyl-container {
+                grid-template-columns: 280px 1fr;
+                gap: 36px;
+                align-items: start;
+            }
+            .single-vinyl-art {
+                max-width: 100%;
+                position: sticky;
+                top: 20px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .single-vinyl-container {
+                grid-template-columns: 320px 1fr;
+                gap: 48px;
+            }
+        }
+    </style>
+
+    <div class="vinyl-catalog-container">
+
+        <!-- SINGLE VINYL DETAIL VIEW CONTAINER -->
+        <div id="vinylDetailContainer" style="<?php echo $requested_id !== null ? 'display:block;' : 'display:none;'; ?>">
+            <div class="back-link-wrapper">
+                <a href="vinyls" class="back-link" onclick="showCatalog(event)">&larr; Back to Catalog</a>
+            </div>
+            <div id="vinylDetailContent">
+                <?php 
+                if ($requested_id !== null && isset($vinyls_by_id[$requested_id])): 
+                    $v = $vinyls_by_id[$requested_id];
+                    $cover = !empty($v['thumbnail_url']) ? $v['thumbnail_url'] : 'https://static.lifeofpablo.com/media/vinyls/placeholder.png';
+                ?>
+                    <div class="single-vinyl-container">
+                        <div class="single-vinyl-art">
+                            <img src="<?php echo htmlspecialchars($cover); ?>" alt="<?php echo htmlspecialchars($v['title'] ?? 'Album Cover'); ?>">
+                        </div>
+                        <div class="single-vinyl-info">
+                            <div class="single-vinyl-header">
+                                <h1><?php echo htmlspecialchars($v['title'] ?? 'Unknown Title'); ?></h1>
+                                <p class="artist-subhead">by <?php echo htmlspecialchars($v['artist'] ?? 'Unknown Artist'); ?></p>
+                            </div>
+
+                            <div class="vinyl-meta-list">
+                                <div class="meta-item">
+                                    <strong>Year</strong>
+                                    <span><?php echo htmlspecialchars($v['copyright_year'] ?? 'N/A'); ?></span>
+                                </div>
+                                <div class="meta-item">
+                                    <strong>Label</strong>
+                                    <span><?php echo htmlspecialchars($v['label'] ?? 'N/A'); ?></span>
+                                </div>
+                                <?php if (!empty($v['genre'])): ?>
+                                    <div class="meta-item">
+                                        <strong>Genre</strong>
+                                        <span><?php echo htmlspecialchars($v['genre']); ?></span>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if (!empty($v['catalog_number'])): ?>
+                                    <div class="meta-item">
+                                        <strong>Catalog #</strong>
+                                        <span><?php echo htmlspecialchars($v['catalog_number']); ?></span>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                            <div class="vinyl-extra-info">
+                                <?php if (!empty($v['location_purchased'])): ?>
+                                    <p><strong>Purchased At:</strong> <?php echo htmlspecialchars($v['location_purchased']); ?></p>
+                                <?php endif; ?>
+                                <?php if (!empty($v['notes'])): ?>
+                                    <p><strong>Notes:</strong> <?php echo htmlspecialchars($v['notes']); ?></p>
+                                <?php endif; ?>
+                                <?php if (!empty($v['info_url'])): ?>
+                                    <p><a target="_blank" rel="noopener" href="<?php echo htmlspecialchars($v['info_url']); ?>">Learn More ↗</a></p>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <!-- CATALOG MAIN VIEW -->
+        <div id="vinylCatalogMain" style="<?php echo $requested_id === null ? 'display:block;' : 'display:none;'; ?>">
+            <div class="filter-controls">
+                <input type="text" id="searchInput" placeholder="Search albums or artists..." onkeyup="filterVinyls()">
+                <select id="sortSelect" onchange="filterVinyls()">
+                    <option value="title" selected>Sort by Title (A-Z)</option>
+                    <option value="artist">Sort by Artist</option>
+                    <option value="year-new">Sort by Year (Newest)</option>
+                    <option value="year-old">Sort by Year (Oldest)</option>
+                </select>
+            </div>
+
+            <div class="vinyl-grid" id="vinylGrid">
+                <?php foreach ($vinyls as $vinyl): ?>
+                    <?php if (empty($vinyl['hide'])): 
+                        $id = $vinyl['id'];
+                        $name = htmlspecialchars($vinyl['title'] ?? 'Untitled');
+                        $artist = htmlspecialchars($vinyl['artist'] ?? 'Unknown');
+                        $year = htmlspecialchars($vinyl['copyright_year'] ?? '');
+                        $cover = htmlspecialchars(!empty($vinyl['thumbnail_url']) ? $vinyl['thumbnail_url'] : 'https://static.lifeofpablo.com/media/vinyls/placeholder.png');
+                        $single_page_url = 'vinyls?id=' . urlencode($id);
+                    ?>
+                        <div class="vinyl-item" data-id="<?php echo $id; ?>" data-title="<?php echo $name; ?>" data-artist="<?php echo $artist; ?>" data-year="<?php echo $year; ?>">
+                            <a href="<?php echo $single_page_url; ?>" onclick="showDetail(event, '<?php echo $id; ?>')">
+                                <img src="<?php echo $cover; ?>" alt="<?php echo $name; ?> Cover">
+                                <strong><?php echo $name; ?></strong>
+                            </a>
+                            <span><?php echo $artist; ?></span>
+                            <?php if ($year): ?><span><?php echo $year; ?></span><?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const vinylData = <?php echo json_encode($vinyls_by_id); ?>;
+
+        function filterVinyls() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const sortValue = document.getElementById('sortSelect').value;
+            const grid = document.getElementById('vinylGrid');
+            const items = Array.from(grid.getElementsByClassName('vinyl-item'));
+
+            items.forEach(item => {
+                const title = item.getAttribute('data-title').toLowerCase();
+                const artist = item.getAttribute('data-artist').toLowerCase();
+                item.style.display = (title.includes(query) || artist.includes(query)) ? "" : "none";
+            });
+
+            items.sort((a, b) => {
+                let field = sortValue.split('-')[0];
+                let valA = a.getAttribute('data-' + field) || '';
+                let valB = b.getAttribute('data-' + field) || '';
+
+                if (sortValue === 'year-new') return (parseInt(valB) || 0) - (parseInt(valA) || 0);
+                if (sortValue === 'year-old') return (parseInt(valA) || 0) - (parseInt(valB) || 0);
+                return valA.localeCompare(valB, undefined, { sensitivity: 'base', numeric: true });
+            });
+
+            items.forEach(item => grid.appendChild(item));
+        }
+
+        function showDetail(event, id) {
+            if (event) event.preventDefault();
+            const v = vinylData[id];
+            if (!v) return;
+
+            const container = document.getElementById('vinylDetailContent');
+            const cover = v.thumbnail_url || 'https://static.lifeofpablo.com/media/vinyls/placeholder.png';
+            
+            container.innerHTML = `
+                <div class="single-vinyl-container">
+                    <div class="single-vinyl-art">
+                        <img src="${escapeHtml(cover)}" alt="${escapeHtml(v.title || 'Album Cover')}">
+                    </div>
+                    <div class="single-vinyl-info">
+                        <div class="single-vinyl-header">
+                            <h1>${escapeHtml(v.title || 'Unknown Title')}</h1>
+                            <p class="artist-subhead">by ${escapeHtml(v.artist || 'Unknown Artist')}</p>
+                        </div>
+
+                        <div class="vinyl-meta-list">
+                            <div class="meta-item">
+                                <strong>Year</strong>
+                                <span>${escapeHtml(v.copyright_year || 'N/A')}</span>
+                            </div>
+                            <div class="meta-item">
+                                <strong>Label</strong>
+                                <span>${escapeHtml(v.label || 'N/A')}</span>
+                            </div>
+                            ${v.genre ? `
+                                <div class="meta-item">
+                                    <strong>Genre</strong>
+                                    <span>${escapeHtml(v.genre)}</span>
+                                </div>
+                            ` : ''}
+                            ${v.catalog_number ? `
+                                <div class="meta-item">
+                                    <strong>Catalog #</strong>
+                                    <span>${escapeHtml(v.catalog_number)}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <div class="vinyl-extra-info">
+                            ${v.location_purchased ? `<p><strong>Purchased At:</strong> ${escapeHtml(v.location_purchased)}</p>` : ''}
+                            ${v.notes ? `<p><strong>Notes:</strong> ${escapeHtml(v.notes)}</p>` : ''}
+                            ${v.info_url ? `<p><a target="_blank" rel="noopener" href="${escapeHtml(v.info_url)}">Learn More on Discogs ↗</a></p>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('vinylCatalogMain').style.display = 'none';
+            document.getElementById('vinylDetailContainer').style.display = 'block';
+            history.pushState({ id: id }, '', 'vinyls?id=' + id);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showCatalog(event) {
+            if (event) event.preventDefault();
+            document.getElementById('vinylDetailContainer').style.display = 'none';
+            document.getElementById('vinylCatalogMain').style.display = 'block';
+            history.pushState({ id: null }, '', 'vinyls');
+        }
+
+        window.onpopstate = function(event) {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            if (id && vinylData[id]) {
+                showDetail(null, id);
+            } else {
+                showCatalog(null);
+            }
+        };
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+    </script>
+
+    <?php endif; ?>
+  </div>
 </div>
-</script>
