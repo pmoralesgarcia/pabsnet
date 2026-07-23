@@ -3,9 +3,17 @@ FROM php:8.3-apache
 # Extensions: pdo_sqlite for storage, curl for client-discovery/webmention
 # fetches, mbstring/dom for webmention HTML parsing.
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libsqlite3-dev libcurl4-openssl-dev libxml2-dev \
+    && apt-get install -y --no-install-recommends \
+        libsqlite3-dev \
+        libcurl4-openssl-dev \
+        libxml2-dev \
+        libonig-dev \
     && docker-php-ext-install pdo_sqlite curl dom mbstring \
-    && apt-get purge -y --auto-remove libsqlite3-dev libcurl4-openssl-dev libxml2-dev \
+    && apt-get purge -y --auto-remove \
+        libsqlite3-dev \
+        libcurl4-openssl-dev \
+        libxml2-dev \
+        libonig-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod rewrite headers \
@@ -16,7 +24,7 @@ WORKDIR /app
 
 COPY . /app
 COPY ./selfauth/docker/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh /app/bin/verify-mentions.php
+RUN chmod +x /entrypoint.sh /app/selfauth/bin/verify-mentions.php
 
 # Data volume for the SQLite database. Created here so it exists (and is
 # owned correctly) even if no volume is mounted.
