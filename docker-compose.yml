@@ -336,7 +336,7 @@ services:
   #     - "traefik.http.routers.personivebecome.entrypoints=websecure"
   #     - "traefik.http.routers.personivebecome.tls.certresolver=myresolver"
   yourls:
-    image: yourls:1.10
+    image: yourls:1.10.4
     container_name: yourls
     restart: always
     ports:
@@ -393,23 +393,54 @@ services:
   #     - SERVER_HOST=owntracks-recorder
   #     - SERVER_PORT=8083
   #   restart: unless-stopped
-  lifeofpablo-login:
-    container_name: lifeofpablo-login
-    restart: always
+  # lifeofpablo-login:
+  #   container_name: lifeofpablo-login
+  #   restart: always
+  #   build:
+  #     dockerfile: ./login.lifeofpablo.com/Dockerfile
+  #   volumes:
+  #     #Project root
+  #     - ./login.lifeofpablo.com/www:/var/www/html
+  #   ports:
+  #     - "9289:80"
+  #   environment:
+  #     - VIRTUAL_HOST=indieauth.lifeofpablo.com
+  #     - LETSENCRYPT_HOST=indieauth.lifeofpablo.com
+  #   labels:
+  #     - "traefik.http.routers.lifeofpablo-login.rule=Host(`indieauth.lifeofpablo.com`)"
+  #     - "traefik.http.routers.lifeofpablo-login.entrypoints=websecure"
+  #     - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
+  selfauth:
     build:
-      dockerfile: ./login.lifeofpablo.com/Dockerfile
-    volumes:
-      #Project root
-      - ./login.lifeofpablo.com/www:/var/www/html
+      # context: .
+      dockerfile: ./selfauth/docker/Dockerfile
+    # Or, once published: image: ghcr.io/yourname/selfauth:latest
+    restart: unless-stopped
     ports:
-      - "9289:80"
+      - "9290:80"
     environment:
-      - VIRTUAL_HOST=indieauth.lifeofpablo.com
-      - LETSENCRYPT_HOST=indieauth.lifeofpablo.com
+      # Required
+      - SELFAUTH_APP_URL="https://selfauth.lifeofpablo.com"
+      - SELFAUTH_USER_URL="https://lifeofpablo.com/"
+      # Only read on first boot, then hashed and stored in the database.
+      # Remove it from your environment after the first successful start,
+      # or change the password from the admin portal at /admin/.
+      - SELFAUTH_ADMIN_PASSWORD=${YOURLS_PASS}
+
+      # Optional
+      # SELFAUTH_APP_KEY: ""                # auto-generated & persisted if omitted
+      - SELFAUTH_WEBMENTIONS_ENABLED="true"
+      - SELFAUTH_TRUST_PROXY="true"          # set true if behind a reverse proxy
+      - SELFAUTH_COOKIE_SECURE="true"         # requires HTTPS; set false for local http testing
+      - SELFAUTH_SYSLOG_SUCCESS="false"
+      - SELFAUTH_SYSLOG_FAILURE="false"
+      - TZ="UTC"
     labels:
       - "traefik.http.routers.lifeofpablo-login.rule=Host(`indieauth.lifeofpablo.com`)"
       - "traefik.http.routers.lifeofpablo-login.entrypoints=websecure"
       - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
+    volumes:
+      - selfauth_data:/app/data
   pabs-api:
     container_name: pabs-api
     build:
@@ -607,6 +638,7 @@ volumes:
     driver: local
  db_storage:
  n8n_storage:
+ selfauth_data:
 
 networks:
   app_network:
