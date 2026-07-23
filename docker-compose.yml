@@ -420,7 +420,7 @@ services:
       - "9290:80"
     environment:
       # Required
-      - SELFAUTH_APP_URL="https://selfauth.lifeofpablo.com"
+      - SELFAUTH_APP_URL="https://indieweb.lifeofpablo.com"
       - SELFAUTH_USER_URL="https://lifeofpablo.com/"
       # Only read on first boot, then hashed and stored in the database.
       # Remove it from your environment after the first successful start,
@@ -436,9 +436,9 @@ services:
       - SELFAUTH_SYSLOG_FAILURE="false"
       - TZ="UTC"
     labels:
-      - "traefik.http.routers.lifeofpablo-login.rule=Host(`indieauth.lifeofpablo.com`)"
-      - "traefik.http.routers.lifeofpablo-login.entrypoints=websecure"
-      - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
+      - "traefik.http.routers.selfauth.rule=Host(`indieweb.lifeofpablo.com`)"
+      - "traefik.http.routers.selfauth.entrypoints=websecure"
+      - "traefik.http.routers.selfauth.tls.certresolver=myresolver"
     volumes:
       - selfauth_data:/app/data
   pabs-api:
