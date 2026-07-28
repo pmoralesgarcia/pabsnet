@@ -51,6 +51,12 @@ services:
       - RUN_MIGRATIONS=1
       - BASE_URL=https://reader.lifeofpablo.com
       - ROOT_URL=https://reader.lifeofpablo.com
+      - OAUTH2_PROVIDER=${MINIFLUX_OAUTH2_PROVIDER}
+      - OAUTH2_CLIENT_ID=${MINIFLUX_OAUTH2_CLIENT_ID}
+      - OAUTH2_CLIENT_SECRET=${MINIFLUX_OAUTH2_CLIENT_SECRET}
+      - OAUTH2_REDIRECT_URL=${MINIFLUX_OAUTH2_REDIRECT_URL}
+      - OAUTH2_OIDC_DISCOVERY_ENDPOINT=${MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT}
+      - OAUTH2_USER_CREATION=${MINIFLUX_OAUTH2_USER_CREATION}
     labels:
       - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
       - "traefik.http.routers.miniflux.entrypoints=websecure"

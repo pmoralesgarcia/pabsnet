@@ -51,9 +51,13 @@ jobs:
           VOUCH_OAUTH_CLIENT_ID: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_ID
           VOUCH_OAUTH_CLIENT_SECRET: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_SECRET
           VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CALLBACK_URL
-          SPOTIFY_PUBLIC: op://pablo/Spotify/client-id
-          SPOTIFY_SECRET: op://pablo/Spotify/client-secret
           SELFAUTH_ADMIN_PASSWORD: op://pablo/selfauth/SELFAUTH_ADMIN_PASSWORD
+          MINIFLUX_OAUTH2_PROVIDER: op://pablo/miniflux/MINIFLUX_OAUTH2_PROVIDER
+          MINIFLUX_OAUTH2_CLIENT_ID: op://pablo/miniflux/MINIFLUX_OAUTH2_CLIENT_ID
+          MINIFLUX_OAUTH2_CLIENT_SECRET: op://pablo/miniflux/MINIFLUX_OAUTH2_CLIENT_SECRET
+          MINIFLUX_OAUTH2_REDIRECT_URL: op://pablo/miniflux/MINIFLUX_OAUTH2_REDIRECT_URL
+          MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT: op://pablo/miniflux/MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT
+          MINIFLUX_OAUTH2_USER_CREATION: op://pablo/miniflux/MINIFLUX_OAUTH2_USER_CREATION
       
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
@@ -96,12 +100,16 @@ jobs:
             VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
             VOUCH_OAUTH_CLIENT_SECRET=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_SECRET }} \
             VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
-            SPOTIFY_PUBLIC=${{ steps.op-load-secret.outputs.SPOTIFY_PUBLIC }} \
-            SPOTIFY_SECRET=${{ steps.op-load-secret.outputs.SPOTIFY_SECRET }} \
             SA_APP_KEY=${{ steps.op-load-secret.outputs.SA_APP_KEY }} \
             SA_USER_URL=${{ steps.op-load-secret.outputs.SA_USER_URL }} \
             SA_USER_HASH=${{ steps.op-load-secret.outputs.SA_USER_HASH }} \
             SELFAUTH_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }} \
+            MINIFLUX_OAUTH2_PROVIDER=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_PROVIDER }} \
+            MINIFLUX_OAUTH2_CLIENT_ID=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_ID }} \
+            MINIFLUX_OAUTH2_CLIENT_SECRET=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_SECRET }} \
+            MINIFLUX_OAUTH2_REDIRECT_URL=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }} \
+            MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }} \
+            MINIFLUX_OAUTH2_USER_CREATION=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_USER_CREATION }} \
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -133,10 +141,14 @@ jobs:
             VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
             VOUCH_OAUTH_CLIENT_SECRET=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_SECRET }} \
             VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
-            SPOTIFY_PUBLIC=${{ steps.op-load-secret.outputs.SPOTIFY_PUBLIC }} \
-            SPOTIFY_SECRET=${{ steps.op-load-secret.outputs.SPOTIFY_SECRET }} \
             SA_APP_KEY=${{ steps.op-load-secret.outputs.SA_APP_KEY }} \
             SA_USER_URL=${{ steps.op-load-secret.outputs.SA_USER_URL }} \
             SA_USER_HASH=${{ steps.op-load-secret.outputs.SA_USER_HASH }} \
             SELFAUTH_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }} \
+            MINIFLUX_OAUTH2_PROVIDER=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_PROVIDER }} \
+            MINIFLUX_OAUTH2_CLIENT_ID=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_ID }} \
+            MINIFLUX_OAUTH2_CLIENT_SECRET=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_SECRET }} \
+            MINIFLUX_OAUTH2_REDIRECT_URL=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }} \
+            MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }} \
+            MINIFLUX_OAUTH2_USER_CREATION=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_USER_CREATION }} \
             docker compose up --detach
