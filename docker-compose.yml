@@ -111,34 +111,49 @@ services:
       - "traefik.http.routers.korea.rule=Host(`korea.lifeofpablo.com`)"
       - "traefik.http.routers.korea.entrypoints=websecure"
       - "traefik.http.routers.korea.tls.certresolver=myresolver"
-  lifeofpablo-proxy:
-    image: nginx:1.25.3-bookworm-perl
-    container_name: lifeofpablo-proxy
-    volumes:
-      - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
+  lifeofpablo-app:
+    build:
+      dockerfile: ./lifeofpablo/Dockerfile 
+    container_name: lifeofpablo-app
+    restart: always
     ports:
-      - 8110:80
-    # environment:
-    #   - VIRTUAL_HOST=lifeofpablo.com
-    #   - LETSENCRYPT_HOST=lifeofpablo.com
-    depends_on:
-      - lifeofpablo
-      - lifeofpablo-interactives
-      - lifeofpablo-linkinbio
+      - "8110:80"
+    volumes:
+      # Optional: Mount site code as live volumes if you edit files on host
+      - ./lifeofpablo.com/www:/var/www/main
+      - ./lifeofpablo-interactives/www:/var/www/interactives
+      - ./lifeofpablo-guestbook/www/guestbook:/var/www/guestbook
+      - ./lifeofpablo-linkinbio/www:/var/www/linkinbio
     labels:
       - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
-    #   - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
-    #   - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
-  lifeofpablo:
-    container_name: lifeofpablo
-    restart: always
-    build:
-      dockerfile: ./lifeofpablo.com/Dockerfile  
-    volumes:
-      #Project root
-      - ./lifeofpablo.com/www:/var/www/html
-    ports:
-      - "8080:80"
+  # lifeofpablo-proxy:
+  #   image: nginx:1.25.3-bookworm-perl
+  #   container_name: lifeofpablo-proxy
+  #   volumes:
+  #     - ./nginx-proxy/lifeofpablo:/etc/nginx/conf.d
+  #   ports:
+  #     - 8110:80
+  #   # environment:
+  #   #   - VIRTUAL_HOST=lifeofpablo.com
+  #   #   - LETSENCRYPT_HOST=lifeofpablo.com
+  #   depends_on:
+  #     - lifeofpablo
+  #     - lifeofpablo-interactives
+  #     - lifeofpablo-linkinbio
+  #   labels:
+  #     - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
+  #   #   - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
+  #   #   - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
+  # lifeofpablo:
+  #   container_name: lifeofpablo
+  #   restart: always
+  #   build:
+  #     dockerfile: ./lifeofpablo.com/Dockerfile  
+  #   volumes:
+  #     #Project root
+  #     - ./lifeofpablo.com/www:/var/www/html
+  #   ports:
+  #     - "8080:80"
   wishlist:
     container_name: wishlist
     image: ghcr.io/cmintey/wishlist:v0.62.0
@@ -154,32 +169,27 @@ services:
       - "traefik.http.routers.wishlist.rule=Host(`wishlist.lifeofpablo.com`)"
       - "traefik.http.routers.wishlist.entrypoints=websecure"
       - "traefik.http.routers.wishlist.tls.certresolver=myresolver"
-  lifeofpablo-guestbook:
-    container_name: lifeofpablo-guestbook
-    restart: always 
-    build:
-      dockerfile: ./lifeofpablo-guestbook/Dockerfile  
-    volumes:
-      #Project root
-      - ./lifeofpablo-guestbook/www/guestbook:/var/www/html
-    ports:
-      - "8081:80"
-  lifeofpablo-linkinbio:
-    container_name: lifeofpablo-linkinbio
-    restart: always
-    build:
-      dockerfile: ./lifeofpablo-linkinbio/Dockerfile  
-    volumes:
-      #Project root
-      - ./lifeofpablo-linkinbio/www:/var/www/html
-    ports:
-      - "8082:80"
-  lifeofpablo-now:
-    container_name: lifeofpablo-now
-    image: ghcr.io/pmoralesgarcia/now:latest
-    restart: always
-    ports:
-      - "8083:80"
+  # lifeofpablo-guestbook:
+  #   container_name: lifeofpablo-guestbook
+  #   restart: always 
+  #   build:
+  #     dockerfile: ./lifeofpablo-guestbook/Dockerfile  
+  #   volumes:
+  #     #Project root
+  #     - ./lifeofpablo-guestbook/www/guestbook:/var/www/html
+  #   ports:
+  #     - "8081:80"
+  # lifeofpablo-linkinbio:
+  #   container_name: lifeofpablo-linkinbio
+  #   restart: always
+  #   build:
+  #     dockerfile: ./lifeofpablo-linkinbio/Dockerfile  
+  #   volumes:
+  #     #Project root
+  #     - ./lifeofpablo-linkinbio/www:/var/www/html
+  #   ports:
+  #     - "8082:80"
+
   lifeofpablo-static:
     image: nginx:bookworm-perl
     container_name: lifeofpablo-static
@@ -226,15 +236,15 @@ services:
       - "traefik.http.routers.lifeofpablo-nyc-climateweek.rule=Host(`climateweeknyc.lifeofpablo.com`)"
       - "traefik.http.routers.lifeofpablo-nyc-climateweek.entrypoints=websecure"
       - "traefik.http.routers.lifeofpablo-nyc-climateweek.tls.certresolver=myresolver"
-  lifeofpablo-interactives:
-    build:
-      dockerfile: ./lifeofpablo-interactives/Dockerfile  
-    container_name: lifeofpablo-interactives
-    restart: always
-    ports:
-      - 8124:80
-    volumes:
-      - ./lifeofpablo-interactives/www:/var/www/html
+  # lifeofpablo-interactives:
+  #   build:
+  #     dockerfile: ./lifeofpablo-interactives/Dockerfile  
+  #   container_name: lifeofpablo-interactives
+  #   restart: always
+  #   ports:
+  #     - 8124:80
+  #   volumes:
+  #     - ./lifeofpablo-interactives/www:/var/www/html
   lifeofpablo-test:
     container_name: lifeofpablo-test
     restart: always
