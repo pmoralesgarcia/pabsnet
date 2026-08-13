@@ -352,7 +352,7 @@ services:
   #     - "traefik.http.routers.personivebecome.entrypoints=websecure"
   #     - "traefik.http.routers.personivebecome.tls.certresolver=myresolver"
   yourls:
-    image: yourls:1.10.4
+    image: yourls:1.10
     container_name: yourls
     restart: always
     ports:
