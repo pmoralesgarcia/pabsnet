@@ -15,7 +15,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=${DEFAULT_EMAIL}"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      - "--providers.file.filename=/traefik-files/traefik-dynamic.yml"
+      - ./traefik-dynamic.yml:/traefik-dynamic.yml:ro
     ports:
       - "80:80"
       - "443:443"
