@@ -2,3 +2,5 @@ http:
   serversTransports:
     kanidm-transport:
       insecureSkipVerify: true
+      # rootCAs:
+      #   - /path/to/ca.crt # Optional: if you prefer CA validation over insecureSkipVerify

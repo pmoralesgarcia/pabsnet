@@ -5,6 +5,7 @@ services:
       - "--api=true"
       - "--api.insecure=false"
       - "--providers.docker=true"
+      - "--providers.file.filename=/traefik-dynamic.yml"  # <-- Tell Traefik to load this dynamic file
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.websecure.http.tls=true"
@@ -15,7 +16,6 @@ services:
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=${DEFAULT_EMAIL}"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      - ./traefik-dynamic.yml:/traefik-dynamic.yml:ro
     ports:
       - "80:80"
       - "443:443"
@@ -23,7 +23,7 @@ services:
     volumes:
       - ./letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik-files/traefik-dynamic.yml:/traefik-dynamic.yml:ro
+      - ./traefik-files/traefik-dynamic.yml:/traefik-dynamic.yml:ro  # Volume mount stays here
   kanidm:
     image: kanidm/server:latest
     container_name: kanidm
