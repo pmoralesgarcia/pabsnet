@@ -78,6 +78,8 @@ services:
       - OAUTH2_REDIRECT_URL=${MINIFLUX_OAUTH2_REDIRECT_URL}
       - OAUTH2_OIDC_DISCOVERY_ENDPOINT=${MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT}
       - OAUTH2_USER_CREATION=${MINIFLUX_OAUTH2_USER_CREATION}
+      - OAUTH2_OIDC_PROVIDER_NAME="Kanidm"
+      - DISABLE_LOCAL_AUTH=true
     labels:
       - "traefik.http.routers.miniflux.rule=Host(`reader.lifeofpablo.com`)"
       - "traefik.http.routers.miniflux.entrypoints=websecure"
