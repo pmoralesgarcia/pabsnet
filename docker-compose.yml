@@ -15,6 +15,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=${DEFAULT_EMAIL}"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--providers.file.filename=/traefik-files/traefik-dynamic.yml"
     ports:
       - "80:80"
       - "443:443"
@@ -22,6 +23,26 @@ services:
     volumes:
       - ./letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik-files/traefik-dynamic.yml:/traefik-dynamic.yml:ro
+  kanidm:
+    image: kanidm/server:latest
+    container_name: kanidm
+    restart: unless-stopped
+    volumes:
+      - ./kanidm_data:/data
+    environment:
+      - TZ=America/Los_Angeles
+    labels:
+      - "traefik.enable=true"
+      # Route HTTPS traffic for idm.lifeofpablo.com to Kanidm
+      - "traefik.http.routers.kanidm.rule=Host(`idm.lifeofpablo.com`)"
+      - "traefik.http.routers.kanidm.entrypoints=websecure"
+      - "traefik.http.routers.kanidm.tls.certresolver=myresolver"
+      
+      # Tell Traefik to use internal HTTPS/h2 to speak to Kanidm
+      - "traefik.http.services.kanidm.loadbalancer.server.port=8443"
+      - "traefik.http.services.kanidm.loadbalancer.server.scheme=https"
+      - "traefik.http.services.kanidm.loadbalancer.serversTransport=kanidm-transport@file"
   mariadb:
     image: mariadb:11
     ports:
