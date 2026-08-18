@@ -8,9 +8,10 @@ RUN apt-get update \
     && apt-get purge -y --auto-remove libsqlite3-dev libcurl4-openssl-dev libxml2-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Configure Apache DocumentRoot and grant permissions to /app/public
 RUN a2enmod rewrite headers \
     && sed -i 's#DocumentRoot /var/www/html#DocumentRoot /app/public#' /etc/apache2/sites-available/000-default.conf \
-    && sed -i 's#<Directory /var/www/>#<Directory /app/public>#' /etc/apache2/apache2.conf
+    && printf '<Directory /app/public>\n    Options Indexes FollowSymLinks\n    AllowOverride All\n    Require all granted\n</Directory>\n' >> /etc/apache2/apache2.conf
 
 WORKDIR /app
 
