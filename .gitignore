@@ -17,3 +17,11 @@ npm-debug.*
 node_modules
 dist
 src/_includes/css
+
+.git
+.gitignore
+node_modules
+vendor
+*.log
+docker-compose.yml
+.env
