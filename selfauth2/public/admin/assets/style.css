@@ -1,0 +1,70 @@
+:root{
+  --bg:#f5f5f2; --fg:#1b1b1b; --card:#fff; --border:#ddd; --accent:#2a5adf;
+  --danger:#c0392b; --ok:#1b8a4c; --muted:#666;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg); color:var(--fg);
+}
+a{color:var(--accent);}
+.nav{
+  display:flex; align-items:center; gap:20px; padding:14px 24px;
+  background:var(--card); border-bottom:1px solid var(--border);
+}
+.nav b{margin-right:auto;}
+.nav a{text-decoration:none; color:var(--fg); font-size:.95em;}
+.nav a.active{color:var(--accent); font-weight:600;}
+.role-badge{background:#eef1fb; color:var(--accent); font-size:.75em; font-weight:700; text-transform:uppercase; padding:3px 8px; border-radius:10px;}
+main{max-width:960px; margin:24px auto; padding:0 16px;}
+.card{background:var(--card); border:1px solid var(--border); border-radius:8px; padding:20px; margin-bottom:20px;}
+h1{font-size:1.4em;} h2{font-size:1.15em;}
+table{width:100%; border-collapse:collapse; font-size:.92em;}
+th,td{text-align:left; padding:8px 6px; border-bottom:1px solid var(--border); vertical-align:top;}
+th{color:var(--muted); font-weight:600; font-size:.85em; text-transform:uppercase;}
+.badge{display:inline-block; padding:2px 8px; border-radius:10px; font-size:.78em; font-weight:600;}
+.badge.ok{background:#e4f6ec; color:var(--ok);}
+.badge.bad{background:#fbeaea; color:var(--danger);}
+.badge.pending{background:#fff6df; color:#9a7100;}
+.badge.spam{background:#eee; color:var(--muted);}
+.stats{display:flex; gap:16px; flex-wrap:wrap;}
+.stat{flex:1; min-width:120px; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px; text-align:center;}
+.stat .n{font-size:1.6em; font-weight:700;}
+.stat .l{color:var(--muted); font-size:.85em;}
+form.inline{display:inline;}
+input[type=text],input[type=password],input[type=url],input[type=email],input[type=number],select,textarea{
+  padding:8px; border:1px solid var(--border); border-radius:6px; width:100%; font-family:inherit; font-size:.95em;
+}
+button, input[type=submit]{
+  padding:8px 14px; border-radius:6px; border:1px solid var(--accent);
+  background:var(--accent); color:#fff; cursor:pointer; font-size:.9em;
+}
+button.danger, input.danger{background:var(--danger); border-color:var(--danger);}
+button.secondary, input.secondary{background:transparent; color:var(--fg); border-color:var(--border);}
+.sso-button{background:var(--accent); border:1px solid var(--accent); color:#fff; text-decoration:none; display:block; text-align:center; padding:10px; border-radius:6px;}
+.msg{padding:10px 14px; border-radius:6px; margin-bottom:16px;}
+.msg.ok{background:#e4f6ec; color:var(--ok);}
+.msg.error{background:#fbeaea; color:var(--danger);}
+.login-wrap{max-width:340px; margin:80px auto;}
+.muted{color:var(--muted); font-size:.85em;}
+.empty{color:var(--muted); padding:20px 0; text-align:center;}
+code{background:#f0f0f0; padding:1px 5px; border-radius:4px; font-size:.9em; overflow-wrap:anywhere;}
+
+/* Mobile: collapse the table layout into stacked cards so nothing
+   overflows a narrow viewport, and let the nav wrap instead of
+   squeezing into one unreadable line. */
+@media (max-width: 680px) {
+  .nav{flex-wrap:wrap; gap:10px 16px; padding:12px 16px;}
+  main{margin:14px auto; padding:0 10px;}
+  .card{padding:14px;}
+  .stats{gap:10px;}
+  .stat{min-width:45%;}
+  .login-wrap{margin:40px auto;}
+
+  table, thead, tbody, tr{display:block; width:100%;}
+  table thead{display:none;}
+  table tr{border:1px solid var(--border); border-radius:8px; margin-bottom:12px; padding:8px; background:var(--card);}
+  table td{display:flex; justify-content:space-between; gap:10px; border:none; padding:6px 4px; text-align:right;}
+  table td::before{content:attr(data-label); color:var(--muted); font-size:.78em; text-transform:uppercase; text-align:left; margin-right:auto;}
+  table td[data-label=""]::before, table td:not([data-label])::before{content:none;}
+}

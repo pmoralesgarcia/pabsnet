@@ -1,0 +1,69 @@
+services:
+  selfauth:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    # Or, once published: image: ghcr.io/yourname/selfauth:latest
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      # ---- Required ----
+      SELFAUTH_APP_URL: "http://localhost:8080/"
+      SELFAUTH_USER_URL: "https://lifeofpablo.com/"
+      # Only read on first boot, then hashed and stored in the database.
+      # Remove it from your environment after the first successful start,
+      # or change the password from the admin portal at /admin/.
+      SELFAUTH_ADMIN_PASSWORD: "Nineteen!1"
+
+      # ---- Core options ----
+      # SELFAUTH_APP_KEY: ""                # auto-generated & persisted if omitted
+      SELFAUTH_WEBMENTIONS_ENABLED: "true"
+      SELFAUTH_TRUST_PROXY: "false"          # set true if behind a reverse proxy
+      SELFAUTH_COOKIE_SECURE: "false"         # requires HTTPS; set false for local http testing
+      SELFAUTH_SYSLOG_SUCCESS: "false"
+      SELFAUTH_SYSLOG_FAILURE: "false"
+      TZ: "America/Los_Angeles"
+
+      # ---- OIDC/OAuth2 (e.g. Kanidm) ----
+      # Shared connection settings. Uncomment and fill in to enable either
+      # (or both) of the two independent toggles below.
+      SELFAUTH_OIDC_ISSUER: "https://idm.lifeofpablo.com/oauth2/openid/selfauth-test"
+      SELFAUTH_OIDC_CLIENT_ID: "selfauth"
+      SELFAUTH_OIDC_CLIENT_SECRET: "1ejy6sf78jjkbw9fsbpzh7vae3rvektkyh1zfyvr56g4f9by"              # omit/blank for a public PKCE client
+      SELFAUTH_OIDC_SCOPES: "openid profile email"
+      # SELFAUTH_OIDC_REDIRECT_URI: ""               # defaults to {APP_URL}/oidc-callback.php
+      # Owner allow-list -- required for EITHER toggle below to activate.
+      SELFAUTH_OIDC_ALLOWED_EMAILS: "pablo@lifeofpablo.com"
+      # SELFAUTH_OIDC_ALLOWED_SUBJECTS: ""
+
+      # Toggle 1: sign into the IndieAuth "me" endpoint itself via SSO --
+      # other websites will see you authenticate this way. Owner allow-list
+      # only; delegates (below) can never use this.
+      SELFAUTH_LOGIN_OIDC_ENABLED: "true"
+      SELFAUTH_LOGIN_AUTH_MODE: "both"             # password | oidc | both
+
+      # Toggle 2: sign into the /admin/ portal via SSO. Owner allow-list
+      # grants full access; identities added on the Admins page (in the
+      # admin portal itself) get delegated "manager" or "viewer" access.
+      SELFAUTH_ADMIN_OIDC_ENABLED: "true"
+      SELFAUTH_ADMIN_AUTH_MODE: "both"             # password | oidc | both
+
+      # ---- Webmention feed ----
+      # SELFAUTH_WEBMENTION_FEED_PUBLIC: "false"     # default: private, token in /admin/settings.php
+
+      # ---- Outgoing email notifications ----
+      # No SMTP host set = notifications disabled.
+      # SELFAUTH_SMTP_HOST: "smtp.example.com"
+      # SELFAUTH_SMTP_PORT: "587"
+      # SELFAUTH_SMTP_USER: ""
+      # SELFAUTH_SMTP_PASS: ""
+      # SELFAUTH_SMTP_ENCRYPTION: "tls"              # tls | ssl | none
+      # SELFAUTH_SMTP_FROM: "selfauth@example.com"
+      # SELFAUTH_NOTIFY_EMAIL: "me@example.com"
+      # SELFAUTH_NOTIFY_EVENTS: "signin.failed,signin.blocked"
+    volumes:
+      - selfauth_data:/app/data
+
+volumes:
+  selfauth_data:

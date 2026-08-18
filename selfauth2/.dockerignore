@@ -1,0 +1,7 @@
+.git
+.gitignore
+data/*
+!data/.gitkeep
+config.php
+*.md
+docker-compose.yml

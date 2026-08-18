@@ -437,33 +437,30 @@ services:
   #     - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
   selfauth:
     build:
-      # context: .
-      dockerfile: ./selfauth/docker/Dockerfile
+      dockerfile: ./selfauth2/docker/Dockerfile
     # Or, once published: image: ghcr.io/yourname/selfauth:latest
     restart: unless-stopped
     ports:
-      - "9290:80"
+      - "9289:80"
     environment:
-      # Required
-      - SELFAUTH_APP_URL="https://indieweb.lifeofpablo.com"
-      - SELFAUTH_USER_URL="https://lifeofpablo.com/"
-      # Only read on first boot, then hashed and stored in the database.
-      # Remove it from your environment after the first successful start,
-      # or change the password from the admin portal at /admin/.
-      - SELFAUTH_ADMIN_PASSWORD=${YOURLS_PASS}
-
-      # Optional
-      # SELFAUTH_APP_KEY: ""                # auto-generated & persisted if omitted
-      - SELFAUTH_WEBMENTIONS_ENABLED="true"
-      - SELFAUTH_TRUST_PROXY="true"          # set true if behind a reverse proxy
-      - SELFAUTH_COOKIE_SECURE="true"         # requires HTTPS; set false for local http testing
-      - SELFAUTH_SYSLOG_SUCCESS="false"
-      - SELFAUTH_SYSLOG_FAILURE="false"
-      - TZ="UTC"
-    labels:
-      - "traefik.http.routers.selfauth.rule=Host(`indieweb.lifeofpablo.com`)"
-      - "traefik.http.routers.selfauth.entrypoints=websecure"
-      - "traefik.http.routers.selfauth.tls.certresolver=myresolver"
+      - SELFAUTH_APP_URL=https://indieauth.lifeofpablo.com/
+      - SELFAUTH_USER_URL=https://lifeofpablo.com/
+      - SELFAUTH_ADMIN_PASSWORD
+      - SELFAUTH_WEBMENTIONS_ENABLED=true
+      - SELFAUTH_TRUST_PROXY=true
+      - SELFAUTH_COOKIE_SECURE=true
+      - SELFAUTH_SYSLOG_SUCCESS=false
+      - SELFAUTH_SYSLOG_FAILURE=false
+      - TZ=America/Los_Angeles
+      - SELFAUTH_OIDC_ISSUER
+      - SELFAUTH_OIDC_CLIENT_ID
+      - SELFAUTH_OIDC_CLIENT_SECRET
+      - SELFAUTH_OIDC_SCOPES
+      - SELFAUTH_OIDC_ALLOWED_EMAILS
+      - SELFAUTH_LOGIN_OIDC_ENABLED=true
+      - SELFAUTH_LOGIN_AUTH_MODE=both
+      - SELFAUTH_ADMIN_OIDC_ENABLED=true
+      - SELFAUTH_ADMIN_AUTH_MODE=both
     volumes:
       - selfauth_data:/app/data
   pabs-api:
@@ -537,6 +534,8 @@ services:
       - "traefik.http.routers.it-tools.rule=Host(`it-tools.lifeofpablo.com`)"
       - "traefik.http.routers.it-tools.entrypoints=websecure"
       - "traefik.http.routers.it-tools.tls.certresolver=myresolver"
+  
+ 
  
   
  

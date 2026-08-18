@@ -52,7 +52,11 @@ jobs:
           VOUCH_OAUTH_CLIENT_SECRET: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CLIENT_SECRET
           VOUCH_OAUTH_CALLBACK_URL: op://pablo/vp-lifeofpablo/VOUCH_OAUTH_CALLBACK_URL
           SELFAUTH_ADMIN_PASSWORD: op://pablo/selfauth/SELFAUTH_ADMIN_PASSWORD
-          MINIFLUX_OAUTH2_PROVIDER: op://pablo/miniflux/MINIFLUX_OAUTH2_PROVIDER
+          SELFAUTH_OIDC_ISSUER: op://pablo/selfauth/SELFAUTH_OIDC_ISSUER
+          SELFAUTH_OIDC_CLIENT_ID: op://pablo/selfauth/SELFAUTH_OIDC_CLIENT_ID
+          SELFAUTH_OIDC_CLIENT_SECRET: op://pablo/selfauth/SELFAUTH_OIDC_CLIENT_SECRET
+          SELFAUTH_OIDC_SCOPES: op://pablo/selfauth/SELFAUTH_OIDC_SCOPES
+          SELFAUTH_OIDC_ALLOWED_EMAILS: op://pablo/miniflux/SELFAUTH_OIDC_ALLOWED_EMAILS
           MINIFLUX_OAUTH2_CLIENT_ID: op://pablo/miniflux/MINIFLUX_OAUTH2_CLIENT_ID
           MINIFLUX_OAUTH2_CLIENT_SECRET: op://pablo/miniflux/MINIFLUX_OAUTH2_CLIENT_SECRET
           MINIFLUX_OAUTH2_REDIRECT_URL: op://pablo/miniflux/MINIFLUX_OAUTH2_REDIRECT_URL
@@ -110,6 +114,12 @@ jobs:
             MINIFLUX_OAUTH2_REDIRECT_URL=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }} \
             MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }} \
             MINIFLUX_OAUTH2_USER_CREATION=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_USER_CREATION }} \
+            SELFAUTH_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }} \
+            SELFAUTH_OIDC_ISSUER=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ISSUER }} \
+            SELFAUTH_OIDC_CLIENT_ID=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_ID }} \
+            SELFAUTH_OIDC_CLIENT_SECRET=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_SECRET }} \
+            SELFAUTH_OIDC_SCOPES=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_SCOPES }} \
+            SELFAUTH_OIDC_ALLOWED_EMAILS=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ALLOWED_EMAILS }} \
             docker compose down
             API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
             API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
@@ -151,4 +161,10 @@ jobs:
             MINIFLUX_OAUTH2_REDIRECT_URL=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }} \
             MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }} \
             MINIFLUX_OAUTH2_USER_CREATION=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_USER_CREATION }} \
+            SELFAUTH_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }} \
+            SELFAUTH_OIDC_ISSUER=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ISSUER }} \
+            SELFAUTH_OIDC_CLIENT_ID=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_ID }} \
+            SELFAUTH_OIDC_CLIENT_SECRET=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_SECRET }} \
+            SELFAUTH_OIDC_SCOPES=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_SCOPES }} \
+            SELFAUTH_OIDC_ALLOWED_EMAILS=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ALLOWED_EMAILS }} \
             docker compose up --detach
