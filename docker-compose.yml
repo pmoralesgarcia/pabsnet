@@ -438,31 +438,37 @@ services:
   selfauth:
     build:
       dockerfile: ./selfauth2/docker/Dockerfile
-    # Or, once published: image: ghcr.io/yourname/selfauth:latest
+    container_name: selfauth
     restart: unless-stopped
     ports:
       - "9289:80"
     environment:
       - SELFAUTH_APP_URL=https://indieauth.lifeofpablo.com/
       - SELFAUTH_USER_URL=https://lifeofpablo.com/
-      - SELFAUTH_ADMIN_PASSWORD
+      - SELFAUTH_ADMIN_PASSWORD=${SELFAUTH_ADMIN_PASSWORD}
       - SELFAUTH_WEBMENTIONS_ENABLED=true
       - SELFAUTH_TRUST_PROXY=true
       - SELFAUTH_COOKIE_SECURE=true
       - SELFAUTH_SYSLOG_SUCCESS=false
       - SELFAUTH_SYSLOG_FAILURE=false
       - TZ=America/Los_Angeles
-      - SELFAUTH_OIDC_ISSUER
-      - SELFAUTH_OIDC_CLIENT_ID
-      - SELFAUTH_OIDC_CLIENT_SECRET
-      - SELFAUTH_OIDC_SCOPES
-      - SELFAUTH_OIDC_ALLOWED_EMAILS
+      - SELFAUTH_OIDC_ISSUER=${SELFAUTH_OIDC_ISSUER}
+      - SELFAUTH_OIDC_CLIENT_ID=${SELFAUTH_OIDC_CLIENT_ID}
+      - SELFAUTH_OIDC_CLIENT_SECRET=${SELFAUTH_OIDC_CLIENT_SECRET}
+      - SELFAUTH_OIDC_SCOPES=${SELFAUTH_OIDC_SCOPES}
+      - SELFAUTH_OIDC_ALLOWED_EMAILS=${SELFAUTH_OIDC_ALLOWED_EMAILS}
       - SELFAUTH_LOGIN_OIDC_ENABLED=true
       - SELFAUTH_LOGIN_AUTH_MODE=both
       - SELFAUTH_ADMIN_OIDC_ENABLED=true
       - SELFAUTH_ADMIN_AUTH_MODE=both
     volumes:
       - selfauth_data2:/app/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lifeofpablo-login.rule=Host(`indieauth.lifeofpablo.com`)"
+      - "traefik.http.routers.lifeofpablo-login.entrypoints=websecure"
+      - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
+      - "traefik.http.services.lifeofpablo-login.loadbalancer.server.port=80"
   pabs-api:
     container_name: pabs-api
     build:
