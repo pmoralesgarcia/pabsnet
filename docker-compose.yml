@@ -437,7 +437,8 @@ services:
   #     - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
   selfauth:
     build:
-      dockerfile: ./selfauth2/docker/Dockerfile
+      context: ./selfauth2
+      dockerfile: ./docker/Dockerfile
     container_name: selfauth
     restart: unless-stopped
     ports:

@@ -21,7 +21,7 @@ RUN a2enmod rewrite headers \
 WORKDIR /app
 
 COPY . /app
-COPY ./selfauth2/docker/entrypoint.sh /entrypoint.sh
+COPY ./docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh /app/bin/verify-mentions.php
 
 # Data volume for the SQLite database. Created here so it exists (and is
