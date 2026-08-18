@@ -462,7 +462,7 @@ services:
       - SELFAUTH_ADMIN_OIDC_ENABLED=true
       - SELFAUTH_ADMIN_AUTH_MODE=both
     volumes:
-      - selfauth_data:/app/data
+      - selfauth_data2:/app/data
   pabs-api:
     container_name: pabs-api
     build:
@@ -662,7 +662,7 @@ volumes:
     driver: local
  db_storage:
  n8n_storage:
- selfauth_data:
+ selfauth_data2:
 
 networks:
   app_network:
