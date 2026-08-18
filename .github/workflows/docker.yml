@@ -14,7 +14,7 @@ jobs:
         id: op-load-secret
         uses: 1password/load-secrets-action@v1
         with:
-       # Export loaded secrets as environment variables
+          # Export loaded secrets as environment variables
           export-env: false
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
@@ -63,7 +63,7 @@ jobs:
           MINIFLUX_OAUTH2_REDIRECT_URL: op://pablo/miniflux/MINIFLUX_OAUTH2_REDIRECT_URL
           MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT: op://pablo/miniflux/MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT
           MINIFLUX_OAUTH2_USER_CREATION: op://pablo/miniflux/MINIFLUX_OAUTH2_USER_CREATION
-      
+
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -74,98 +74,51 @@ jobs:
           script: |
             cd ~/pabsnet
             git pull
-            ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-            API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
-            API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
-            API_DB_PASS=${{ steps.op-load-secret.outputs.API_DB_PASS }} \
-            API_DB=${{ steps.op-load-secret.outputs.API_DB }} \
-            API_DB_HOST2=${{ steps.op-load-secret.outputs.API_DB_HOST2 }} \
-            API_DB_USER2=${{ steps.op-load-secret.outputs.API_DB_USER2 }} \
-            API_DB_PASS2=${{ steps.op-load-secret.outputs.API_DB_PASS2 }} \
-            API_DB2=${{ steps.op-load-secret.outputs.API_DB2 }} \
-            API_JWT_SECRET=${{ steps.op-load-secret.outputs.API_JWT_SECRET }} \
-            FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
-            FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
-            MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
-            FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
-            FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
-            FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
-            FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
-            DEFAULT_EMAIL=${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }} \
-            YOURLS_DB_USER=${{ steps.op-load-secret.outputs.YOURLS_DB_USER }} \
-            YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
-            YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
-            YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
-            YOURLS_API=${{ steps.op-load-secret.outputs.YOURLS_API }} \
-            MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
-            MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }} \
-            MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            VOUCH_DOMAINS=${{ steps.op-load-secret.outputs.VOUCH_DOMAINS }} \
-            VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
-            VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
-            VOUCH_OAUTH_CLIENT_SECRET=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_SECRET }} \
-            VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
-            SA_APP_KEY=${{ steps.op-load-secret.outputs.SA_APP_KEY }} \
-            SA_USER_URL=${{ steps.op-load-secret.outputs.SA_USER_URL }} \
-            SA_USER_HASH=${{ steps.op-load-secret.outputs.SA_USER_HASH }} \
-            SELFAUTH_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }} \
-            MINIFLUX_OAUTH2_PROVIDER=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_PROVIDER }} \
-            MINIFLUX_OAUTH2_CLIENT_ID=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_ID }} \
-            MINIFLUX_OAUTH2_CLIENT_SECRET=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_SECRET }} \
-            MINIFLUX_OAUTH2_REDIRECT_URL=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }} \
-            MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }} \
-            MINIFLUX_OAUTH2_USER_CREATION=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_USER_CREATION }} \
-            SELFAUTH_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }} \
-            SELFAUTH_OIDC_ISSUER=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ISSUER }} \
-            SELFAUTH_OIDC_CLIENT_ID=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_ID }} \
-            SELFAUTH_OIDC_CLIENT_SECRET=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_SECRET }} \
-            SELFAUTH_OIDC_SCOPES=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_SCOPES }} \
-            SELFAUTH_OIDC_ALLOWED_EMAILS=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ALLOWED_EMAILS }} \
+
+            cat << 'EOF' > .env
+            API_DB_HOST="${{ steps.op-load-secret.outputs.API_DB_HOST }}"
+            API_DB_USER="${{ steps.op-load-secret.outputs.API_DB_USER }}"
+            API_DB_PASS="${{ steps.op-load-secret.outputs.API_DB_PASS }}"
+            API_DB="${{ steps.op-load-secret.outputs.API_DB }}"
+            API_DB_HOST2="${{ steps.op-load-secret.outputs.API_DB_HOST2 }}"
+            API_DB_USER2="${{ steps.op-load-secret.outputs.API_DB_USER2 }}"
+            API_DB_PASS2="${{ steps.op-load-secret.outputs.API_DB_PASS2 }}"
+            API_DB2="${{ steps.op-load-secret.outputs.API_DB2 }}"
+            API_JWT_SECRET="${{ steps.op-load-secret.outputs.API_JWT_SECRET }}"
+            FRESHRSS_MYSQL_USER="${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }}"
+            FRESHRSS_MYSQL_PASSWORD="${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }}"
+            MYSQL_ROOT_PASSWORD="${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }}"
+            FRESHRSS_USER="${{ steps.op-load-secret.outputs.FRESHRSS_USER }}"
+            FRESHRSS_EMAIL="${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }}"
+            FRESHRSS_PASSWORD="${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }}"
+            FRESHRSS_API_PASSWORD="${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }}"
+            DEFAULT_EMAIL="${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }}"
+            YOURLS_DB_USER="${{ steps.op-load-secret.outputs.YOURLS_DB_USER }}"
+            YOURLS_DB_PASS="${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }}"
+            YOURLS_USER="${{ steps.op-load-secret.outputs.YOURLS_USER }}"
+            YOURLS_PASS="${{ steps.op-load-secret.outputs.YOURLS_PASS }}"
+            YOURLS_API="${{ steps.op-load-secret.outputs.YOURLS_API }}"
+            MATOMO_MYSQL_USER="${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }}"
+            MATOMO_MYSQL_PASSWORD="${{ steps.op-load-secret.outputs.MATOMO_MYSQL_PASSWORD }}"
+            MATOMO_MYSQL_DATABASE="${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }}"
+            VOUCH_DOMAINS="${{ steps.op-load-secret.outputs.VOUCH_DOMAINS }}"
+            VOUCH_OAUTH_PROVIDER="${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }}"
+            VOUCH_OAUTH_CLIENT_ID="${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }}"
+            VOUCH_OAUTH_CLIENT_SECRET="${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_SECRET }}"
+            VOUCH_OAUTH_CALLBACK_URL="${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }}"
+            SELFAUTH_ADMIN_PASSWORD="${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }}"
+            SELFAUTH_OIDC_ISSUER="${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ISSUER }}"
+            SELFAUTH_OIDC_CLIENT_ID="${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_ID }}"
+            SELFAUTH_OIDC_CLIENT_SECRET="${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_SECRET }}"
+            SELFAUTH_OIDC_SCOPES="${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_SCOPES }}"
+            SELFAUTH_OIDC_ALLOWED_EMAILS="${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ALLOWED_EMAILS }}"
+            MINIFLUX_OAUTH2_PROVIDER="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_PROVIDER }}"
+            MINIFLUX_OAUTH2_CLIENT_ID="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_ID }}"
+            MINIFLUX_OAUTH2_CLIENT_SECRET="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_SECRET }}"
+            MINIFLUX_OAUTH2_REDIRECT_URL="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }}"
+            MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }}"
+            MINIFLUX_OAUTH2_USER_CREATION="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_USER_CREATION }}"
+            EOF
+
             docker compose down
-            API_DB_HOST=${{ steps.op-load-secret.outputs.API_DB_HOST }} \
-            API_DB_USER=${{ steps.op-load-secret.outputs.API_DB_USER }} \
-            API_DB_PASS=${{ steps.op-load-secret.outputs.API_DB_PASS }} \
-            API_DB=${{ steps.op-load-secret.outputs.API_DB }} \
-            API_DB_HOST2=${{ steps.op-load-secret.outputs.API_DB_HOST2 }} \
-            API_DB_USER2=${{ steps.op-load-secret.outputs.API_DB_USER2 }} \
-            API_DB_PASS2=${{ steps.op-load-secret.outputs.API_DB_PASS2 }} \
-            API_DB2=${{ steps.op-load-secret.outputs.API_DB2 }} \
-            API_JWT_SECRET=${{ steps.op-load-secret.outputs.API_JWT_SECRET }} \
-            FRESHRSS_MYSQL_USER=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_USER }} \
-            FRESHRSS_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_MYSQL_PASSWORD }} \
-            MYSQL_ROOT_PASSWORD=${{ steps.op-load-secret.outputs.MYSQL_ROOT_PASSWORD }} \
-            FRESHRSS_USER=${{ steps.op-load-secret.outputs.FRESHRSS_USER }} \
-            FRESHRSS_EMAIL=${{ steps.op-load-secret.outputs.FRESHRSS_EMAIL }} \
-            FRESHRSS_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_PASSWORD }} \
-            FRESHRSS_API_PASSWORD=${{ steps.op-load-secret.outputs.FRESHRSS_API_PASSWORD }} \
-            DEFAULT_EMAIL=${{ steps.op-load-secret.outputs.DEFAULT_EMAIL }} \
-            YOURLS_DB_USER=${{ steps.op-load-secret.outputs.YOURLS_DB_USER }} \
-            YOURLS_DB_PASS=${{ steps.op-load-secret.outputs.YOURLS_DB_PASS }} \
-            YOURLS_USER=${{ steps.op-load-secret.outputs.YOURLS_USER }} \
-            YOURLS_PASS=${{ steps.op-load-secret.outputs.YOURLS_PASS }} \
-            YOURLS_API=${{ steps.op-load-secret.outputs.YOURLS_API }} \
-            MATOMO_MYSQL_USER=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_USER }} \
-            MATOMO_MYSQL_PASSWORD=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            MATOMO_MYSQL_DATABASE=${{ steps.op-load-secret.outputs.MATOMO_MYSQL_DATABASE }} \
-            VOUCH_DOMAINS=${{ steps.op-load-secret.outputs.VOUCH_DOMAINS }} \
-            VOUCH_OAUTH_PROVIDER=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_PROVIDER }} \
-            VOUCH_OAUTH_CLIENT_ID=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_ID }} \
-            VOUCH_OAUTH_CLIENT_SECRET=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CLIENT_SECRET }} \
-            VOUCH_OAUTH_CALLBACK_URL=${{ steps.op-load-secret.outputs.VOUCH_OAUTH_CALLBACK_URL }} \
-            SA_APP_KEY=${{ steps.op-load-secret.outputs.SA_APP_KEY }} \
-            SA_USER_URL=${{ steps.op-load-secret.outputs.SA_USER_URL }} \
-            SA_USER_HASH=${{ steps.op-load-secret.outputs.SA_USER_HASH }} \
-            SELFAUTH_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }} \
-            MINIFLUX_OAUTH2_PROVIDER=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_PROVIDER }} \
-            MINIFLUX_OAUTH2_CLIENT_ID=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_ID }} \
-            MINIFLUX_OAUTH2_CLIENT_SECRET=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_SECRET }} \
-            MINIFLUX_OAUTH2_REDIRECT_URL=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_REDIRECT_URL }} \
-            MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_OIDC_DISCOVERY_ENDPOINT }} \
-            MINIFLUX_OAUTH2_USER_CREATION=${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_USER_CREATION }} \
-            SELFAUTH_ADMIN_PASSWORD=${{ steps.op-load-secret.outputs.SELFAUTH_ADMIN_PASSWORD }} \
-            SELFAUTH_OIDC_ISSUER=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ISSUER }} \
-            SELFAUTH_OIDC_CLIENT_ID=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_ID }} \
-            SELFAUTH_OIDC_CLIENT_SECRET=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_SECRET }} \
-            SELFAUTH_OIDC_SCOPES=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_SCOPES }} \
-            SELFAUTH_OIDC_ALLOWED_EMAILS=${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ALLOWED_EMAILS }} \
             docker compose up --detach
