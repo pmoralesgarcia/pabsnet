@@ -60,7 +60,7 @@ services:
       - TZ=America/Los_Angeles 
 
   miniflux:
-    image: miniflux/miniflux:2.3.2
+    image: miniflux/miniflux:2.3.3
     container_name: miniflux
     ports:
       - "8084:8080"
@@ -179,7 +179,7 @@ services:
   #     - "8080:80"
   wishlist:
     container_name: wishlist
-    image: ghcr.io/cmintey/wishlist:v0.62.0
+    image: ghcr.io/cmintey/wishlist:v0.66.0
     ports:
       - 3280:3280
     volumes:
