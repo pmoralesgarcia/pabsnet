@@ -7,7 +7,7 @@ Layout: blog
 Tag: 2026, MUNI, public transportation, Transit Month, September
 Description: I love public transit in the Bay Area!
 Image: https://static.lifeofpablo.com/media/blog/2026-10-05-bay-areas-11th-annual-transit-month/IMG_8930.jpg
-Status: draft
+Status: public
 ---
 
 September marked the [Bay Area’s 11th annual Transit Month](https://www.ca.transitmonth.org/bay-area). I didn't realize that there was a month celebrated for Public Transit much less here in the Bay area! I'm not surprised but I was surprised. Here in San Francisco, MUNI hosted an a two-day event called [Muni Heritage Weekend 2026](https://www.sfmta.com/calendar/muni-heritage-weekend-2026) across the street from the Ferry Building! The event was so much fun! I got some fun [MUNI merch](https://themunistore.com/) that was exclusive to that day. I love repping the local transit companies because it's badass. 
