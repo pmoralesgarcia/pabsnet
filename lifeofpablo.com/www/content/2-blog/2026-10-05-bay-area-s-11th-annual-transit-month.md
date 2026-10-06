@@ -1,6 +1,6 @@
 ---
 Title: Bay Area’s 11th annual Transit Month
-Published: 2026-10-05T04:24:11.958Z
+Published: 2026-10-05
 Author: Pablo Morales
 Language: en
 Layout: blog

@@ -44,9 +44,9 @@
                             <span class="archive-meta">
                                 <?php echo $page->getDateHtml("published", "M j") ?>
                             </span>
-                            <a class="entry-link" href="<?php echo $page->getLocation(true) ?>">
-                                <?php echo $page->getHtml("title") ?>
-                            </a>
+                            <a class="entry-link" href="<?php echo $page->getLocation(true) ?>" title="<?php echo $page->getHtml("description") ?>">
+    <?php echo $page->getHtml("title") ?>
+</a>
                         </div>
                     <?php endforeach; ?>
                 </div>
