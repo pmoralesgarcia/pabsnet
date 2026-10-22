@@ -1,5 +1,5 @@
 # Use a specific, stable version of PHP on Alpine Linux for a tiny footprint
-FROM php:8.4-fpm-alpine
+FROM php:8.6-fpm-alpine
 
 # 1. Install system dependencies and PHP extensions
 # We use 'libpng-dev', etc., for the GD extension
