@@ -160,25 +160,25 @@ services:
     networks:
       - app_network
 
-  lifeofpablo-app:
-    build:
-      dockerfile: ./lifeofpablo/Dockerfile 
-    container_name: lifeofpablo-app
-    restart: always
-    ports:
-      - "8110:80"
-    volumes:
-      - ./lifeofpablo.com/www:/var/www/main
-      - ./lifeofpablo-interactives/www:/var/www/interactives
-      - ./lifeofpablo-guestbook/www/guestbook:/var/www/guestbook
-      - ./lifeofpablo-linkinbio/www:/var/www/linkinbio
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
-      - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
-      - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
-    networks:
-      - app_network
+  # lifeofpablo-app:
+  #   build:
+  #     dockerfile: ./lifeofpablo/Dockerfile 
+  #   container_name: lifeofpablo-app
+  #   restart: always
+  #   ports:
+  #     - "8110:80"
+  #   volumes:
+  #     - ./lifeofpablo.com/www:/var/www/main
+  #     - ./lifeofpablo-interactives/www:/var/www/interactives
+  #     - ./lifeofpablo-guestbook/www/guestbook:/var/www/guestbook
+  #     - ./lifeofpablo-linkinbio/www:/var/www/linkinbio
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.lifeofpablo-proxy.rule=Host(`lifeofpablo.com`)"
+  #     - "traefik.http.routers.lifeofpablo-proxy.entrypoints=websecure"
+  #     - "traefik.http.routers.lifeofpablo-proxy.tls.certresolver=myresolver"
+  #   networks:
+  #     - app_network
 
   wishlist:
     container_name: wishlist
