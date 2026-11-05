@@ -27,6 +27,10 @@ class Micropub
         'ó' => 'o', 'ò' => 'o', 'ô' => 'o', 'õ' => 'o', 'ø' => 'o', 'ö' => 'oe', 'œ' => 'oe',
         'ú' => 'u', 'ù' => 'u', 'û' => 'u', 'ü' => 'ue', 'ý' => 'y', 'ÿ' => 'y', 'ß' => 'ss',
     ];
+    private const LAYOUTS = ['blog' => 'blog', 'notes' => 'note'];
+    /** Having any of these makes a post something other than an article, even with a title. */
+    private const NON_ARTICLE = ['in-reply-to', 'rsvp', 'checkin', 'video', 'audio'];
+    private const RSVP_VALUES = ['yes', 'no', 'maybe', 'interested'];
     /** Marks a Title made from the post's text, which clients must not see as a real name. */
     private const GENERATED_TITLE = 'Title-Generated';
     private const BLOCK_OPEN = '<!-- micropub:context -->';
@@ -88,7 +92,10 @@ class Micropub
             'author' => (string) getenv('SELFAUTH_MICROPUB_AUTHOR'),
             'language' => (string) getenv('SELFAUTH_MICROPUB_LANGUAGE'),
             'content_path' => trim(getenv('SELFAUTH_MICROPUB_CONTENT_PATH') ?: 'content', '/'),
-            'sections' => ['blog' => getenv('SELFAUTH_MICROPUB_BLOG_DIR') ?: 'blog'],
+            'sections' => array_filter([
+                'blog' => getenv('SELFAUTH_MICROPUB_BLOG_DIR') ?: 'blog',
+                'notes' => (string) getenv('SELFAUTH_MICROPUB_NOTES_DIR'),
+            ], 'strlen'),
             'media_prefix' => trim(getenv('SELFAUTH_MICROPUB_MEDIA_PREFIX') ?: 'media/micropub', '/'),
             'media_url' => rtrim((string) getenv('SELFAUTH_MICROPUB_MEDIA_URL'), '/'),
         ], $media);
@@ -151,9 +158,11 @@ class Micropub
             throw new MicropubException(400, 'invalid_request', 'A post needs a name, content, a photo or a link');
         }
 
-        $section = 'blog'; // The site has one section, so untitled posts live there too.
+        // Articles go to the blog and everything else to notes. Without a notes section, all go to the blog.
+        $section = !self::isArticle($props, $name, $body) && isset($this->cfg['sections']['notes']) ? 'notes' : 'blog';
+        $hasRealName = $name !== '' && !self::nameRepeatsText($name, $body);
         $published = self::parseDate(self::firstString($props['published'] ?? []));
-        $title = $name !== '' ? $name : self::titleFrom($props, $body);
+        $title = $hasRealName ? $name : self::titleFrom($props, $body);
         $slug = $this->uniqueSlug($section, self::slugify($slugHint !== '' ? $slugHint : $title, $published));
         $path = $this->sectionPath($section) . '/' . date('Y-m-d', $published) . '-' . $slug . '.md';
 
@@ -164,8 +173,8 @@ class Micropub
         if (($this->cfg['language'] ?? '') !== '') {
             $meta['Language'] = self::oneLine($this->cfg['language']);
         }
-        $meta['Layout'] = $section;
-        if ($name === '') {
+        $meta['Layout'] = self::LAYOUTS[$section];
+        if (!$hasRealName) {
             $meta[self::GENERATED_TITLE] = 'true';
         }
         $file = self::render($meta, $props, $body, true, true);
@@ -406,7 +415,9 @@ class Micropub
                 $url = self::urlOf($value);
                 if ($url !== null) {
                     $safe = htmlspecialchars($url, ENT_QUOTES);
-                    $parts[] = $label . ': <a href="' . $safe . '" class="' . $class . '">' . $safe . '</a>';
+                    $rsvp = $prop === 'in-reply-to' ? self::rsvpOf($props) : null;
+                    $intro = $rsvp !== null ? 'RSVPs <span class="p-rsvp">' . $rsvp . '</span> to ' : $label . ': ';
+                    $parts[] = $intro . '<a href="' . $safe . '" class="' . $class . '">' . $safe . '</a>';
                 }
             }
         }
@@ -446,7 +457,7 @@ class Micropub
             if (self::fileSlug($name) === $slug) {
                 $path = $this->sectionPath($section) . '/' . $name;
                 $file = $this->store->get($path);
-                if ($file !== null) {
+                if ($file !== null && self::isPost($file['content'])) {
                     return [$path, $file];
                 }
             }
@@ -485,6 +496,18 @@ class Micropub
             $candidate = $slug . '-' . $i;
         }
         return $candidate;
+    }
+
+    /** Section pages such as the archive or blogroll share these folders but are not posts. */
+    private static function isPost(string $content): bool
+    {
+        [$meta] = self::parse($content);
+        foreach ($meta as $key => $value) {
+            if (is_string($key) && strtolower($key) === 'layout') {
+                return in_array(strtolower(trim($value)), self::LAYOUTS, true);
+            }
+        }
+        return true; // No layout means Yellow's default, and at least one old post relies on that.
     }
 
     /** What Yellow serves a file as: no date prefix, no extension. */
@@ -529,6 +552,43 @@ class Micropub
         return is_scalar($value) ? str_replace("\r\n", "\n", (string) $value) : '';
     }
 
+    /**
+     * An article has a real title and body text, and is not an interaction. Unlike
+     * strict post type discovery, a photo alone does not rule it out, because a
+     * titled post with text and a hero image is still a blog post.
+     */
+    private static function isArticle(array $props, string $name, string $body): bool
+    {
+        if ($name === '' || self::plainText($body) === '' || self::nameRepeatsText($name, $body)) {
+            return false;
+        }
+        foreach (array_keys($props) as $key) {
+            if (in_array($key, self::NON_ARTICLE, true) || str_ends_with((string) $key, '-of')) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /** Some clients send the start of a note's text as its name, which is not a title. */
+    private static function nameRepeatsText(string $name, string $body): bool
+    {
+        $text = mb_strtolower(self::plainText($body));
+        $start = mb_strtolower(rtrim(self::plainText($name), ".… \t"));
+        return $text !== '' && $start !== '' && str_starts_with($text, $start);
+    }
+
+    private static function plainText(string $html): string
+    {
+        return trim((string) preg_replace('/\s+/', ' ', strip_tags($html)));
+    }
+
+    private static function rsvpOf(array $props): ?string
+    {
+        $value = strtolower(self::firstString($props['rsvp'] ?? []));
+        return in_array($value, self::RSVP_VALUES, true) ? $value : null;
+    }
+
     private static function titleFrom(array $props, string $body): string
     {
         $text = trim((string) preg_replace('/\s+/', ' ', strip_tags($body)));
@@ -536,7 +596,8 @@ class Micropub
             foreach (self::INTERACTIONS as $prop => [$label]) {
                 $url = self::urlOf(($props[$prop] ?? [null])[0]);
                 if ($url !== null) {
-                    return $label . ': ' . $url;
+                    $rsvp = $prop === 'in-reply-to' ? self::rsvpOf($props) : null;
+                    return ($rsvp !== null ? 'RSVP ' . $rsvp : $label) . ': ' . $url;
                 }
             }
             return 'Photo';

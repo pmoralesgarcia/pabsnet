@@ -58,6 +58,7 @@ services:
       # SELFAUTH_MICROPUB_GITHUB_BRANCH: "main"
       # SELFAUTH_MICROPUB_CONTENT_PATH: "content"
       # SELFAUTH_MICROPUB_BLOG_DIR: "blog"
+      # SELFAUTH_MICROPUB_NOTES_DIR: ""               # if set, everything but articles goes here
       # SELFAUTH_MICROPUB_LANGUAGE: ""               # adds a Language key to new posts
       # Media goes to Backblaze B2. All four are needed, and posts work without them.
       # SELFAUTH_MICROPUB_B2_KEY_ID: ""              # application key limited to one bucket, writeFiles

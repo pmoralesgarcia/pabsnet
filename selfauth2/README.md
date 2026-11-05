@@ -159,7 +159,10 @@ Posts need the `SELFAUTH_MICROPUB_*` settings listed in `docker-compose.yml`. Us
 
 For media, create a B2 application key limited to your bucket with the `writeFiles` capability. `SELFAUTH_MICROPUB_MEDIA_URL` must serve that bucket's files at the same paths. Media is optional: without it, posts still work and `q=config` leaves out `media-endpoint`.
 
-- Titled and untitled posts both go in the blog directory. An untitled post gets a `Title` from its text, marked `Title-Generated: true`.
+- Articles go to `SELFAUTH_MICROPUB_BLOG_DIR` at `/blog/` with the `blog` layout. Everything else goes to `SELFAUTH_MICROPUB_NOTES_DIR` at `/notes/` with the `note` layout. With no notes directory set, everything goes to the blog. A post keeps its section when updated.
+- An article has a real title and body text, and is not an interaction (`in-reply-to`, `rsvp`, `checkin`, `video`, `audio`, or anything ending in `-of`, such as `like-of`). A hero `photo` does not stop a post being an article. A name that just repeats the start of the text is not treated as a title.
+- An untitled post gets a `Title` from its text, marked `Title-Generated: true`.
+- Section pages in those folders, such as an archive or blogroll, cannot be read, edited or deleted through Micropub. Only files with the `blog` or `note` layout, or no layout, count as posts.
 - Updates keep frontmatter keys and body text that Micropub does not manage, so hand edits survive.
 - `post-status=draft` and `visibility=private` become `Status: draft`, and `visibility=unlisted` becomes `Status: unlisted`.
 - A token with only the `draft` scope can never publish. Deleting removes the file, and git history keeps it.

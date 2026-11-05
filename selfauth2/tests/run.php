@@ -225,6 +225,66 @@ $empty = tempnam(sys_get_temp_dir(), 'mp');
 t('empty refused', $rejects(fn() => $mp->storeMedia($empty), 400));
 array_map('unlink', [$png, $svg, $php, $empty]);
 
+// routing: articles to the blog, everything else to notes
+$notesDir = 'data/site/content/4-notes';
+$rg = new FakeGitHub(["$dir/page.md" => "---\nTitle: Blog\nLayout: blog-start\n---\n", "$dir/roll.md" => "---\nTitle: Roll\nLayout: blogroll\n---\n", "$dir/2020-01-01-old.md" => "---\nTitle: Old\n---\nNo layout.\n", "$notesDir/page.md" => "---\nTitle: Notes\nLayout: notes-start\n---\n", "$notesDir/archive.md" => "---\nTitle: Archive\nLayout: notes-archive\n---\n"]);
+$rp = new Micropub(new GitHubStore('me/site', 'main', 'pat', 'https://gh.test', [$rg, 'handle']), ['site' => 'https://me.example/', 'author' => 'Me', 'content_path' => 'data/site/content', 'sections' => ['blog' => '3-blog', 'notes' => '4-notes'], 'media_prefix' => 'media/micropub', 'media_url' => 'https://cdn.example'], $b2Store);
+$routedFile = function (string $url) use ($rg) {
+    foreach ($rg->files as $path => $c) { if (Micropub::fileSlug(basename($path)) === basename($url) && str_contains($path, str_contains($url, '/notes/') ? '4-notes' : '3-blog')) return $c; }
+    return '';
+};
+$routes = [
+    'article' => [['name' => ['A Real Article'], 'content' => ['Long body text here.']], 'blog', 'blog', false],
+    'article with html content' => [['name' => ['Html Article'], 'content' => [['html' => '<p>Some <b>html</b> body</p>']]], 'blog', 'blog', false],
+    'article with a hero photo' => [['name' => ['Trip Report'], 'content' => ['We went.'], 'photo' => ['https://i.example/a.jpg']], 'blog', 'blog', false],
+    'plain note' => [['content' => ['Just a thought']], 'notes', 'note', true],
+    'note named with its own text' => [['name' => ['Just another thought'], 'content' => ['Just another thought, and more']], 'notes', 'note', true],
+    'note named with truncated text' => [['name' => ['Trailing dots...'], 'content' => ['Trailing dots and then the rest']], 'notes', 'note', true],
+    'like' => [['like-of' => ['https://x.example/1']], 'notes', 'note', true],
+    'titled like with a comment' => [['name' => ['Testing Micropub'], 'like-of' => ['https://x.example/2'], 'content' => ['Awesome link!']], 'notes', 'note', false],
+    'reply' => [['in-reply-to' => ['https://x.example/3'], 'content' => ['Agreed']], 'notes', 'note', true],
+    'titled reply' => [['name' => ['A Reply'], 'in-reply-to' => ['https://x.example/4'], 'content' => ['Long reply']], 'notes', 'note', false],
+    'repost' => [['repost-of' => ['https://x.example/5']], 'notes', 'note', true],
+    'bookmark with its page title' => [['name' => ['Good Page'], 'bookmark-of' => ['https://x.example/6'], 'content' => ['Worth reading']], 'notes', 'note', false],
+    'rsvp' => [['in-reply-to' => ['https://x.example/7'], 'rsvp' => ['yes']], 'notes', 'note', true],
+    'photo' => [['photo' => ['https://i.example/b.jpg']], 'notes', 'note', true],
+    'captioned photo' => [['photo' => ['https://i.example/c.jpg'], 'content' => ['Sunset']], 'notes', 'note', true],
+    'titled photo without text' => [['name' => ['Sunset Pic'], 'photo' => ['https://i.example/d.jpg']], 'notes', 'note', false],
+    'video' => [['name' => ['A Clip'], 'video' => ['https://i.example/v.mp4'], 'content' => ['Watch']], 'notes', 'note', false],
+    'audio' => [['audio' => ['https://i.example/a.mp3']], 'notes', 'note', true],
+    'checkin' => [['checkin' => ['https://x.example/place'], 'content' => ['Here']], 'notes', 'note', true],
+    'listen' => [['name' => ['Song'], 'listen-of' => ['https://x.example/song'], 'content' => ['Great track']], 'notes', 'note', false],
+    'title with no text' => [['name' => ['Only A Title']], 'notes', 'note', false],
+];
+foreach ($routes as $label => [$props, $section, $layout, $generated]) {
+    $u = $rp->create($entry($props));
+    $f = $routedFile($u);
+    t("route $label: url", str_starts_with($u, "https://me.example/$section/"));
+    t("route $label: layout", str_contains($f, "Layout: $layout\n"));
+    t("route $label: generated title flag", str_contains($f, 'Title-Generated: true') === $generated);
+}
+$u = $rp->create($entry(['in-reply-to' => ['https://x.example/hwc'], 'rsvp' => ['yes']]));
+t('rsvp uses site markup', str_contains($routedFile($u), 'RSVPs <span class="p-rsvp">yes</span> to <a href="https://x.example/hwc" class="u-in-reply-to">'));
+t('rsvp title', str_contains($routedFile($u), 'Title: RSVP yes: https://x.example/hwc'));
+$u = $rp->create($entry(['in-reply-to' => ['https://x.example/hwc2'], 'rsvp' => ['<b>x</b>']]));
+t('unknown rsvp value is not rendered', !str_contains(explode("\n---\n", $routedFile($u), 2)[1], '<b>x</b>') && str_contains($routedFile($u), 'Replying to: '));
+
+// each section has its own slugs, and notes can be managed like posts
+t('same slug allowed across sections', $rp->create($entry(['name' => ['Shared Slug'], 'content' => ['Blog body']])) === 'https://me.example/blog/shared-slug' && $rp->create($entry(['name' => ['Shared Slug']])) === 'https://me.example/notes/shared-slug');
+t('notes slug avoids the archive page', $rp->create($entry(['name' => ['Archive']])) === 'https://me.example/notes/archive-2');
+$u = $rp->create($entry(['content' => ['Editable note']]));
+$rp->update($u, ['replace' => ['content' => ['Edited note']]]);
+t('note can be updated in place', str_contains($routedFile($u), "Edited note\n") && str_contains($routedFile($u), 'Title: Edited note') && str_contains($routedFile($u), "Layout: note\n"));
+t('note source hides generated title', !isset($rp->source($u)['properties']['name']));
+$rp->delete($u);
+t('note can be deleted', $routedFile($u) === '');
+
+// section pages are not posts, even with a delete-scoped token
+t('archive page cannot be deleted', $rejects(fn() => $rp->delete('https://me.example/notes/archive'), 404) && isset($rg->files["$notesDir/archive.md"]));
+t('blogroll cannot be edited', $rejects(fn() => $rp->update('https://me.example/blog/roll', ['replace' => ['content' => ['x']]]), 404));
+t('section page has no source', $rejects(fn() => $rp->source('https://me.example/notes/archive'), 404));
+t('post with no layout is still editable', isset($rp->source('https://me.example/blog/old')['properties']['content']));
+
 // details borrowed from the Datenstrom editor script
 t('accents become readable slugs', Micropub::slugify('Cañón en Größe, café', time()) === 'canon-en-groesse-cafe');
 t('curly apostrophe matches existing slugs', Micropub::slugify('Bay Area’s 11th', time()) === 'bay-area-s-11th');
