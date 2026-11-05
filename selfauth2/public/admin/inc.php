@@ -18,6 +18,7 @@ function admin_nav_items(): array
     }
     if (Session::hasRole('owner')) {
         $items['admins.php'] = 'Admins';
+        $items['access-tokens.php'] = 'App Access';
         $items['api-tokens.php'] = 'API Tokens';
         $items['webhooks.php'] = 'Webhooks';
         $items['settings.php'] = 'Settings';

@@ -147,7 +147,29 @@ The sign-in screen shows the app's name, logo and domain, where you will be sent
 - Permissions Selfauth does not know about are shown as "Not available here" and never granted. Set `SELFAUTH_ALLOWED_SCOPES` (space or comma separated, or `*`) to change what is allowed.
 - Your name, photo, URL and email are set in **Settings → Sign-in profile** and are returned to an app only when you granted `profile` (and `email` for the address).
 
-Selfauth is an authorization endpoint only. It tells an app who you are; it does not issue access tokens. Access permissions such as `create` are only meaningful if you also run a token endpoint that trusts this one.
+### Tokens
+
+`token.php` exchanges a code for an access token, checking PKCE and refusing codes granted no scope. Tokens expire after `SELFAUTH_TOKEN_TTL` seconds (90 days by default, no refresh tokens) and are stored only as SHA-256 hashes. `introspect.php` lets a service check a token, authorized with an active access token or an API token with the `tokens:introspect` scope, and `revoke.php` revokes one. **Admin → App Access** lists tokens and revokes them. Older clients can also verify a token with `GET token.php` and a bearer header.
+
+### Micropub
+
+`micropub.php` is a [Micropub](https://micropub.spec.indieweb.org/) server for a Yellow CMS site stored in GitHub: each create, update or delete is a commit, and your deploy pipeline publishes it. `micropub-media.php` is the media endpoint: it stores JPEG, PNG, GIF and WebP files up to 10 MB in Backblaze B2, under `SELFAUTH_MICROPUB_MEDIA_PREFIX`, and returns a URL on `SELFAUTH_MICROPUB_MEDIA_URL`. Create responses are `202` because the post goes live only after the deploy finishes.
+
+Posts need the `SELFAUTH_MICROPUB_*` settings listed in `docker-compose.yml`. Use a fine-grained personal access token limited to Contents read/write on one repository. GitHub's built-in Actions token will not do, because commits made with it do not start other workflows.
+
+For media, create a B2 application key limited to your bucket with the `writeFiles` capability. `SELFAUTH_MICROPUB_MEDIA_URL` must serve that bucket's files at the same paths. Media is optional: without it, posts still work and `q=config` leaves out `media-endpoint`.
+
+- Titled and untitled posts both go in the blog directory. An untitled post gets a `Title` from its text, marked `Title-Generated: true`.
+- Updates keep frontmatter keys and body text that Micropub does not manage, so hand edits survive.
+- `post-status=draft` and `visibility=private` become `Status: draft`, and `visibility=unlisted` becomes `Status: unlisted`.
+- A token with only the `draft` scope can never publish. Deleting removes the file, and git history keeps it.
+
+Add these to your homepage `<head>`:
+
+```html
+<link rel="token_endpoint" href="https://auth.example.com/token.php">
+<link rel="micropub" href="https://auth.example.com/micropub.php">
+```
 
 | Variable | Default | Purpose |
 |---|---|---|

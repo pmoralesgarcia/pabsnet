@@ -18,6 +18,9 @@ RUN a2enmod rewrite headers \
     && sed -i 's#DocumentRoot /var/www/html#DocumentRoot /app/public#' /etc/apache2/sites-available/000-default.conf \
     && printf '<Directory /app/public>\n    Options Indexes FollowSymLinks\n    AllowOverride All\n    Require all granted\n</Directory>\n' >> /etc/apache2/apache2.conf
 
+# Micropub media uploads go up to 10 MB (PHP's default limit is 2 MB).
+RUN printf 'upload_max_filesize=10M\npost_max_size=12M\n' > /usr/local/etc/php/conf.d/uploads.ini
+
 WORKDIR /app
 
 COPY . /app

@@ -57,6 +57,10 @@ jobs:
           SELFAUTH_OIDC_CLIENT_SECRET: op://pablo/selfauth/SELFAUTH_OIDC_CLIENT_SECRET
           SELFAUTH_OIDC_SCOPES: op://pablo/selfauth/SELFAUTH_OIDC_SCOPES
           SELFAUTH_OIDC_ALLOWED_EMAILS: op://pablo/selfauth/SELFAUTH_OIDC_ALLOWED_EMAILS
+          SELFAUTH_MICROPUB_GITHUB_TOKEN: op://pablo/selfauth/SELFAUTH_MICROPUB_GITHUB_TOKEN
+          SELFAUTH_MICROPUB_B2_KEY_ID: op://pablo/selfauth/SELFAUTH_MICROPUB_B2_KEY_ID
+          SELFAUTH_MICROPUB_B2_APP_KEY: op://pablo/selfauth/SELFAUTH_MICROPUB_B2_APP_KEY
+          SELFAUTH_MICROPUB_B2_BUCKET_ID: op://pablo/selfauth/SELFAUTH_MICROPUB_B2_BUCKET_ID
           MINIFLUX_OAUTH2_PROVIDER: op://pablo/miniflux/MINIFLUX_OAUTH2_PROVIDER
           MINIFLUX_OAUTH2_CLIENT_ID: op://pablo/miniflux/MINIFLUX_OAUTH2_CLIENT_ID
           MINIFLUX_OAUTH2_CLIENT_SECRET: op://pablo/miniflux/MINIFLUX_OAUTH2_CLIENT_SECRET
@@ -112,6 +116,10 @@ jobs:
             SELFAUTH_OIDC_CLIENT_SECRET="${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_CLIENT_SECRET }}"
             SELFAUTH_OIDC_SCOPES="${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_SCOPES }}"
             SELFAUTH_OIDC_ALLOWED_EMAILS="${{ steps.op-load-secret.outputs.SELFAUTH_OIDC_ALLOWED_EMAILS }}"
+            SELFAUTH_MICROPUB_GITHUB_TOKEN="${{ steps.op-load-secret.outputs.SELFAUTH_MICROPUB_GITHUB_TOKEN }}"
+            SELFAUTH_MICROPUB_B2_KEY_ID="${{ steps.op-load-secret.outputs.SELFAUTH_MICROPUB_B2_KEY_ID }}"
+            SELFAUTH_MICROPUB_B2_APP_KEY="${{ steps.op-load-secret.outputs.SELFAUTH_MICROPUB_B2_APP_KEY }}"
+            SELFAUTH_MICROPUB_B2_BUCKET_ID="${{ steps.op-load-secret.outputs.SELFAUTH_MICROPUB_B2_BUCKET_ID }}"
             MINIFLUX_OAUTH2_PROVIDER="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_PROVIDER }}"
             MINIFLUX_OAUTH2_CLIENT_ID="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_ID }}"
             MINIFLUX_OAUTH2_CLIENT_SECRET="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_CLIENT_SECRET }}"

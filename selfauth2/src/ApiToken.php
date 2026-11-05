@@ -10,6 +10,7 @@ class ApiToken
         'blocklist:write',
         'mentions:read',
         'mentions:write',
+        'tokens:introspect',
     ];
 
     private \PDO $pdo;
