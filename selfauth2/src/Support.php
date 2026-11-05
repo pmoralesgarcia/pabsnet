@@ -8,27 +8,32 @@ class Support
     {
         $protocol = $_SERVER['SERVER_PROTOCOL'] ?? 'HTTP/1.0';
         header($protocol . ' ' . $http);
-        $header = htmlspecialchars($header, ENT_QUOTES);
-        $body = htmlspecialchars($body, ENT_QUOTES);
-        $html = <<<HTML
+        header('Cache-Control: no-store');
+        header('X-Content-Type-Options: nosniff');
+        header('Referrer-Policy: no-referrer');
+        header("Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'");
+        $css = @file_get_contents(__DIR__ . '/../public/assets/signin.css') ?: '';
+        $header = htmlspecialchars($header, ENT_QUOTES, 'UTF-8');
+        $body = htmlspecialchars($body, ENT_QUOTES, 'UTF-8');
+        die(<<<HTML
 <!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <style>
-            .error{width:100%;text-align:center;margin-top:10%;font-family:sans-serif;}
-        </style>
-        <title>Error: $header</title>
-    </head>
-    <body>
-        <div class="error">
-            <h1>Error: $header</h1>
-            <p>$body</p>
-        </div>
-    </body>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<title>$header</title>
+<style>$css</style>
+</head>
+<body>
+<main class="sheet err" role="alert">
+<h1>$header</h1>
+<p class="plain">$body</p>
+</main>
+</body>
 </html>
-HTML;
-        die($html);
+HTML);
     }
 
     public static function filterInputRegexp(int $type, string $variable, string $regexp, ?int $flags = null)

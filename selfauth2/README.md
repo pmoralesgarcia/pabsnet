@@ -120,6 +120,42 @@ Kanidm requires PKCE by default and defaults to ES256 ID token signatures — bo
 
 On the IndieAuth login screen or `/admin/login.php`, click **Log in with SSO**. The admin Settings page shows the live status of both toggles (enabled, misconfigured, or off) and your current session's auth method/identity.
 
+## IndieAuth sign-in (PKCE)
+
+Selfauth implements the current [IndieAuth specification](https://indieauth.spec.indieweb.org/):
+
+- **PKCE is required.** Requests must send `code_challenge` with `code_challenge_method=S256`; the client proves it started the flow by sending `code_verifier` when it redeems the code. Set `SELFAUTH_REQUIRE_PKCE=false` only if you must support an old client that does not send a challenge.
+- **Authorization codes are single-use**, expire after 10 minutes, are bound to the client, `redirect_uri` and PKCE challenge, and are stored only as a SHA-256 hash. A failed redemption attempt burns the code.
+- **`iss` is returned** on every redirect (success and error), per RFC 9207, so clients can detect mix-up attacks.
+- **The app is checked before you see it.** `client_id` must be a valid URL (no fragment, credentials, dot segments or private IPs). If `redirect_uri` is on a different site than the `client_id`, the app must publish it (`<link rel="redirect_uri">` or `redirect_uris` in its JSON metadata) or sign-in is stopped. Client details are fetched with SSRF protection (public IPs only, connection pinned to the vetted address, redirects re-checked, size and time limits).
+- **Errors go back to the app** once its `redirect_uri` is verified (`invalid_request`, `access_denied` and so on); problems that make the redirect unsafe show an error page instead.
+
+Add these to your homepage `<head>` so apps can find the endpoint (replace the URLs):
+
+```html
+<link rel="authorization_endpoint" href="https://auth.example.com/">
+<link rel="indieauth-metadata" href="https://auth.example.com/metadata.php">
+<link rel="webmention" href="https://auth.example.com/webmention.php">
+```
+
+### Permissions (scopes) on the sign-in screen
+
+The sign-in screen shows the app's name, logo and domain, where you will be sent back to, and each permission it asks for in plain language with a risk label. Low-risk permissions (`profile`) are pre-selected; anything that reads or changes your site (`email`, `create`, `update`, `delete`, `media` and the rest) starts switched off and you opt in. Rules enforced on the server, not just in the page:
+
+- Only permissions you tick are granted, and only ones the app actually asked for.
+- `email` is dropped unless `profile` is also granted.
+- Permissions Selfauth does not know about are shown as "Not available here" and never granted. Set `SELFAUTH_ALLOWED_SCOPES` (space or comma separated, or `*`) to change what is allowed.
+- Your name, photo, URL and email are set in **Settings → Sign-in profile** and are returned to an app only when you granted `profile` (and `email` for the address).
+
+Selfauth is an authorization endpoint only. It tells an app who you are; it does not issue access tokens. Access permissions such as `create` are only meaningful if you also run a token endpoint that trusts this one.
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `SELFAUTH_REQUIRE_PKCE` | `true` | Reject requests without a PKCE challenge |
+| `SELFAUTH_ALLOWED_SCOPES` | known list | Permissions Selfauth may grant |
+
+Run the tests with `php tests/run.php`.
+
 ## Delegated admin access
 
 Selfauth is built around a single owner identity (your `SELFAUTH_USER_URL`) — that's fundamental to IndieAuth, and never changes. But you can still let other people help manage *this instance's admin portal*, via the **Admins** page (owner only, requires admin SSO to be enabled):
@@ -200,7 +236,8 @@ For classic installs without the admin portal available, delete `config.php` and
 ## Security notes
 
 - Passwords are hashed with Argon2id (or bcrypt if Argon2 isn't available in your PHP build) via `password_hash()`/`password_verify()`. A legacy raw-MD5 hash from an older Selfauth install is still accepted for login and is automatically upgraded to Argon2id afterwards.
-- Auth codes and CSRF tokens are HMAC-SHA256-signed, time-limited, single-purpose tokens — unchanged from before, since this was already a sound design.
+- Authorization codes are random, single-use, database-backed and bound to a PKCE challenge (see above). CSRF tokens are HMAC-SHA256-signed and time-limited.
+- The sign-in page sends a strict Content-Security-Policy, `X-Frame-Options: DENY`, `Referrer-Policy: no-referrer` and `Cache-Control: no-store`, and uses no JavaScript.
 - The admin portal uses its own session-based login (separate CSRF tokens, `HttpOnly`/`SameSite=Lax` cookies) and every state-changing action requires a CSRF token *and* a server-side role check — never just a hidden UI element.
 - OIDC login is purpose-scoped: the IndieAuth "me" identity can only ever be asserted by the owner allow-list; delegated admin-portal identities (however privileged) can never trigger it. ID tokens are verified locally (signature, issuer, audience, expiry, nonce) against the provider's published JWKS.
 - The IndieAuth login, admin login, and webmention receiver are all rate-limited (fixed-window, per IP or per token) against brute-force and abuse.
@@ -212,7 +249,7 @@ For classic installs without the admin portal available, delete `config.php` and
 
 ## How it works
 
-On a (Web)App which supports [IndieAuth](https://indieweb.org/IndieAuth), you can enter your personal URL. The App will detect Selfauth as Authorization Endpoint and redirect you to it. After you enter your password in Selfauth, you are redirected back to the App with a code. The App will verify the code with Selfauth and logs you in as your personal URL.
+On a (Web)App which supports [IndieAuth](https://indieweb.org/IndieAuth), you can enter your personal URL. The App will detect Selfauth as Authorization Endpoint and redirect you to it. After you review the permissions and enter your password in Selfauth, you are redirected back to the App with a code. The App redeems the code (with its PKCE verifier) at Selfauth and logs you in as your personal URL.
 
 To test it, you can go to an App that supports IndieAuth and enter your personal URL. [IndieAuth.com](https://indieauth.com/) has a test-form on the front page.
 

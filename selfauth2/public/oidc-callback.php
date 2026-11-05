@@ -40,46 +40,12 @@ if ($result['purpose'] === 'admin') {
     exit;
 }
 
-// purpose === 'login': resume the IndieAuth flow exactly as the password
-// branch of index.php does -- issue a signed code and bounce back to the
-// client application's redirect_uri.
+// purpose === 'login': resume the IndieAuth flow exactly like the password
+// path in index.php -- issue a single-use PKCE-bound code and send the user
+// back to the client.
 $params = $result['indieauth_params'] ?? null;
 if (!is_array($params) || !isset($params['client_id'], $params['redirect_uri'])) {
-    Support::errorPage('Session Expired', 'Your sign-in session expired before SSO completed; please try again.');
+    Support::errorPage('Sign-in expired', 'Your sign-in expired before single sign-on finished. Start again from the app.');
 }
 
-$client_id = $params['client_id'];
-$redirect_uri = $params['redirect_uri'];
-$state_param = $params['state'] ?? null;
-$scope = $params['scope'] ?? null;
-
-$signInLog = new SignInLog($pdo);
-$clientIp = Support::clientIp();
-
-$signedCode = Auth::createSignedCode(SELFAUTH_APP_KEY, SELFAUTH_USER_URL . $redirect_uri . $client_id, 5 * 60, $scope ?? '');
-
-$final_redir = $redirect_uri;
-$final_redir .= (strpos($redirect_uri, '?') === false) ? '?' : '&';
-$parameters = ['code' => $signedCode, 'me' => SELFAUTH_USER_URL];
-if ($state_param !== null) {
-    $parameters['state'] = $state_param;
-}
-$final_redir .= http_build_query($parameters);
-
-$signInLog->record($client_id, $redirect_uri, $scope, $clientIp, $_SERVER['HTTP_USER_AGENT'] ?? null, true);
-
-EventBus::fire($pdo, 'signin.success', [
-    'client_id' => $client_id,
-    'redirect_uri' => $redirect_uri,
-    'scope' => $scope,
-    'ip' => $clientIp,
-    'method' => 'oidc',
-    'identity' => (string) $identity,
-], 'Successful sign-in (SSO) from ' . $clientIp . ' for client ' . $client_id);
-
-if (function_exists('syslog') && getenv('SELFAUTH_SYSLOG_SUCCESS') === 'true') {
-    syslog(LOG_INFO, sprintf('IndieAuth: SSO login from %s for %s', $clientIp, SELFAUTH_USER_URL));
-}
-
-header('Location: ' . $final_redir, true, 302);
-exit;
+\Selfauth\AuthRequest::complete($pdo, $params, (array) ($params['granted'] ?? []), 'oidc', (string) $identity);

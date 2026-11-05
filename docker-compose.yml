@@ -339,6 +339,7 @@ services:
       - SELFAUTH_LOGIN_AUTH_MODE=both
       - SELFAUTH_ADMIN_OIDC_ENABLED=true
       - SELFAUTH_ADMIN_AUTH_MODE=both
+      - SELFAUTH_REQUIRE_PKCE=true
     volumes:
       - selfauth_data2:/app/data
     labels:

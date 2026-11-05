@@ -48,9 +48,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // that looks like an attempt to break out of the stylesheet
         // context (e.g. a literal </style> tag) since it's echoed
         // directly inside <style> on the public login page.
-        $css = str_ireplace(['</style', '<script'], '', $css);
+        $css = str_replace('<', '', $css);
         $settings->set('custom_css', $css);
         admin_set_flash('ok', 'Custom CSS updated.');
+    } elseif ($action === 'update_profile') {
+        $clean = function (string $key, int $max, bool $url = false): string {
+            $v = trim((string) filter_input(INPUT_POST, $key, FILTER_UNSAFE_RAW));
+            $v = mb_substr(preg_replace('/[\x00-\x1f\x7f]/u', '', $v), 0, $max);
+            if ($v !== '' && $url && !preg_match('#^https?://[^\s]+$#i', $v)) {
+                return '';
+            }
+            if ($key === 'profile_email' && $v !== '' && !filter_var($v, FILTER_VALIDATE_EMAIL)) {
+                return '';
+            }
+            return $v;
+        };
+        $settings->set('profile_name', $clean('profile_name', 100));
+        $settings->set('profile_photo', $clean('profile_photo', 2048, true));
+        $settings->set('profile_url', $clean('profile_url', 2048, true));
+        $settings->set('profile_email', $clean('profile_email', 254));
+        admin_set_flash('ok', 'Profile saved. Apps only see it when you grant the profile or email permission.');
     } elseif ($action === 'regenerate_webmention_feed_token') {
         $settings->set('webmention_feed_token', bin2hex(random_bytes(24)));
         admin_set_flash('ok', 'Webmention feed link regenerated -- the old link no longer works.');
@@ -182,6 +199,20 @@ admin_header('Settings', 'settings.php');
             </td>
         </tr>
     </table>
+</div>
+
+<div class="card">
+    <h2>Sign-in profile</h2>
+    <p class="muted">Shared with an app only when you tick “profile” (name, photo, URL) or “email” on the sign-in screen. Leave a field empty to share nothing for it.</p>
+    <form method="POST">
+        <?php echo admin_csrf_field(); ?>
+        <input type="hidden" name="action" value="update_profile">
+        <div class="form-line"><label>Name</label><input type="text" name="profile_name" maxlength="100" value="<?php echo Support::e($settings->get('profile_name', '')); ?>"></div>
+        <div class="form-line" style="margin-top:8px;"><label>Photo URL</label><input type="url" name="profile_photo" value="<?php echo Support::e($settings->get('profile_photo', '')); ?>"></div>
+        <div class="form-line" style="margin-top:8px;"><label>Profile page URL (defaults to your personal URL)</label><input type="url" name="profile_url" value="<?php echo Support::e($settings->get('profile_url', '')); ?>"></div>
+        <div class="form-line" style="margin-top:8px;"><label>Email</label><input type="email" name="profile_email" value="<?php echo Support::e($settings->get('profile_email', '')); ?>"></div>
+        <div class="form-line" style="margin-top:12px;"><input type="submit" value="Save profile"></div>
+    </form>
 </div>
 
 <div class="card">
