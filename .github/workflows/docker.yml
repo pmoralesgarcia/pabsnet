@@ -120,5 +120,7 @@ jobs:
             MINIFLUX_OAUTH2_USER_CREATION="${{ steps.op-load-secret.outputs.MINIFLUX_OAUTH2_USER_CREATION }}"
             EOF
 
-            docker compose down
+            # Build first: a failed build stops here and leaves the running stack up.
+            docker compose build && \
+            docker compose down && \
             docker compose up --detach
