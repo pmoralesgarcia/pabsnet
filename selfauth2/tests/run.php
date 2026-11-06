@@ -351,6 +351,18 @@ t('recent items have type and url', $items[0]['type'] === ['h-entry'] && str_sta
 $dates = array_map(fn($i) => $i['properties']['published'][0] ?? '', $rp->recent(50));
 t('recent skips section pages', !array_filter($rp->recent(50), fn($i) => str_ends_with($i['properties']['url'][0], '/archive') || str_ends_with($i['properties']['url'][0], '/page')));
 
+// one-click sign-in trusts one client at one exact callback
+putenv('SELFAUTH_TRUSTED_CLIENT_ID=');
+t('no trusted client by default', !Selfauth\AuthRequest::isTrustedClient('https://post.example/', 'https://post.example/callback.php'));
+putenv('SELFAUTH_TRUSTED_CLIENT_ID=https://post.example');
+t('trusted client at its callback', Selfauth\AuthRequest::isTrustedClient('https://post.example/', 'https://post.example/callback.php'));
+t('wrong callback is not trusted', !Selfauth\AuthRequest::isTrustedClient('https://post.example/', 'https://post.example/other.php'));
+t('other origin callback is not trusted', !Selfauth\AuthRequest::isTrustedClient('https://post.example/', 'https://evil.example/callback.php'));
+t('other client is not trusted', !Selfauth\AuthRequest::isTrustedClient('https://evil.example/', 'https://post.example/callback.php'));
+t('lookalike host is not trusted', !Selfauth\AuthRequest::isTrustedClient('https://post.example.evil.test/', 'https://post.example.evil.test/callback.php'));
+t('one-click scopes exclude editing and deleting', !array_intersect(['update', 'delete'], Selfauth\AuthRequest::TRUSTED_CLIENT_SCOPES));
+putenv('SELFAUTH_TRUSTED_CLIENT_ID');
+
 // details borrowed from the Datenstrom editor script
 t('accents become readable slugs', Micropub::slugify('Cañón en Größe, café', time()) === 'canon-en-groesse-cafe');
 t('curly apostrophe matches existing slugs', Micropub::slugify('Bay Area’s 11th', time()) === 'bay-area-s-11th');

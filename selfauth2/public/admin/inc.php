@@ -16,6 +16,10 @@ function admin_nav_items(): array
     if (Session::hasRole('manager')) {
         $items['blocklist.php'] = 'Blocklist';
     }
+    $client = \Selfauth\AuthRequest::trustedClientId();
+    if ($client !== null && Session::hasRole('owner')) {
+        $items[$client . 'login.php?me=' . rawurlencode(SELFAUTH_USER_URL)] = 'Post';
+    }
     if (Session::hasRole('owner')) {
         $items['admins.php'] = 'Admins';
         $items['access-tokens.php'] = 'App Access';

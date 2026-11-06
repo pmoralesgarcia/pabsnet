@@ -340,6 +340,7 @@ services:
       - SELFAUTH_ADMIN_OIDC_ENABLED=true
       - SELFAUTH_ADMIN_AUTH_MODE=both
       - SELFAUTH_REQUIRE_PKCE=true
+      - SELFAUTH_TRUSTED_CLIENT_ID=https://post.lifeofpablo.com/
       - SELFAUTH_MICROPUB_ENABLED=true
       - SELFAUTH_MICROPUB_GITHUB_TOKEN=${SELFAUTH_MICROPUB_GITHUB_TOKEN}
       - SELFAUTH_MICROPUB_GITHUB_REPO=pmoralesgarcia/lifeofpablo
@@ -362,6 +363,24 @@ services:
       - "traefik.http.routers.lifeofpablo-login.entrypoints=websecure"
       - "traefik.http.routers.lifeofpablo-login.tls.certresolver=myresolver"
       - "traefik.http.services.lifeofpablo-login.loadbalancer.server.port=80"
+    networks:
+      - app_network
+
+  micropub-client:
+    build: ./micropub-client
+    container_name: micropub-client
+    restart: unless-stopped
+    environment:
+      - MICROPUB_CLIENT_URL=https://post.lifeofpablo.com/
+      - MICROPUB_CLIENT_ONE_CLICK_ME=https://lifeofpablo.com/
+      - MICROPUB_CLIENT_TRUST_PROXY=true
+      - TZ=America/Los_Angeles
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.micropub-client.rule=Host(`post.lifeofpablo.com`)"
+      - "traefik.http.routers.micropub-client.entrypoints=websecure"
+      - "traefik.http.routers.micropub-client.tls.certresolver=myresolver"
+      - "traefik.http.services.micropub-client.loadbalancer.server.port=80"
     networks:
       - app_network
 

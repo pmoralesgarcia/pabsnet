@@ -20,6 +20,25 @@ class AuthRequest
     public ?string $softError = null;    // can be returned via redirect
     public ?string $softErrorDescription = null;
 
+    /** What the admin portal's one-click sign-in may grant without asking. */
+    public const TRUSTED_CLIENT_SCOPES = ['profile', 'create', 'draft', 'media'];
+
+    /** Whether this is the configured client, returning to its exact callback. */
+    public static function isTrustedClient(?string $clientId, ?string $redirectUri): bool
+    {
+        $trusted = self::trustedClientId();
+        return $trusted !== null && $clientId === $trusted && $redirectUri === $trusted . 'callback.php';
+    }
+
+    public static function trustedClientId(): ?string
+    {
+        $value = trim((string) getenv('SELFAUTH_TRUSTED_CLIENT_ID'));
+        if ($value === '') {
+            return null;
+        }
+        return ClientId::canonicalize(rtrim($value, '/') . '/');
+    }
+
     public static function requirePkce(): bool
     {
         return filter_var(getenv('SELFAUTH_REQUIRE_PKCE') ?: 'true', FILTER_VALIDATE_BOOLEAN);

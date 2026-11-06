@@ -67,6 +67,7 @@ services:
       # SELFAUTH_MICROPUB_MEDIA_URL: "https://cdn.example.com"
       # SELFAUTH_MICROPUB_MEDIA_PREFIX: "media/micropub"
       # SELFAUTH_MICROPUB_AUTHOR: ""
+      # SELFAUTH_TRUSTED_CLIENT_ID: ""               # client that an owner session signs in to in one click
       # SELFAUTH_TOKEN_TTL: "7776000"                # access token lifetime in seconds (90 days)
       
       # ---- Webmention feed ----

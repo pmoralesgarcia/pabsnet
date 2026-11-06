@@ -8,6 +8,9 @@ on:
       - 'selfauth2/**'
       - '!selfauth2/**/*.md'
       - '!selfauth2/tests/**'
+      - 'micropub-client/**'
+      - '!micropub-client/**/*.md'
+      - '!micropub-client/tests/**'
 jobs:
   Build:
     name: Build

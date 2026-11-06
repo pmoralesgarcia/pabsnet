@@ -140,6 +140,17 @@ foreach (Scopes::sorted($req->requestedScopes) as $s) {
     }
 }
 
+// One-click sign-in from the admin portal. Only the configured client, at its exact
+// callback, gets this, and only for a fixed set of permissions. A forged link gains
+// nothing: the code goes to that client, which rejects a state it did not start.
+if (!$posted && AuthRequest::isTrustedClient($req->clientId, $req->redirectUri)) {
+    Session::start();
+    if (Session::isAuthenticated() && Session::hasRole('owner')) {
+        $granted = array_values(array_intersect($offered, AuthRequest::TRUSTED_CLIENT_SCOPES));
+        AuthRequest::complete($pdo, $params, $granted, 'admin-session', Session::identity());
+    }
+}
+
 if ($posted) {
     $action = (string) ($_POST['action'] ?? 'password');
     $csrf = (string) ($_POST['_csrf'] ?? '');

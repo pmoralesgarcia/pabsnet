@@ -151,6 +151,10 @@ The sign-in screen shows the app's name, logo and domain, where you will be sent
 
 `token.php` exchanges a code for an access token, checking PKCE and refusing codes granted no scope. Tokens expire after `SELFAUTH_TOKEN_TTL` seconds (90 days by default, no refresh tokens) and are stored only as SHA-256 hashes. `introspect.php` lets a service check a token, authorized with an active access token or an API token with the `tokens:introspect` scope, and `revoke.php` revokes one. **Admin → App Access** lists tokens and revokes them. Older clients can also verify a token with `GET token.php` and a bearer header.
 
+### One-click sign-in
+
+Set `SELFAUTH_TRUSTED_CLIENT_ID` to one client's URL and the admin portal gets a **Post** link to it. An owner signed in to the portal skips the sign-in screen for that client, which is granted `profile`, `create`, `draft` and `media` without asking. It runs the normal flow with PKCE, must return to `<client>/callback.php`, and appears in the sign-in log, with `admin-session` as the method in its `signin.success` event. Anyone else sees the normal screen. Trust only a client you run yourself.
+
 ### Micropub
 
 `micropub.php` is a [Micropub](https://micropub.spec.indieweb.org/) server for a Yellow CMS site stored in GitHub: each create, update or delete is a commit, and your deploy pipeline publishes it. `micropub-media.php` is the media endpoint: it stores JPEG, PNG, GIF and WebP files up to 10 MB in Backblaze B2, under `SELFAUTH_MICROPUB_MEDIA_PREFIX`, and returns a URL on `SELFAUTH_MICROPUB_MEDIA_URL`. Create responses are `202` because the post goes live only after the deploy finishes.
