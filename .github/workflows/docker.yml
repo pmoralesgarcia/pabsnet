@@ -4,6 +4,10 @@ on:
   push:
     paths:
       - 'docker-compose.yml'
+      # Selfauth's code is baked into its image, so code changes need a deploy.
+      - 'selfauth2/**'
+      - '!selfauth2/**/*.md'
+      - '!selfauth2/tests/**'
 jobs:
   Build:
     name: Build
