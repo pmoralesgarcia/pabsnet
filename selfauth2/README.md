@@ -167,6 +167,16 @@ For media, create a B2 application key limited to your bucket with the `writeFil
 - `post-status=draft` and `visibility=private` become `Status: draft`, and `visibility=unlisted` becomes `Status: unlisted`.
 - A token with only the `draft` scope can never publish. Deleting removes the file, and git history keeps it.
 
+Supported post types, all routed to notes:
+
+- **Check-ins:** `checkin` as a URL or nested `h-card` (`name`, `url`, `locality`, `region`, `country-name`, `latitude`, `longitude`). Needs JSON when nested.
+- **Listens:** `listen-of` as a URL or nested `h-cite` (`name`, `author`, `url`). `watch-of` and `read-of` work the same way.
+- **RSVPs:** `rsvp` (`yes`, `no`, `maybe`, `interested`) with `in-reply-to` pointing at the event.
+
+A plain `location` is stored on any post. Readable place names are shown on the page, but geo URIs and coordinates are not, because apps can attach them automatically. Only a check-in's venue publishes coordinates, in hidden microformats data.
+
+Spec notes: sending a token in both the header and the body is refused with `invalid_request`, following RFC 6750. A missing post returns `400 invalid_request`, as in the spec's example. `undelete` is not supported, which the spec allows. Also supported from the extensions list: `post-types` in `q=config`, `q=source` with no URL for a recent post list (`limit`, up to 50), `mp-slug`, `post-status` and `visibility`.
+
 Add these to your homepage `<head>`:
 
 ```html

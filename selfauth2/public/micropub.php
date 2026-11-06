@@ -28,6 +28,11 @@ MicropubHttp::guarded(function () use ($tokenRow, $method) {
                     ['type' => 'reply', 'name' => 'Reply'],
                     ['type' => 'repost', 'name' => 'Repost'],
                     ['type' => 'bookmark', 'name' => 'Bookmark'],
+                    ['type' => 'rsvp', 'name' => 'RSVP'],
+                    ['type' => 'checkin', 'name' => 'Check-in'],
+                    ['type' => 'listen', 'name' => 'Listen'],
+                    ['type' => 'video', 'name' => 'Video'],
+                    ['type' => 'audio', 'name' => 'Audio'],
                 ],
             ]);
         }
@@ -37,7 +42,9 @@ MicropubHttp::guarded(function () use ($tokenRow, $method) {
         if ($query === 'source') {
             $url = (string) ($_GET['url'] ?? '');
             if ($url === '') {
-                throw new MicropubException(400, 'invalid_request', 'url is required');
+                // The stable "post list" extension. Capped because each post is a GitHub call.
+                $limit = max(1, min(50, (int) ($_GET['limit'] ?? 10)));
+                MicropubHttp::json(200, ['items' => MicropubHttp::server()->recent($limit)]);
             }
             $only = array_map('strval', (array) ($_GET['properties'] ?? []));
             MicropubHttp::json(200, MicropubHttp::server()->source($url, $only));

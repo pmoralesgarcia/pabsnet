@@ -33,6 +33,8 @@ class Micropub
     private const RSVP_VALUES = ['yes', 'no', 'maybe', 'interested'];
     /** Marks a Title made from the post's text, which clients must not see as a real name. */
     private const GENERATED_TITLE = 'Title-Generated';
+    /** Marks a body that a client sent as HTML, not Markdown. */
+    private const HTML_CONTENT = 'Content-Html';
     private const BLOCK_OPEN = '<!-- micropub:context -->';
     private const BLOCK_CLOSE = '<!-- /micropub:context -->';
     private const INTERACTIONS = [
@@ -40,6 +42,9 @@ class Micropub
         'in-reply-to' => ['Replying to', 'u-in-reply-to'],
         'repost-of' => ['Reposted', 'u-repost-of'],
         'bookmark-of' => ['Bookmarked', 'u-bookmark-of'],
+        'listen-of' => ['Listened to', 'u-listen-of'],
+        'watch-of' => ['Watched', 'u-watch-of'],
+        'read-of' => ['Read', 'u-read-of'],
     ];
     /** Properties stored in their own frontmatter key or the body, not the JSON line. */
     private const NATIVE = ['name', 'content', 'category', 'published', 'summary', 'post-status', 'visibility'];
@@ -238,6 +243,10 @@ class Micropub
             if ($title !== '') {
                 $meta['Title'] = self::oneLine($title);
                 unset($meta[self::GENERATED_TITLE]);
+            } else {
+                // A removed name leaves an untitled post, which Yellow still needs a Title for.
+                $meta['Title'] = self::oneLine(self::titleFrom($props, self::stripBlock($body)));
+                $meta[self::GENERATED_TITLE] = 'true';
             }
         }
         if (in_array('published', $touched, true) && isset($props['published'])) {
@@ -268,6 +277,38 @@ class Micropub
             return ['properties' => array_intersect_key($props, array_flip($only))];
         }
         return ['type' => ['h-entry'], 'properties' => $props];
+    }
+
+    /**
+     * Newest posts across sections, for the q=source list extension. Each post
+     * is its own API call, so the endpoint caps the limit.
+     * @return array<int, array{type:array, properties:array}>
+     */
+    public function recent(int $limit): array
+    {
+        $entries = [];
+        foreach (array_keys($this->cfg['sections']) as $section) {
+            foreach ($this->store->listDir($this->sectionPath($section)) as $name) {
+                if (preg_match('/^\d{4}-\d{2}-\d{2}-[a-z0-9][a-z0-9_-]*\.md$/', $name)) {
+                    $entries[] = [$name, $section];
+                }
+            }
+        }
+        usort($entries, fn($a, $b) => strcmp($b[0], $a[0]));
+
+        $items = [];
+        foreach ($entries as [$name, $section]) {
+            if (count($items) >= $limit) {
+                break;
+            }
+            $file = $this->store->get($this->sectionPath($section) . '/' . $name);
+            if ($file === null || !self::isPost($file['content'])) {
+                continue;
+            }
+            [$meta, $body] = self::parse($file['content']);
+            $items[] = ['type' => ['h-entry'], 'properties' => self::toProperties($meta, $body) + ['url' => [$this->urlFor($section, self::fileSlug($name))]]];
+        }
+        return $items;
     }
 
     /** Validates an uploaded image and stores it in B2. @return string Its public URL. */
@@ -327,7 +368,8 @@ class Micropub
             $props['name'] = [$meta['Title']];
         }
         if (($meta['Published'] ?? '') !== '') {
-            $props['published'] = [$meta['Published']];
+            $time = strtotime($meta['Published']);
+            $props['published'] = [$time === false ? $meta['Published'] : date('c', $time)];
         }
         if (($meta['Tag'] ?? '') !== '') {
             $props['category'] = array_values(array_filter(array_map('trim', explode(',', $meta['Tag'])), 'strlen'));
@@ -346,7 +388,8 @@ class Micropub
         }
         $content = trim(self::stripBlock($body));
         if ($content !== '') {
-            $props['content'] = [$content];
+            // The spec requires HTML-authored content to come back as {html: ...}.
+            $props['content'] = [isset($meta[self::HTML_CONTENT]) ? ['html' => $content] : $content];
         }
         return $props;
     }
@@ -365,6 +408,13 @@ class Micropub
         }
         if ($setStatus || $isNew) {
             $meta['Status'] = self::statusOf($props);
+        }
+
+        $first = $props['content'][0] ?? null;
+        if (is_array($first) && isset($first['html'])) {
+            $meta[self::HTML_CONTENT] = 'true';
+        } else {
+            unset($meta[self::HTML_CONTENT]);
         }
 
         $extra = array_diff_key($props, array_flip(self::NATIVE));
@@ -410,15 +460,26 @@ class Micropub
     private static function contextBlock(array $props): string
     {
         $parts = [];
+        foreach ($props['checkin'] ?? [] as $value) {
+            $venue = self::venueOf($value);
+            if ($venue !== null) {
+                $parts[] = self::checkinHtml($venue);
+            }
+        }
         foreach (self::INTERACTIONS as $prop => [$label, $class]) {
             foreach ($props[$prop] ?? [] as $value) {
-                $url = self::urlOf($value);
-                if ($url !== null) {
-                    $safe = htmlspecialchars($url, ENT_QUOTES);
+                $cite = self::citeOf($value);
+                if ($cite !== null) {
                     $rsvp = $prop === 'in-reply-to' ? self::rsvpOf($props) : null;
                     $intro = $rsvp !== null ? 'RSVPs <span class="p-rsvp">' . $rsvp . '</span> to ' : $label . ': ';
-                    $parts[] = $intro . '<a href="' . $safe . '" class="' . $class . '">' . $safe . '</a>';
+                    $parts[] = $intro . self::citeHtml($cite, $class);
                 }
+            }
+        }
+        if (!isset($props['checkin'])) {
+            $place = self::locationText($props);
+            if ($place !== null) {
+                $parts[] = 'Location: <span class="p-location">' . htmlspecialchars($place, ENT_QUOTES) . '</span>';
             }
         }
         foreach ($props['photo'] ?? [] as $value) {
@@ -437,6 +498,120 @@ class Micropub
             }
         }
         return $parts === [] ? '' : self::BLOCK_OPEN . "\n" . implode("\n\n", $parts) . "\n" . self::BLOCK_CLOSE;
+    }
+
+    /**
+     * A URL, or a nested h-cite: {type, properties: {name, url, author, photo}}.
+     * @return array{url:?string, name:?string, author:?string}|null
+     */
+    private static function citeOf(mixed $value): ?array
+    {
+        $p = is_array($value) ? ($value['properties'] ?? null) : null;
+        if (!is_array($p)) {
+            $url = self::urlOf($value);
+            return $url === null ? null : ['url' => $url, 'name' => null, 'author' => null];
+        }
+        $cite = [
+            'url' => self::urlOf($p['url'][0] ?? null),
+            'name' => self::textOf($p['name'][0] ?? null),
+            'author' => self::textOf($p['author'][0] ?? null),
+        ];
+        return $cite['url'] === null && $cite['name'] === null ? null : $cite;
+    }
+
+    private static function citeHtml(array $cite, string $class): string
+    {
+        $e = fn(string $v) => htmlspecialchars($v, ENT_QUOTES);
+        $by = $cite['author'] === null ? '' : ' by <span class="p-author">' . $e($cite['author']) . '</span>';
+        if ($cite['name'] === null && $by === '') {
+            return '<a href="' . $e($cite['url']) . '" class="' . $class . '">' . $e($cite['url']) . '</a>';
+        }
+        $text = '<span class="p-name">' . $e($cite['name'] ?? $cite['url']) . '</span>';
+        if ($cite['url'] === null) {
+            return '<span class="' . preg_replace('/^u-/', 'p-', $class) . ' h-cite">' . $text . $by . '</span>';
+        }
+        return '<a href="' . $e($cite['url']) . '" class="' . $class . ' h-cite">' . $text . '</a>' . $by;
+    }
+
+    /**
+     * A URL, or a nested h-card venue. Coordinates are only kept when numeric.
+     * @return array{url:?string, name:?string, locality:?string, region:?string, country:?string, latitude:?float, longitude:?float}|null
+     */
+    private static function venueOf(mixed $value): ?array
+    {
+        $p = is_array($value) ? ($value['properties'] ?? null) : null;
+        if (!is_array($p)) {
+            $url = self::urlOf($value);
+            $p = $url === null ? [] : ['url' => [$url]];
+        }
+        $number = fn(string $k) => isset($p[$k][0]) && is_numeric($p[$k][0]) ? (float) $p[$k][0] : null;
+        $venue = [
+            'url' => self::urlOf($p['url'][0] ?? null),
+            'name' => self::textOf($p['name'][0] ?? null),
+            'locality' => self::textOf($p['locality'][0] ?? null),
+            'region' => self::textOf($p['region'][0] ?? null),
+            'country' => self::textOf($p['country-name'][0] ?? null),
+            'latitude' => $number('latitude'),
+            'longitude' => $number('longitude'),
+        ];
+        return $venue['url'] === null && $venue['name'] === null ? null : $venue;
+    }
+
+    private static function checkinHtml(array $venue): string
+    {
+        $e = fn(string $v) => htmlspecialchars($v, ENT_QUOTES);
+        $name = '<span class="p-name">' . $e($venue['name'] ?? $venue['url']) . '</span>';
+        $inner = $venue['url'] === null ? $name : '<a class="u-url" href="' . $e($venue['url']) . '">' . $name . '</a>';
+        foreach (['locality', 'region', 'country'] as $field) {
+            if ($venue[$field] !== null) {
+                $class = $field === 'country' ? 'p-country-name' : 'p-' . $field;
+                $inner .= ', <span class="' . $class . '">' . $e($venue[$field]) . '</span>';
+            }
+        }
+        foreach (['latitude', 'longitude'] as $field) {
+            if ($venue[$field] !== null) {
+                $inner .= '<data class="p-' . $field . '" value="' . $venue[$field] . '"></data>';
+            }
+        }
+        return 'Checked in at <span class="p-checkin h-card">' . $inner . '</span>';
+    }
+
+    /**
+     * A readable place for the page, from plain text or a nested h-card or h-adr.
+     * Geo URIs and bare coordinates stay out of the page: apps can attach them
+     * to any post automatically, and they can pinpoint a home.
+     */
+    private static function locationText(array $props): ?string
+    {
+        $value = $props['location'][0] ?? null;
+        if (is_string($value)) {
+            return preg_match('/^(geo:|https?:)/i', $value) ? null : self::textOf($value);
+        }
+        $p = is_array($value) ? ($value['properties'] ?? null) : null;
+        if (!is_array($p)) {
+            return null;
+        }
+        $parts = [];
+        foreach (['name', 'locality', 'region', 'country-name'] as $field) {
+            $text = self::textOf($p[$field][0] ?? null);
+            if ($text !== null) {
+                $parts[] = $text;
+            }
+        }
+        return $parts === [] ? null : implode(', ', $parts);
+    }
+
+    /** One line of text from a string, or from a nested object's name. */
+    private static function textOf(mixed $value): ?string
+    {
+        if (is_array($value)) {
+            $value = $value['properties']['name'][0] ?? $value['value'] ?? null;
+        }
+        if (!is_scalar($value)) {
+            return null;
+        }
+        $text = self::oneLine((string) $value);
+        return $text === '' ? null : $text;
     }
 
     private static function stripBlock(string $body): string
@@ -462,7 +637,8 @@ class Micropub
                 }
             }
         }
-        throw new MicropubException(404, 'not_found', 'No post at that URL');
+        // The spec defines no not-found error, and its own example uses this one.
+        throw new MicropubException(400, 'invalid_request', 'No post at that URL');
     }
 
     /** @return array{0:string, 1:string} Section and slug. Rejects anything not shaped like a post URL. */
@@ -593,11 +769,16 @@ class Micropub
     {
         $text = trim((string) preg_replace('/\s+/', ' ', strip_tags($body)));
         if ($text === '') {
+            $venue = self::venueOf(($props['checkin'] ?? [null])[0]);
+            if ($venue !== null) {
+                return 'Checked in at ' . ($venue['name'] ?? $venue['url']);
+            }
             foreach (self::INTERACTIONS as $prop => [$label]) {
-                $url = self::urlOf(($props[$prop] ?? [null])[0]);
-                if ($url !== null) {
+                $cite = self::citeOf(($props[$prop] ?? [null])[0]);
+                if ($cite !== null) {
                     $rsvp = $prop === 'in-reply-to' ? self::rsvpOf($props) : null;
-                    return ($rsvp !== null ? 'RSVP ' . $rsvp : $label) . ': ' . $url;
+                    $what = ($cite['name'] ?? $cite['url']) . ($cite['author'] === null ? '' : ' by ' . $cite['author']);
+                    return ($rsvp !== null ? 'RSVP ' . $rsvp : $label) . ': ' . $what;
                 }
             }
             return 'Photo';

@@ -64,7 +64,7 @@ class MicropubHttp
     {
         if (!array_intersect($any, Scopes::parse($row['scope']))) {
             header('WWW-Authenticate: Bearer error="insufficient_scope", scope="' . implode(' ', $any) . '"');
-            self::fail(403, 'insufficient_scope', 'This token needs one of: ' . implode(', ', $any));
+            self::json(403, ['error' => 'insufficient_scope', 'scope' => implode(' ', $any), 'error_description' => 'This token needs one of: ' . implode(', ', $any)]);
         }
     }
 

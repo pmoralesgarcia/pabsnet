@@ -178,7 +178,7 @@ t('source filter', array_keys($mp->source($handUrl, ['name'])['properties']) ===
 
 // urls cannot reach other files
 foreach (['https://evil.example/blog/hand-written', 'https://me.example/blog/../secret', 'https://me.example/blog/page', 'https://me.example/other/hand-written', 'https://me.example/blog/a/b', 'not a url'] as $bad) t("bad url refused: $bad", $rejects(fn() => $mp->delete($bad), 400));
-t('missing post is 404', $rejects(fn() => $mp->source('https://me.example/blog/nope'), 404));
+t('missing post is invalid_request', $rejects(fn() => $mp->source('https://me.example/blog/nope'), 400));
 t('page.md untouched', isset($gh->files["$dir/page.md"]));
 $mp->delete($handUrl);
 t('delete removes file', $fileFor($handUrl) === null && isset($gh->files['data/site/secret.md']));
@@ -280,10 +280,76 @@ $rp->delete($u);
 t('note can be deleted', $routedFile($u) === '');
 
 // section pages are not posts, even with a delete-scoped token
-t('archive page cannot be deleted', $rejects(fn() => $rp->delete('https://me.example/notes/archive'), 404) && isset($rg->files["$notesDir/archive.md"]));
-t('blogroll cannot be edited', $rejects(fn() => $rp->update('https://me.example/blog/roll', ['replace' => ['content' => ['x']]]), 404));
-t('section page has no source', $rejects(fn() => $rp->source('https://me.example/notes/archive'), 404));
+t('archive page cannot be deleted', $rejects(fn() => $rp->delete('https://me.example/notes/archive'), 400) && isset($rg->files["$notesDir/archive.md"]));
+t('blogroll cannot be edited', $rejects(fn() => $rp->update('https://me.example/blog/roll', ['replace' => ['content' => ['x']]]), 400));
+t('section page has no source', $rejects(fn() => $rp->source('https://me.example/notes/archive'), 400));
 t('post with no layout is still editable', isset($rp->source('https://me.example/blog/old')['properties']['content']));
+
+// post types: check-ins, listens and RSVPs
+$venue = ['type' => ['h-card'], 'properties' => ['name' => ['Castro Theatre'], 'url' => ['https://x.example/castro'], 'locality' => ['San Francisco'], 'region' => ['CA'], 'country-name' => ['USA'], 'latitude' => ['37.7621'], 'longitude' => ['-122.4350']]];
+$u = $rp->create($entry(['checkin' => [$venue]]));
+$f = $routedFile($u);
+t('checkin routes to notes', str_starts_with($u, 'https://me.example/notes/checked-in-at-castro-theatre') && str_contains($f, "Layout: note\n"));
+t('checkin title', str_contains($f, "Title: Checked in at Castro Theatre\n") && str_contains($f, 'Title-Generated: true'));
+t('checkin markup', str_contains($f, 'Checked in at <span class="p-checkin h-card"><a class="u-url" href="https://x.example/castro"><span class="p-name">Castro Theatre</span></a>, <span class="p-locality">San Francisco</span>, <span class="p-region">CA</span>, <span class="p-country-name">USA</span>'));
+t('checkin coordinates', str_contains($f, '<data class="p-latitude" value="37.7621"></data>') && str_contains($f, '<data class="p-longitude" value="-122.435"></data>'));
+t('checkin round trips nested', $rp->source($u)['properties']['checkin'][0]['properties']['name'] === ['Castro Theatre']);
+$u = $rp->create($entry(['checkin' => ['https://x.example/venue'], 'content' => ['Great show']]));
+t('checkin by url keeps comment', str_contains($routedFile($u), 'href="https://x.example/venue"') && str_contains($routedFile($u), "Great show\n"));
+$u = $rp->create($entry(['checkin' => [['type' => ['h-card'], 'properties' => ['name' => ['<script>x</script>'], 'latitude' => ['"><b>']]]]]));
+t('checkin values are escaped', !str_contains(explode("\n---\n", $routedFile($u), 2)[1], '<script>') && !str_contains($routedFile($u), 'p-latitude'));
+t('empty checkin refused', $rejects(fn() => $rp->create($entry(['checkin' => [['type' => ['h-card'], 'properties' => []]]])), 400));
+
+$u = $rp->create($entry(['listen-of' => ['https://x.example/song']]));
+t('listen by url', str_starts_with($u, 'https://me.example/notes/') && str_contains($routedFile($u), 'Listened to: <a href="https://x.example/song" class="u-listen-of">'));
+$song = ['type' => ['h-cite'], 'properties' => ['name' => ['Everywhere'], 'author' => ['Michelle Branch'], 'url' => ['https://x.example/everywhere']]];
+$u = $rp->create($entry(['listen-of' => [$song]]));
+$f = $routedFile($u);
+t('listen h-cite markup', str_contains($f, '<a href="https://x.example/everywhere" class="u-listen-of h-cite"><span class="p-name">Everywhere</span></a> by <span class="p-author">Michelle Branch</span>'));
+t('listen title and slug', str_contains($f, "Title: Listened to: Everywhere by Michelle Branch\n") && str_contains($u, '/notes/listened-to-everywhere-by-michelle-branch'));
+$u = $rp->create($entry(['listen-of' => [['type' => ['h-cite'], 'properties' => ['name' => ['No Link'], 'author' => [['type' => ['h-card'], 'properties' => ['name' => ['Nested Artist']]]]]]]]));
+t('listen without url, nested author', str_contains($routedFile($u), '<span class="p-listen-of h-cite"><span class="p-name">No Link</span> by <span class="p-author">Nested Artist</span></span>'));
+t('watch and read render', str_contains($routedFile($rp->create($entry(['watch-of' => ['https://x.example/film']]))), 'u-watch-of') && str_contains($routedFile($rp->create($entry(['read-of' => ['https://x.example/book']]))), 'u-read-of'));
+
+$u = $rp->create($entry(['in-reply-to' => ['https://x.example/e1'], 'rsvp' => ['YES']]));
+t('rsvp value is case-insensitive', str_contains($routedFile($u), '<span class="p-rsvp">yes</span>'));
+foreach (['no', 'maybe', 'interested'] as $v) t("rsvp $v", str_contains($routedFile($rp->create($entry(['in-reply-to' => ["https://x.example/$v"], 'rsvp' => [$v]]))), '<span class="p-rsvp">' . $v . '</span>'));
+$u = $rp->create($entry(['in-reply-to' => [['type' => ['h-cite'], 'properties' => ['name' => ['Homebrew Website Club'], 'url' => ['https://x.example/hwc3']]]], 'rsvp' => ['yes']]));
+t('rsvp to a named event', str_contains($routedFile($u), "Title: RSVP yes: Homebrew Website Club\n") && str_contains($routedFile($u), 'RSVPs <span class="p-rsvp">yes</span> to <a href="https://x.example/hwc3"'));
+
+// location never exposes coordinates on the page
+$u = $rp->create($entry(['content' => ['At home'], 'location' => ['geo:37.77,-122.41']]));
+t('geo location is kept but not shown', !str_contains(explode("\n---\n", $routedFile($u), 2)[1], '37.77') && $rp->source($u)['properties']['location'] === ['geo:37.77,-122.41']);
+$u = $rp->create($entry(['content' => ['Coffee'], 'location' => [['type' => ['h-adr'], 'properties' => ['locality' => ['Oakland'], 'region' => ['CA'], 'latitude' => ['37.8']]]]]));
+t('named location is shown without coordinates', str_contains($routedFile($u), 'Location: <span class="p-location">Oakland, CA</span>') && !str_contains(explode("\n---\n", $routedFile($u), 2)[1], '37.8'));
+t('plain location is shown', str_contains($routedFile($rp->create($entry(['content' => ['Hi'], 'location' => ['The Mission']]))), 'The Mission</span>'));
+
+// spec: q=source
+$u = $rp->create($entry(['name' => ['Html Post'], 'content' => [['html' => '<p>Rich</p>']]]));
+t('html content returns as html object', $rp->source($u)['properties']['content'] === [['html' => '<p>Rich</p>']]);
+$rp->update($u, ['add' => ['category' => ['x']]]);
+t('html flag survives a metadata update', $rp->source($u)['properties']['content'] === [['html' => '<p>Rich</p>']]);
+$rp->update($u, ['replace' => ['content' => ['plain now']]]);
+t('plain replace clears html flag', $rp->source($u)['properties']['content'] === ['plain now'] && !str_contains($routedFile($u), 'Content-Html'));
+t('plain content returns as string', is_string($rp->source($rp->create($entry(['content' => ['Plain']])))['properties']['content'][0]));
+t('source has type without a filter', $rp->source($u)['type'] === ['h-entry']);
+t('source filter has properties only', !isset($rp->source($u, ['content'])['type']));
+t('published is iso 8601', (bool) preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/', $rp->source($u)['properties']['published'][0]));
+
+// spec: update
+$u = $rp->create($entry(['name' => ['Named Note']]));
+$rp->update($u, ['delete' => ['name']]);
+t('deleting name leaves an untitled post', str_contains($routedFile($u), 'Title-Generated: true') && !isset($rp->source($u)['properties']['name']));
+$u = $rp->create($entry(['content' => ['Unknown'], 'made-up' => ['ignored']]));
+t('unknown properties do not block a post or reach the page', !str_contains(explode("\n---\n", $routedFile($u), 2)[1], 'ignored'));
+t('mp commands are not stored', !str_contains($routedFile($rp->create($entry(['content' => ['Cmd'], 'mp-syndicate-to' => ['https://x.example']]))), 'mp-syndicate'));
+
+// q=source list extension
+$items = $rp->recent(3);
+t('recent honors limit', count($items) === 3);
+t('recent items have type and url', $items[0]['type'] === ['h-entry'] && str_starts_with($items[0]['properties']['url'][0], 'https://me.example/'));
+$dates = array_map(fn($i) => $i['properties']['published'][0] ?? '', $rp->recent(50));
+t('recent skips section pages', !array_filter($rp->recent(50), fn($i) => str_ends_with($i['properties']['url'][0], '/archive') || str_ends_with($i['properties']['url'][0], '/page')));
 
 // details borrowed from the Datenstrom editor script
 t('accents become readable slugs', Micropub::slugify('Cañón en Größe, café', time()) === 'canon-en-groesse-cafe');
