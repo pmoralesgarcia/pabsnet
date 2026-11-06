@@ -35,7 +35,7 @@ Edit `docker-compose.yml` (or use an `.env` file / your orchestrator's secret st
 | `SELFAUTH_APP_KEY` | no | HMAC signing key. Auto-generated and persisted in the database if omitted. |
 | `SELFAUTH_WEBMENTIONS_ENABLED` | no | `true` (default) or `false` |
 | `SELFAUTH_WEBMENTION_FEED_PUBLIC` | no | `false` (default, token-gated) or `true` (public RSS feed) |
-| `SELFAUTH_TRUST_PROXY` | no | Set `true` if running behind a reverse proxy that sets `X-Forwarded-For` |
+| `SELFAUTH_TRUST_PROXY` | no | Set `true` only if exactly one reverse proxy is in front and is the only route to the container. The last `X-Forwarded-For` entry is used as the client IP |
 | `SELFAUTH_COOKIE_SECURE` | no | `true` (default) — set `false` only for local http testing |
 | `SELFAUTH_SYSLOG_SUCCESS` / `SELFAUTH_SYSLOG_FAILURE` | no | `true` to log sign-in attempts to syslog, in addition to the admin portal's own log |
 | `TZ` | no | Timezone for timestamps, default `UTC` |

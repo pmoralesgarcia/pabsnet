@@ -70,17 +70,22 @@ HTML);
     }
 
     /**
-     * Determine the client IP. Only trusts X-Forwarded-For when
-     * SELFAUTH_TRUST_PROXY=true (set this when running behind a reverse
-     * proxy / the bundled Docker setup terminates TLS itself, e.g. Caddy
-     * or Traefik in front of the container).
+     * Determine the client IP. Only reads X-Forwarded-For when
+     * SELFAUTH_TRUST_PROXY=true (set this when exactly one reverse proxy,
+     * e.g. Caddy or Traefik, sits in front of the container and is the only
+     * route to it).
+     *
+     * Only the last entry is used: that is the one the trusted proxy appended.
+     * Anything to its left came from the caller, so it is never read, even when
+     * the last entry is invalid. A second proxy would make the last entry that
+     * proxy's address, so this logic would need to change with it.
      */
     public static function clientIp(): string
     {
         $trustProxy = filter_var(getenv('SELFAUTH_TRUST_PROXY') ?: 'false', FILTER_VALIDATE_BOOLEAN);
         if ($trustProxy && !empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $parts = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            $ip = trim($parts[0]);
+            $ip = trim(end($parts));
             if (filter_var($ip, FILTER_VALIDATE_IP)) {
                 return $ip;
             }

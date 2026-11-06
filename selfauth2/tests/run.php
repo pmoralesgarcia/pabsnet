@@ -6,7 +6,7 @@ spl_autoload_register(function ($c) {
 });
 require __DIR__ . '/FakeGitHub.php';
 require __DIR__ . '/FakeB2.php';
-use Selfauth\{AccessTokens, AuthCodes, B2Store, ClientId, GitHubStore, Micropub, MicropubException, SafeHttp, Scopes};
+use Selfauth\{AccessTokens, AuthCodes, B2Store, ClientId, GitHubStore, Micropub, MicropubException, SafeHttp, Scopes, Support};
 
 $fail = 0; $n = 0;
 function t(string $name, bool $ok): void { global $fail, $n; $n++; if (!$ok) { $fail++; echo "FAIL: $name\n"; } }
@@ -361,6 +361,26 @@ t('language written when configured', str_contains($fileFor($u), "Language: en\n
 t('no frontmatter parses', Micropub::parse('plain') === [[], 'plain']);
 [$m2, $b2] = Micropub::parse("---\nTitle: A: B\nodd line\n---\n---\nbody");
 t('frontmatter parse keeps colons and odd lines', $m2['Title'] === 'A: B' && in_array('odd line', $m2, true) && $b2 === "---\nbody");
+
+// client IP behind a trusted proxy
+$clientIpFor = function (?string $forwarded, bool $trustProxy) {
+    putenv('SELFAUTH_TRUST_PROXY=' . ($trustProxy ? 'true' : 'false'));
+    $_SERVER['REMOTE_ADDR'] = '172.18.0.2';
+    unset($_SERVER['HTTP_X_FORWARDED_FOR']);
+    if ($forwarded !== null) $_SERVER['HTTP_X_FORWARDED_FOR'] = $forwarded;
+    return Support::clientIp();
+};
+t('forged first forwarded value ignored', $clientIpFor('1.2.3.4, 203.0.113.9', true) === '203.0.113.9');
+t('rightmost of several forwarded values used', $clientIpFor('1.2.3.4, 5.6.7.8,203.0.113.9', true) === '203.0.113.9');
+t('single forwarded value used', $clientIpFor('203.0.113.9', true) === '203.0.113.9');
+t('ipv6 forwarded value used', $clientIpFor('1.2.3.4, 2001:db8::1', true) === '2001:db8::1');
+t('invalid forwarded value falls back to REMOTE_ADDR', $clientIpFor('not-an-ip', true) === '172.18.0.2');
+t('invalid last value does not promote an earlier one', $clientIpFor('1.2.3.4, not-an-ip', true) === '172.18.0.2');
+t('trailing comma does not promote an earlier one', $clientIpFor('1.2.3.4,', true) === '172.18.0.2');
+t('no forwarded header uses REMOTE_ADDR', $clientIpFor(null, true) === '172.18.0.2');
+t('forwarded header ignored when proxy not trusted', $clientIpFor('203.0.113.9', false) === '172.18.0.2');
+putenv('SELFAUTH_TRUST_PROXY');
+unset($_SERVER['HTTP_X_FORWARDED_FOR'], $_SERVER['REMOTE_ADDR']);
 
 echo $fail === 0 ? "OK: all $n passed\n" : "$fail of $n failed\n";
 exit($fail === 0 ? 0 : 1);
