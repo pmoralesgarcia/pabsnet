@@ -318,8 +318,6 @@ services:
       dockerfile: ./docker/Dockerfile
     container_name: selfauth
     restart: unless-stopped
-    ports:
-      - "9289:80"
     environment:
       - SELFAUTH_APP_URL=https://indieauth.lifeofpablo.com/
       - SELFAUTH_USER_URL=https://lifeofpablo.com/
