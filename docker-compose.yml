@@ -384,6 +384,27 @@ services:
     networks:
       - app_network
 
+  login-service:
+    build: ./login-service
+    container_name: login-service
+    restart: unless-stopped
+    environment:
+      - LOGIN_URL=https://login.lifeofpablo.com/
+      - LOGIN_CLIENTS=https://lifeofpablo.com/
+      - LOGIN_DB_PATH=/app/data/login.sqlite
+      - LOGIN_TRUST_PROXY=true
+      - TZ=America/Los_Angeles
+    volumes:
+      - login_data:/app/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.login-service.rule=Host(`login.lifeofpablo.com`)"
+      - "traefik.http.routers.login-service.entrypoints=websecure"
+      - "traefik.http.routers.login-service.tls.certresolver=myresolver"
+      - "traefik.http.services.login-service.loadbalancer.server.port=80"
+    networks:
+      - app_network
+
   pabs-api:
     container_name: pabs-api
     build:
@@ -481,6 +502,7 @@ volumes:
   db_storage:
   n8n_storage:
   selfauth_data2:
+  login_data:
 
 networks:
   app_network:

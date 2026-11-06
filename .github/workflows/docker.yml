@@ -11,6 +11,9 @@ on:
       - 'micropub-client/**'
       - '!micropub-client/**/*.md'
       - '!micropub-client/tests/**'
+      - 'login-service/**'
+      - '!login-service/**/*.md'
+      - '!login-service/tests/**'
 jobs:
   Build:
     name: Build
