@@ -47,7 +47,7 @@ admin_header('Admins', 'admins.php');
     Grant someone else access to this admin portal via SSO, without sharing your password and without letting them
     authenticate as <strong><?php echo Support::e(SELFAUTH_USER_URL); ?></strong> to other websites — that IndieAuth
     "me" identity is always yours alone. <strong>Manager</strong> can act on sign-ins/blocklist/webmentions.
-    <strong>Viewer</strong> can only look. Requires <a href="settings.php">admin SSO</a> to be enabled.
+    <strong>Viewer</strong> can only look. Requires <a href="settings.php?section=security">admin SSO</a> to be enabled.
 </p>
 
 <?php admin_render_flash(); ?>

@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/inc.php';
 
+use Selfauth\AccessTokens;
 use Selfauth\Blocklist;
 use Selfauth\Session;
 use Selfauth\SignInLog;
@@ -22,6 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = (int) filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
         $log->delete($id);
         admin_set_flash('ok', 'Entry removed.');
+    } elseif ($action === 'revoke_token') {
+        admin_require_role('owner');
+        AccessTokens::revokeById($pdo, (int) filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT));
+        admin_set_flash('ok', 'Access revoked. That app can no longer use this token.');
     } elseif ($action === 'clear') {
         $log->clear();
         admin_set_flash('ok', 'Sign-in log cleared.');
@@ -40,17 +45,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $counts = $log->counts();
 $entries = $log->recent(100);
 $canAct = Session::hasRole('manager');
+$isOwner = Session::hasRole('owner');
+$apps = [];
+$pastApps = [];
+if ($isOwner) {
+    foreach (AccessTokens::all($pdo) as $token) {
+        if ($token['revoked_at'] === null && (int) $token['expires_at'] > time()) {
+            $apps[] = $token;
+        } else {
+            $pastApps[] = $token;
+        }
+    }
+}
+$when = fn($t) => $t === null ? 'Never' : date('M j, Y', (int) $t);
 
-admin_header('Sign-ins', 'index.php');
+admin_header('Apps & sign-ins', 'index.php');
 ?>
-<h1>Sign-in activity</h1>
+<h1>Apps &amp; sign-ins</h1>
 <div class="stats">
-    <div class="stat"><div class="n"><?php echo $counts['total']; ?></div><div class="l">Total attempts</div></div>
+    <?php if ($isOwner) : ?><div class="stat"><div class="n"><?php echo count($apps); ?></div><div class="l">Connected apps</div></div><?php endif; ?>
+    <div class="stat"><div class="n"><?php echo $counts['total']; ?></div><div class="l">Sign-in attempts</div></div>
     <div class="stat"><div class="n" style="color:var(--ok)"><?php echo $counts['success']; ?></div><div class="l">Successful</div></div>
     <div class="stat"><div class="n" style="color:var(--danger)"><?php echo $counts['failed']; ?></div><div class="l">Failed / blocked</div></div>
 </div>
 
 <?php admin_render_flash(); ?>
+
+<?php if ($isOwner) : ?>
+<div class="card" id="apps">
+    <h2>Connected apps</h2>
+    <p class="muted">Apps you approved that hold an access token, for example to post through Micropub. Revoke one to cut it off straight away.</p>
+    <?php if ($apps === []) : ?>
+        <div class="empty">No app is connected.</div>
+    <?php else : ?>
+    <table>
+        <tr><th>App</th><th>Permissions</th><th>Connected</th><th>Last used</th><th>Expires</th><th></th></tr>
+        <?php foreach ($apps as $t) : ?>
+        <tr>
+            <td data-label="App" class="wrap"><?php echo Support::e($t['client_id']); ?></td>
+            <td data-label="Permissions"><?php echo Support::e($t['scope']); ?></td>
+            <td data-label="Connected" class="muted"><?php echo Support::e($when($t['created_at'])); ?></td>
+            <td data-label="Last used" class="muted"><?php echo Support::e($when($t['last_used_at'])); ?></td>
+            <td data-label="Expires" class="muted"><?php echo Support::e($when($t['expires_at'])); ?></td>
+            <td>
+                <form class="inline" method="POST">
+                    <?php echo admin_csrf_field(); ?>
+                    <input type="hidden" name="action" value="revoke_token">
+                    <input type="hidden" name="id" value="<?php echo (int) $t['id']; ?>">
+                    <button type="submit" class="danger small">Revoke</button>
+                </form>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <?php endif; ?>
+    <?php if ($pastApps !== []) : ?>
+    <details class="past">
+        <summary>Revoked and expired (<?php echo count($pastApps); ?>)</summary>
+        <table>
+            <tr><th>App</th><th>Permissions</th><th>Connected</th><th>Status</th></tr>
+            <?php foreach ($pastApps as $t) : ?>
+            <tr>
+                <td data-label="App" class="wrap"><?php echo Support::e($t['client_id']); ?></td>
+                <td data-label="Permissions"><?php echo Support::e($t['scope']); ?></td>
+                <td data-label="Connected" class="muted"><?php echo Support::e($when($t['created_at'])); ?></td>
+                <td data-label="Status"><span class="badge off"><?php echo $t['revoked_at'] !== null ? 'Revoked' : 'Expired'; ?></span></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    </details>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
 
 <div class="card">
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
@@ -63,7 +129,7 @@ admin_header('Sign-ins', 'index.php');
         </form>
         <?php endif; ?>
     </div>
-    <p class="muted">Prefer a feed reader? <a href="signins-feed.php">Private RSS feed</a> (token shown on the Settings page).</p>
+    <p class="muted">Prefer a feed reader? Private RSS feed (<?php echo $isOwner ? '<a href="settings.php?section=feeds">find the link in Settings</a>' : 'the owner has the link'; ?>).</p>
     <?php if (empty($entries)) : ?>
         <div class="empty">No sign-ins recorded yet.</div>
     <?php else : ?>
@@ -85,7 +151,7 @@ admin_header('Sign-ins', 'index.php');
                     <input type="hidden" name="action" value="block">
                     <input type="hidden" name="type" value="client_id">
                     <input type="hidden" name="pattern" value="<?php echo Support::e(parse_url($e['client_id'], PHP_URL_HOST)); ?>">
-                    <button type="submit" class="danger" style="padding:4px 8px;font-size:.8em;">Block client</button>
+                    <button type="submit" class="danger small">Block client</button>
                 </form>
                 <?php endif; ?>
                 <form class="inline" method="POST" title="Block this IP">
@@ -93,13 +159,13 @@ admin_header('Sign-ins', 'index.php');
                     <input type="hidden" name="action" value="block">
                     <input type="hidden" name="type" value="ip">
                     <input type="hidden" name="pattern" value="<?php echo Support::e($e['ip']); ?>">
-                    <button type="submit" class="danger" style="padding:4px 8px;font-size:.8em;">Block IP</button>
+                    <button type="submit" class="danger small">Block IP</button>
                 </form>
                 <form class="inline" method="POST">
                     <?php echo admin_csrf_field(); ?>
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?php echo (int) $e['id']; ?>">
-                    <button type="submit" class="secondary" style="padding:4px 8px;font-size:.8em;">Remove</button>
+                    <button type="submit" class="secondary small">Remove</button>
                 </form>
             </td>
             <?php endif; ?>
