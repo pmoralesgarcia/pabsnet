@@ -2,6 +2,8 @@ name: Deploy korea.lifeofpablo.com
 on: 
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - 'korea.lifeofpablo.com/**'
 jobs:

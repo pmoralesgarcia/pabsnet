@@ -1,9 +1,6 @@
 name: Deploy climateweeknyc.lifeofpablo.com
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'climateweeknyc.lifeofpablo.com/**'
 jobs:
   Build:
     name: Build

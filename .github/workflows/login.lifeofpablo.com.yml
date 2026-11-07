@@ -1,9 +1,6 @@
 name: Deploy Selfauth login.lifeofpablo.com
 on:
     workflow_dispatch:
-    push:
-        paths:
-          - 'login.lifeofpablo.com/**'
 jobs:
   Build:
     name: Build

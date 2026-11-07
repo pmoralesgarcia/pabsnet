@@ -2,6 +2,8 @@ name: docker compose build
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - 'docker-rebuild.yml'
 jobs:

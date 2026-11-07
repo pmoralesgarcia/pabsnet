@@ -2,6 +2,8 @@ name: Deploy lifeofpablo.com
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - 'lifeofpablo.com/**'
 jobs:

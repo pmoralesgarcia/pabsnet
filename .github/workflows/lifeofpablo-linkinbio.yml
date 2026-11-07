@@ -2,6 +2,8 @@ name: Deploy lifeofpablo.com/linkinbio
 on:
     workflow_dispatch:
     push:
+        branches:
+          - main
         paths:
           - 'lifeofpablo-linkinbio/**'
 jobs:

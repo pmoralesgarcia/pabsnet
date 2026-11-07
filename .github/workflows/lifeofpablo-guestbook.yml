@@ -1,9 +1,6 @@
 name: Deploy lifeofpablo-guestbook
 on:
     workflow_dispatch:
-    push:
-        paths:
-          - 'lifeofpablo-guestbook/**'
 jobs:
   Build:
     name: Build

@@ -2,6 +2,8 @@ name: Deploy nginx-configs
 on:
     workflow_dispatch:
     push:
+        branches:
+          - main
         paths:
           - 'nginx-configs/**'
 jobs:
