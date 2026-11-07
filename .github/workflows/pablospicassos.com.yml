@@ -1,9 +1,6 @@
 name: Deploy pablospicassos.com
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'pablospicassos.com/**'
 jobs:
   Build:
     name: Build

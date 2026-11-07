@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.5-apache
 
 # curl, dom, mbstring and pdo_sqlite all ship with this image, so nothing needs compiling.
 RUN a2enmod rewrite \

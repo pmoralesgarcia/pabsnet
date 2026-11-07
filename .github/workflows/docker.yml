@@ -2,6 +2,8 @@ name: Deploy docker compose
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - 'docker-compose.yml'
       # Selfauth's code is baked into its image, so code changes need a deploy.

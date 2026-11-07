@@ -1,12 +1,6 @@
-#!/bin/bash
-
-# Exit immediately if a command exits with a non-zero status
+#!/bin/sh
 set -e
 
-echo "Starting PHP-FPM..."
-# Start PHP-FPM in the background (&)
+# PHP-FPM runs in the background; exec makes nginx PID 1 so it receives stop signals.
 php-fpm -D
-
-echo "Starting Nginx..."
-# Start Nginx in the foreground so the container doesn't exit immediately
-nginx -g 'daemon off;'
+exec nginx -g 'daemon off;'

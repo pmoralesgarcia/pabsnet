@@ -1,30 +1,26 @@
-FROM debian:bookworm
+# nginx + PHP-FPM on the official PHP image (Debian, so www-data keeps UID 33
+# and bind-mounted site folders stay writable).
+FROM php:8.5-fpm-trixie
 
-RUN apt update -y && \
-	apt install -y nginx zip wget unzip curl
+ADD --chmod=0755 --checksum=sha256:27fa8d80bd4e22feb9ddcadff1ca40c8f3e8ea942eb2dd8f446ed1afd2f2f0ab \
+    https://github.com/mlocati/docker-php-extension-installer/releases/download/2.13.2/install-php-extensions \
+    /usr/local/bin/
 
-RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
-
-RUN apt update -y && \
-	apt install -y php8.3-fpm php8.3-gd php8.3-cli php8.3-curl php8.3-bz2 php8.3-mbstring php8.3-intl php8.3-zip php8.3-mysql
-
-COPY ./lifeofpablo-lists/www /var/www/html
-
-
-VOLUME /var/www/html
-
-WORKDIR  /var/www/html
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends nginx \
+    && rm -rf /var/lib/apt/lists/* \
+    && install-php-extensions bz2 gd intl zip mysqli pdo_mysql \
+    && cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && echo 'expose_php=Off' > "$PHP_INI_DIR/conf.d/site.ini" \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
 COPY ./lifeofpablo-lists/nginx/default.conf /etc/nginx/sites-enabled/default
+COPY --chmod=755 ./lifeofpablo-lists/start.sh /usr/local/bin/start.sh
 
-RUN chmod -R a+rw /var/www/html
+WORKDIR /var/www/html
+COPY --chown=www-data:www-data ./lifeofpablo-lists/www /var/www/html
 
 EXPOSE 80
 
-COPY ./lifeofpablo-lists/start.sh / 
-
-CMD ["sh", "/start.sh"]
-
-
-
-
+CMD ["start.sh"]

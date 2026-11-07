@@ -1,17 +1,8 @@
-FROM php:8.3-apache
+FROM php:8.5-apache
 
-# Extensions: pdo_sqlite for storage, curl for client-discovery/webmention
-# fetches, mbstring/dom for webmention HTML parsing.
-# Note: libonig-dev is required to compile php extension 'mbstring'
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-       libsqlite3-dev \
-       libcurl4-openssl-dev \
-       libxml2-dev \
-       libonig-dev \
-    && docker-php-ext-install pdo_sqlite curl dom mbstring \
-    && apt-get purge -y --auto-remove libsqlite3-dev libcurl4-openssl-dev libxml2-dev libonig-dev \
-    && rm -rf /var/lib/apt/lists/*
+# pdo_sqlite (storage), curl (client discovery and webmention fetches) and
+# mbstring/dom (webmention HTML parsing) all ship with this image, so nothing
+# needs compiling.
 
 # Configure Apache DocumentRoot and grant permissions to /app/public
 RUN a2enmod rewrite headers \
