@@ -1,24 +1,22 @@
-FROM alpine:3.19
+FROM alpine:3.23
 
-# 1. Install Nginx, PHP 8.3 FPM, and required PHP extensions + build dependencies
+# 1. Install Nginx, PHP 8.5 FPM, and required PHP extensions + build dependencies
 RUN apk add --no-cache \
     nginx \
-    php83 \
-    php83-fpm \
-    php83-pdo_sqlite \
-    php83-curl \
-    php83-dom \
-    php83-mbstring \
-    php83-opcache \
-    php83-session \
-    php83-json \
+    php85 \
+    php85-fpm \
+    php85-pdo_sqlite \
+    php85-curl \
+    php85-dom \
+    php85-mbstring \
+    php85-session \
     supervisor \
     curl
 
 WORKDIR /app
 
 # 2. Configure PHP-FPM to listen on TCP 127.0.0.1:9000
-RUN sed -i 's#listen = /var/run/php-fpm83.sock#listen = 127.0.0.1:9000#' /etc/php83/php-fpm.d/www.conf
+RUN sed -i 's#listen = /var/run/php-fpm85.sock#listen = 127.0.0.1:9000#' /etc/php85/php-fpm.d/www.conf
 
 # 3. Configure Nginx with complete PHP/FastCGI rules and front-controller routing
 RUN mkdir -p /run/nginx /app/public \
@@ -42,7 +40,7 @@ RUN mkdir -p /run/nginx /app/public \
 RUN echo '[supervisord]' > /etc/supervisord.conf \
     && echo 'nodaemon=true' >> /etc/supervisord.conf \
     && echo '[program:php-fpm]' >> /etc/supervisord.conf \
-    && echo 'command=php-fpm83 -F' >> /etc/supervisord.conf \
+    && echo 'command=php-fpm85 -F' >> /etc/supervisord.conf \
     && echo '[program:nginx]' >> /etc/supervisord.conf \
     && echo 'command=nginx -g "daemon off;"' >> /etc/supervisord.conf
 

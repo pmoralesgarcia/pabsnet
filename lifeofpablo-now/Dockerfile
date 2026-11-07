@@ -1,28 +1,7 @@
-FROM debian:bookworm
+# Static site, so plain nginx is all it needs. The base image's own CMD runs nginx.
+FROM nginx:stable-alpine
 
-RUN apt update -y && \
-	apt install -y nginx php-fpm zip wget unzip curl
-
-RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
-
-RUN apt update -y && \
-	apt install -y php-fpm php-zip php-curl php-gd php-mbstring 
-
-#RUN mkdir -p /var/www/login.lifeofpablo.com 
-
+COPY ./nginx/now.conf /etc/nginx/conf.d/default.conf
 COPY ./www/now /var/www/now
 
-WORKDIR /var/www/now
-
-
-COPY ./nginx/now.conf /etc/nginx/sites-enabled/default
-
 EXPOSE 80
-
-COPY ./start.sh / 
-
-CMD ["sh", "/start.sh"]
-
-
-
-

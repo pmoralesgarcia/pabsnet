@@ -1,42 +1,29 @@
-# 1. Use the lightweight PHP 8.4 FPM Alpine base
-FROM php:8.4-fpm-alpine
+# nginx + PHP-FPM on the official PHP Alpine image.
+FROM php:8.5-fpm-alpine
 
-# 2. Install Nginx and system dependencies for PHP extensions
-# --no-cache keeps the image small by not storing the index locally
-RUN apk add --no-cache \
-    nginx \
-    libpng-dev \
-    libzip-dev \
-    icu-dev \
-    oniguruma-dev \
-    bash
+ADD --chmod=0755 --checksum=sha256:27fa8d80bd4e22feb9ddcadff1ca40c8f3e8ea942eb2dd8f446ed1afd2f2f0ab \
+    https://github.com/mlocati/docker-php-extension-installer/releases/download/2.13.2/install-php-extensions \
+    /usr/local/bin/
 
-# 3. Install and enable PHP extensions
-RUN docker-php-ext-install \
-    gd \
-    intl \
-    mbstring \
-    zip \
-    bcmath
+RUN apk add --no-cache nginx \
+    && install-php-extensions bcmath gd intl zip \
+    && cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && echo 'expose_php=Off' > "$PHP_INI_DIR/conf.d/site.ini" \
+    && ln -sf /dev/stdout /var/log/nginx/access.log \
+    && ln -sf /dev/stderr /var/log/nginx/error.log
 
-# 4. Security: Create a non-privileged user
-RUN addgroup -S pablo && adduser -S pablo -G pablo
-
-# 5. Configure Nginx
-# Note: Alpine Nginx uses /etc/nginx/http.d/ instead of sites-enabled
+# Alpine's nginx reads /etc/nginx/http.d/, not sites-enabled.
 COPY ./korea.lifeofpablo.com/nginx/korea.lifeofpablo.com.conf /etc/nginx/http.d/default.conf
+COPY --chmod=755 ./korea.lifeofpablo.com/start.sh /usr/local/bin/start.sh
 
-# 6. Set up the working directory
 WORKDIR /var/www/html
 
-# 7. Copy code and set ownership immediately (No 'chmod 777')
-COPY --chown=pablo:pablo ./korea.lifeofpablo.com /var/www/html
-
-# 8. Set permissions (Folders: 755, Files: 644 is handled by default)
-RUN chmod -R 755 /var/www/html
+# PHP-FPM workers run as www-data, so the site must belong to it to be writable.
+COPY --chown=www-data:www-data ./korea.lifeofpablo.com/www /var/www/html
 
 EXPOSE 80
 
-# 9. Optimized Start Script
-COPY --chmod=755 ./korea.lifeofpablo.com/start.sh /usr/local/bin/start.sh
-ENTRYPOINT ["start.sh"]
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
+    CMD curl -fsS -o /dev/null http://127.0.0.1/ || exit 1
+
+CMD ["start.sh"]
