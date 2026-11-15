@@ -34,5 +34,5 @@ jobs:
           git pull
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=selfauth-login))
           cd ~/pabsnet/login.lifeofpablo.com
-          docker build . -t selfauth-login:latest
+          docker build --pull . -t selfauth-login:latest
           docker run -d -p 8081:80 -v ./www/login.lifeofpablo.com:/var/www/login.lifeofpablo.com selfauth-login     

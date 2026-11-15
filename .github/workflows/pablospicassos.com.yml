@@ -35,6 +35,6 @@ jobs:
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=pablospicassos))
           cd ~/pabsnet/pablospicassos.com
           chmod -R a+rw ~/pabsnet/pablospicassos.com
-          docker build . -t pablospicassos:latest
+          docker build --pull . -t pablospicassos:latest
           docker run -d -p 8000:80 -v /home/pablo/pabsnet/pablospicassos.com/www:/var/www/pablospicassos.com pablospicassos        
   

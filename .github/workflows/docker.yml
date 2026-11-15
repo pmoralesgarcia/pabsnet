@@ -1,6 +1,11 @@
 name: Deploy docker compose
 on:
   workflow_dispatch:
+  # Weekly rebuild so base images (PHP, Node, Alpine, Debian) pick up
+  # security patches even when nothing in the repo changed.
+  # Mondays 10:00 UTC (2–3 am Pacific).
+  schedule:
+    - cron: '0 10 * * 1'
   push:
     branches:
       - main
@@ -141,6 +146,6 @@ jobs:
             EOF
 
             # Build first: a failed build stops here and leaves the running stack up.
-            docker compose build && \
+            docker compose build --pull && \
             docker compose down && \
             docker compose up --detach

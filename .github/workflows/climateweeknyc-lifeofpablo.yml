@@ -36,6 +36,6 @@ jobs:
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=climateweeknyc-lifeofpablo))
           cd ~/pabsnet/climateweeknyc.lifeofpablo.com
           chmod -R a+rw ~/pabsnet/climateweeknyc.lifeofpablo.com
-          docker build . -t climateweeknyc-lifeofpablo:latest
+          docker build --pull . -t climateweeknyc-lifeofpablo:latest
           docker run -d -p 8203:80 -v ./www/climateweeknyc.lifeofpablo.com:/var/www/climateweeknyc.lifeofpablo.com climateweeknyc-lifeofpablo        
   

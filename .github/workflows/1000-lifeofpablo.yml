@@ -41,6 +41,6 @@ jobs:
           docker rm $(docker stop $(docker ps -a -q --filter ancestor=1000-lifeofpablo))
           cd ~/pabsnet/1000.lifeofpablo.com
           chmod -R a+rw ~/pabsnet/1000.lifeofpablo.com
-          docker build . -t 1000-lifeofpablo:latest
+          docker build --pull . -t 1000-lifeofpablo:latest
           docker run -d -p 8200:80 -v ./www/1000.lifeofpablo.com:/var/www/1000.lifeofpablo.com 1000-lifeofpablo        
   
