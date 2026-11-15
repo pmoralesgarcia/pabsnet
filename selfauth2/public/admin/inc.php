@@ -30,12 +30,26 @@ function admin_nav_items(): array
     if (Session::hasRole('manager')) {
         $items['blocklist.php'] = ['Blocklist', 'block'];
     }
-    $client = \Selfauth\AuthRequest::trustedClientId();
-    if ($client !== null && Session::hasRole('owner')) {
-        $items[$client . 'login.php?me=' . rawurlencode(SELFAUTH_USER_URL)] = ['Post', 'post'];
-    }
     if (Session::hasRole('owner')) {
         $items['settings.php'] = ['Settings', 'settings'];
+    }
+    return $items;
+}
+
+/** Your other services. Each link signs you in there with one click. */
+function admin_service_items(): array
+{
+    if (!Session::hasRole('owner')) {
+        return [];
+    }
+    $items = [];
+    $post = \Selfauth\AuthRequest::trustedClientId();
+    if ($post !== null) {
+        $items[$post . 'login.php?me=' . rawurlencode(SELFAUTH_USER_URL)] = ['Post', 'post'];
+    }
+    $login = \Selfauth\AuthRequest::loginServiceUrl();
+    if ($login !== null) {
+        $items[$login . 'admin'] = ['Login sites', 'login'];
     }
     return $items;
 }
@@ -48,6 +62,7 @@ function admin_icon(string $name): string
         'block' => '<circle cx="12" cy="12" r="9"/><path d="m5.7 5.7 12.6 12.6"/>',
         'post' => '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13 7 4 4"/>',
         'settings' => '<circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6 2.1-2.1"/>',
+        'login' => '<path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 16l4-4-4-4M14 12H4"/>',
         'logout' => '<path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4"/><path d="M10 8l-4 4 4 4M6 12h10"/>',
     ];
     return '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">' . ($paths[$name] ?? '') . '</svg>';
@@ -70,6 +85,13 @@ function admin_nav(string $active): string
     foreach (admin_nav_items() as $href => [$label, $icon]) {
         $isActive = $href === $active || ($href === 'settings.php' && $inSettings);
         $html .= '<a href="' . Support::e($href) . '"' . ($isActive ? ' class="active" aria-current="page"' : '') . '>' . admin_icon($icon) . Support::e($label) . '</a>';
+    }
+    $services = admin_service_items();
+    if ($services !== []) {
+        $html .= '<p class="nav-heading">Services</p>';
+        foreach ($services as $href => [$label, $icon]) {
+            $html .= '<a href="' . Support::e($href) . '">' . admin_icon($icon) . Support::e($label) . '</a>';
+        }
     }
     return $html . '</nav><a class="logout" href="logout.php">' . admin_icon('logout') . 'Log out</a></aside>';
 }

@@ -34,3 +34,5 @@ pre code { padding: 0; background: transparent; }
 .msg { padding: 10px 14px; border-radius: 6px; margin: 0 0 14px; background: var(--code); overflow-wrap: anywhere; }
 .msg.error { background: var(--err-bg); color: var(--err-fg); }
 footer { max-width: 640px; margin: 0 auto; padding: 8px 16px 32px; color: var(--muted); font-size: .85rem; }
+.inline { display: inline; }
+.site small { font-size: .8rem; }

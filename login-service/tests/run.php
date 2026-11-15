@@ -50,6 +50,24 @@ t('others cannot remove it', $store->isRegistered('https://me.example/app'));
 $store->unregister('https://me.example/app', 'https://me.example/~pablo');
 t('owner can remove it', !$store->isRegistered('https://me.example/app'));
 
+// the admin's domain needs no registering
+putenv('LOGIN_ADMIN=https://admin.example/');
+t('admin set', Config::admin() === 'https://admin.example/' && Config::isAdmin('https://admin.example/') && !Config::isAdmin('https://other.example/') && !Config::isAdmin(null));
+t('admin domain allowed', $store->isRegistered('https://admin.example/') && $store->isRegistered('https://admin.example/app'));
+t('admin subdomains allowed', $store->isRegistered('https://post.admin.example/'));
+foreach (['https://evil-admin.example/', 'https://admin.example.evil.test/', 'https://xadmin.example/'] as $bad) t("lookalike not allowed: $bad", !$store->isRegistered($bad));
+t('admin registers any domain', $store->register('https://friend.example/', 'https://admin.example/') === 'https://friend.example/' && $store->isRegistered('https://friend.example/'));
+$store->register('https://me.example/mine', 'https://me.example/');
+t('admin sees every site', array_column($store->allClients(), 'client_id') === ['https://friend.example/', 'https://me.example/mine']);
+$store->unregister('https://me.example/mine', 'https://friend.example/');
+t('non-admin cannot remove others', $store->isRegistered('https://me.example/mine'));
+$store->unregister('https://me.example/mine', 'https://admin.example/');
+t('admin removes any site', !$store->isRegistered('https://me.example/mine'));
+$store->unregister('https://friend.example/', 'https://admin.example/');
+t('subdomain is on domain, lookalike is not', Store::onDomain('a.b.example', 'b.example') && !Store::onDomain('ab.example', 'b.example') && !Store::onDomain('b.example', ''));
+putenv('LOGIN_ADMIN');
+t('no admin, no free pass', !$store->isRegistered('https://admin.example/'));
+
 // requests
 $valid = ['client_id' => 'https://seeded.example/', 'redirect_uri' => 'https://seeded.example/cb', 'state' => 's', 'code_challenge' => str_repeat('a', 43), 'code_challenge_method' => 'S256'];
 $r = AuthRequest::validate($valid, $store);

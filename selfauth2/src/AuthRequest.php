@@ -23,11 +23,37 @@ class AuthRequest
     /** What the admin portal's one-click sign-in may grant without asking. */
     public const TRUSTED_CLIENT_SCOPES = ['profile', 'create', 'draft', 'media'];
 
-    /** Whether this is the configured client, returning to its exact callback. */
+    /** Whether this is one of your own services, returning to its exact callback. */
     public static function isTrustedClient(?string $clientId, ?string $redirectUri): bool
     {
-        $trusted = self::trustedClientId();
-        return $trusted !== null && $clientId === $trusted && $redirectUri === $trusted . 'callback.php';
+        foreach (self::trustedCallbacks() as $id => $callback) {
+            if ($clientId === $id && $redirectUri === $callback) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** @return array<string,string> client_id => the one callback it may use. */
+    public static function trustedCallbacks(): array
+    {
+        $out = [];
+        $post = self::trustedClientId();
+        if ($post !== null) {
+            $out[$post] = $post . 'callback.php';
+        }
+        $login = self::loginServiceUrl();
+        if ($login !== null) {
+            $out[$login] = $login . 'callback';
+        }
+        return $out;
+    }
+
+    /** The website sign-in service (login.lifeofpablo.com) that you run. */
+    public static function loginServiceUrl(): ?string
+    {
+        $value = trim((string) getenv('SELFAUTH_LOGIN_SERVICE_URL'));
+        return $value === '' ? null : ClientId::canonicalize(rtrim($value, '/') . '/');
     }
 
     public static function trustedClientId(): ?string

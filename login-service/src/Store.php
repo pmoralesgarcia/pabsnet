@@ -29,8 +29,13 @@ class Store
     }
 
     /** Whether a site may use the service: listed in LOGIN_CLIENTS, or registered by its owner. */
-    public function isRegistered(string $clientId): bool
-    {
+public function isRegistered(string $clientId): bool
+{
+    // The admin's domain and its subdomains never need registering.
+    $admin = Config::admin();
+    if ($admin !== null && self::onDomain(Urls::host($clientId), Urls::host($admin))) {
+        return true;
+    }
         foreach (preg_split('/[\s,]+/', (string) getenv('LOGIN_CLIENTS'), -1, PREG_SPLIT_NO_EMPTY) as $seed) {
             if (Urls::client($seed) === $clientId) {
                 return true;
@@ -48,11 +53,23 @@ class Store
         if ($clientId === null) {
             throw new ClientError('Enter your site\'s full address, starting with https://');
         }
-        if (Urls::host($clientId) !== Urls::host($me)) {
+        if (!Config::isAdmin($me) && Urls::host($clientId) !== Urls::host($me)) {
             throw new ClientError('You signed in as ' . Urls::host($me) . ', so you can only register sites on that domain.');
         }
         $this->pdo->prepare('INSERT OR IGNORE INTO clients (client_id, owner_me, created_at) VALUES (?, ?, ?)')->execute([$clientId, $me, time()]);
         return $clientId;
+    }
+
+    /** Whether a host is the domain itself or one of its subdomains. A lookalike like evil-domain.com is neither. */
+    public static function onDomain(string $host, string $domain): bool
+    {
+        return $domain !== '' && ($host === $domain || str_ends_with($host, '.' . $domain));
+    }
+
+    /** @return array<int, array{client_id:string, owner_me:string, created_at:int}> Every registered site, for the admin. */
+    public function allClients(): array
+    {
+        return $this->pdo->query('SELECT client_id, owner_me, created_at FROM clients ORDER BY client_id')->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     /** @return string[] */
@@ -65,6 +82,10 @@ class Store
 
     public function unregister(string $clientId, string $me): void
     {
+        if (Config::isAdmin($me)) {
+            $this->pdo->prepare('DELETE FROM clients WHERE client_id = ?')->execute([$clientId]);
+            return;
+        }
         $this->pdo->prepare('DELETE FROM clients WHERE client_id = ? AND owner_me = ?')->execute([$clientId, $me]);
     }
 

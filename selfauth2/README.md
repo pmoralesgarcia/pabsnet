@@ -153,7 +153,7 @@ The sign-in screen shows the app's name, logo and domain, where you will be sent
 
 ### One-click sign-in
 
-Set `SELFAUTH_TRUSTED_CLIENT_ID` to one client's URL and the admin portal gets a **Post** link to it. An owner signed in to the portal skips the sign-in screen for that client, which is granted `profile`, `create`, `draft` and `media` without asking. It runs the normal flow with PKCE, must return to `<client>/callback.php`, and appears in the sign-in log, with `admin-session` as the method in its `signin.success` event. Anyone else sees the normal screen. Trust only a client you run yourself.
+Set `SELFAUTH_TRUSTED_CLIENT_ID` to your Micropub client's URL and the admin portal gets a **Post** link to it. Set `SELFAUTH_LOGIN_SERVICE_URL` to your website sign-in service and it gets a **Login sites** link, which signs you in at its `/admin` page. An owner signed in to the portal skips the sign-in screen for that client, which is granted `profile`, `create`, `draft` and `media` without asking. It runs the normal flow with PKCE, must return to `<client>/callback.php` (or `<service>/callback` for the sign-in service), and appears in the sign-in log, with `admin-session` as the method in its `signin.success` event. Anyone else sees the normal screen. Trust only a client you run yourself.
 
 ### Micropub
 

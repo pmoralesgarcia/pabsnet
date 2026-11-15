@@ -362,6 +362,13 @@ t('other client is not trusted', !Selfauth\AuthRequest::isTrustedClient('https:/
 t('lookalike host is not trusted', !Selfauth\AuthRequest::isTrustedClient('https://post.example.evil.test/', 'https://post.example.evil.test/callback.php'));
 t('one-click scopes exclude editing and deleting', !array_intersect(['update', 'delete'], Selfauth\AuthRequest::TRUSTED_CLIENT_SCOPES));
 putenv('SELFAUTH_TRUSTED_CLIENT_ID');
+putenv('SELFAUTH_LOGIN_SERVICE_URL=https://login.example');
+t('login service trusted at its callback', Selfauth\AuthRequest::isTrustedClient('https://login.example/', 'https://login.example/callback'));
+t('login service not trusted at the Post path', !Selfauth\AuthRequest::isTrustedClient('https://login.example/', 'https://login.example/callback.php'));
+t('login service not trusted elsewhere', !Selfauth\AuthRequest::isTrustedClient('https://login.example/', 'https://login.example/register'));
+t('login callback cannot be borrowed by another client', !Selfauth\AuthRequest::isTrustedClient('https://evil.example/', 'https://login.example/callback'));
+t('services listed', array_keys(Selfauth\AuthRequest::trustedCallbacks()) === ['https://login.example/']);
+putenv('SELFAUTH_LOGIN_SERVICE_URL');
 
 // details borrowed from the Datenstrom editor script
 t('accents become readable slugs', Micropub::slugify('Cañón en Größe, café', time()) === 'canon-en-groesse-cafe');

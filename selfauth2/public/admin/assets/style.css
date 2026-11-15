@@ -27,6 +27,7 @@ a{color:var(--accent);}
 .nav a:hover,.logout:hover{background:var(--bg);}
 .nav a.active{background:var(--accent-soft); color:var(--accent); font-weight:600;}
 .logout{margin-top:auto; color:var(--muted);}
+.nav-heading{margin:14px 10px 4px; font-size:.72em; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--muted);}
 .icon{flex:none; width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
 .page{flex:1; min-width:0; display:flex; flex-direction:column;}
 main{width:100%; max-width:1040px; padding:24px;}
@@ -108,6 +109,7 @@ code{background:#f0f2f4; padding:1px 5px; border-radius:4px; font-size:.9em; ove
   .sidebar{position:static; height:auto; flex:none; border-right:0; border-bottom:1px solid var(--border); padding:12px;}
   .nav{flex-direction:row; flex-wrap:wrap;}
   .nav a{padding:6px 9px; font-size:.86em;}
+  .nav-heading{flex-basis:100%; margin:6px 9px 0;}
   .logout{margin-top:0; padding:6px 9px; font-size:.86em;}
   .settings{flex-direction:column;}
   .subnav{flex:none; flex-direction:row; overflow-x:auto; padding:8px 12px; border-right:0; border-bottom:1px solid var(--border);}

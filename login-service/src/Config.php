@@ -16,6 +16,19 @@ class Config
         return self::issuer() . 'callback';
     }
 
+    /** The site that runs this service. Null when no admin is set. */
+    public static function admin(): ?string
+    {
+        $value = trim((string) getenv('LOGIN_ADMIN'));
+        return $value === '' ? null : Urls::profile($value);
+    }
+
+    public static function isAdmin(?string $me): bool
+    {
+        $admin = self::admin();
+        return $admin !== null && $me === $admin;
+    }
+
     public static function registrationOpen(): bool
     {
         return getenv('LOGIN_REGISTRATION') !== 'closed';

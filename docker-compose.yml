@@ -339,6 +339,7 @@ services:
       - SELFAUTH_ADMIN_AUTH_MODE=both
       - SELFAUTH_REQUIRE_PKCE=true
       - SELFAUTH_TRUSTED_CLIENT_ID=https://post.lifeofpablo.com/
+      - SELFAUTH_LOGIN_SERVICE_URL=https://login.lifeofpablo.com/
       - SELFAUTH_MICROPUB_ENABLED=true
       - SELFAUTH_MICROPUB_GITHUB_TOKEN=${SELFAUTH_MICROPUB_GITHUB_TOKEN}
       - SELFAUTH_MICROPUB_GITHUB_REPO=pmoralesgarcia/lifeofpablo
@@ -388,7 +389,7 @@ services:
     restart: unless-stopped
     environment:
       - LOGIN_URL=https://login.lifeofpablo.com/
-      - LOGIN_CLIENTS=https://lifeofpablo.com/
+      - LOGIN_ADMIN=https://lifeofpablo.com/
       - LOGIN_DB_PATH=/app/data/login.sqlite
       - LOGIN_TRUST_PROXY=true
       - TZ=America/Los_Angeles

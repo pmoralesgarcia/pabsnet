@@ -9,6 +9,7 @@ Usage for site owners is on the service's home page.
 | Variable | Purpose |
 |---|---|
 | `LOGIN_URL` | This service's public URL. Sites check it as the `iss` |
+| `LOGIN_ADMIN` | The website that runs this service. Its domain and subdomains need no registering, and it can see, add and remove every site |
 | `LOGIN_CLIENTS` | Sites allowed without registering, separated by spaces or commas |
 | `LOGIN_REGISTRATION` | `closed` stops new registrations. Open by default |
 | `LOGIN_DB_PATH` | SQLite file. Registered sites live here, so keep it on a volume |
@@ -17,7 +18,7 @@ Usage for site owners is on the service's home page.
 
 ## Rules
 
-- **Sites** must be registered, use HTTPS, send PKCE (S256) and `state`, and return people to their own origin. Registering needs a sign-in with a website on the same host, which proves ownership.
+- **Sites** must be registered, use HTTPS, send PKCE (S256) and `state`, and return people to their own origin. Registering needs a sign-in with a website on the same host, which proves ownership. Sites on the admin's domain need no registering. The admin signs in at `/admin`.
 - **People's websites** follow the spec's profile URL rules: a domain name, with no port, IP address, fragment or credentials. They need an `authorization_endpoint` or `indieauth-metadata`, on HTTPS. A token endpoint and Micropub are not needed.
 - **Codes** are single-use, last 60 seconds, are stored only as hashes, and are burned on a failed attempt.
 - Requests to other people's sites refuse private addresses and ports other than 80 and 443.
